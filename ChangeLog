@@ -1,0 +1,16 @@
+
+		ChangeLog for Locale-Codes Distribution
+
+1.00  March 1998
+
+	Added Locale::Country::_alias_code() so that 'uk' can be added
+	as the code for "United Kingdom", if you want it.
+	This was prompted by Ed Jordan <ed@chronos.net>
+
+	Added a new testsuite for handling this case, and extended the
+	existing test-suite to include testing of the case where
+	'uk' hasn't been defined as a valid code.
+
+0.003 May 1997
+
+	First public release to CPAN

@@ -3,6 +3,8 @@ Locale/Country.pm
 t/language.t
 t/country.t
 t/all.t
+t/uk.t
 Makefile.PL
 MANIFEST
 README
+ChangeLog

@@ -8,11 +8,13 @@ Locale::Country - ISO two letter codes for country identification (ISO 3166)
 
     use Locale::Country;
     
-    $country = code2country('jp');         # $country gets 'Japan'
-    $code    = country2code('Norway');     # $code gets 'no'
+    $country = code2country('jp');               # $country gets 'Japan'
+    $code    = country2code('Norway');           # $code gets 'no'
     
     @codes   = all_country_codes();
     @names   = all_country_names();
+    
+    Locale::Country::_alias_code('uk' => 'gb');  # allow "uk": United Kingdom
 
 =cut
 
@@ -37,15 +39,16 @@ all country names.
 #-----------------------------------------------------------------------
 
 require Exporter;
+use Carp;
 
 #-----------------------------------------------------------------------
 #	Public Global Variables
 #-----------------------------------------------------------------------
-use vars qw($VERSION @ISA @EXPORT);
-$VERSION   = '0.003';
+use vars qw($VERSION @ISA @EXPORT @EXPORT_OK);
+$VERSION   = '1.00';
 @ISA       = qw(Exporter);
-@EXPORT    = qw(&code2country &country2code
-                &all_country_codes &all_country_names);
+@EXPORT    = qw(code2country country2code
+                all_country_codes all_country_names);
 
 #-----------------------------------------------------------------------
 #	Private Global Variables
@@ -166,6 +169,50 @@ sub all_country_names
 
 #-----------------------------------------------------------------------
 
+=head1 CODE ALIASING
+
+This module supports a semi-private routine for specifying two letter
+code aliases. This feature was added as a mechanism for handling
+a "uk" code. The ISO standard says that the two-letter code for
+"United Kingdom" is "gb", whereas domain names are all .uk.
+
+By default the module does not understand "uk", since it is implementing
+an ISO standard. If you would like 'uk' to work as the two-letter
+code for United Kingdom, use the following:
+
+    use Locale::Country;
+    
+    Locale::Country::_alias_code('uk' => 'gb');
+
+With this code, both "uk" and "gb" are valid codes for United Kingdom,
+with the reverse lookup returning "uk" rather than the usual "gb".
+
+=cut
+
+#-----------------------------------------------------------------------
+
+sub _alias_code
+{
+    my $alias = shift;
+    my $real  = shift;
+
+    my $country;
+
+
+    if (not exists $CODES{$real})
+    {
+        carp "attempt to alias \"$alias\" to unknown country code \"$real\"\n";
+        return undef;
+    }
+    $country = $CODES{$real};
+    $CODES{$alias} = $country;
+    $COUNTRIES{"\L$country"} = $alias;
+
+    return $alias;
+}
+
+#-----------------------------------------------------------------------
+
 =head1 EXAMPLES
 
 The following example illustrates use of the C<code2country()> function.
@@ -251,7 +298,7 @@ Neil Bowers E<lt>neilb@cre.canon.co.ukE<gt>
 
 =head1 COPYRIGHT
 
-Copyright (c) 1997 Canon Research Centre Europe (CRE).
+Copyright (c) 1997,1998 Canon Research Centre Europe (CRE).
 
 This module is free software; you can redistribute it and/or
 modify it under the same terms as Perl itself.
