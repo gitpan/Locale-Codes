@@ -1,0 +1,8 @@
+Locale/Language.pm
+Locale/Country.pm
+t/language.t
+t/country.t
+t/all.t
+Makefile.PL
+MANIFEST
+README

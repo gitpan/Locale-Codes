@@ -1,0 +1,34 @@
+
+			Locale-Codes Distribution
+				v0.003
+
+This distribution contains two modules which can be used to process
+ISO two letter codes for identifying language and country.
+
+    Locale::Language
+	Two letter codes for language identification (ISO 639).
+	For example, 'en' is the code for 'English'.
+
+    Locale::Country
+	Two letter codes for country identification (ISO 3166).
+	For example, 'bo' is the code for 'Bolivia'.
+
+To install these modules, you should just have to run the following:
+
+	% perl Makefile.PL
+	% make
+	% make test
+	% make install
+
+Both modules are documented using pod. When you "make install", you
+will get two man-pages: Locale::Language and Locale::Country.
+
+Please let me know if you experience any problems with these modules,
+or have any ideas for additions.
+
+
+Neil Bowers <neilb@cre.canon.co.uk>
+
+Solutions Applications Services (SAS)
+Canon Research Centre Europe
+http://www.cre.canon.co.uk/sas/
