@@ -45,7 +45,7 @@ use Carp;
 #	Public Global Variables
 #-----------------------------------------------------------------------
 use vars qw($VERSION @ISA @EXPORT @EXPORT_OK);
-$VERSION   = sprintf("%d.%02d", q$Revision: 1.4 $ =~ /(\d+)\.(\d+)/);
+$VERSION   = sprintf("%d.%02d", q$Revision: 1.6 $ =~ /(\d+)\.(\d+)/);
 @ISA       = qw(Exporter);
 @EXPORT    = qw(code2country country2code
                 all_country_codes all_country_names);
@@ -278,6 +278,11 @@ A lazy implementation would be more memory friendly.
 =item Locale::Language
 
 ISO two letter codes for identification of language (ISO 639).
+
+=item Locale::Currency
+
+ISO three letter codes for identification of currencies
+and funds (ISO 4217).
 
 =item ISO 3166
 

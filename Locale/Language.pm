@@ -42,7 +42,7 @@ require Exporter;
 #	Public Global Variables
 #-----------------------------------------------------------------------
 use vars qw($VERSION @ISA @EXPORT);
-$VERSION      = sprintf("%d.%02d", q$Revision: 1.4 $ =~ /(\d+)\.(\d+)/);
+$VERSION      = sprintf("%d.%02d", q$Revision: 1.5 $ =~ /(\d+)\.(\d+)/);
 @ISA          = qw(Exporter);
 @EXPORT       = qw(&code2language &language2code
                    &all_language_codes &all_language_names );
@@ -212,6 +212,10 @@ Would these be of any use to anyone?
 
 ISO two letter codes for identification of country (ISO 3166).
 
+=item Locale::Currency
+
+ISO three letter codes for identification of currencies and funds (ISO 4217).
+
 =item ISO 639:1988 (E/F)
 
 Code for the representation of names of languages.
@@ -229,7 +233,7 @@ Neil Bowers E<lt>neilb@cre.canon.co.ukE<gt>
 
 =head1 COPYRIGHT
 
-Copyright (c) 1997-2000 Canon Research Centre Europe (CRE).
+Copyright (c) 1997-2001 Canon Research Centre Europe (CRE).
 
 This module is free software; you can redistribute it and/or
 modify it under the same terms as Perl itself.

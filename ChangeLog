@@ -1,6 +1,12 @@
 
 		ChangeLog for Locale-Codes Distribution
 
+1.03  Feb 2001
+
+	Added Locale::Currency, contribution from Michael Hennecke.
+	Added testsuite for it (t/currency.t) and added testcases
+	to t/all.t for the all_* functions.
+
 1.03  Dec 2000
 
 	Fixed very minor typos from 1.03!

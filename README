@@ -1,9 +1,10 @@
 
 			Locale-Codes Distribution
-				v1.04
+				v1.05
 
-This distribution contains two modules which can be used to process
-ISO two letter codes for identifying language and country.
+This distribution contains three modules which can be used to process
+ISO two etter codes for identifying language and country, and
+the three letter codes for identifying currencies and funds.
 
     Locale::Language
 	Two letter codes for language identification (ISO 639).
@@ -13,6 +14,10 @@ ISO two letter codes for identifying language and country.
 	Two letter codes for country identification (ISO 3166).
 	For example, 'bo' is the code for 'Bolivia'.
 
+    Locale::Currency
+	Three letter codes for currency and fund identification (ISO 4217).
+	For example, 'sek' is the code for 'Swedish Krona'.
+
 To install these modules, you should just have to run the following:
 
 	% perl Makefile.PL
@@ -20,8 +25,12 @@ To install these modules, you should just have to run the following:
 	% make test
 	% make install
 
-Both modules are documented using pod. When you "make install", you
-will get two man-pages: Locale::Language and Locale::Country.
+The modules are documented using pod. When you "make install", you
+will get three man-pages: Locale::Language, Locale::Country,
+and Locale::Currency.
+
+The first version of Locale::Currency was written by Michael Hennecke,
+with modifications for inclusion by me. Kudos to Michael.
 
 Please let me know if you experience any problems with these modules,
 or have any ideas for additions.
