@@ -1,6 +1,19 @@
 
 		ChangeLog for Locale-Codes Distribution
 
+1.02  May 2000
+
+	Updated Locale::Country and Locale::Language to reflect changes
+	in the relevant ISO standards. These mainly reflect languages
+	which are new to the relevant standard, and changes in the
+	spelling of some country names.
+
+	Added official URLs for the standards to the SEE ALSO sections
+	of the doc for each module.
+
+	Thanks to Jarkko Hietaniemi for pointing me at the pages
+	with latest versions of ISO 3166 and 639.
+
 1.00  March 1998
 
 	Added Locale::Country::_alias_code() so that 'uk' can be added

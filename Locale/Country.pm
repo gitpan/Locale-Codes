@@ -45,7 +45,7 @@ use Carp;
 #	Public Global Variables
 #-----------------------------------------------------------------------
 use vars qw($VERSION @ISA @EXPORT @EXPORT_OK);
-$VERSION   = '1.00';
+$VERSION   = sprintf("%d.%02d", q$Revision: 1.2 $ =~ /(\d+)\.(\d+)/);
 @ISA       = qw(Exporter);
 @EXPORT    = qw(code2country country2code
                 all_country_codes all_country_names);
@@ -283,11 +283,13 @@ ISO two letter codes for identification of language (ISO 639).
 
 The ISO standard which defines these codes.
 
-=item ftp://info.ripe.net/iso3166-countrycodes
+=item http://www.din.de/gremien/nas/nabd/iso3166ma/
 
-Online file with the two-letter codes, three-letter codes,
-and country code numbers.
-Maintained by the RIPE Network Coordination Centre.
+Official home page for ISO 3166
+
+=item http://www.egt.ie/standards/iso3166/iso3166-1-en.html
+
+Another useful, but not official, home page.
 
 =back
 
@@ -298,7 +300,7 @@ Neil Bowers E<lt>neilb@cre.canon.co.ukE<gt>
 
 =head1 COPYRIGHT
 
-Copyright (c) 1997,1998 Canon Research Centre Europe (CRE).
+Copyright (c) 1997-2000 Canon Research Centre Europe (CRE).
 
 This module is free software; you can redistribute it and/or
 modify it under the same terms as Perl itself.
@@ -344,7 +346,7 @@ at:Austria
 au:Australia
 aw:Aruba
 az:Azerbaijan
-ba:Bosnia and Herzegowina
+ba:Bosnia and Herzegovina
 bb:Barbados
 bd:Bangladesh
 be:Belgium
@@ -365,6 +367,7 @@ by:Belarus
 bz:Belize
 ca:Canada
 cc:Cocos (Keeling) Islands
+cd:Congo, The Democratic Republic of the
 cf:Central African Republic
 cg:Congo
 ch:Switzerland
@@ -396,7 +399,7 @@ et:Ethiopia
 fi:Finland
 fj:Fiji
 fk:Falkland Islands (Malvinas)
-fm:Micronesia (Federated States of)
+fm:Micronesia, Federated States of
 fo:Faroe Islands
 fr:France
 fx:France, Metropolitan
@@ -419,7 +422,7 @@ gu:Guam
 gw:Guinea-Bissau
 gy:Guyana
 hk:Hong Kong
-hm:Heard and Mc Donald Islands
+hm:Heard Island and McDonald Islands
 hn:Honduras
 hr:Croatia
 ht:Haiti
@@ -430,7 +433,7 @@ il:Israel
 in:India
 io:British Indian Ocean Territory
 iq:Iraq
-ir:Iran (Islamic Republic of)
+ir:Iran, Islamic Republic of
 is:Iceland
 it:Italy
 jm:Jamaica
@@ -446,7 +449,7 @@ kp:Korea, Democratic People's Republic of
 kr:Korea, Republic of
 kw:Kuwait
 ky:Cayman Islands
-kz:Kazakhstan
+kz:Kazakstan
 la:Lao People's Democratic Republic
 lb:Lebanon
 lc:Saint Lucia
@@ -499,9 +502,10 @@ pg:Papua New Guinea
 ph:Philippines
 pk:Pakistan
 pl:Poland
-pm:St. Pierre and Miquelon
+pm:Saint Pierre and Miquelon
 pn:Pitcairn
 pr:Puerto Rico
+ps:Palestinian Territory, Occupied
 pt:Portugal
 pw:Palau
 py:Paraguay
@@ -516,9 +520,9 @@ sc:Seychelles
 sd:Sudan
 se:Sweden
 sg:Singapore
-sh:St. Helena
+sh:Saint Helena
 si:Slovenia
-sj:Svalbard and Jan Mayen Islands
+sj:Svalbard and Jan Mayen
 sk:Slovakia
 sl:Sierra Leone
 sm:San Marino
@@ -551,14 +555,14 @@ um:United States Minor Outlying Islands
 us:United States
 uy:Uruguay
 uz:Uzbekistan
-va:Vatican City State (Holy See)
+va:Holy See (Vatican City State)
 vc:Saint Vincent and the Grenadines
 ve:Venezuela
-vg:Virgin Islands (British)
-vi:Virgin Islands (U.S.)
-vn:Viet Nam
+vg:Virgin Islands, British
+vi:Virgin Islands, U.S.
+vn:Vietnam
 vu:Vanuatu
-wf:Wallis and Futuna Islands
+wf:Wallis and Futuna
 ws:Samoa
 ye:Yemen
 yt:Mayotte

@@ -21,6 +21,45 @@ use Locale::Language;
  '!defined code2language("zz")',             # illegal code => undef
  '!defined code2language("jp")',             # ja for lang, jp for country
 
+ #---- test recent changes ----------------------------------------------
+ 'code2language("ae") eq "Avestan"',
+ 'code2language("bs") eq "Bosnian"',
+ 'code2language("ch") eq "Chamorro"',
+ 'code2language("ce") eq "Chechen"',
+ 'code2language("cu") eq "Church Slavic"',
+ 'code2language("cv") eq "Chuvash"',
+ 'code2language("hz") eq "Herero"',
+ 'code2language("ho") eq "Hiri Motu"',
+ 'code2language("ki") eq "Kikuyu"',
+ 'code2language("kj") eq "Kuanyama"',
+ 'code2language("kv") eq "Komi"',
+ 'code2language("mh") eq "Marshall"',
+ 'code2language("nv") eq "Navajo"',
+ 'code2language("nr") eq "Ndebele, South"',
+ 'code2language("nd") eq "Ndebele, North"',
+ 'code2language("ng") eq "Ndonga"',
+ 'code2language("nn") eq "Norwegian Nynorsk"',
+ 'code2language("nb") eq "Norwegian Bokmål"',
+ 'code2language("ny") eq "Chichewa; Nyanja"',
+ 'code2language("oc") eq "Occitan (post 1500)"',
+ 'code2language("os") eq "Ossetian; Ossetic"',
+ 'code2language("pi") eq "Pali"',
+ '!defined code2language("sh")',             # Serbo-Croatian withdrawn
+ 'code2language("se") eq "Sami"',
+ 'code2language("sc") eq "Sardinian"',
+ 'code2language("kw") eq "Cornish"',
+ 'code2language("gv") eq "Manx"',
+ 'code2language("lb") eq "Letzeburgesch"',
+ 'code2language("he") eq "Hebrew"',
+ '!defined code2language("iw")',             # Hebrew withdrawn
+ 'code2language("id") eq "Indonesian"',
+ '!defined code2language("in")',             # Indonesian withdrawn
+ 'code2language("iu") eq "Inuktitut"',
+ 'code2language("ug") eq "Uighur"',
+ '!defined code2language("ji")',             # Yiddish withdrawn
+ 'code2language("yi") eq "Yiddish"',
+ 'code2language("za") eq "Zhuang"',
+
  #---- some successful examples -----------------------------------------
  'code2language("DA") eq "Danish"',
  'code2language("eo") eq "Esperanto"',
