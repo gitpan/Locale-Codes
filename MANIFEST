@@ -15,6 +15,7 @@ t/script.t
 t/constants.t
 t/all.t
 t/uk.t
+t/rename.t
 Makefile.PL
 MANIFEST
 README

@@ -14,9 +14,9 @@ use ExtUtils::MakeMaker;
 
 
 &WriteMakefile(
-               NAME          => 'Locale-Codes',
-               DISTNAME      => 'Locale-Codes',
-               VERSION_FROM  => 'lib/Locale/Language.pm',
-               dist          => {COMPRESS => 'gzip', SUFFIX => 'gz'},
+               NAME	=> 'Locale-Codes',
+               DISTNAME	=> 'Locale-Codes',
+               VERSION	=> '2.02',
+               dist	=> {COMPRESS => 'gzip', SUFFIX => 'gz'},
               );
  
