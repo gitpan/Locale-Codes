@@ -1,6 +1,12 @@
 
 		ChangeLog for Locale-Codes Distribution
 
+2.06  2002-07-15 neilb
+
+	* The four modules which have data after __DATA__ weren't
+	  closing the DATA filehandle after reading from it,
+	  which they should. Bug and patch from Steve Hay.
+
 2.05  2002-07-08 neilb
 
 	* Added three letter codes for the countries that were missing
