@@ -58,7 +58,7 @@ require Exporter;
 #	Public Global Variables
 #-----------------------------------------------------------------------
 use vars qw($VERSION @ISA @EXPORT);
-$VERSION      = sprintf("%d.%02d", q$Revision: 1.2 $ =~ /(\d+)\.(\d+)/);
+$VERSION      = sprintf("%d.%02d", q$Revision: 1.3 $ =~ /(\d+)\.(\d+)/);
 @ISA          = qw(Exporter);
 @EXPORT       = qw(&code2currency &currency2code
                    &all_currency_codes &all_currency_names );
@@ -244,7 +244,9 @@ you might not get back the code you expected.
 
 =item Locale::Country
 
-ISO two letter codes for identification of country (ISO 3166).
+ISO codes for identification of country (ISO 3166).
+Supports alpha-2, alpha-3, and numeric codes.
+The currency codes use the alpha-2 codeset.
 
 =item ISO 4217:1995
 

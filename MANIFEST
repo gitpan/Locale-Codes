@@ -1,9 +1,11 @@
 Locale/Language.pm
 Locale/Country.pm
 Locale/Currency.pm
+Locale/Constants.pm
 t/language.t
 t/country.t
 t/currency.t
+t/constants.t
 t/all.t
 t/uk.t
 Makefile.PL

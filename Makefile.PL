@@ -2,6 +2,7 @@
 # Makefile.PL for locale-codes distribution:
 #	Locale::Language
 #	Locale::Country
+#	Locale::Currency
 #
 # Filename:	Makefile.PL
 # Author:	Neil Bowers

@@ -15,7 +15,7 @@ use Locale::Country;
 use Locale::Language;
 use Locale::Currency;
 
-print "1..6\n";
+print "1..12\n";
 
 my $code;
 my $language;
@@ -25,6 +25,9 @@ my $reverse;
 my $currency;
 
 
+#-----------------------------------------------------------------------
+# Old API - without codeset specified, default to ALPHA_2
+#-----------------------------------------------------------------------
 $ok = 1;
 foreach $code (all_country_codes())
 {
@@ -48,7 +51,88 @@ foreach $code (all_country_codes())
 }
 print ($ok ? "ok 1\n" : "not ok 1\n");
 
+#-----------------------------------------------------------------------
+# code to country, back to code, for ALPHA2
+#-----------------------------------------------------------------------
+$ok = 1;
+foreach $code (all_country_codes(LOCALE_CODE_ALPHA_2))
+{
+    $country = code2country($code, LOCALE_CODE_ALPHA_2);
+    if (!defined $country)
+    {
+        $ok = 0;
+        last;
+    }
+    $reverse = country2code($country, LOCALE_CODE_ALPHA_2);
+    if (!defined $reverse)
+    {
+        $ok = 0;
+        last;
+    }
+    if ($reverse ne $code)
+    {
+        $ok = 0;
+        last;
+    }
+}
+print ($ok ? "ok 2\n" : "not ok 2\n");
 
+#-----------------------------------------------------------------------
+# code to country, back to code, for ALPHA3
+#-----------------------------------------------------------------------
+$ok = 1;
+foreach $code (all_country_codes(LOCALE_CODE_ALPHA_3))
+{
+    $country = code2country($code, LOCALE_CODE_ALPHA_3);
+    if (!defined $country)
+    {
+        $ok = 0;
+        last;
+    }
+    $reverse = country2code($country, LOCALE_CODE_ALPHA_3);
+    if (!defined $reverse)
+    {
+        $ok = 0;
+        last;
+    }
+    if ($reverse ne $code)
+    {
+        $ok = 0;
+        last;
+    }
+}
+print ($ok ? "ok 3\n" : "not ok 3\n");
+
+#-----------------------------------------------------------------------
+# code to country, back to code, for NUMERIC
+#-----------------------------------------------------------------------
+$ok = 1;
+foreach $code (all_country_codes(LOCALE_CODE_NUMERIC))
+{
+    $country = code2country($code, LOCALE_CODE_NUMERIC);
+    if (!defined $country)
+    {
+        $ok = 0;
+        last;
+    }
+    $reverse = country2code($country, LOCALE_CODE_NUMERIC);
+    if (!defined $reverse)
+    {
+        $ok = 0;
+        last;
+    }
+    if ($reverse ne $code)
+    {
+        $ok = 0;
+        last;
+    }
+}
+print ($ok ? "ok 4\n" : "not ok 4\n");
+
+
+#-----------------------------------------------------------------------
+# Old API - country to code, back to country, using default of ALPHA_2
+#-----------------------------------------------------------------------
 $ok = 1;
 foreach $country (all_country_names())
 {
@@ -70,7 +154,109 @@ foreach $country (all_country_names())
         last;
     }
 }
-print ($ok ? "ok 2\n" : "not ok 2\n");
+print ($ok ? "ok 5\n" : "not ok 5\n");
+
+#-----------------------------------------------------------------------
+# country to code, back to country, using LOCALE_CODE_ALPHA_2
+#-----------------------------------------------------------------------
+$ok = 1;
+foreach $country (all_country_names())
+{
+    $code = country2code($country, LOCALE_CODE_ALPHA_2);
+    if (!defined $code)
+    {
+        $ok = 0;
+        last;
+    }
+    $reverse = code2country($code, LOCALE_CODE_ALPHA_2);
+    if (!defined $reverse)
+    {
+        $ok = 0;
+        last;
+    }
+    if ($reverse ne $country)
+    {
+        $ok = 0;
+        last;
+    }
+}
+print ($ok ? "ok 6\n" : "not ok 6\n");
+
+#-----------------------------------------------------------------------
+# country to code, back to country, using LOCALE_CODE_ALPHA_3
+#-----------------------------------------------------------------------
+$ok = 1;
+foreach $country (all_country_names())
+{
+    $code = country2code($country, LOCALE_CODE_ALPHA_3);
+    if (!defined $code)
+    {
+	next if ($country eq 'Antarctica'
+		 || $country eq 'Bouvet Island'
+		 || $country eq 'Cocos (Keeling) Islands'
+		 || $country eq 'Christmas Island'
+		 || $country eq 'France, Metropolitan'
+		 || $country eq 'South Georgia and the South Sandwich Islands'
+		 || $country eq 'Heard Island and McDonald Islands'
+		 || $country eq 'British Indian Ocean Territory'
+		 || $country eq 'French Southern Territories'
+		 || $country eq 'United States Minor Outlying Islands'
+		 || $country eq 'Mayotte'
+		 || $country eq 'Zaire');
+        $ok = 0;
+        last;
+    }
+    $reverse = code2country($code, LOCALE_CODE_ALPHA_3);
+    if (!defined $reverse)
+    {
+        $ok = 0;
+        last;
+    }
+    if ($reverse ne $country)
+    {
+        $ok = 0;
+        last;
+    }
+}
+print ($ok ? "ok 7\n" : "not ok 7\n");
+
+#-----------------------------------------------------------------------
+# country to code, back to country, using LOCALE_CODE_NUMERIC
+#-----------------------------------------------------------------------
+$ok = 1;
+foreach $country (all_country_names())
+{
+    $code = country2code($country, LOCALE_CODE_NUMERIC);
+    if (!defined $code)
+    {
+	next if ($country eq 'Antarctica'
+		 || $country eq 'Bouvet Island'
+		 || $country eq 'Cocos (Keeling) Islands'
+		 || $country eq 'Christmas Island'
+		 || $country eq 'France, Metropolitan'
+		 || $country eq 'South Georgia and the South Sandwich Islands'
+		 || $country eq 'Heard Island and McDonald Islands'
+		 || $country eq 'British Indian Ocean Territory'
+		 || $country eq 'French Southern Territories'
+		 || $country eq 'United States Minor Outlying Islands'
+		 || $country eq 'Mayotte'
+		 || $country eq 'Zaire');
+        $ok = 0;
+        last;
+    }
+    $reverse = code2country($code, LOCALE_CODE_NUMERIC);
+    if (!defined $reverse)
+    {
+        $ok = 0;
+        last;
+    }
+    if ($reverse ne $country)
+    {
+        $ok = 0;
+        last;
+    }
+}
+print ($ok ? "ok 8\n" : "not ok 8\n");
 
 
 $ok = 1;
@@ -94,7 +280,7 @@ foreach $code (all_language_codes())
         last;
     }
 }
-print ($ok ? "ok 3\n" : "not ok 3\n");
+print ($ok ? "ok 9\n" : "not ok 9\n");
 
 
 $ok = 1;
@@ -118,7 +304,7 @@ foreach $language (all_language_names())
         last;
     }
 }
-print ($ok ? "ok 4\n" : "not ok 4\n");
+print ($ok ? "ok 10\n" : "not ok 10\n");
 
 $ok = 1;
 foreach $code (all_currency_codes())
@@ -149,7 +335,7 @@ foreach $code (all_currency_codes())
         last;
     }
 }
-print ($ok ? "ok 5\n" : "not ok 5\n");
+print ($ok ? "ok 11\n" : "not ok 11\n");
 
 $ok = 1;
 foreach $currency (all_currency_names())
@@ -172,4 +358,4 @@ foreach $currency (all_currency_names())
         last;
     }
 }
-print ($ok ? "ok 6\n" : "not ok 6\n");
+print ($ok ? "ok 12\n" : "not ok 12\n");

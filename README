@@ -1,17 +1,18 @@
 
 			Locale-Codes Distribution
-				v1.05
+				v1.06
 
 This distribution contains three modules which can be used to process
-ISO two etter codes for identifying language and country, and
-the three letter codes for identifying currencies and funds.
+ISO codes for identifying languages, countries, and currencies & funds.
 
     Locale::Language
 	Two letter codes for language identification (ISO 639).
 	For example, 'en' is the code for 'English'.
 
     Locale::Country
-	Two letter codes for country identification (ISO 3166).
+	Codes for country identification (ISO 3166). This module
+	supports the three different code sets defined by the
+	standard: alpha-2, alpha-3, and numeric codes.
 	For example, 'bo' is the code for 'Bolivia'.
 
     Locale::Currency

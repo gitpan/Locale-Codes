@@ -42,7 +42,7 @@ require Exporter;
 #	Public Global Variables
 #-----------------------------------------------------------------------
 use vars qw($VERSION @ISA @EXPORT);
-$VERSION      = sprintf("%d.%02d", q$Revision: 1.5 $ =~ /(\d+)\.(\d+)/);
+$VERSION      = sprintf("%d.%02d", q$Revision: 1.6 $ =~ /(\d+)\.(\d+)/);
 @ISA          = qw(Exporter);
 @EXPORT       = qw(&code2language &language2code
                    &all_language_codes &all_language_names );
@@ -210,7 +210,8 @@ Would these be of any use to anyone?
 
 =item Locale::Country
 
-ISO two letter codes for identification of country (ISO 3166).
+ISO codes for identification of country (ISO 3166).
+Supports 2-letter, 3-letter, and numeric country codes.
 
 =item Locale::Currency
 
