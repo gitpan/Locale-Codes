@@ -1,9 +1,10 @@
 
 			Locale-Codes Distribution
-				v1.06
+				v2.01
 
-This distribution contains three modules which can be used to process
-ISO codes for identifying languages, countries, and currencies & funds.
+This distribution contains four Perl modules which can be used to process
+ISO codes for identifying languages, countries, scripts,
+and currencies & funds.
 
     Locale::Language
 	Two letter codes for language identification (ISO 639).
@@ -19,6 +20,11 @@ ISO codes for identifying languages, countries, and currencies & funds.
 	Three letter codes for currency and fund identification (ISO 4217).
 	For example, 'sek' is the code for 'Swedish Krona'.
 
+    Locale::Script
+	Codes for script identification (ISO 15924). This module supports
+	the three different code sets defined by the standard:
+	alpha-2, alpha-3, and numeric codes.
+
 To install these modules, you should just have to run the following:
 
 	% perl Makefile.PL
@@ -27,8 +33,8 @@ To install these modules, you should just have to run the following:
 	% make install
 
 The modules are documented using pod. When you "make install", you
-will get three man-pages: Locale::Language, Locale::Country,
-and Locale::Currency.
+will get four man-pages: Locale::Language, Locale::Country,
+Locale::Currency, Locale::Script.
 
 The first version of Locale::Currency was written by Michael Hennecke,
 with modifications for inclusion by me. Kudos to Michael.
@@ -37,7 +43,5 @@ Please let me know if you experience any problems with these modules,
 or have any ideas for additions.
 
 
-Neil Bowers <neilb@cre.canon.co.uk>
-
-Canon Research Centre Europe
-http://www.cre.canon.co.uk/
+Neil Bowers
+<neil@bowers.com>

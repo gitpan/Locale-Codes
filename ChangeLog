@@ -1,6 +1,37 @@
 
 		ChangeLog for Locale-Codes Distribution
 
+2.01  2002-02-18 neilb
+
+	* Split the documentation for all modules into separate pod files.
+	* Made sure all =over were =over 4; some were other values.
+	* The code2code() methods had one more shift than was needed.
+
+2.00  2002-02-17 neilb
+
+	* Created Locale::Script which provides an interface to the
+	  ISO codes for identification of scripts (writing scripts,
+	  rather than perl style scripts). The codes are defined
+	  by ISO 15924, which is currently in final draft.
+	  Thanks to Jarkko for pointing out this new standard.
+	  All three code sets are supported, and a test-suite added.
+
+	* Added support for country name variants to Locale::Country,
+	  so that
+		country2code('USA')
+		country2code('United States')
+		country2code('United States of America')
+	  will all return 'us'.
+	  This had been in the LIMITATIONS section since the first version.
+	  Patch from TJ Mather <tjmather@tjmather.com> with additional
+	  variants from me. Added test-cases for these.
+
+	* Added VERSION to Locale::Constants. Thanks to Jarkko for
+	  pointing that it was missing.
+
+	* Should really have bumped major version with previous release,
+	  since there was a change to the API.
+
 1.06  2001-03-04 neilb
 
 	Added Locale::Constants, which defines three symbols
@@ -60,3 +91,4 @@
 0.003 May 1997
 
 	First public release to CPAN
+

@@ -3,6 +3,7 @@
 #	Locale::Language
 #	Locale::Country
 #	Locale::Currency
+#	Locale::Script
 #
 # Filename:	Makefile.PL
 # Author:	Neil Bowers
@@ -13,9 +14,9 @@ use ExtUtils::MakeMaker;
 
 
 &WriteMakefile(
-               NAME          => 'Locale',
+               NAME          => 'Locale-Codes',
                DISTNAME      => 'Locale-Codes',
-               VERSION_FROM  => 'Locale/Language.pm',
+               VERSION_FROM  => 'lib/Locale/Language.pm',
                dist          => {COMPRESS => 'gzip', SUFFIX => 'gz'},
               );
  
