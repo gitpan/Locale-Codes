@@ -45,7 +45,7 @@ use Carp;
 #	Public Global Variables
 #-----------------------------------------------------------------------
 use vars qw($VERSION @ISA @EXPORT @EXPORT_OK);
-$VERSION   = sprintf("%d.%02d", q$Revision: 1.2 $ =~ /(\d+)\.(\d+)/);
+$VERSION   = sprintf("%d.%02d", q$Revision: 1.4 $ =~ /(\d+)\.(\d+)/);
 @ISA       = qw(Exporter);
 @EXPORT    = qw(code2country country2code
                 all_country_codes all_country_names);
@@ -290,6 +290,11 @@ Official home page for ISO 3166
 =item http://www.egt.ie/standards/iso3166/iso3166-1-en.html
 
 Another useful, but not official, home page.
+
+=item http://www.cia.gov/cia/publications/factbook/docs/app-f.html
+
+An appendix in the CIA world fact book which lists country codes
+as defined by ISO 3166, FIPS 10-4, and internet domain names.
 
 =back
 

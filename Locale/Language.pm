@@ -42,7 +42,7 @@ require Exporter;
 #	Public Global Variables
 #-----------------------------------------------------------------------
 use vars qw($VERSION @ISA @EXPORT);
-$VERSION      = sprintf("%d.%02d", q$Revision: 1.2 $ =~ /(\d+)\.(\d+)/);
+$VERSION      = sprintf("%d.%02d", q$Revision: 1.4 $ =~ /(\d+)\.(\d+)/);
 @ISA          = qw(Exporter);
 @EXPORT       = qw(&code2language &language2code
                    &all_language_codes &all_language_names );
@@ -196,6 +196,12 @@ In the current implementation, all data is read in when the
 module is loaded, and then held in memory.
 A lazy implementation would be more memory friendly.
 
+=item *
+
+Currently just supports the two letter language codes -
+there are also three-letter codes, and numbers.
+Would these be of any use to anyone?
+
 =back
 
 =head1 SEE ALSO
@@ -212,7 +218,7 @@ Code for the representation of names of languages.
 
 =item http://lcweb.loc.gov/standards/iso639-2/langhome.html
 
-Home page for ISO 939-2
+Home page for ISO 639-2
 
 =back
 

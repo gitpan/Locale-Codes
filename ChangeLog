@@ -1,6 +1,19 @@
 
 		ChangeLog for Locale-Codes Distribution
 
+1.03  Dec 2000
+
+	Fixed very minor typos from 1.03!
+
+1.03  Dec 2000
+
+	Updated Locale::Country:
+		- fixed spelling of a few countries
+		- added link to a relevant page from CIA world factbook
+
+	Updated Locale::Language:
+		- fixed typo in the documentation (ISO 939 should be 639)
+
 1.02  May 2000
 
 	Updated Locale::Country and Locale::Language to reflect changes
