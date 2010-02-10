@@ -1,24 +1,26 @@
-#
-# Makefile.PL for locale-codes distribution:
-#	Locale::Language
-#	Locale::Country
-#	Locale::Currency
-#	Locale::Script
-#
-# Filename:	Makefile.PL
-# Author:	Neil Bowers
-# Created:	6 May 1997
-#
 
 use ExtUtils::MakeMaker;
+use 5.002;
+use strict;
+use warnings;
+my %requires = (
+                 'Carp'                     => '0',
+                 'constant'                 => '0',
+                 'Storable'                 => '0',
+                 'Test::More'               => '0',
+                 'Test::Pod'                => '0',
+                 'Test::Pod::Coverage'      => '0',
+               );
 
 
-&WriteMakefile(
-		NAME		=> 'Locale-Codes',
-		DISTNAME	=> 'Locale-Codes',
-		VERSION		=> '2.07',
-		AUTHOR		=> 'Neil Bowers <neil@bowers.com>',
-		ABSTRACT	=> 'modules for ISO codes identifying countries, languages, currencies, and scripts',
-		dist		=> {COMPRESS => 'gzip', SUFFIX => 'gz'},
-              );
- 
+WriteMakefile(
+        NAME             => 'Locale::Codes',
+        VERSION          => '3.00',
+        ($] >= 5.002
+        ? (ABSTRACT=>'a distribution of modules to handle locale codes',
+           AUTHOR  =>'Sullivan Beck (sbeck@cpan.org)')
+        : ()),
+        'dist' => {COMPRESS=>'gzip',SUFFIX=>'gz'},
+        PL_FILES  => {},
+        PREREQ_PM => \%requires,
+);

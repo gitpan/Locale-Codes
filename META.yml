@@ -1,10 +1,45 @@
-# http://module-build.sourceforge.net/META-spec.html
-#XXXXXXX This is a prototype!!!  It will change in the future!!! XXXXX#
-name:         Locale-Codes
-version:      2.07
-version_from: 
-installdirs:  site
+---
+name: Locale-Codes
+version: 3.00
+author:
+  - 'Sullivan Beck <sbeck@cpan.org>'
+abstract: a distribution of modules to handle locale codes
+license: perl
+resources:
+  license: http://dev.perl.org/licenses/
 requires:
-
-distribution_type: module
-generated_by: ExtUtils::MakeMaker version 6.17
+  Carp: 0
+  constant: 0
+  perl: 5.002
+provides:
+  Locale::Constants:
+    file: lib/Locale/Constants.pm
+    version: 3
+  Locale::Country:
+    file: lib/Locale/Country.pm
+    version: 3
+  Locale::CountryCodes:
+    file: lib/Locale/CountryCodes.pm
+    version: 3.00
+  Locale::Currency:
+    file: lib/Locale/Currency.pm
+    version: 3
+  Locale::CurrencyCodes:
+    file: lib/Locale/CurrencyCodes.pm
+    version: 3.00
+  Locale::Language:
+    file: lib/Locale/Language.pm
+    version: 3
+  Locale::LanguageCodes:
+    file: lib/Locale/LanguageCodes.pm
+    version: 3.00
+  Locale::Script:
+    file: lib/Locale/Script.pm
+    version: 3
+  Locale::ScriptCodes:
+    file: lib/Locale/ScriptCodes.pm
+    version: 3.00
+generated_by: Module::Build version 0.280801
+meta-spec:
+  url: http://module-build.sourceforge.net/META-spec-v1.2.html
+  version: 1.2

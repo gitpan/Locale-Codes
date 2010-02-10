@@ -1,0 +1,120 @@
+=pod
+
+=head1 NAME
+
+Locale::Codes - a distribution of modules to handle locale codes
+
+=head1 DESCRIPTION
+
+B<Locale::Codes> is a distribution containing a set of modules.
+The modules each deal with different types of codes which identify
+parts of the locale including languages, countries, currency, etc.
+
+I plan on releasing a new version a couple of times a year to
+incorporate any changes made in the standards. If one changes, and
+you want a new release sooner, just email me and I'll get one out.
+
+=head1 KNOWN BUGS AND LIMITATIONS
+
+None known.
+
+=head1 SEE ALSO
+
+=over 4
+
+=item Locale::Constants
+
+Constants for Locale codes.
+
+=item Locale::Country
+
+Codes for identification of countries.
+
+=item Locale::Language
+
+Codes for identification of languages.
+
+=item Locale::Script
+
+Codes for identification of scripts.
+
+=item Locale::Currency
+
+Codes for identification of currencies and funds.
+
+=back
+
+=head1 NEW CODE SETS
+
+I'm open to suggestions for new code sets. For example, the FIPS 10
+country codes were added based on a request.
+
+In order for me to add a code set, I require the following:
+
+=over 4
+
+=item General-use code set
+
+If a code set is not general use, I'm not likely to spend the time
+to add and support it.
+
+=item An official free source of data
+
+I require an official (or at least, a NEARLY official) source where I
+can get the data on a regular basis.
+
+Ideally, I want to get data from the official maintainers. For
+example, the country FIPS 10 codes should come from the source which
+is the National Geospatial-Intelligence Agency.
+
+In a few instances, I may consider an unofficial source. For example,
+I get some country data from the CIA World Factbook. Given the nature
+of the source, I'm sure they're updating data from the official
+sources and I consider it "nearly" official.
+
+There are many 3rd party sites which maintain lists (many of which
+are actually in a more convenient form than the official sites).
+Unfortunately, I will reject most of them since I have no indication
+of how "official" they are.
+
+Obviously, the data must be free-of-charge. I'm not interested in
+paying for the data (and I'm not interested in the overhead of having
+someone else pay for the data for me).
+
+=item A reliable source of data
+
+The source of data must come from a source that I can reasonably expect
+to exist for the foreseeable future.
+
+Please do not offer to send me a data set... I will not consider an
+individual contribution as a reliable source of data. The source must
+be an official agency of some sort.
+
+=back
+
+=head1 AUTHOR
+
+Locale::Country and Locale::Language were originally written by Neil
+Bowers at the Canon Research Centre Europe (CRE). They maintained the
+distribution from 1997 to 2001.
+
+Locale::Currency was originally written by Michael Hennecke.
+
+In 2001, maintenance was continued by Neil Bowers.  He modified
+Locale::Currency for inclusion in the distribution. He also added
+Locale::Constants and Locale::Script.
+
+In 2010, maintenance was taken over by Sullivan Beck (sbeck@cpan.org).
+
+=head1 COPYRIGHT
+
+   Copyright (c) 1997-2001 Canon Research Centre Europe (CRE).
+   Copyright (c) 2001      Michael Hennecke (Locale::Currency)
+   Copyright (c) 2001-2010 Neil Bowers
+   Copyright (c) 2010-2010 Sullivan Beck
+
+This module is free software; you can redistribute it and/or
+modify it under the same terms as Perl itself.
+
+=cut
+

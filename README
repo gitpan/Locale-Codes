@@ -1,49 +1,93 @@
+NAME
+    Locale::Codes - a distribution of modules to handle locale codes
 
-			Locale-Codes Distribution
-				v2.07
+DESCRIPTION
+    Locale::Codes is a distribution containing a set of modules. The modules
+    each deal with different types of codes which identify parts of the
+    locale including languages, countries, currency, etc.
 
-For changes in this release, please see the ChangeLog file.
+    I plan on releasing a new version a couple of times a year to
+    incorporate any changes made in the standards. If one changes, and you
+    want a new release sooner, just email me and I'll get one out.
 
-This distribution contains four Perl modules which can be used to process
-ISO codes for identifying languages, countries, scripts,
-and currencies & funds.
+KNOWN BUGS AND LIMITATIONS
+    None known.
 
-    Locale::Language
-	Two letter codes for language identification (ISO 639).
-	For example, 'en' is the code for 'English'.
+SEE ALSO
+    Locale::Constants
+        Constants for Locale codes.
 
     Locale::Country
-	Codes for country identification (ISO 3166). This module
-	supports the three different code sets defined by the
-	standard: alpha-2, alpha-3, and numeric codes.
-	For example, 'bo' is the code for 'Bolivia'.
+        Codes for identification of countries.
 
-    Locale::Currency
-	Three letter codes for currency and fund identification (ISO 4217).
-	For example, 'sek' is the code for 'Swedish Krona'.
+    Locale::Language
+        Codes for identification of languages.
 
     Locale::Script
-	Codes for script identification (ISO 15924). This module supports
-	the three different code sets defined by the standard:
-	alpha-2, alpha-3, and numeric codes.
+        Codes for identification of scripts.
 
-To install these modules, you should just have to run the following:
+    Locale::Currency
+        Codes for identification of currencies and funds.
 
-	% perl Makefile.PL
-	% make
-	% make test
-	% make install
+NEW CODE SETS
+    I'm open to suggestions for new code sets. For example, the FIPS 10
+    country codes were added based on a request.
 
-The modules are documented using pod. When you "make install", you
-will get four man-pages: Locale::Language, Locale::Country,
-Locale::Currency, Locale::Script.
+    In order for me to add a code set, I require the following:
 
-The first version of Locale::Currency was written by Michael Hennecke,
-with modifications for inclusion by me. Kudos to Michael.
+    General-use code set
+        If a code set is not general use, I'm not likely to spend the time
+        to add and support it.
 
-Please let me know if you experience any problems with these modules,
-or have any ideas for additions.
+    An official free source of data
+        I require an official (or at least, a NEARLY official) source where
+        I can get the data on a regular basis.
 
+        Ideally, I want to get data from the official maintainers. For
+        example, the country FIPS 10 codes should come from the source which
+        is the National Geospatial-Intelligence Agency.
 
-Neil Bowers
-<neil@bowers.com>
+        In a few instances, I may consider an unofficial source. For
+        example, I get some country data from the CIA World Factbook. Given
+        the nature of the source, I'm sure they're updating data from the
+        official sources and I consider it "nearly" official.
+
+        There are many 3rd party sites which maintain lists (many of which
+        are actually in a more convenient form than the official sites).
+        Unfortunately, I will reject most of them since I have no indication
+        of how "official" they are.
+
+        Obviously, the data must be free-of-charge. I'm not interested in
+        paying for the data (and I'm not interested in the overhead of
+        having someone else pay for the data for me).
+
+    A reliable source of data
+        The source of data must come from a source that I can reasonably
+        expect to exist for the foreseeable future.
+
+        Please do not offer to send me a data set... I will not consider an
+        individual contribution as a reliable source of data. The source
+        must be an official agency of some sort.
+
+AUTHOR
+    Locale::Country and Locale::Language were originally written by Neil
+    Bowers at the Canon Research Centre Europe (CRE). They maintained the
+    distribution from 1997 to 2001.
+
+    Locale::Currency was originally written by Michael Hennecke.
+
+    In 2001, maintenance was continued by Neil Bowers. He modified
+    Locale::Currency for inclusion in the distribution. He also added
+    Locale::Constants and Locale::Script.
+
+    In 2010, maintenance was taken over by Sullivan Beck (sbeck@cpan.org).
+
+COPYRIGHT
+       Copyright (c) 1997-2001 Canon Research Centre Europe (CRE).
+       Copyright (c) 2001      Michael Hennecke (Locale::Currency)
+       Copyright (c) 2001-2010 Neil Bowers
+       Copyright (c) 2010-2010 Sullivan Beck
+
+    This module is free software; you can redistribute it and/or modify it
+    under the same terms as Perl itself.
+

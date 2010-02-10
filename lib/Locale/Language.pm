@@ -1,315 +1,201 @@
-#
-# Locale::Language - ISO two letter codes for language identification (ISO 639)
-#
-# $Id: Language.pm,v 2.7 2004/06/10 21:19:34 neilb Exp $
-#
-
 package Locale::Language;
+# Copyright (C) 2001      Canon Research Centre Europe (CRE).
+# Copyright (C) 2002-2009 Neil Bowers
+# Copyright (c) 2010-2010 Sullivan Beck
+# This program is free software; you can redistribute it and/or modify it
+# under the same terms as Perl itself.
+
 use strict;
+use warnings;
 require 5.002;
 
 require Exporter;
+use Carp;
+use Locale::Constants;
+use Locale::LanguageCodes;
 
-#-----------------------------------------------------------------------
-#	Public Global Variables
-#-----------------------------------------------------------------------
-use vars qw($VERSION @ISA @EXPORT);
-$VERSION      = sprintf("%d.%02d", q$Revision: 2.7 $ =~ /(\d+)\.(\d+)/);
-@ISA          = qw(Exporter);
-@EXPORT       = qw(&code2language &language2code
-                   &all_language_codes &all_language_names );
+#=======================================================================
+#       Public Global Variables
+#=======================================================================
 
-#-----------------------------------------------------------------------
-#	Private Global Variables
-#-----------------------------------------------------------------------
-my %CODES     = ();
-my %LANGUAGES = ();
+use vars qw($VERSION @ISA @EXPORT @EXPORT_OK);
 
+$VERSION   = 3.00;
+@ISA       = qw(Exporter);
+@EXPORT    = qw(code2language
+                language2code
+                all_language_codes
+                all_language_names
+                language_code2code
+                LOCALE_LANG_ALPHA_2
+                LOCALE_LANG_ALPHA_3
+                LOCALE_LANG_TERM
+               );
 
 #=======================================================================
 #
-# code2language ( CODE )
+# code2language ( CODE [,CODESET] )
 #
 #=======================================================================
-sub code2language
-{
-    my $code = shift;
 
+sub code2language {
+   my $code    = shift;
+   my $codeset = @_ > 0 ? shift : LOCALE_LANG_DEFAULT;
 
-    return undef unless defined $code;
-    $code = lc($code);
-    if (exists $CODES{$code})
-    {
-        return $CODES{$code};
-    }
-    else
-    {
-        #---------------------------------------------------------------
-        # no such language code!
-        #---------------------------------------------------------------
-        return undef;
-    }
+   return undef unless defined $code;
+   return undef  if ($codeset !~ /^\d+$/);
+
+   if      ($codeset == LOCALE_LANG_ALPHA_2) {
+      $code    = lc($code);
+      $codeset = "alpha2";
+
+   } elsif ($codeset == LOCALE_LANG_ALPHA_3) {
+      $code    = lc($code);
+      $codeset = "alpha3";
+
+   } elsif ($codeset == LOCALE_LANG_TERM) {
+      $code    = lc($code);
+      $codeset = "term";
+
+   } else {
+      return undef;
+   }
+
+   if (exists $Locale::LanguageCodes::Code2LanguageID{$codeset}{$code}) {
+      my ($id,$i) = @{ $Locale::LanguageCodes::Code2LanguageID{$codeset}{$code} };
+      return $Locale::LanguageCodes::Language{$id}[$i];
+   } else {
+      #---------------------------------------------------------------
+      # no such language code!
+      #---------------------------------------------------------------
+      return undef;
+   }
+}
+
+#=======================================================================
+#
+# language2code ( LANGUAGE [,CODESET] )
+#
+#=======================================================================
+
+sub language2code {
+   my $language = shift;
+   my $codeset = @_ > 0 ? shift : LOCALE_LANG_DEFAULT;
+
+   return undef  if ($codeset !~ /^\d+$/);
+
+   if      ($codeset == LOCALE_LANG_ALPHA_2) {
+      $codeset = "alpha2";
+   } elsif ($codeset == LOCALE_LANG_ALPHA_3) {
+      $codeset = "alpha3";
+   } elsif ($codeset == LOCALE_LANG_TERM) {
+      $codeset = "term";
+   } else {
+      return undef;
+   }
+
+   return undef unless defined $language;
+   $language = lc($language);
+
+   if (exists $Locale::LanguageCodes::LanguageAlias{$language}) {
+      my $id = $Locale::LanguageCodes::LanguageAlias{$language};
+      if (exists $Locale::LanguageCodes::LanguageID2Code{$codeset}{$id}) {
+	 return $Locale::LanguageCodes::LanguageID2Code{$codeset}{$id};
+      }
+   }
+
+   #---------------------------------------------------------------
+   # no such language!
+   #---------------------------------------------------------------
+   return undef;
+  }
+
+#=======================================================================
+#
+# language_code2code ( NAME [, CODESET ] )
+#
+#=======================================================================
+
+sub language_code2code {
+   (@_ == 3) or croak "language_code2code() takes 3 arguments!";
+
+   my $code = shift;
+   my $inset = shift;
+   my $outset = shift;
+   my $outcode;
+   my $language;
+
+   return undef if $inset == $outset;
+   $language = code2language($code, $inset);
+   return undef if not defined $language;
+   $outcode = language2code($language, $outset);
+   return $outcode;
+}
+
+#=======================================================================
+#
+# all_language_codes ( [ CODESET ] )
+#
+#=======================================================================
+
+sub all_language_codes {
+   my $codeset = @_ > 0 ? shift : LOCALE_LANG_DEFAULT;
+
+   return undef  if ($codeset !~ /^\d+$/);
+
+   if      ($codeset == LOCALE_LANG_ALPHA_2) {
+      $codeset = "alpha2";
+   } elsif ($codeset == LOCALE_LANG_ALPHA_3) {
+      $codeset = "alpha3";
+   } elsif ($codeset == LOCALE_LANG_TERM) {
+      $codeset = "term";
+   } else {
+      return undef;
+   }
+
+   my @codes = keys %{ $Locale::LanguageCodes::Code2LanguageID{$codeset} };
+   return (sort @codes);
 }
 
 
 #=======================================================================
 #
-# language2code ( LANGUAGE )
+# all_language_names ( [ CODESET ] )
 #
 #=======================================================================
-sub language2code
-{
-    my $lang = shift;
 
+sub all_language_names {
+   my $codeset = @_ > 0 ? shift : LOCALE_LANG_DEFAULT;
 
-    return undef unless defined $lang;
-    $lang = lc($lang);
-    if (exists $LANGUAGES{$lang})
-    {
-        return $LANGUAGES{$lang};
-    }
-    else
-    {
-        #---------------------------------------------------------------
-        # no such language!
-        #---------------------------------------------------------------
-        return undef;
-    }
-}
+   return undef  if ($codeset !~ /^\d+$/);
 
+   if      ($codeset == LOCALE_LANG_ALPHA_2) {
+      $codeset = "alpha2";
+   } elsif ($codeset == LOCALE_LANG_ALPHA_3) {
+      $codeset = "alpha3";
+   } elsif ($codeset == LOCALE_LANG_TERM) {
+      $codeset = "term";
+   } else {
+      return undef;
+   }
 
-#=======================================================================
-#
-# all_language_codes()
-#
-#=======================================================================
-sub all_language_codes
-{
-    return keys %CODES;
-}
-
-
-#=======================================================================
-#
-# all_language_names()
-#
-#=======================================================================
-sub all_language_names
-{
-    return values %CODES;
-}
-
-
-#=======================================================================
-# initialisation code - stuff the DATA into the CODES hash
-#=======================================================================
-{
-    my    $code;
-    my    $language;
-    local $_;
-
-
-    while (<DATA>)
-    {
-        next unless /\S/;
-        chop;
-        ($code, $language) = split(/:/, $_, 2);
-        $CODES{$code} = $language;
-        $LANGUAGES{"\L$language"} = $code;
-    }
-
-    close(DATA);
+   my @codes = keys %{ $Locale::LanguageCodes::Code2LanguageID{$codeset} };
+   my @language;
+   foreach my $code (@codes) {
+      my($id,$i) = @{ $Locale::LanguageCodes::Code2LanguageID{$codeset}{$code} };
+      push @language,$Locale::LanguageCodes::Language{$id}[$i];
+   }
+   return (sort @language);
 }
 
 1;
-
-__DATA__
-aa:Afar
-ab:Abkhazian
-ae:Avestan
-af:Afrikaans
-am:Amharic
-ar:Arabic
-as:Assamese
-ay:Aymara
-az:Azerbaijani
-
-ba:Bashkir
-be:Belarusian
-bg:Bulgarian
-bh:Bihari
-bi:Bislama
-bn:Bengali
-bo:Tibetan
-br:Breton
-bs:Bosnian
-
-ca:Catalan
-ce:Chechen
-ch:Chamorro
-co:Corsican
-cs:Czech
-cu:Church Slavic
-cv:Chuvash
-cy:Welsh
-
-da:Danish
-de:German
-dz:Dzongkha
-
-el:Greek
-en:English
-eo:Esperanto
-es:Spanish
-et:Estonian
-eu:Basque
-
-fa:Persian
-fi:Finnish
-fj:Fijian
-fo:Faeroese
-fr:French
-fy:Frisian
-
-ga:Irish
-gd:Gaelic (Scots)
-gl:Gallegan
-gn:Guarani
-gu:Gujarati
-gv:Manx
-
-ha:Hausa
-he:Hebrew
-hi:Hindi
-ho:Hiri Motu
-hr:Croatian
-hu:Hungarian
-hy:Armenian
-hz:Herero
-
-ia:Interlingua
-id:Indonesian
-ie:Interlingue
-ik:Inupiaq
-is:Icelandic
-it:Italian
-iu:Inuktitut
-
-ja:Japanese
-jw:Javanese
-
-ka:Georgian
-ki:Kikuyu
-kj:Kuanyama
-kk:Kazakh
-kl:Kalaallisut
-km:Khmer
-kn:Kannada
-ko:Korean
-ks:Kashmiri
-ku:Kurdish
-kv:Komi
-kw:Cornish
-ky:Kirghiz
-
-la:Latin
-lb:Letzeburgesch
-ln:Lingala
-lo:Lao
-lt:Lithuanian
-lv:Latvian
-
-mg:Malagasy
-mh:Marshall
-mi:Maori
-mk:Macedonian
-ml:Malayalam
-mn:Mongolian
-mo:Moldavian
-mr:Marathi
-ms:Malay
-mt:Maltese
-my:Burmese
-
-na:Nauru
-nb:Norwegian Bokmal
-nd:Ndebele, North
-ne:Nepali
-ng:Ndonga
-nl:Dutch
-nn:Norwegian Nynorsk
-no:Norwegian
-nr:Ndebele, South
-nv:Navajo
-ny:Chichewa; Nyanja
-
-oc:Occitan (post 1500)
-om:Oromo
-or:Oriya
-os:Ossetian; Ossetic
-
-pa:Panjabi
-pi:Pali
-pl:Polish
-ps:Pushto
-pt:Portuguese
-
-qu:Quechua
-
-rm:Rhaeto-Romance
-rn:Rundi
-ro:Romanian
-ru:Russian
-rw:Kinyarwanda
-
-sa:Sanskrit
-sc:Sardinian
-sd:Sindhi
-se:Sami
-sg:Sango
-si:Sinhalese
-sk:Slovak
-sl:Slovenian
-sm:Samoan
-sn:Shona
-so:Somali
-sq:Albanian
-sr:Serbian
-ss:Swati
-st:Sotho
-su:Sundanese
-sv:Swedish
-sw:Swahili
-
-ta:Tamil
-te:Telugu
-tg:Tajik
-th:Thai
-ti:Tigrinya
-tk:Turkmen
-tl:Tagalog
-tn:Tswana
-to:Tonga
-tr:Turkish
-ts:Tsonga
-tt:Tatar
-tw:Twi
-
-ug:Uighur
-uk:Ukrainian
-ur:Urdu
-uz:Uzbek
-
-vi:Vietnamese
-vo:Volapuk
-
-wo:Wolof
-
-xh:Xhosa
-
-yi:Yiddish
-yo:Yoruba
-
-za:Zhuang
-zh:Chinese
-zu:Zulu
+# Local Variables:
+# mode: cperl
+# indent-tabs-mode: nil
+# cperl-indent-level: 3
+# cperl-continued-statement-offset: 2
+# cperl-continued-brace-offset: 0
+# cperl-brace-offset: 0
+# cperl-brace-imaginary-offset: 0
+# cperl-label-offset: -2
+# End:
