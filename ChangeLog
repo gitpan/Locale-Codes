@@ -1,17 +1,19 @@
 
 		ChangeLog for Locale-Codes Distribution
 
-3.01
+3.01  2010-02-15 sbeck
+	* Fixed Makefile.PL and Build.PL to install as core
+		modules.
 
 3.00  2010-02-10 sbeck
-	* took over maintenance of the code
-	* all codes and country names come from the official
+	* Took over maintenance of the code
+	* All codes and country names come from the official
 		standards
 	* code2country now returns the name of the country specified
 	        in the standard (if the different standards refer
 	        to the country by different variations in the name,
 	        the results will differe based on the CODESET)
-	* added code sets
+	* Added code sets
 		FIPS 10 country codes
 		Alpha-3 and Term language codes
 		Numeric currency codes

@@ -3,6 +3,7 @@ ChangeLog
 examples/README.examples
 INSTALL
 internal/.README.swp
+internal/build.yaml
 internal/data.country.pl
 internal/data.currency.pl
 internal/data.language.pl
