@@ -18,7 +18,7 @@ use Archive::Zip;
 use lib "./internal";
 
 use vars qw($VERSION);
-$VERSION='3.00';
+$VERSION='3.10';
 
 use vars qw($DEBUG);
 $DEBUG = 0;
@@ -34,7 +34,7 @@ $DEBUG = 0;
 #                                    correspond to a given COUNTRY_ID.
 #                                    The names are all real (i.e. correct
 #                                    spelling and capitalization).
-#  %CountryAlias{ALIAS}           => COUNTRY_ID
+#  %CountryAlias{ALIAS}           => [ COUNTRY_ID, I ]
 #                                    A hash of all aliases for a country.
 #                                    Aliases are all lowercase.
 #  %Code2CountryID{CODESET}{CODE} => [ COUNTRY_ID, I ]
@@ -51,8 +51,8 @@ $CountryID = "0001";
 
 use vars qw( $ModDir $CountryModule );
 
-$ModDir        = "lib/Locale";
-$CountryModule = "CountryCodes";
+$ModDir        = "lib/Locale/Codes";
+$CountryModule = "Country";
 
 #
 # We'll first read data from the official ISO 3166.
@@ -121,7 +121,7 @@ require "data.country.pl";
 #                                     correspond to a given LANGUAGE_ID.
 #                                     The names are all real (i.e. correct
 #                                     spelling and capitalization).
-#  %LanguageAlias{ALIAS}           => LANGUAGE_ID
+#  %LanguageAlias{ALIAS}           => [ LANGUAGE_ID, I ]
 #                                     A hash of all aliases for a language.
 #                                     Aliases are all lowercase.
 #  %Code2LanguageID{CODESET}{CODE} => [ LANGUAGE_ID, I ]
@@ -138,7 +138,7 @@ $LanguageID = "0001";
 
 use vars qw( $LanguageModule );
 
-$LanguageModule = "LanguageCodes";
+$LanguageModule = "Language";
 
 #
 # We'll first read data from the official ISO 639.
@@ -165,7 +165,7 @@ require "data.language.pl";
 #                                      correspond to a given CURRENCY_ID.
 #                                      The names are all real (i.e. correct
 #                                      spelling and capitalization).
-#  %CurrencyAlias{ALIAS}            => CURRENCY_ID
+#  %CurrencyAlias{ALIAS}            => [ CURRENCY_ID, I ]
 #                                      A hash of all aliases for a currency.
 #                                      Aliases are all lowercase.
 #  %Code2CurrencyID{CODESET}{CODE}  => [ CURRENCY_ID, I ]
@@ -182,7 +182,7 @@ $CurrencyID = "0001";
 
 use vars qw( $CurrencyModule );
 
-$CurrencyModule = "CurrencyCodes";
+$CurrencyModule = "Currency";
 
 #
 # We'll first read data from the official ISO 4217.
@@ -206,7 +206,7 @@ require "data.currency.pl";
 #                                     correspond to a given SCRIPT_ID.
 #                                     The names are all real (i.e. correct
 #                                     spelling and capitalization).
-#  %ScriptAlias{ALIAS}             => SCRIPT_ID
+#  %ScriptAlias{ALIAS}             => [ SCRIPT_ID, I ]
 #                                     A hash of all aliases for a script.
 #                                     Aliases are all lowercase.
 #  %Code2ScriptID{CODESET}{CODE}   => [ SCRIPT_ID, I ]
@@ -223,7 +223,7 @@ $ScriptID = "0001";
 
 use vars qw( $ScriptModule );
 
-$ScriptModule = "ScriptCodes";
+$ScriptModule = "Script";
 
 #
 # We'll first read data from the official ISO 15924.
@@ -369,7 +369,7 @@ sub do_country_iso {
       my $countryID = $CountryID++;
 
       $Country{$countryID}                  = [ $country ];
-      $CountryAlias{lc($country)}           = $countryID;
+      $CountryAlias{lc($country)}           = [ $countryID, 0 ];
       $Code2CountryID{$codeset}{$code}      = [ $countryID, 0 ];
       $CountryID2Code{$codeset}{$countryID} = $code;
    }
@@ -450,8 +450,8 @@ sub do_country_un {
 sub do_country_nga {
 
    print "\nINFO [nga]: expect Serbia, Ashmore, Baker, Bassas, Clipperton,\n" .
-           "            Coral, Europa, Gaza, Glorioso, Golan, Howland, Jan Mayen,\n" .
-           "            Jarvis, Johnston, Juan, Kingman, Midway, Navassa, Palymyra,\n" .
+           "            Coral, Europa, Gaza, Glorioso, Howland, Jan Mayen,\n" .
+           "            Jarvis, Johnston, Juan, Kingman, Midway, Navassa, Palmyra,\n" .
            "            Paracel, Spratly, Svalbard, Tromelin, Wake, West\n";
 
    ###
@@ -529,13 +529,13 @@ sub do_country_nga {
             $countryID = $CountryID++;
             $i = 0;
             $Country{$countryID} = [ $short ];
-            $CountryAlias{lc($short)} = $countryID;
+            $CountryAlias{lc($short)} = [ $countryID, $i ];
 
          } elsif ($i == -1) {
             # $short is a new alias
             push @{ $Country{$countryID} },$short;
             $i = $#{ $Country{$countryID} };
-            $CountryAlias{lc($short)} = $countryID;
+            $CountryAlias{lc($short)} = [ $countryID, $i ];
          }
 
          if ($long  &&
@@ -543,7 +543,7 @@ sub do_country_nga {
             # $long is a new alias
             push @{ $Country{$countryID} },$long;
             $i = $#{ $Country{$countryID} };
-            $CountryAlias{lc($long)} = $countryID;
+            $CountryAlias{lc($long)} = [ $countryID, $i ];
          }
 
          $Code2CountryID{"fips"}{$code} = [ $countryID, $i ];
@@ -663,32 +663,33 @@ sub do_country_cia {
 
       if ($countryID == -1  &&  $alpha2 ne "-") {
          if (exists $Code2CountryID{"alpha2"}{$alpha2}) {
-            $countryID = $Code2CountryID{"alpha2"}{$alpha2}[0];
+            ($countryID,$i) = @{ $Code2CountryID{"alpha2"}{$alpha2} };
          }
       }
 
       if ($countryID == -1  &&  $alpha3 ne "-") {
          if (exists $Code2CountryID{"alpha3"}{$alpha3}) {
-            $countryID = $Code2CountryID{"alpha3"}{$alpha3}[0];
+            ($countryID,$i) = @{ $Code2CountryID{"alpha3"}{$alpha3} };
          }
       }
 
       if ($countryID == -1  &&  $num ne "-") {
          if (exists $Code2CountryID{"num"}{$num}) {
-            $countryID = $Code2CountryID{"num"}{$num}[0];
+            ($countryID,$i) = @{ $Code2CountryID{"num"}{$num} };
          }
       }
 
       if ($countryID == -1  &&  $fips ne "-") {
          if (exists $Code2CountryID{"fips"}{$fips}) {
-            $countryID = $Code2CountryID{"fips"}{$fips}[0];
+            ($countryID,$i) = @{ $Code2CountryID{"fips"}{$fips} };
          }
       }
 
       if ($countryID == -1) {
          $countryID = $CountryID++;
+         $i = 0;
          $Country{$countryID} = [ $country ];
-         $CountryAlias{lc($country)} = $countryID;
+         $CountryAlias{lc($country)} = [ $countryID, $i ];
       }
 
       #
@@ -750,7 +751,7 @@ sub _check_code_exists {
 
    if (exists $CountryAlias{lc($country)}) {
 
-      my $alt_countryID = $CountryAlias{lc($country)};
+      my $alt_countryID = $CountryAlias{lc($country)}[0];
 
       if ($countryID != $alt_countryID) {
          print "ERROR [$type]: countryID mismatch in country: [$codeset, $country, $code, $countryID != $alt_countryID ]\n";
@@ -760,7 +761,7 @@ sub _check_code_exists {
    } else {
       push @{ $Country{$countryID} },$country;
       my $i = $#{ $Country{$countryID} };
-      $CountryAlias{lc($country)} = $countryID;
+      $CountryAlias{lc($country)} = [ $countryID, $i ];
    }
 }
 
@@ -773,15 +774,12 @@ sub _check_code_new {
    # If this country name isn't defined, create it.
 
    my $i;
-   if (! exists $CountryAlias{lc($country)}) {
+   if (exists $CountryAlias{lc($country)}) {
+      $i = $CountryAlias{lc($country)}[1];
+   } else {
       push @{ $Country{$countryID} },$country;
       $i = $#{ $Country{$countryID} };
-      $CountryAlias{lc($country)} = $countryID;
-   } else {
-      $i = 0;
-      for (my $j=0; $j<=$#{ $Country{$countryID} }; $j++) {
-         $i=$j, last  if (lc($Country{$countryID}[$j]) eq lc($country));
-      }
+      $CountryAlias{lc($country)} = [ $countryID, $i ];
    }
 
    # This country name is the canonical name for the code.
@@ -799,11 +797,7 @@ sub get_countryID {
    my($countryID,$i,$t);
    if (exists $CountryAlias{lc($country)}) {
       # The country is the same name as one previously defined
-      $countryID = $CountryAlias{lc($country)};
-      $i = 0;
-      for (my $j=0; $j<=$#{ $Country{$countryID} }; $j++) {
-         $i=$j, last  if (lc($Country{$countryID}[$j]) eq lc($country));
-      }
+      ($countryID,$i) = @{ $CountryAlias{lc($country)} };
       $t = "same";
 
    } elsif (exists $country_alias{$country}) {
@@ -813,10 +807,10 @@ sub get_countryID {
          print "WARNING [$type]: alias referenced before it is defined: $country => $c\n";
          return (1);
       }
-      $countryID = $CountryAlias{lc($c)};
+      $countryID = $CountryAlias{lc($c)}[0];
       push @{ $Country{$countryID} },$country;
       $i = $#{ $Country{$countryID} };
-      $CountryAlias{lc($country)} = $countryID;
+      $CountryAlias{lc($country)} = [ $countryID, $i ];
       $t = "alias";
 
    } else {
@@ -827,7 +821,7 @@ sub get_countryID {
       $countryID = $CountryID++;
       $i         = 0;
       $Country{$countryID} = [ $country ];
-      $CountryAlias{lc($country)} = $countryID;
+      $CountryAlias{lc($country)} = [ $countryID, $i ];
       $t = "new";
    }
 
@@ -889,7 +883,7 @@ sub do_language_iso {
       $Language{$languageID}                  = [ @language ];
       for (my $i=0; $i<=$#language; $i++) {
          my $language = $language[$i];
-         $LanguageAlias{lc($language)}         = $languageID;
+         $LanguageAlias{lc($language)}         = [ $languageID, $i ];
       }
 
       if ($alpha3) {
@@ -1026,7 +1020,7 @@ sub do_currency_iso {
          if ($new) {
             $currencyID = $CurrencyID++;
             $Currency{$currencyID} = [ $currency ];
-            $CurrencyAlias{lc($currency)} = $currencyID;
+            $CurrencyAlias{lc($currency)} = [ $currencyID, 0 ]
          } else {
             $currencyID = $currencyID[0];
          }
@@ -1109,7 +1103,7 @@ sub do_script_iso {
       my $scriptID = $ScriptID++;
 
       $Script{$scriptID}                 = [ $script ];
-      $ScriptAlias{lc($script)}          = $scriptID;
+      $ScriptAlias{lc($script)}          = [ $scriptID, 0 ];
 
       $Code2ScriptID{"alpha"}{$alpha}    = [ $scriptID, 0 ];
       $ScriptID2Code{"alpha"}{$scriptID} = $alpha;
@@ -1227,15 +1221,15 @@ sub do_aliases {
 
       my ($typeID);
       if (exists $$TypeAlias{lc($type)}) {
-         $typeID = $$TypeAlias{lc($type)};
+         $typeID = $$TypeAlias{lc($type)}[0];
          $type   = $alias;
       } else {
-         $typeID = $$TypeAlias{lc($alias)};
+         $typeID = $$TypeAlias{lc($alias)}[0];
       }
 
       push @{ $$Type{$typeID} },$type;
       my $i = $#{ $$Type{$typeID} };
-      $$TypeAlias{lc($type)} = $typeID;
+      $$TypeAlias{lc($type)} = [ $typeID, $i ];
    }
 }
 
@@ -1246,24 +1240,36 @@ sub do_aliases {
 sub write_module {
    my($type) = @_;
 
-   my($module,$parent,@hashes);
+   my($module,%hashes,$id);
 
    if ($type eq "country") {
       $module = $CountryModule;
-      $parent = "Country";
-      @hashes = qw(Country CountryAlias Code2CountryID CountryID2Code);
+      %hashes = ("id2names"  => "Country",
+                 "alias2id"  => "CountryAlias",
+                 "code2id"   => "Code2CountryID",
+                 "id2code"   => "CountryID2Code");
+      $id     = $CountryID;
    } elsif ($type eq "language") {
       $module = $LanguageModule;
-      $parent = "Language";
-      @hashes = qw(Language LanguageAlias Code2LanguageID LanguageID2Code);
+      %hashes = ("id2names"  => "Language",
+                 "alias2id"  => "LanguageAlias",
+                 "code2id"   => "Code2LanguageID",
+                 "id2code"   => "LanguageID2Code");
+      $id     = $LanguageID;
    } elsif ($type eq "currency") {
       $module = $CurrencyModule;
-      $parent = "Currency";
-      @hashes = qw(Currency CurrencyAlias Code2CurrencyID CurrencyID2Code);
+      %hashes = ("id2names"  => "Currency",
+                 "alias2id"  => "CurrencyAlias",
+                 "code2id"   => "Code2CurrencyID",
+                 "id2code"   => "CurrencyID2Code");
+      $id     = $CurrencyID;
    } elsif ($type eq "script") {
       $module = $ScriptModule;
-      $parent = "Script";
-      @hashes = qw(Script ScriptAlias Code2ScriptID ScriptID2Code);
+      %hashes = ("id2names"  => "Script",
+                 "alias2id"  => "ScriptAlias",
+                 "code2id"   => "Code2ScriptID",
+                 "id2code"   => "ScriptID2Code");
+      $id     = $ScriptID;
    }
 
    my $file = "$ModDir/$module.pm";
@@ -1276,7 +1282,7 @@ sub write_module {
    my $timestamp   = `date`;
    chomp($timestamp);
 
-   print $out "package Locale::$module;
+   print $out "package Locale::Codes::$module;
 
 # This file was automatically generated.  Any changes to this file will
 # be lost the next time 'get_codes' is run.
@@ -1286,11 +1292,11 @@ sub write_module {
 
 =head1 NAME
 
-Locale::$module - $type codes for the Locale::$parent module
+Locale::Codes::$module - $type codes for the Locale::$module module
 
 =head1 SYNOPSIS
 
-This module contains data used by the Locale::$parent module. It is
+This module contains data used by the Locale::$module module. It is
 not intended to be used directly, and contains no calleable routines.
 
 =head1 AUTHOR
@@ -1315,22 +1321,21 @@ use warnings;
 require 5.002;
 
 use vars qw(\$VERSION);
-\$VERSION='3.00';
+\$VERSION='3.10';
 
-use vars qw(
+\$Locale::Codes::Data{'$type'}{'id'} = '$id';
+
 ";
 
-   foreach my $hash (@hashes) {
-      print $out "   \%$hash\n";
-   }
-
-   print $out ");\n\n";
-
-   foreach my $hash (@hashes) {
+   foreach my $h qw(id2names alias2id code2id id2code) {
+      my $hash = $hashes{$h};
+      print $out "\$Locale::Codes::Data{'$type'}{'$h'} = {\n";
       _write_hash($out,$hash);
+
+      print $out "};\n\n";
    }
 
-   print $out "\n\n1;\n";
+   print $out "1;\n";
 
    $out->close();
 }
@@ -1341,10 +1346,7 @@ sub _write_hash {
    no strict 'refs';
    my %hash = %$hashname;
    use strict 'refs';
-
-   print $out "\%$hashname = (\n";
    _write_subhash($out,3,\%hash);
-   print $out ");\n\n";
 }
 
 sub _write_subhash {

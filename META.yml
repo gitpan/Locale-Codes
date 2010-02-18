@@ -1,45 +1,50 @@
 ---
-name: Locale-Codes
-version: 3.01
+abstract: 'a distribution of modules to handle locale codes'
 author:
   - 'Sullivan Beck <sbeck@cpan.org>'
-abstract: a distribution of modules to handle locale codes
+configure_requires:
+  Module::Build: 0.36
+generated_by: 'Module::Build version 0.3603'
 license: perl
-resources:
-  license: http://dev.perl.org/licenses/
+meta-spec:
+  url: http://module-build.sourceforge.net/META-spec-v1.4.html
+  version: 1.4
+name: Locale-Codes
+provides:
+  Locale::Codes:
+    file: lib/Locale/Codes.pm
+    version: 3.10
+  Locale::Codes::Country:
+    file: lib/Locale/Codes/Country.pm
+    version: 3.10
+  Locale::Codes::Currency:
+    file: lib/Locale/Codes/Currency.pm
+    version: 3.10
+  Locale::Codes::Language:
+    file: lib/Locale/Codes/Language.pm
+    version: 3.10
+  Locale::Codes::Script:
+    file: lib/Locale/Codes/Script.pm
+    version: 3.10
+  Locale::Constants:
+    file: lib/Locale/Constants.pm
+    version: 3.10
+  Locale::Country:
+    file: lib/Locale/Country.pm
+    version: 3.10
+  Locale::Currency:
+    file: lib/Locale/Currency.pm
+    version: 3.10
+  Locale::Language:
+    file: lib/Locale/Language.pm
+    version: 3.10
+  Locale::Script:
+    file: lib/Locale/Script.pm
+    version: 3.10
 requires:
   Carp: 0
   constant: 0
   perl: 5.002
-provides:
-  Locale::Constants:
-    file: lib/Locale/Constants.pm
-    version: 3
-  Locale::Country:
-    file: lib/Locale/Country.pm
-    version: 3
-  Locale::CountryCodes:
-    file: lib/Locale/CountryCodes.pm
-    version: 3.00
-  Locale::Currency:
-    file: lib/Locale/Currency.pm
-    version: 3
-  Locale::CurrencyCodes:
-    file: lib/Locale/CurrencyCodes.pm
-    version: 3.00
-  Locale::Language:
-    file: lib/Locale/Language.pm
-    version: 3
-  Locale::LanguageCodes:
-    file: lib/Locale/LanguageCodes.pm
-    version: 3.00
-  Locale::Script:
-    file: lib/Locale/Script.pm
-    version: 3
-  Locale::ScriptCodes:
-    file: lib/Locale/ScriptCodes.pm
-    version: 3.00
-generated_by: Module::Build version 0.280801
-meta-spec:
-  url: http://module-build.sourceforge.net/META-spec-v1.2.html
-  version: 1.2
+resources:
+  license: http://dev.perl.org/licenses/
+version: 3.10

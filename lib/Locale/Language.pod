@@ -19,25 +19,13 @@ Locale::Language - standard codes for language identification
 The C<Locale::Language> module provides access to standard codes used
 for identifying languages, such as those as defined in ISO 639.
 
-You can either access the codes via the L<conversion routines>
-(described below), or via the two functions which return lists of all
-language codes or all language names.
-
-All of the routines take an optional additional argument which
+Most of the routines take an optional additional argument which
 specifies the code set to use. If not specified, the default ISO
 639 two-letter codes will be used.
 
-=head1 LANGUAGE NAMES
-
-Locale::Language supports variant names for countries.
-
-Language names come from the standards, but common aliases are included
-(and others may be added). If you have a common alias for a language,
-let me know and I'll add it, with some restrictions.
-
 =head1 SUPPORTED CODE SETS
 
-There are many different code sets you can use for identifying
+There are several different code sets you can use for identifying
 languages. The ones currently supported are:
 
 =over 4
@@ -49,8 +37,7 @@ as 'he' for Hebrew.
 
 This code set is identified with the symbol C<LOCALE_LANG_ALPHA_2>.
 
-If no code set is specified in a call to any of the routines
-described below, it will default to this code set.
+This is the default code set.
 
 =item B<alpha-3>
 
@@ -68,98 +55,37 @@ This code set is identified with the symbol C<LOCALE_LANG_TERM>.
 
 =back
 
-=head1 CONVERSION ROUTINES
-
-There are three conversion routines: C<code2language()>, C<language2code()>,
-and C<language_code2code()>.
+=head1 ROUTINES
 
 =over 4
 
-=item code2language(CODE, [CODESET])
+=item code2language ( CODE [,CODESET] )
 
-This function takes a two letter language code and returns a string
-which contains the name of the language identified. If the code is not
-a valid language code, as defined by ISO 639, then C<undef> will be
-returned.
+=item language2code ( NAME [,CODESET] )
 
-   $lang = code2language($code);
+=item language_code2code ( CODE ,CODESET ,CODESET2 )
 
-=item language2code(NAME, [CODESET])
+=item all_language_codes ( [CODESET] )
 
-This function takes a language name and returns the corresponding two
-letter language code, if such exists.  If the argument could not be
-identified as a language name, then C<undef> will be returned.
+=item all_language_names ( [CODESET] )
 
-   $code = language2code('French');
+=item Locale::Language::rename_language  ( CODE ,NEW_NAME [,CODESET] )
 
-The case of the language name is not important.
+=item Locale::Language::add_language  ( CODE ,NAME [,CODESET] )
 
-=item language_code2code( CODE, CODESET, CODESET )
+=item Locale::Language::delete_language  ( CODE [,CODESET] )
 
-This function takes a language code from one code set, and returns the
-corresponding code from another code set.
+=item Locale::Language::add_language_alias  ( NAME ,NEW_NAME )
 
-Both CODESETs must be explicitly entered.
+=item Locale::Language::delete_language_alias  ( NAME )
 
-   language_code2code('aym', LOCALE_LANG_ALPHA_3,
-                     LOCALE_LANG_ALPHA_2);
-      => 'ay'
+=item Locale::Language::rename_language_code  ( CODE ,NEW_CODE [,CODESET] )
 
-If the code passed is not a valid language code in the first code set,
-or if there isn't a code for the corresponding language in the second
-code set, then C<undef> will be returned.
+=item Locale::Language::add_language_code_alias  ( CODE ,NEW_CODE [,CODESET] )
 
-=back
+=item Locale::Language::delete_language_code_alias  ( CODE [,CODESET] )
 
-=head1 QUERY ROUTINES
-
-There are two function which can be used to obtain a list of all
-language codes, or all language names:
-
-=over 4
-
-=item all_language_codes( [CODESET] )
-
-Returns a list of all language codes in the given code set.
-
-=item C<all_language_names()>
-
-Returns a list of all language names for which there is a corresponding
-language code. The names returned are the names specified in the
-standard.
-
-=back
-
-=head1 EXAMPLES
-
-The following example illustrates use of the C<code2language()>
-function.  The user is prompted for a language code, and then told the
-corresponding language name:
-
-    $| = 1;    # turn off buffering
-
-    print "Enter language code: ";
-    chop($code = <STDIN>);
-    $lang = code2language($code);
-    if (defined $lang) {
-        print "$code = $lang\n";
-    } else {
-        print "'$code' is not a valid language code!\n";
-    }
-
-=head1 KNOWN BUGS AND LIMITATIONS
-
-=over 4
-
-=item *
-
-Currently, language names are in pure ASCII. I plan to relax that in the
-future.
-
-=item *
-
-I do not yet support the codes for ISO 639-3 (which has codes for all
-languages living or dead). I may add support in a future version.
+These routines are all documented in the Locale::Codes man page.
 
 =back
 

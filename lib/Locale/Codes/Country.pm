@@ -1,14 +1,14 @@
-package Locale::CountryCodes;
+package Locale::Codes::Country;
 
 # This file was automatically generated.  Any changes to this file will
 # be lost the next time 'get_codes' is run.
-#    Generated on: Wed Feb 10 06:58:16 EST 2010
+#    Generated on: Tue Feb 16 15:19:30 EST 2010
 
 =pod
 
 =head1 NAME
 
-Locale::CountryCodes - country codes for the Locale::Country module
+Locale::Codes::Country - country codes for the Locale::Country module
 
 =head1 SYNOPSIS
 
@@ -37,16 +37,11 @@ use warnings;
 require 5.002;
 
 use vars qw($VERSION);
-$VERSION='3.00';
+$VERSION='3.10';
 
-use vars qw(
-   %Country
-   %CountryAlias
-   %Code2CountryID
-   %CountryID2Code
-);
+$Locale::Codes::Data{'country'}{'id'} = '0274';
 
-%Country = (
+$Locale::Codes::Data{'country'}{'id2names'} = {
    q(0001) => [
       q(Afghanistan),
       q(Islamic State of Afghanistan),
@@ -968,6 +963,7 @@ use vars qw(
    q(0232) => [
       q(United Kingdom),
       q(United Kingdom of Great Britain and Northern Ireland),
+      q(UK),
       q(Great Britain),
       ],
    q(0233) => [
@@ -1118,537 +1114,2116 @@ use vars qw(
    q(0273) => [
       q(Kosovo),
       ],
-);
+};
 
-%CountryAlias = (
-   q(afghanistan) => q(0001),
-   q(aland islands) => q(0002),
-   q(albania) => q(0003),
-   q(algeria) => q(0004),
-   q(american samoa) => q(0005),
-   q(andorra) => q(0006),
-   q(angola) => q(0007),
-   q(anguilla) => q(0008),
-   q(antarctica) => q(0009),
-   q(antigua and barbuda) => q(0010),
-   q(arab republic of egypt) => q(0064),
-   q(argentina) => q(0011),
-   q(argentine republic) => q(0011),
-   q(armenia) => q(0012),
-   q(aruba) => q(0013),
-   q(ashmore and cartier islands) => q(0249),
-   q(australia) => q(0014),
-   q(austria) => q(0015),
-   q(azerbaijan) => q(0016),
-   q(bahamas) => q(0017),
-   q(bahamas, the) => q(0017),
-   q(bahrain) => q(0018),
-   q(bailiwick of guernsey) => q(0090),
-   q(bailiwick of jersey) => q(0111),
-   q(baker island) => q(0250),
-   q(bangladesh) => q(0019),
-   q(barbados) => q(0020),
-   q(bassas da india) => q(0251),
-   q(belarus) => q(0021),
-   q(belgium) => q(0022),
-   q(belize) => q(0023),
-   q(benin) => q(0024),
-   q(bermuda) => q(0025),
-   q(bhutan) => q(0026),
-   q(bolivarian republic of venezuela) => q(0238),
-   q(bolivia) => q(0027),
-   q(bolivia (plurinational state of)) => q(0027),
-   q(bolivia, plurinational state of) => q(0027),
-   q(bosnia and herzegovina) => q(0028),
-   q(botswana) => q(0029),
-   q(bouvet island) => q(0030),
-   q(brazil) => q(0031),
-   q(british indian ocean territory) => q(0032),
-   q(british virgin islands) => q(0240),
-   q(brunei) => q(0033),
-   q(brunei darussalam) => q(0033),
-   q(bulgaria) => q(0034),
-   q(burkina faso) => q(0035),
-   q(burma) => q(0151),
-   q(burundi) => q(0036),
-   q(cambodia) => q(0037),
-   q(cameroon) => q(0038),
-   q(canada) => q(0039),
-   q(cape verde) => q(0040),
-   q(cayman islands) => q(0041),
-   q(central african republic) => q(0042),
-   q(chad) => q(0043),
-   q(channel islands) => q(0247),
-   q(chile) => q(0044),
-   q(china) => q(0045),
-   q(christmas island) => q(0046),
-   q(clipperton island) => q(0252),
-   q(co-operative republic of guyana) => q(0093),
-   q(cocos (keeling) islands) => q(0047),
-   q(cocos islands) => q(0047),
-   q(colombia) => q(0048),
-   q(commonwealth of australia) => q(0014),
-   q(commonwealth of dominica) => q(0061),
-   q(commonwealth of puerto rico) => q(0178),
-   q(commonwealth of the bahamas) => q(0017),
-   q(commonwealth of the northern mariana islands) => q(0164),
-   q(comoros) => q(0049),
-   q(congo) => q(0050),
-   q(congo (brazzaville)) => q(0050),
-   q(congo (kinshasa)) => q(0051),
-   q(congo, democratic republic of the) => q(0051),
-   q(congo, republic of the) => q(0050),
-   q(congo, the democratic republic of the) => q(0051),
-   q(cook islands) => q(0052),
-   q(coral sea islands) => q(0253),
-   q(coral sea islands territory) => q(0253),
-   q(costa rica) => q(0053),
-   q(cote d'ivoire) => q(0054),
-   q(croatia) => q(0055),
-   q(cuba) => q(0056),
-   q(cyprus) => q(0057),
-   q(czech republic) => q(0058),
-   q(democratic people's republic of korea) => q(0116),
-   q(democratic republic of sao tome and principe) => q(0193),
-   q(democratic republic of the congo) => q(0051),
-   q(democratic socialist republic of sri lanka) => q(0207),
-   q(denmark) => q(0059),
-   q(department of guadeloupe) => q(0087),
-   q(department of guiana) => q(0075),
-   q(department of martinique) => q(0138),
-   q(department of reunion) => q(0180),
-   q(djibouti) => q(0060),
-   q(dominica) => q(0061),
-   q(dominican republic) => q(0062),
-   q(east timor) => q(0219),
-   q(ecuador) => q(0063),
-   q(egypt) => q(0064),
-   q(el salvador) => q(0065),
-   q(equatorial guinea) => q(0066),
-   q(eritrea) => q(0067),
-   q(estonia) => q(0068),
-   q(ethiopia) => q(0069),
-   q(europa island) => q(0254),
-   q(faeroe islands) => q(0071),
-   q(falkland islands (islas malvinas)) => q(0070),
-   q(falkland islands (malvinas)) => q(0070),
-   q(faroe islands) => q(0071),
-   q(federal democratic republic of ethiopia) => q(0069),
-   q(federal islamic republic of the comoros) => q(0049),
-   q(federal republic of germany) => q(0081),
-   q(federal republic of nigeria) => q(0161),
-   q(federated states of micronesia) => q(0143),
-   q(federation of saint kitts and nevis) => q(0186),
-   q(federative republic of brazil) => q(0031),
-   q(fiji) => q(0072),
-   q(finland) => q(0073),
-   q(france) => q(0074),
-   q(france, metropolitan) => q(0272),
-   q(french guiana) => q(0075),
-   q(french polynesia) => q(0076),
-   q(french republic) => q(0074),
-   q(french southern and antarctic lands) => q(0077),
-   q(french southern territories) => q(0077),
-   q(gabon) => q(0078),
-   q(gabonese republic) => q(0078),
-   q(gambia) => q(0079),
-   q(gambia, the) => q(0079),
-   q(gaza strip) => q(0255),
-   q(georgia) => q(0080),
-   q(germany) => q(0081),
-   q(ghana) => q(0082),
-   q(gibraltar) => q(0083),
-   q(glorioso islands) => q(0256),
-   q(golan heights (israeli-occupied)) => q(0214),
-   q(grand duchy of luxembourg) => q(0128),
-   q(great britain) => q(0232),
-   q(great socialist people's libyan arab jamahiriya) => q(0125),
-   q(greece) => q(0084),
-   q(greenland) => q(0085),
-   q(grenada) => q(0086),
-   q(guadeloupe) => q(0087),
-   q(guam) => q(0088),
-   q(guatemala) => q(0089),
-   q(guernsey) => q(0090),
-   q(guinea) => q(0091),
-   q(guinea-bissau) => q(0092),
-   q(guyana) => q(0093),
-   q(haiti) => q(0094),
-   q(hashemite kingdom of jordan) => q(0112),
-   q(heard island and mcdonald islands) => q(0095),
-   q(hellenic republic) => q(0084),
-   q(holy see) => q(0096),
-   q(holy see (vatican city state)) => q(0096),
-   q(holy see (vatican city)) => q(0096),
-   q(honduras) => q(0097),
-   q(hong kong) => q(0098),
-   q(hong kong s.a.r.) => q(0098),
-   q(hong kong special administrative region) => q(0098),
-   q(hong kong special administrative region of china) => q(0098),
-   q(howland island) => q(0257),
-   q(hungary) => q(0099),
-   q(iceland) => q(0100),
-   q(independent state of papua new guinea) => q(0171),
-   q(independent state of samoa) => q(0191),
-   q(india) => q(0101),
-   q(indonesia) => q(0102),
-   q(iran) => q(0103),
-   q(iran (islamic republic of)) => q(0103),
-   q(iran, islamic republic of) => q(0103),
-   q(iraq) => q(0104),
-   q(ireland) => q(0105),
-   q(islamic republic of iran) => q(0103),
-   q(islamic republic of mauritania) => q(0139),
-   q(islamic republic of pakistan) => q(0167),
-   q(islamic state of afghanistan) => q(0001),
-   q(isle of man) => q(0106),
-   q(israel) => q(0107),
-   q(italian republic) => q(0108),
-   q(italy) => q(0108),
-   q(jamaica) => q(0109),
-   q(jan mayen) => q(0258),
-   q(japan) => q(0110),
-   q(jarvis island) => q(0259),
-   q(jersey) => q(0111),
-   q(johnston atoll) => q(0260),
-   q(jordan) => q(0112),
-   q(juan de nova island) => q(0261),
-   q(kazakhstan) => q(0113),
-   q(kazakstan) => q(0113),
-   q(keeling islands) => q(0047),
-   q(kenya) => q(0114),
-   q(kingdom of belgium) => q(0022),
-   q(kingdom of bhutan) => q(0026),
-   q(kingdom of cambodia) => q(0037),
-   q(kingdom of denmark) => q(0059),
-   q(kingdom of morocco) => q(0149),
-   q(kingdom of nepal) => q(0154),
-   q(kingdom of norway) => q(0165),
-   q(kingdom of saudi arabia) => q(0194),
-   q(kingdom of spain) => q(0206),
-   q(kingdom of swaziland) => q(0211),
-   q(kingdom of sweden) => q(0212),
-   q(kingdom of thailand) => q(0218),
-   q(kingdom of the netherlands) => q(0155),
-   q(kingdom of tonga) => q(0222),
-   q(kingman reef) => q(0262),
-   q(kiribati) => q(0115),
-   q(korea, democratic people's republic of) => q(0116),
-   q(korea, north) => q(0116),
-   q(korea, republic of) => q(0117),
-   q(korea, south) => q(0117),
-   q(kosovo) => q(0273),
-   q(kuwait) => q(0118),
-   q(kyrgyz republic) => q(0119),
-   q(kyrgyzstan) => q(0119),
-   q(lao people's democratic republic) => q(0120),
-   q(laos) => q(0120),
-   q(latvia) => q(0121),
-   q(lebanese republic) => q(0122),
-   q(lebanon) => q(0122),
-   q(lesotho) => q(0123),
-   q(liberia) => q(0124),
-   q(libya) => q(0125),
-   q(libyan arab jamahiriya) => q(0125),
-   q(liechtenstein) => q(0126),
-   q(lithuania) => q(0127),
-   q(luxembourg) => q(0128),
-   q(macao) => q(0129),
-   q(macao special administrative region of china) => q(0129),
-   q(macau) => q(0129),
-   q(macau s.a.r) => q(0129),
-   q(macau s.a.r.) => q(0129),
-   q(macau special administrative region) => q(0129),
-   q(macedonia) => q(0130),
-   q(macedonia, former yugoslav republic of) => q(0130),
-   q(macedonia, the former yugoslav republic of) => q(0130),
-   q(madagascar) => q(0131),
-   q(malawi) => q(0132),
-   q(malaysia) => q(0133),
-   q(maldives) => q(0134),
-   q(mali) => q(0135),
-   q(malta) => q(0136),
-   q(marshall islands) => q(0137),
-   q(martinique) => q(0138),
-   q(mauritania) => q(0139),
-   q(mauritius) => q(0140),
-   q(mayotte) => q(0141),
-   q(mexico) => q(0142),
-   q(micronesia (federated states of)) => q(0143),
-   q(micronesia, federated states of) => q(0143),
-   q(midway islands) => q(0263),
-   q(moldova) => q(0144),
-   q(moldova, republic of) => q(0144),
-   q(monaco) => q(0145),
-   q(mongolia) => q(0146),
-   q(montenegro) => q(0147),
-   q(montserrat) => q(0148),
-   q(morocco) => q(0149),
-   q(mozambique) => q(0150),
-   q(myanmar) => q(0151),
-   q(namibia) => q(0152),
-   q(nauru) => q(0153),
-   q(navassa island) => q(0264),
-   q(negara brunei darussalam) => q(0033),
-   q(nepal) => q(0154),
-   q(netherlands) => q(0155),
-   q(netherlands antilles) => q(0156),
-   q(new caledonia) => q(0157),
-   q(new zealand) => q(0158),
-   q(nicaragua) => q(0159),
-   q(niger) => q(0160),
-   q(nigeria) => q(0161),
-   q(niue) => q(0162),
-   q(norfolk island) => q(0163),
-   q(north korea) => q(0116),
-   q(northern mariana islands) => q(0164),
-   q(norway) => q(0165),
-   q(occupied palestinian territory) => q(0169),
-   q(oman) => q(0166),
-   q(oriental republic of uruguay) => q(0235),
-   q(pakistan) => q(0167),
-   q(palau) => q(0168),
-   q(palestinian territory, occupied) => q(0169),
-   q(palmyra atoll) => q(0265),
-   q(panama) => q(0170),
-   q(papua new guinea) => q(0171),
-   q(paracel islands) => q(0266),
-   q(paraguay) => q(0172),
-   q(people's democratic republic of algeria) => q(0004),
-   q(people's republic of bangladesh) => q(0019),
-   q(people's republic of china) => q(0045),
-   q(peru) => q(0173),
-   q(philippines) => q(0174),
-   q(pitcairn) => q(0175),
-   q(pitcairn island) => q(0175),
-   q(pitcairn islands) => q(0175),
-   q(pitcairn, henderson, ducie and oeno islands) => q(0175),
-   q(poland) => q(0176),
-   q(portugal) => q(0177),
-   q(portuguese republic) => q(0177),
-   q(principality of andorra) => q(0006),
-   q(principality of liechtenstein) => q(0126),
-   q(principality of monaco) => q(0145),
-   q(puerto rico) => q(0178),
-   q(qatar) => q(0179),
-   q(republic of albania) => q(0003),
-   q(republic of angola) => q(0007),
-   q(republic of armenia) => q(0012),
-   q(republic of austria) => q(0015),
-   q(republic of azerbaijan) => q(0016),
-   q(republic of belarus) => q(0021),
-   q(republic of benin) => q(0024),
-   q(republic of bolivia) => q(0027),
-   q(republic of botswana) => q(0029),
-   q(republic of burundi) => q(0036),
-   q(republic of cameroon) => q(0038),
-   q(republic of cape verde) => q(0040),
-   q(republic of chad) => q(0043),
-   q(republic of chile) => q(0044),
-   q(republic of colombia) => q(0048),
-   q(republic of costa rica) => q(0053),
-   q(republic of cote d'ivoire) => q(0054),
-   q(republic of croatia) => q(0055),
-   q(republic of cuba) => q(0056),
-   q(republic of cyprus) => q(0057),
-   q(republic of djibouti) => q(0060),
-   q(republic of ecuador) => q(0063),
-   q(republic of el salvador) => q(0065),
-   q(republic of equatorial guinea) => q(0066),
-   q(republic of estonia) => q(0068),
-   q(republic of finland) => q(0073),
-   q(republic of ghana) => q(0082),
-   q(republic of guatemala) => q(0089),
-   q(republic of guinea) => q(0091),
-   q(republic of guinea-bissau) => q(0092),
-   q(republic of haiti) => q(0094),
-   q(republic of honduras) => q(0097),
-   q(republic of hungary) => q(0099),
-   q(republic of iceland) => q(0100),
-   q(republic of india) => q(0101),
-   q(republic of indonesia) => q(0102),
-   q(republic of iraq) => q(0104),
-   q(republic of kazakhstan) => q(0113),
-   q(republic of kenya) => q(0114),
-   q(republic of kiribati) => q(0115),
-   q(republic of korea) => q(0117),
-   q(republic of latvia) => q(0121),
-   q(republic of lesotho) => q(0123),
-   q(republic of liberia) => q(0124),
-   q(republic of lithuania) => q(0127),
-   q(republic of macedonia) => q(0130),
-   q(republic of madagascar) => q(0131),
-   q(republic of malawi) => q(0132),
-   q(republic of maldives) => q(0134),
-   q(republic of mali) => q(0135),
-   q(republic of malta) => q(0136),
-   q(republic of mauritius) => q(0140),
-   q(republic of moldova) => q(0144),
-   q(republic of mozambique) => q(0150),
-   q(republic of namibia) => q(0152),
-   q(republic of nauru) => q(0153),
-   q(republic of nicaragua) => q(0159),
-   q(republic of niger) => q(0160),
-   q(republic of palau) => q(0168),
-   q(republic of panama) => q(0170),
-   q(republic of paraguay) => q(0172),
-   q(republic of peru) => q(0173),
-   q(republic of poland) => q(0176),
-   q(republic of san marino) => q(0192),
-   q(republic of senegal) => q(0195),
-   q(republic of seychelles) => q(0197),
-   q(republic of sierra leone) => q(0198),
-   q(republic of singapore) => q(0199),
-   q(republic of slovenia) => q(0201),
-   q(republic of south africa) => q(0204),
-   q(republic of suriname) => q(0209),
-   q(republic of tajikistan) => q(0216),
-   q(republic of the congo) => q(0050),
-   q(republic of the fiji islands) => q(0072),
-   q(republic of the gambia) => q(0079),
-   q(republic of the marshall islands) => q(0137),
-   q(republic of the philippines) => q(0174),
-   q(republic of the sudan) => q(0208),
-   q(republic of trinidad and tobago) => q(0223),
-   q(republic of tunisia) => q(0224),
-   q(republic of turkey) => q(0225),
-   q(republic of uzbekistan) => q(0236),
-   q(republic of vanuatu) => q(0237),
-   q(republic of yemen) => q(0244),
-   q(republic of zambia) => q(0245),
-   q(republic of zimbabwe) => q(0246),
-   q(reunion) => q(0180),
-   q(romania) => q(0181),
-   q(russia) => q(0182),
-   q(russian federation) => q(0182),
-   q(rwanda) => q(0183),
-   q(rwandese republic) => q(0183),
-   q(saint barthelemy) => q(0184),
-   q(saint helena) => q(0185),
-   q(saint kitts and nevis) => q(0186),
-   q(saint lucia) => q(0187),
-   q(saint martin) => q(0188),
-   q(saint pierre and miquelon) => q(0189),
-   q(saint vincent and the grenadines) => q(0190),
-   q(saint-barthelemy) => q(0184),
-   q(saint-martin (french part)) => q(0188),
-   q(samoa) => q(0191),
-   q(san marino) => q(0192),
-   q(sao tome and principe) => q(0193),
-   q(saudi arabia) => q(0194),
-   q(senegal) => q(0195),
-   q(serbia) => q(0196),
-   q(serbia and montenegro) => q(0248),
-   q(seychelles) => q(0197),
-   q(sierra leone) => q(0198),
-   q(singapore) => q(0199),
-   q(slovak republic) => q(0200),
-   q(slovakia) => q(0200),
-   q(slovenia) => q(0201),
-   q(socialist republic of vietnam) => q(0239),
-   q(solomon islands) => q(0202),
-   q(somalia) => q(0203),
-   q(south africa) => q(0204),
-   q(south georgia and the islands) => q(0205),
-   q(south georgia and the south sandwich islands) => q(0205),
-   q(south korea) => q(0117),
-   q(spain) => q(0206),
-   q(spratly islands) => q(0267),
-   q(sri lanka) => q(0207),
-   q(state of bahrain) => q(0018),
-   q(state of eritrea) => q(0067),
-   q(state of israel) => q(0107),
-   q(state of kuwait) => q(0118),
-   q(state of qatar) => q(0179),
-   q(state of the vatican city) => q(0096),
-   q(sudan) => q(0208),
-   q(sultanate of oman) => q(0166),
-   q(suriname) => q(0209),
-   q(svalbard) => q(0268),
-   q(svalbard and jan mayen) => q(0210),
-   q(svalbard and jan mayen islands) => q(0210),
-   q(swaziland) => q(0211),
-   q(sweden) => q(0212),
-   q(swiss confederation) => q(0213),
-   q(switzerland) => q(0213),
-   q(syria) => q(0214),
-   q(syrian arab republic) => q(0214),
-   q(taiwan) => q(0215),
-   q(taiwan, province of china) => q(0215),
-   q(tajikistan) => q(0216),
-   q(tanzania) => q(0217),
-   q(tanzania, united republic of) => q(0217),
-   q(territorial collectivity of mayotte) => q(0141),
-   q(territorial collectivity of saint pierre and miquelon) => q(0189),
-   q(territory of american samoa) => q(0005),
-   q(territory of ashmore and cartier islands) => q(0249),
-   q(territory of christmas island) => q(0046),
-   q(territory of cocos (keeling) islands) => q(0047),
-   q(territory of french polynesia) => q(0076),
-   q(territory of guam) => q(0088),
-   q(territory of heard island and mcdonald islands) => q(0095),
-   q(territory of new caledonia and dependencies) => q(0157),
-   q(territory of norfolk island) => q(0163),
-   q(territory of the french southern and antarctic lands) => q(0077),
-   q(territory of the wallis and futuna islands) => q(0242),
-   q(thailand) => q(0218),
-   q(the bahamas) => q(0017),
-   q(the democratic republic of the congo) => q(0051),
-   q(the former yugoslav republic of macedonia) => q(0130),
-   q(the republic of the congo) => q(0050),
-   q(timor-leste) => q(0219),
-   q(togo) => q(0220),
-   q(togolese republic) => q(0220),
-   q(tokelau) => q(0221),
-   q(tonga) => q(0222),
-   q(trinidad and tobago) => q(0223),
-   q(tromelin island) => q(0269),
-   q(tunisia) => q(0224),
-   q(turkey) => q(0225),
-   q(turkmenistan) => q(0226),
-   q(turks and caicos islands) => q(0227),
-   q(tuvalu) => q(0228),
-   q(uganda) => q(0229),
-   q(ukraine) => q(0230),
-   q(union of burma) => q(0151),
-   q(united arab emirates) => q(0231),
-   q(united kingdom) => q(0232),
-   q(united kingdom of great britain and northern ireland) => q(0232),
-   q(united mexican states) => q(0142),
-   q(united republic of tanzania) => q(0217),
-   q(united states) => q(0233),
-   q(united states minor outlying islands) => q(0234),
-   q(united states of america) => q(0233),
-   q(united states virgin islands) => q(0241),
-   q(uruguay) => q(0235),
-   q(us) => q(0233),
-   q(usa) => q(0233),
-   q(uzbekistan) => q(0236),
-   q(vanuatu) => q(0237),
-   q(vatican city) => q(0096),
-   q(venezuela) => q(0238),
-   q(venezuela (bolivarian republic of)) => q(0238),
-   q(venezuela, bolivarian republic of) => q(0238),
-   q(viet nam) => q(0239),
-   q(vietnam) => q(0239),
-   q(virgin islands) => q(0241),
-   q(virgin islands (uk)) => q(0240),
-   q(virgin islands (us)) => q(0241),
-   q(virgin islands of the united states) => q(0241),
-   q(virgin islands, british) => q(0240),
-   q(virgin islands, u.s.) => q(0241),
-   q(wake atoll) => q(0270),
-   q(wake island) => q(0270),
-   q(wallis and futuna) => q(0242),
-   q(wallis and futuna islands) => q(0242),
-   q(west bank) => q(0271),
-   q(western sahara) => q(0243),
-   q(yemen) => q(0244),
-   q(zambia) => q(0245),
-   q(zimbabwe) => q(0246),
-);
+$Locale::Codes::Data{'country'}{'alias2id'} = {
+   q(afghanistan) => [
+      q(0001),
+      q(0),
+      ],
+   q(aland islands) => [
+      q(0002),
+      q(0),
+      ],
+   q(albania) => [
+      q(0003),
+      q(0),
+      ],
+   q(algeria) => [
+      q(0004),
+      q(0),
+      ],
+   q(american samoa) => [
+      q(0005),
+      q(0),
+      ],
+   q(andorra) => [
+      q(0006),
+      q(0),
+      ],
+   q(angola) => [
+      q(0007),
+      q(0),
+      ],
+   q(anguilla) => [
+      q(0008),
+      q(0),
+      ],
+   q(antarctica) => [
+      q(0009),
+      q(0),
+      ],
+   q(antigua and barbuda) => [
+      q(0010),
+      q(0),
+      ],
+   q(arab republic of egypt) => [
+      q(0064),
+      q(1),
+      ],
+   q(argentina) => [
+      q(0011),
+      q(0),
+      ],
+   q(argentine republic) => [
+      q(0011),
+      q(1),
+      ],
+   q(armenia) => [
+      q(0012),
+      q(0),
+      ],
+   q(aruba) => [
+      q(0013),
+      q(0),
+      ],
+   q(ashmore and cartier islands) => [
+      q(0249),
+      q(0),
+      ],
+   q(australia) => [
+      q(0014),
+      q(0),
+      ],
+   q(austria) => [
+      q(0015),
+      q(0),
+      ],
+   q(azerbaijan) => [
+      q(0016),
+      q(0),
+      ],
+   q(bahamas) => [
+      q(0017),
+      q(0),
+      ],
+   q(bahamas, the) => [
+      q(0017),
+      q(1),
+      ],
+   q(bahrain) => [
+      q(0018),
+      q(0),
+      ],
+   q(bailiwick of guernsey) => [
+      q(0090),
+      q(1),
+      ],
+   q(bailiwick of jersey) => [
+      q(0111),
+      q(1),
+      ],
+   q(baker island) => [
+      q(0250),
+      q(0),
+      ],
+   q(bangladesh) => [
+      q(0019),
+      q(0),
+      ],
+   q(barbados) => [
+      q(0020),
+      q(0),
+      ],
+   q(bassas da india) => [
+      q(0251),
+      q(0),
+      ],
+   q(belarus) => [
+      q(0021),
+      q(0),
+      ],
+   q(belgium) => [
+      q(0022),
+      q(0),
+      ],
+   q(belize) => [
+      q(0023),
+      q(0),
+      ],
+   q(benin) => [
+      q(0024),
+      q(0),
+      ],
+   q(bermuda) => [
+      q(0025),
+      q(0),
+      ],
+   q(bhutan) => [
+      q(0026),
+      q(0),
+      ],
+   q(bolivarian republic of venezuela) => [
+      q(0238),
+      q(3),
+      ],
+   q(bolivia) => [
+      q(0027),
+      q(2),
+      ],
+   q(bolivia (plurinational state of)) => [
+      q(0027),
+      q(1),
+      ],
+   q(bolivia, plurinational state of) => [
+      q(0027),
+      q(0),
+      ],
+   q(bosnia and herzegovina) => [
+      q(0028),
+      q(0),
+      ],
+   q(botswana) => [
+      q(0029),
+      q(0),
+      ],
+   q(bouvet island) => [
+      q(0030),
+      q(0),
+      ],
+   q(brazil) => [
+      q(0031),
+      q(0),
+      ],
+   q(british indian ocean territory) => [
+      q(0032),
+      q(0),
+      ],
+   q(british virgin islands) => [
+      q(0240),
+      q(1),
+      ],
+   q(brunei) => [
+      q(0033),
+      q(1),
+      ],
+   q(brunei darussalam) => [
+      q(0033),
+      q(0),
+      ],
+   q(bulgaria) => [
+      q(0034),
+      q(0),
+      ],
+   q(burkina faso) => [
+      q(0035),
+      q(0),
+      ],
+   q(burma) => [
+      q(0151),
+      q(1),
+      ],
+   q(burundi) => [
+      q(0036),
+      q(0),
+      ],
+   q(cambodia) => [
+      q(0037),
+      q(0),
+      ],
+   q(cameroon) => [
+      q(0038),
+      q(0),
+      ],
+   q(canada) => [
+      q(0039),
+      q(0),
+      ],
+   q(cape verde) => [
+      q(0040),
+      q(0),
+      ],
+   q(cayman islands) => [
+      q(0041),
+      q(0),
+      ],
+   q(central african republic) => [
+      q(0042),
+      q(0),
+      ],
+   q(chad) => [
+      q(0043),
+      q(0),
+      ],
+   q(channel islands) => [
+      q(0247),
+      q(0),
+      ],
+   q(chile) => [
+      q(0044),
+      q(0),
+      ],
+   q(china) => [
+      q(0045),
+      q(0),
+      ],
+   q(christmas island) => [
+      q(0046),
+      q(0),
+      ],
+   q(clipperton island) => [
+      q(0252),
+      q(0),
+      ],
+   q(co-operative republic of guyana) => [
+      q(0093),
+      q(1),
+      ],
+   q(cocos (keeling) islands) => [
+      q(0047),
+      q(0),
+      ],
+   q(cocos islands) => [
+      q(0047),
+      q(3),
+      ],
+   q(colombia) => [
+      q(0048),
+      q(0),
+      ],
+   q(commonwealth of australia) => [
+      q(0014),
+      q(1),
+      ],
+   q(commonwealth of dominica) => [
+      q(0061),
+      q(1),
+      ],
+   q(commonwealth of puerto rico) => [
+      q(0178),
+      q(1),
+      ],
+   q(commonwealth of the bahamas) => [
+      q(0017),
+      q(2),
+      ],
+   q(commonwealth of the northern mariana islands) => [
+      q(0164),
+      q(1),
+      ],
+   q(comoros) => [
+      q(0049),
+      q(0),
+      ],
+   q(congo) => [
+      q(0050),
+      q(0),
+      ],
+   q(congo (brazzaville)) => [
+      q(0050),
+      q(1),
+      ],
+   q(congo (kinshasa)) => [
+      q(0051),
+      q(2),
+      ],
+   q(congo, democratic republic of the) => [
+      q(0051),
+      q(3),
+      ],
+   q(congo, republic of the) => [
+      q(0050),
+      q(3),
+      ],
+   q(congo, the democratic republic of the) => [
+      q(0051),
+      q(0),
+      ],
+   q(cook islands) => [
+      q(0052),
+      q(0),
+      ],
+   q(coral sea islands) => [
+      q(0253),
+      q(0),
+      ],
+   q(coral sea islands territory) => [
+      q(0253),
+      q(1),
+      ],
+   q(costa rica) => [
+      q(0053),
+      q(0),
+      ],
+   q(cote d'ivoire) => [
+      q(0054),
+      q(0),
+      ],
+   q(croatia) => [
+      q(0055),
+      q(0),
+      ],
+   q(cuba) => [
+      q(0056),
+      q(0),
+      ],
+   q(cyprus) => [
+      q(0057),
+      q(0),
+      ],
+   q(czech republic) => [
+      q(0058),
+      q(0),
+      ],
+   q(democratic people's republic of korea) => [
+      q(0116),
+      q(1),
+      ],
+   q(democratic republic of sao tome and principe) => [
+      q(0193),
+      q(1),
+      ],
+   q(democratic republic of the congo) => [
+      q(0051),
+      q(1),
+      ],
+   q(democratic socialist republic of sri lanka) => [
+      q(0207),
+      q(1),
+      ],
+   q(denmark) => [
+      q(0059),
+      q(0),
+      ],
+   q(department of guadeloupe) => [
+      q(0087),
+      q(1),
+      ],
+   q(department of guiana) => [
+      q(0075),
+      q(1),
+      ],
+   q(department of martinique) => [
+      q(0138),
+      q(1),
+      ],
+   q(department of reunion) => [
+      q(0180),
+      q(1),
+      ],
+   q(djibouti) => [
+      q(0060),
+      q(0),
+      ],
+   q(dominica) => [
+      q(0061),
+      q(0),
+      ],
+   q(dominican republic) => [
+      q(0062),
+      q(0),
+      ],
+   q(east timor) => [
+      q(0219),
+      q(1),
+      ],
+   q(ecuador) => [
+      q(0063),
+      q(0),
+      ],
+   q(egypt) => [
+      q(0064),
+      q(0),
+      ],
+   q(el salvador) => [
+      q(0065),
+      q(0),
+      ],
+   q(equatorial guinea) => [
+      q(0066),
+      q(0),
+      ],
+   q(eritrea) => [
+      q(0067),
+      q(0),
+      ],
+   q(estonia) => [
+      q(0068),
+      q(0),
+      ],
+   q(ethiopia) => [
+      q(0069),
+      q(0),
+      ],
+   q(europa island) => [
+      q(0254),
+      q(0),
+      ],
+   q(faeroe islands) => [
+      q(0071),
+      q(1),
+      ],
+   q(falkland islands (islas malvinas)) => [
+      q(0070),
+      q(1),
+      ],
+   q(falkland islands (malvinas)) => [
+      q(0070),
+      q(0),
+      ],
+   q(faroe islands) => [
+      q(0071),
+      q(0),
+      ],
+   q(federal democratic republic of ethiopia) => [
+      q(0069),
+      q(1),
+      ],
+   q(federal islamic republic of the comoros) => [
+      q(0049),
+      q(1),
+      ],
+   q(federal republic of germany) => [
+      q(0081),
+      q(1),
+      ],
+   q(federal republic of nigeria) => [
+      q(0161),
+      q(1),
+      ],
+   q(federated states of micronesia) => [
+      q(0143),
+      q(2),
+      ],
+   q(federation of saint kitts and nevis) => [
+      q(0186),
+      q(1),
+      ],
+   q(federative republic of brazil) => [
+      q(0031),
+      q(1),
+      ],
+   q(fiji) => [
+      q(0072),
+      q(0),
+      ],
+   q(finland) => [
+      q(0073),
+      q(0),
+      ],
+   q(france) => [
+      q(0074),
+      q(0),
+      ],
+   q(france, metropolitan) => [
+      q(0272),
+      q(0),
+      ],
+   q(french guiana) => [
+      q(0075),
+      q(0),
+      ],
+   q(french polynesia) => [
+      q(0076),
+      q(0),
+      ],
+   q(french republic) => [
+      q(0074),
+      q(1),
+      ],
+   q(french southern and antarctic lands) => [
+      q(0077),
+      q(1),
+      ],
+   q(french southern territories) => [
+      q(0077),
+      q(0),
+      ],
+   q(gabon) => [
+      q(0078),
+      q(0),
+      ],
+   q(gabonese republic) => [
+      q(0078),
+      q(1),
+      ],
+   q(gambia) => [
+      q(0079),
+      q(0),
+      ],
+   q(gambia, the) => [
+      q(0079),
+      q(1),
+      ],
+   q(gaza strip) => [
+      q(0255),
+      q(0),
+      ],
+   q(georgia) => [
+      q(0080),
+      q(0),
+      ],
+   q(germany) => [
+      q(0081),
+      q(0),
+      ],
+   q(ghana) => [
+      q(0082),
+      q(0),
+      ],
+   q(gibraltar) => [
+      q(0083),
+      q(0),
+      ],
+   q(glorioso islands) => [
+      q(0256),
+      q(0),
+      ],
+   q(golan heights (israeli-occupied)) => [
+      q(0214),
+      q(2),
+      ],
+   q(grand duchy of luxembourg) => [
+      q(0128),
+      q(1),
+      ],
+   q(great britain) => [
+      q(0232),
+      q(3),
+      ],
+   q(great socialist people's libyan arab jamahiriya) => [
+      q(0125),
+      q(2),
+      ],
+   q(greece) => [
+      q(0084),
+      q(0),
+      ],
+   q(greenland) => [
+      q(0085),
+      q(0),
+      ],
+   q(grenada) => [
+      q(0086),
+      q(0),
+      ],
+   q(guadeloupe) => [
+      q(0087),
+      q(0),
+      ],
+   q(guam) => [
+      q(0088),
+      q(0),
+      ],
+   q(guatemala) => [
+      q(0089),
+      q(0),
+      ],
+   q(guernsey) => [
+      q(0090),
+      q(0),
+      ],
+   q(guinea) => [
+      q(0091),
+      q(0),
+      ],
+   q(guinea-bissau) => [
+      q(0092),
+      q(0),
+      ],
+   q(guyana) => [
+      q(0093),
+      q(0),
+      ],
+   q(haiti) => [
+      q(0094),
+      q(0),
+      ],
+   q(hashemite kingdom of jordan) => [
+      q(0112),
+      q(1),
+      ],
+   q(heard island and mcdonald islands) => [
+      q(0095),
+      q(0),
+      ],
+   q(hellenic republic) => [
+      q(0084),
+      q(1),
+      ],
+   q(holy see) => [
+      q(0096),
+      q(1),
+      ],
+   q(holy see (vatican city state)) => [
+      q(0096),
+      q(0),
+      ],
+   q(holy see (vatican city)) => [
+      q(0096),
+      q(4),
+      ],
+   q(honduras) => [
+      q(0097),
+      q(0),
+      ],
+   q(hong kong) => [
+      q(0098),
+      q(0),
+      ],
+   q(hong kong s.a.r.) => [
+      q(0098),
+      q(2),
+      ],
+   q(hong kong special administrative region) => [
+      q(0098),
+      q(3),
+      ],
+   q(hong kong special administrative region of china) => [
+      q(0098),
+      q(1),
+      ],
+   q(howland island) => [
+      q(0257),
+      q(0),
+      ],
+   q(hungary) => [
+      q(0099),
+      q(0),
+      ],
+   q(iceland) => [
+      q(0100),
+      q(0),
+      ],
+   q(independent state of papua new guinea) => [
+      q(0171),
+      q(1),
+      ],
+   q(independent state of samoa) => [
+      q(0191),
+      q(1),
+      ],
+   q(india) => [
+      q(0101),
+      q(0),
+      ],
+   q(indonesia) => [
+      q(0102),
+      q(0),
+      ],
+   q(iran) => [
+      q(0103),
+      q(2),
+      ],
+   q(iran (islamic republic of)) => [
+      q(0103),
+      q(1),
+      ],
+   q(iran, islamic republic of) => [
+      q(0103),
+      q(0),
+      ],
+   q(iraq) => [
+      q(0104),
+      q(0),
+      ],
+   q(ireland) => [
+      q(0105),
+      q(0),
+      ],
+   q(islamic republic of iran) => [
+      q(0103),
+      q(3),
+      ],
+   q(islamic republic of mauritania) => [
+      q(0139),
+      q(1),
+      ],
+   q(islamic republic of pakistan) => [
+      q(0167),
+      q(1),
+      ],
+   q(islamic state of afghanistan) => [
+      q(0001),
+      q(1),
+      ],
+   q(isle of man) => [
+      q(0106),
+      q(0),
+      ],
+   q(israel) => [
+      q(0107),
+      q(0),
+      ],
+   q(italian republic) => [
+      q(0108),
+      q(1),
+      ],
+   q(italy) => [
+      q(0108),
+      q(0),
+      ],
+   q(jamaica) => [
+      q(0109),
+      q(0),
+      ],
+   q(jan mayen) => [
+      q(0258),
+      q(0),
+      ],
+   q(japan) => [
+      q(0110),
+      q(0),
+      ],
+   q(jarvis island) => [
+      q(0259),
+      q(0),
+      ],
+   q(jersey) => [
+      q(0111),
+      q(0),
+      ],
+   q(johnston atoll) => [
+      q(0260),
+      q(0),
+      ],
+   q(jordan) => [
+      q(0112),
+      q(0),
+      ],
+   q(juan de nova island) => [
+      q(0261),
+      q(0),
+      ],
+   q(kazakhstan) => [
+      q(0113),
+      q(0),
+      ],
+   q(kazakstan) => [
+      q(0113),
+      q(2),
+      ],
+   q(keeling islands) => [
+      q(0047),
+      q(2),
+      ],
+   q(kenya) => [
+      q(0114),
+      q(0),
+      ],
+   q(kingdom of belgium) => [
+      q(0022),
+      q(1),
+      ],
+   q(kingdom of bhutan) => [
+      q(0026),
+      q(1),
+      ],
+   q(kingdom of cambodia) => [
+      q(0037),
+      q(1),
+      ],
+   q(kingdom of denmark) => [
+      q(0059),
+      q(1),
+      ],
+   q(kingdom of morocco) => [
+      q(0149),
+      q(1),
+      ],
+   q(kingdom of nepal) => [
+      q(0154),
+      q(1),
+      ],
+   q(kingdom of norway) => [
+      q(0165),
+      q(1),
+      ],
+   q(kingdom of saudi arabia) => [
+      q(0194),
+      q(1),
+      ],
+   q(kingdom of spain) => [
+      q(0206),
+      q(1),
+      ],
+   q(kingdom of swaziland) => [
+      q(0211),
+      q(1),
+      ],
+   q(kingdom of sweden) => [
+      q(0212),
+      q(1),
+      ],
+   q(kingdom of thailand) => [
+      q(0218),
+      q(1),
+      ],
+   q(kingdom of the netherlands) => [
+      q(0155),
+      q(1),
+      ],
+   q(kingdom of tonga) => [
+      q(0222),
+      q(1),
+      ],
+   q(kingman reef) => [
+      q(0262),
+      q(0),
+      ],
+   q(kiribati) => [
+      q(0115),
+      q(0),
+      ],
+   q(korea, democratic people's republic of) => [
+      q(0116),
+      q(0),
+      ],
+   q(korea, north) => [
+      q(0116),
+      q(2),
+      ],
+   q(korea, republic of) => [
+      q(0117),
+      q(0),
+      ],
+   q(korea, south) => [
+      q(0117),
+      q(2),
+      ],
+   q(kosovo) => [
+      q(0273),
+      q(0),
+      ],
+   q(kuwait) => [
+      q(0118),
+      q(0),
+      ],
+   q(kyrgyz republic) => [
+      q(0119),
+      q(1),
+      ],
+   q(kyrgyzstan) => [
+      q(0119),
+      q(0),
+      ],
+   q(lao people's democratic republic) => [
+      q(0120),
+      q(0),
+      ],
+   q(laos) => [
+      q(0120),
+      q(1),
+      ],
+   q(latvia) => [
+      q(0121),
+      q(0),
+      ],
+   q(lebanese republic) => [
+      q(0122),
+      q(1),
+      ],
+   q(lebanon) => [
+      q(0122),
+      q(0),
+      ],
+   q(lesotho) => [
+      q(0123),
+      q(0),
+      ],
+   q(liberia) => [
+      q(0124),
+      q(0),
+      ],
+   q(libya) => [
+      q(0125),
+      q(1),
+      ],
+   q(libyan arab jamahiriya) => [
+      q(0125),
+      q(0),
+      ],
+   q(liechtenstein) => [
+      q(0126),
+      q(0),
+      ],
+   q(lithuania) => [
+      q(0127),
+      q(0),
+      ],
+   q(luxembourg) => [
+      q(0128),
+      q(0),
+      ],
+   q(macao) => [
+      q(0129),
+      q(0),
+      ],
+   q(macao special administrative region of china) => [
+      q(0129),
+      q(1),
+      ],
+   q(macau) => [
+      q(0129),
+      q(4),
+      ],
+   q(macau s.a.r) => [
+      q(0129),
+      q(2),
+      ],
+   q(macau s.a.r.) => [
+      q(0129),
+      q(5),
+      ],
+   q(macau special administrative region) => [
+      q(0129),
+      q(3),
+      ],
+   q(macedonia) => [
+      q(0130),
+      q(2),
+      ],
+   q(macedonia, former yugoslav republic of) => [
+      q(0130),
+      q(4),
+      ],
+   q(macedonia, the former yugoslav republic of) => [
+      q(0130),
+      q(0),
+      ],
+   q(madagascar) => [
+      q(0131),
+      q(0),
+      ],
+   q(malawi) => [
+      q(0132),
+      q(0),
+      ],
+   q(malaysia) => [
+      q(0133),
+      q(0),
+      ],
+   q(maldives) => [
+      q(0134),
+      q(0),
+      ],
+   q(mali) => [
+      q(0135),
+      q(0),
+      ],
+   q(malta) => [
+      q(0136),
+      q(0),
+      ],
+   q(marshall islands) => [
+      q(0137),
+      q(0),
+      ],
+   q(martinique) => [
+      q(0138),
+      q(0),
+      ],
+   q(mauritania) => [
+      q(0139),
+      q(0),
+      ],
+   q(mauritius) => [
+      q(0140),
+      q(0),
+      ],
+   q(mayotte) => [
+      q(0141),
+      q(0),
+      ],
+   q(mexico) => [
+      q(0142),
+      q(0),
+      ],
+   q(micronesia (federated states of)) => [
+      q(0143),
+      q(1),
+      ],
+   q(micronesia, federated states of) => [
+      q(0143),
+      q(0),
+      ],
+   q(midway islands) => [
+      q(0263),
+      q(0),
+      ],
+   q(moldova) => [
+      q(0144),
+      q(2),
+      ],
+   q(moldova, republic of) => [
+      q(0144),
+      q(0),
+      ],
+   q(monaco) => [
+      q(0145),
+      q(0),
+      ],
+   q(mongolia) => [
+      q(0146),
+      q(0),
+      ],
+   q(montenegro) => [
+      q(0147),
+      q(0),
+      ],
+   q(montserrat) => [
+      q(0148),
+      q(0),
+      ],
+   q(morocco) => [
+      q(0149),
+      q(0),
+      ],
+   q(mozambique) => [
+      q(0150),
+      q(0),
+      ],
+   q(myanmar) => [
+      q(0151),
+      q(0),
+      ],
+   q(namibia) => [
+      q(0152),
+      q(0),
+      ],
+   q(nauru) => [
+      q(0153),
+      q(0),
+      ],
+   q(navassa island) => [
+      q(0264),
+      q(0),
+      ],
+   q(negara brunei darussalam) => [
+      q(0033),
+      q(2),
+      ],
+   q(nepal) => [
+      q(0154),
+      q(0),
+      ],
+   q(netherlands) => [
+      q(0155),
+      q(0),
+      ],
+   q(netherlands antilles) => [
+      q(0156),
+      q(0),
+      ],
+   q(new caledonia) => [
+      q(0157),
+      q(0),
+      ],
+   q(new zealand) => [
+      q(0158),
+      q(0),
+      ],
+   q(nicaragua) => [
+      q(0159),
+      q(0),
+      ],
+   q(niger) => [
+      q(0160),
+      q(0),
+      ],
+   q(nigeria) => [
+      q(0161),
+      q(0),
+      ],
+   q(niue) => [
+      q(0162),
+      q(0),
+      ],
+   q(norfolk island) => [
+      q(0163),
+      q(0),
+      ],
+   q(north korea) => [
+      q(0116),
+      q(3),
+      ],
+   q(northern mariana islands) => [
+      q(0164),
+      q(0),
+      ],
+   q(norway) => [
+      q(0165),
+      q(0),
+      ],
+   q(occupied palestinian territory) => [
+      q(0169),
+      q(1),
+      ],
+   q(oman) => [
+      q(0166),
+      q(0),
+      ],
+   q(oriental republic of uruguay) => [
+      q(0235),
+      q(1),
+      ],
+   q(pakistan) => [
+      q(0167),
+      q(0),
+      ],
+   q(palau) => [
+      q(0168),
+      q(0),
+      ],
+   q(palestinian territory, occupied) => [
+      q(0169),
+      q(0),
+      ],
+   q(palmyra atoll) => [
+      q(0265),
+      q(0),
+      ],
+   q(panama) => [
+      q(0170),
+      q(0),
+      ],
+   q(papua new guinea) => [
+      q(0171),
+      q(0),
+      ],
+   q(paracel islands) => [
+      q(0266),
+      q(0),
+      ],
+   q(paraguay) => [
+      q(0172),
+      q(0),
+      ],
+   q(people's democratic republic of algeria) => [
+      q(0004),
+      q(1),
+      ],
+   q(people's republic of bangladesh) => [
+      q(0019),
+      q(1),
+      ],
+   q(people's republic of china) => [
+      q(0045),
+      q(1),
+      ],
+   q(peru) => [
+      q(0173),
+      q(0),
+      ],
+   q(philippines) => [
+      q(0174),
+      q(0),
+      ],
+   q(pitcairn) => [
+      q(0175),
+      q(0),
+      ],
+   q(pitcairn island) => [
+      q(0175),
+      q(3),
+      ],
+   q(pitcairn islands) => [
+      q(0175),
+      q(1),
+      ],
+   q(pitcairn, henderson, ducie and oeno islands) => [
+      q(0175),
+      q(2),
+      ],
+   q(poland) => [
+      q(0176),
+      q(0),
+      ],
+   q(portugal) => [
+      q(0177),
+      q(0),
+      ],
+   q(portuguese republic) => [
+      q(0177),
+      q(1),
+      ],
+   q(principality of andorra) => [
+      q(0006),
+      q(1),
+      ],
+   q(principality of liechtenstein) => [
+      q(0126),
+      q(1),
+      ],
+   q(principality of monaco) => [
+      q(0145),
+      q(1),
+      ],
+   q(puerto rico) => [
+      q(0178),
+      q(0),
+      ],
+   q(qatar) => [
+      q(0179),
+      q(0),
+      ],
+   q(republic of albania) => [
+      q(0003),
+      q(1),
+      ],
+   q(republic of angola) => [
+      q(0007),
+      q(1),
+      ],
+   q(republic of armenia) => [
+      q(0012),
+      q(1),
+      ],
+   q(republic of austria) => [
+      q(0015),
+      q(1),
+      ],
+   q(republic of azerbaijan) => [
+      q(0016),
+      q(1),
+      ],
+   q(republic of belarus) => [
+      q(0021),
+      q(1),
+      ],
+   q(republic of benin) => [
+      q(0024),
+      q(1),
+      ],
+   q(republic of bolivia) => [
+      q(0027),
+      q(3),
+      ],
+   q(republic of botswana) => [
+      q(0029),
+      q(1),
+      ],
+   q(republic of burundi) => [
+      q(0036),
+      q(1),
+      ],
+   q(republic of cameroon) => [
+      q(0038),
+      q(1),
+      ],
+   q(republic of cape verde) => [
+      q(0040),
+      q(1),
+      ],
+   q(republic of chad) => [
+      q(0043),
+      q(1),
+      ],
+   q(republic of chile) => [
+      q(0044),
+      q(1),
+      ],
+   q(republic of colombia) => [
+      q(0048),
+      q(1),
+      ],
+   q(republic of costa rica) => [
+      q(0053),
+      q(1),
+      ],
+   q(republic of cote d'ivoire) => [
+      q(0054),
+      q(1),
+      ],
+   q(republic of croatia) => [
+      q(0055),
+      q(1),
+      ],
+   q(republic of cuba) => [
+      q(0056),
+      q(1),
+      ],
+   q(republic of cyprus) => [
+      q(0057),
+      q(1),
+      ],
+   q(republic of djibouti) => [
+      q(0060),
+      q(1),
+      ],
+   q(republic of ecuador) => [
+      q(0063),
+      q(1),
+      ],
+   q(republic of el salvador) => [
+      q(0065),
+      q(1),
+      ],
+   q(republic of equatorial guinea) => [
+      q(0066),
+      q(1),
+      ],
+   q(republic of estonia) => [
+      q(0068),
+      q(1),
+      ],
+   q(republic of finland) => [
+      q(0073),
+      q(1),
+      ],
+   q(republic of ghana) => [
+      q(0082),
+      q(1),
+      ],
+   q(republic of guatemala) => [
+      q(0089),
+      q(1),
+      ],
+   q(republic of guinea) => [
+      q(0091),
+      q(1),
+      ],
+   q(republic of guinea-bissau) => [
+      q(0092),
+      q(1),
+      ],
+   q(republic of haiti) => [
+      q(0094),
+      q(1),
+      ],
+   q(republic of honduras) => [
+      q(0097),
+      q(1),
+      ],
+   q(republic of hungary) => [
+      q(0099),
+      q(1),
+      ],
+   q(republic of iceland) => [
+      q(0100),
+      q(1),
+      ],
+   q(republic of india) => [
+      q(0101),
+      q(1),
+      ],
+   q(republic of indonesia) => [
+      q(0102),
+      q(1),
+      ],
+   q(republic of iraq) => [
+      q(0104),
+      q(1),
+      ],
+   q(republic of kazakhstan) => [
+      q(0113),
+      q(1),
+      ],
+   q(republic of kenya) => [
+      q(0114),
+      q(1),
+      ],
+   q(republic of kiribati) => [
+      q(0115),
+      q(1),
+      ],
+   q(republic of korea) => [
+      q(0117),
+      q(1),
+      ],
+   q(republic of latvia) => [
+      q(0121),
+      q(1),
+      ],
+   q(republic of lesotho) => [
+      q(0123),
+      q(1),
+      ],
+   q(republic of liberia) => [
+      q(0124),
+      q(1),
+      ],
+   q(republic of lithuania) => [
+      q(0127),
+      q(1),
+      ],
+   q(republic of macedonia) => [
+      q(0130),
+      q(3),
+      ],
+   q(republic of madagascar) => [
+      q(0131),
+      q(1),
+      ],
+   q(republic of malawi) => [
+      q(0132),
+      q(1),
+      ],
+   q(republic of maldives) => [
+      q(0134),
+      q(1),
+      ],
+   q(republic of mali) => [
+      q(0135),
+      q(1),
+      ],
+   q(republic of malta) => [
+      q(0136),
+      q(1),
+      ],
+   q(republic of mauritius) => [
+      q(0140),
+      q(1),
+      ],
+   q(republic of moldova) => [
+      q(0144),
+      q(1),
+      ],
+   q(republic of mozambique) => [
+      q(0150),
+      q(1),
+      ],
+   q(republic of namibia) => [
+      q(0152),
+      q(1),
+      ],
+   q(republic of nauru) => [
+      q(0153),
+      q(1),
+      ],
+   q(republic of nicaragua) => [
+      q(0159),
+      q(1),
+      ],
+   q(republic of niger) => [
+      q(0160),
+      q(1),
+      ],
+   q(republic of palau) => [
+      q(0168),
+      q(1),
+      ],
+   q(republic of panama) => [
+      q(0170),
+      q(1),
+      ],
+   q(republic of paraguay) => [
+      q(0172),
+      q(1),
+      ],
+   q(republic of peru) => [
+      q(0173),
+      q(1),
+      ],
+   q(republic of poland) => [
+      q(0176),
+      q(1),
+      ],
+   q(republic of san marino) => [
+      q(0192),
+      q(1),
+      ],
+   q(republic of senegal) => [
+      q(0195),
+      q(1),
+      ],
+   q(republic of seychelles) => [
+      q(0197),
+      q(1),
+      ],
+   q(republic of sierra leone) => [
+      q(0198),
+      q(1),
+      ],
+   q(republic of singapore) => [
+      q(0199),
+      q(1),
+      ],
+   q(republic of slovenia) => [
+      q(0201),
+      q(1),
+      ],
+   q(republic of south africa) => [
+      q(0204),
+      q(1),
+      ],
+   q(republic of suriname) => [
+      q(0209),
+      q(1),
+      ],
+   q(republic of tajikistan) => [
+      q(0216),
+      q(1),
+      ],
+   q(republic of the congo) => [
+      q(0050),
+      q(2),
+      ],
+   q(republic of the fiji islands) => [
+      q(0072),
+      q(1),
+      ],
+   q(republic of the gambia) => [
+      q(0079),
+      q(2),
+      ],
+   q(republic of the marshall islands) => [
+      q(0137),
+      q(1),
+      ],
+   q(republic of the philippines) => [
+      q(0174),
+      q(1),
+      ],
+   q(republic of the sudan) => [
+      q(0208),
+      q(1),
+      ],
+   q(republic of trinidad and tobago) => [
+      q(0223),
+      q(1),
+      ],
+   q(republic of tunisia) => [
+      q(0224),
+      q(1),
+      ],
+   q(republic of turkey) => [
+      q(0225),
+      q(1),
+      ],
+   q(republic of uzbekistan) => [
+      q(0236),
+      q(1),
+      ],
+   q(republic of vanuatu) => [
+      q(0237),
+      q(1),
+      ],
+   q(republic of yemen) => [
+      q(0244),
+      q(1),
+      ],
+   q(republic of zambia) => [
+      q(0245),
+      q(1),
+      ],
+   q(republic of zimbabwe) => [
+      q(0246),
+      q(1),
+      ],
+   q(reunion) => [
+      q(0180),
+      q(0),
+      ],
+   q(romania) => [
+      q(0181),
+      q(0),
+      ],
+   q(russia) => [
+      q(0182),
+      q(1),
+      ],
+   q(russian federation) => [
+      q(0182),
+      q(0),
+      ],
+   q(rwanda) => [
+      q(0183),
+      q(0),
+      ],
+   q(rwandese republic) => [
+      q(0183),
+      q(1),
+      ],
+   q(saint barthelemy) => [
+      q(0184),
+      q(0),
+      ],
+   q(saint helena) => [
+      q(0185),
+      q(0),
+      ],
+   q(saint kitts and nevis) => [
+      q(0186),
+      q(0),
+      ],
+   q(saint lucia) => [
+      q(0187),
+      q(0),
+      ],
+   q(saint martin) => [
+      q(0188),
+      q(0),
+      ],
+   q(saint pierre and miquelon) => [
+      q(0189),
+      q(0),
+      ],
+   q(saint vincent and the grenadines) => [
+      q(0190),
+      q(0),
+      ],
+   q(saint-barthelemy) => [
+      q(0184),
+      q(1),
+      ],
+   q(saint-martin (french part)) => [
+      q(0188),
+      q(1),
+      ],
+   q(samoa) => [
+      q(0191),
+      q(0),
+      ],
+   q(san marino) => [
+      q(0192),
+      q(0),
+      ],
+   q(sao tome and principe) => [
+      q(0193),
+      q(0),
+      ],
+   q(saudi arabia) => [
+      q(0194),
+      q(0),
+      ],
+   q(senegal) => [
+      q(0195),
+      q(0),
+      ],
+   q(serbia) => [
+      q(0196),
+      q(0),
+      ],
+   q(serbia and montenegro) => [
+      q(0248),
+      q(0),
+      ],
+   q(seychelles) => [
+      q(0197),
+      q(0),
+      ],
+   q(sierra leone) => [
+      q(0198),
+      q(0),
+      ],
+   q(singapore) => [
+      q(0199),
+      q(0),
+      ],
+   q(slovak republic) => [
+      q(0200),
+      q(1),
+      ],
+   q(slovakia) => [
+      q(0200),
+      q(0),
+      ],
+   q(slovenia) => [
+      q(0201),
+      q(0),
+      ],
+   q(socialist republic of vietnam) => [
+      q(0239),
+      q(2),
+      ],
+   q(solomon islands) => [
+      q(0202),
+      q(0),
+      ],
+   q(somalia) => [
+      q(0203),
+      q(0),
+      ],
+   q(south africa) => [
+      q(0204),
+      q(0),
+      ],
+   q(south georgia and the islands) => [
+      q(0205),
+      q(1),
+      ],
+   q(south georgia and the south sandwich islands) => [
+      q(0205),
+      q(0),
+      ],
+   q(south korea) => [
+      q(0117),
+      q(3),
+      ],
+   q(spain) => [
+      q(0206),
+      q(0),
+      ],
+   q(spratly islands) => [
+      q(0267),
+      q(0),
+      ],
+   q(sri lanka) => [
+      q(0207),
+      q(0),
+      ],
+   q(state of bahrain) => [
+      q(0018),
+      q(1),
+      ],
+   q(state of eritrea) => [
+      q(0067),
+      q(1),
+      ],
+   q(state of israel) => [
+      q(0107),
+      q(1),
+      ],
+   q(state of kuwait) => [
+      q(0118),
+      q(1),
+      ],
+   q(state of qatar) => [
+      q(0179),
+      q(1),
+      ],
+   q(state of the vatican city) => [
+      q(0096),
+      q(3),
+      ],
+   q(sudan) => [
+      q(0208),
+      q(0),
+      ],
+   q(sultanate of oman) => [
+      q(0166),
+      q(1),
+      ],
+   q(suriname) => [
+      q(0209),
+      q(0),
+      ],
+   q(svalbard) => [
+      q(0268),
+      q(0),
+      ],
+   q(svalbard and jan mayen) => [
+      q(0210),
+      q(0),
+      ],
+   q(svalbard and jan mayen islands) => [
+      q(0210),
+      q(1),
+      ],
+   q(swaziland) => [
+      q(0211),
+      q(0),
+      ],
+   q(sweden) => [
+      q(0212),
+      q(0),
+      ],
+   q(swiss confederation) => [
+      q(0213),
+      q(1),
+      ],
+   q(switzerland) => [
+      q(0213),
+      q(0),
+      ],
+   q(syria) => [
+      q(0214),
+      q(1),
+      ],
+   q(syrian arab republic) => [
+      q(0214),
+      q(0),
+      ],
+   q(taiwan) => [
+      q(0215),
+      q(1),
+      ],
+   q(taiwan, province of china) => [
+      q(0215),
+      q(0),
+      ],
+   q(tajikistan) => [
+      q(0216),
+      q(0),
+      ],
+   q(tanzania) => [
+      q(0217),
+      q(2),
+      ],
+   q(tanzania, united republic of) => [
+      q(0217),
+      q(0),
+      ],
+   q(territorial collectivity of mayotte) => [
+      q(0141),
+      q(1),
+      ],
+   q(territorial collectivity of saint pierre and miquelon) => [
+      q(0189),
+      q(1),
+      ],
+   q(territory of american samoa) => [
+      q(0005),
+      q(1),
+      ],
+   q(territory of ashmore and cartier islands) => [
+      q(0249),
+      q(1),
+      ],
+   q(territory of christmas island) => [
+      q(0046),
+      q(1),
+      ],
+   q(territory of cocos (keeling) islands) => [
+      q(0047),
+      q(1),
+      ],
+   q(territory of french polynesia) => [
+      q(0076),
+      q(1),
+      ],
+   q(territory of guam) => [
+      q(0088),
+      q(1),
+      ],
+   q(territory of heard island and mcdonald islands) => [
+      q(0095),
+      q(1),
+      ],
+   q(territory of new caledonia and dependencies) => [
+      q(0157),
+      q(1),
+      ],
+   q(territory of norfolk island) => [
+      q(0163),
+      q(1),
+      ],
+   q(territory of the french southern and antarctic lands) => [
+      q(0077),
+      q(2),
+      ],
+   q(territory of the wallis and futuna islands) => [
+      q(0242),
+      q(2),
+      ],
+   q(thailand) => [
+      q(0218),
+      q(0),
+      ],
+   q(the bahamas) => [
+      q(0017),
+      q(3),
+      ],
+   q(the democratic republic of the congo) => [
+      q(0051),
+      q(4),
+      ],
+   q(the former yugoslav republic of macedonia) => [
+      q(0130),
+      q(1),
+      ],
+   q(the republic of the congo) => [
+      q(0050),
+      q(4),
+      ],
+   q(timor-leste) => [
+      q(0219),
+      q(0),
+      ],
+   q(togo) => [
+      q(0220),
+      q(0),
+      ],
+   q(togolese republic) => [
+      q(0220),
+      q(1),
+      ],
+   q(tokelau) => [
+      q(0221),
+      q(0),
+      ],
+   q(tonga) => [
+      q(0222),
+      q(0),
+      ],
+   q(trinidad and tobago) => [
+      q(0223),
+      q(0),
+      ],
+   q(tromelin island) => [
+      q(0269),
+      q(0),
+      ],
+   q(tunisia) => [
+      q(0224),
+      q(0),
+      ],
+   q(turkey) => [
+      q(0225),
+      q(0),
+      ],
+   q(turkmenistan) => [
+      q(0226),
+      q(0),
+      ],
+   q(turks and caicos islands) => [
+      q(0227),
+      q(0),
+      ],
+   q(tuvalu) => [
+      q(0228),
+      q(0),
+      ],
+   q(uganda) => [
+      q(0229),
+      q(0),
+      ],
+   q(uk) => [
+      q(0232),
+      q(2),
+      ],
+   q(ukraine) => [
+      q(0230),
+      q(0),
+      ],
+   q(union of burma) => [
+      q(0151),
+      q(2),
+      ],
+   q(united arab emirates) => [
+      q(0231),
+      q(0),
+      ],
+   q(united kingdom) => [
+      q(0232),
+      q(0),
+      ],
+   q(united kingdom of great britain and northern ireland) => [
+      q(0232),
+      q(1),
+      ],
+   q(united mexican states) => [
+      q(0142),
+      q(1),
+      ],
+   q(united republic of tanzania) => [
+      q(0217),
+      q(1),
+      ],
+   q(united states) => [
+      q(0233),
+      q(0),
+      ],
+   q(united states minor outlying islands) => [
+      q(0234),
+      q(0),
+      ],
+   q(united states of america) => [
+      q(0233),
+      q(1),
+      ],
+   q(united states virgin islands) => [
+      q(0241),
+      q(1),
+      ],
+   q(uruguay) => [
+      q(0235),
+      q(0),
+      ],
+   q(us) => [
+      q(0233),
+      q(2),
+      ],
+   q(usa) => [
+      q(0233),
+      q(3),
+      ],
+   q(uzbekistan) => [
+      q(0236),
+      q(0),
+      ],
+   q(vanuatu) => [
+      q(0237),
+      q(0),
+      ],
+   q(vatican city) => [
+      q(0096),
+      q(2),
+      ],
+   q(venezuela) => [
+      q(0238),
+      q(2),
+      ],
+   q(venezuela (bolivarian republic of)) => [
+      q(0238),
+      q(1),
+      ],
+   q(venezuela, bolivarian republic of) => [
+      q(0238),
+      q(0),
+      ],
+   q(viet nam) => [
+      q(0239),
+      q(0),
+      ],
+   q(vietnam) => [
+      q(0239),
+      q(1),
+      ],
+   q(virgin islands) => [
+      q(0241),
+      q(2),
+      ],
+   q(virgin islands (uk)) => [
+      q(0240),
+      q(2),
+      ],
+   q(virgin islands (us)) => [
+      q(0241),
+      q(4),
+      ],
+   q(virgin islands of the united states) => [
+      q(0241),
+      q(3),
+      ],
+   q(virgin islands, british) => [
+      q(0240),
+      q(0),
+      ],
+   q(virgin islands, u.s.) => [
+      q(0241),
+      q(0),
+      ],
+   q(wake atoll) => [
+      q(0270),
+      q(0),
+      ],
+   q(wake island) => [
+      q(0270),
+      q(1),
+      ],
+   q(wallis and futuna) => [
+      q(0242),
+      q(0),
+      ],
+   q(wallis and futuna islands) => [
+      q(0242),
+      q(1),
+      ],
+   q(west bank) => [
+      q(0271),
+      q(0),
+      ],
+   q(western sahara) => [
+      q(0243),
+      q(0),
+      ],
+   q(yemen) => [
+      q(0244),
+      q(0),
+      ],
+   q(zambia) => [
+      q(0245),
+      q(0),
+      ],
+   q(zimbabwe) => [
+      q(0246),
+      q(0),
+      ],
+};
 
-%Code2CountryID = (
+$Locale::Codes::Data{'country'}{'code2id'} = {
    q(alpha2) => {
       q(ad) => [
          q(0006),
@@ -5685,9 +7260,9 @@ use vars qw(
          q(0),
          ],
       },
-);
+};
 
-%CountryID2Code = (
+$Locale::Codes::Data{'country'}{'id2code'} = {
    q(alpha2) => {
       q(0001) => q(af),
       q(0002) => q(ax),
@@ -6703,8 +8278,6 @@ use vars qw(
       q(0247) => q(830),
       q(0272) => q(249),
       },
-);
-
-
+};
 
 1;

@@ -1,14 +1,14 @@
-package Locale::ScriptCodes;
+package Locale::Codes::Script;
 
 # This file was automatically generated.  Any changes to this file will
 # be lost the next time 'get_codes' is run.
-#    Generated on: Wed Feb 10 06:59:14 EST 2010
+#    Generated on: Tue Feb 16 14:02:24 EST 2010
 
 =pod
 
 =head1 NAME
 
-Locale::ScriptCodes - script codes for the Locale::Script module
+Locale::Codes::Script - script codes for the Locale::Script module
 
 =head1 SYNOPSIS
 
@@ -37,16 +37,11 @@ use warnings;
 require 5.002;
 
 use vars qw($VERSION);
-$VERSION='3.00';
+$VERSION='3.10';
 
-use vars qw(
-   %Script
-   %ScriptAlias
-   %Code2ScriptID
-   %ScriptID2Code
-);
+$Locale::Codes::Data{'script'}{'id'} = '0137';
 
-%Script = (
+$Locale::Codes::Data{'script'}{'id2names'} = {
    q(0001) => [
       q(Arabic),
       ],
@@ -455,148 +450,556 @@ use vars qw(
    q(0136) => [
       q(Symbols),
       ],
-);
+};
 
-%ScriptAlias = (
-   q((alias for hiragana + katakana)) => q(0047),
-   q(arabic) => q(0001),
-   q(armenian) => q(0003),
-   q(avestan) => q(0004),
-   q(balinese) => q(0005),
-   q(bamum) => q(0006),
-   q(batak) => q(0007),
-   q(bengali) => q(0008),
-   q(blissymbols) => q(0009),
-   q(book pahlavi) => q(0093),
-   q(bopomofo) => q(0010),
-   q(brahmi) => q(0011),
-   q(braille) => q(0012),
-   q(buginese) => q(0013),
-   q(buhid) => q(0014),
-   q(carian) => q(0017),
-   q(chakma) => q(0015),
-   q(cham) => q(0018),
-   q(cherokee) => q(0019),
-   q(cirth) => q(0020),
-   q(code for inherited script) => q(0134),
-   q(coptic) => q(0021),
-   q(cuneiform, sumero-akkadian) => q(0132),
-   q(cypriot) => q(0022),
-   q(cyrillic) => q(0023),
-   q(cyrillic (old church slavonic variant)) => q(0024),
-   q(deseret (mormon)) => q(0026),
-   q(devanagari (nagari)) => q(0025),
-   q(egyptian demotic) => q(0027),
-   q(egyptian hieratic) => q(0028),
-   q(egyptian hieroglyphs) => q(0029),
-   q(ethiopic (geez)) => q(0030),
-   q(georgian (mkhedruli)) => q(0031),
-   q(glagolitic) => q(0033),
-   q(gothic) => q(0034),
-   q(grantha) => q(0035),
-   q(greek) => q(0036),
-   q(gujarati) => q(0037),
-   q(gurmukhi) => q(0038),
-   q(han (hanzi, kanji, hanja)) => q(0040),
-   q(han (simplified variant)) => q(0042),
-   q(han (traditional variant)) => q(0043),
-   q(hangul (hangul, hangeul)) => q(0039),
-   q(hanunoo (hanunoo)) => q(0041),
-   q(hebrew) => q(0044),
-   q(hiragana) => q(0045),
-   q(imperial aramaic) => q(0002),
-   q(indus (harappan)) => q(0049),
-   q(inscriptional pahlavi) => q(0091),
-   q(inscriptional parthian) => q(0096),
-   q(japanese (alias for han + hiragana + katakana)) => q(0052),
-   q(javanese) => q(0051),
-   q(kaithi) => q(0059),
-   q(kannada) => q(0057),
-   q(katakana) => q(0054),
-   q(kayah li) => q(0053),
-   q(kharoshthi) => q(0055),
-   q(khmer) => q(0056),
-   q(khutsuri (asomtavruli and nuskhuri)) => q(0032),
-   q(korean (alias for hangul + han)) => q(0058),
-   q(lao) => q(0061),
-   q(latin) => q(0064),
-   q(latin (fraktur variant)) => q(0062),
-   q(latin (gaelic variant)) => q(0063),
-   q(lepcha (rong)) => q(0065),
-   q(limbu) => q(0066),
-   q(linear a) => q(0067),
-   q(linear b) => q(0068),
-   q(lisu (fraser)) => q(0069),
-   q(lycian) => q(0070),
-   q(lydian) => q(0071),
-   q(malayalam) => q(0077),
-   q(mandaic, mandaean) => q(0072),
-   q(manichaean) => q(0073),
-   q(mathematical notation) => q(0135),
-   q(mayan hieroglyphs) => q(0074),
-   q(meitei mayek (meithei, meetei)) => q(0080),
-   q(meroitic cursive) => q(0075),
-   q(meroitic hieroglyphs) => q(0076),
-   q(miao (pollard)) => q(0095),
-   q(mongolian) => q(0079),
-   q(moon (moon code, moon script, moon type)) => q(0078),
-   q(myanmar (burmese)) => q(0081),
-   q(n'ko) => q(0083),
-   q(nakhi geba ('na-'khi ggo-baw, naxi geba)) => q(0082),
-   q(new tai lue) => q(0117),
-   q(ogham) => q(0084),
-   q(ol chiki (ol cemet, ol, santali)) => q(0085),
-   q(old hungarian) => q(0048),
-   q(old italic (etruscan, oscan, etc.)) => q(0050),
-   q(old permic) => q(0089),
-   q(old persian) => q(0131),
-   q(old south arabian) => q(0104),
-   q(old turkic, orkhon runic) => q(0086),
-   q(oriya) => q(0087),
-   q(osmanya) => q(0088),
-   q(pahawh hmong) => q(0046),
-   q(phags-pa) => q(0090),
-   q(phoenician) => q(0094),
-   q(psalter pahlavi) => q(0092),
-   q(rejang (redjang, kaganga)) => q(0099),
-   q(reserved for private use (end)) => q(0098),
-   q(reserved for private use (start)) => q(0097),
-   q(rongorongo) => q(0100),
-   q(runic) => q(0101),
-   q(samaritan) => q(0102),
-   q(sarati) => q(0103),
-   q(saurashtra) => q(0105),
-   q(shavian (shaw)) => q(0107),
-   q(signwriting) => q(0106),
-   q(sinhala) => q(0108),
-   q(sundanese) => q(0109),
-   q(syloti nagri) => q(0110),
-   q(symbols) => q(0136),
-   q(syriac) => q(0111),
-   q(syriac (eastern variant)) => q(0114),
-   q(syriac (estrangelo variant)) => q(0112),
-   q(syriac (western variant)) => q(0113),
-   q(tagalog (baybayin, alibata)) => q(0123),
-   q(tagbanwa) => q(0115),
-   q(tai le) => q(0116),
-   q(tai tham (lanna)) => q(0060),
-   q(tai viet) => q(0119),
-   q(tamil) => q(0118),
-   q(telugu) => q(0120),
-   q(tengwar) => q(0121),
-   q(thaana) => q(0124),
-   q(thai) => q(0125),
-   q(tibetan) => q(0126),
-   q(tifinagh (berber)) => q(0122),
-   q(ugaritic) => q(0127),
-   q(unified canadian aboriginal syllabics) => q(0016),
-   q(vai) => q(0128),
-   q(visible speech) => q(0129),
-   q(warang citi (varang kshiti)) => q(0130),
-   q(yi) => q(0133),
-);
+$Locale::Codes::Data{'script'}{'alias2id'} = {
+   q((alias for hiragana + katakana)) => [
+      q(0047),
+      q(0),
+      ],
+   q(arabic) => [
+      q(0001),
+      q(0),
+      ],
+   q(armenian) => [
+      q(0003),
+      q(0),
+      ],
+   q(avestan) => [
+      q(0004),
+      q(0),
+      ],
+   q(balinese) => [
+      q(0005),
+      q(0),
+      ],
+   q(bamum) => [
+      q(0006),
+      q(0),
+      ],
+   q(batak) => [
+      q(0007),
+      q(0),
+      ],
+   q(bengali) => [
+      q(0008),
+      q(0),
+      ],
+   q(blissymbols) => [
+      q(0009),
+      q(0),
+      ],
+   q(book pahlavi) => [
+      q(0093),
+      q(0),
+      ],
+   q(bopomofo) => [
+      q(0010),
+      q(0),
+      ],
+   q(brahmi) => [
+      q(0011),
+      q(0),
+      ],
+   q(braille) => [
+      q(0012),
+      q(0),
+      ],
+   q(buginese) => [
+      q(0013),
+      q(0),
+      ],
+   q(buhid) => [
+      q(0014),
+      q(0),
+      ],
+   q(carian) => [
+      q(0017),
+      q(0),
+      ],
+   q(chakma) => [
+      q(0015),
+      q(0),
+      ],
+   q(cham) => [
+      q(0018),
+      q(0),
+      ],
+   q(cherokee) => [
+      q(0019),
+      q(0),
+      ],
+   q(cirth) => [
+      q(0020),
+      q(0),
+      ],
+   q(code for inherited script) => [
+      q(0134),
+      q(0),
+      ],
+   q(coptic) => [
+      q(0021),
+      q(0),
+      ],
+   q(cuneiform, sumero-akkadian) => [
+      q(0132),
+      q(0),
+      ],
+   q(cypriot) => [
+      q(0022),
+      q(0),
+      ],
+   q(cyrillic) => [
+      q(0023),
+      q(0),
+      ],
+   q(cyrillic (old church slavonic variant)) => [
+      q(0024),
+      q(0),
+      ],
+   q(deseret (mormon)) => [
+      q(0026),
+      q(0),
+      ],
+   q(devanagari (nagari)) => [
+      q(0025),
+      q(0),
+      ],
+   q(egyptian demotic) => [
+      q(0027),
+      q(0),
+      ],
+   q(egyptian hieratic) => [
+      q(0028),
+      q(0),
+      ],
+   q(egyptian hieroglyphs) => [
+      q(0029),
+      q(0),
+      ],
+   q(ethiopic (geez)) => [
+      q(0030),
+      q(0),
+      ],
+   q(georgian (mkhedruli)) => [
+      q(0031),
+      q(0),
+      ],
+   q(glagolitic) => [
+      q(0033),
+      q(0),
+      ],
+   q(gothic) => [
+      q(0034),
+      q(0),
+      ],
+   q(grantha) => [
+      q(0035),
+      q(0),
+      ],
+   q(greek) => [
+      q(0036),
+      q(0),
+      ],
+   q(gujarati) => [
+      q(0037),
+      q(0),
+      ],
+   q(gurmukhi) => [
+      q(0038),
+      q(0),
+      ],
+   q(han (hanzi, kanji, hanja)) => [
+      q(0040),
+      q(0),
+      ],
+   q(han (simplified variant)) => [
+      q(0042),
+      q(0),
+      ],
+   q(han (traditional variant)) => [
+      q(0043),
+      q(0),
+      ],
+   q(hangul (hangul, hangeul)) => [
+      q(0039),
+      q(0),
+      ],
+   q(hanunoo (hanunoo)) => [
+      q(0041),
+      q(0),
+      ],
+   q(hebrew) => [
+      q(0044),
+      q(0),
+      ],
+   q(hiragana) => [
+      q(0045),
+      q(0),
+      ],
+   q(imperial aramaic) => [
+      q(0002),
+      q(0),
+      ],
+   q(indus (harappan)) => [
+      q(0049),
+      q(0),
+      ],
+   q(inscriptional pahlavi) => [
+      q(0091),
+      q(0),
+      ],
+   q(inscriptional parthian) => [
+      q(0096),
+      q(0),
+      ],
+   q(japanese (alias for han + hiragana + katakana)) => [
+      q(0052),
+      q(0),
+      ],
+   q(javanese) => [
+      q(0051),
+      q(0),
+      ],
+   q(kaithi) => [
+      q(0059),
+      q(0),
+      ],
+   q(kannada) => [
+      q(0057),
+      q(0),
+      ],
+   q(katakana) => [
+      q(0054),
+      q(0),
+      ],
+   q(kayah li) => [
+      q(0053),
+      q(0),
+      ],
+   q(kharoshthi) => [
+      q(0055),
+      q(0),
+      ],
+   q(khmer) => [
+      q(0056),
+      q(0),
+      ],
+   q(khutsuri (asomtavruli and nuskhuri)) => [
+      q(0032),
+      q(0),
+      ],
+   q(korean (alias for hangul + han)) => [
+      q(0058),
+      q(0),
+      ],
+   q(lao) => [
+      q(0061),
+      q(0),
+      ],
+   q(latin) => [
+      q(0064),
+      q(0),
+      ],
+   q(latin (fraktur variant)) => [
+      q(0062),
+      q(0),
+      ],
+   q(latin (gaelic variant)) => [
+      q(0063),
+      q(0),
+      ],
+   q(lepcha (rong)) => [
+      q(0065),
+      q(0),
+      ],
+   q(limbu) => [
+      q(0066),
+      q(0),
+      ],
+   q(linear a) => [
+      q(0067),
+      q(0),
+      ],
+   q(linear b) => [
+      q(0068),
+      q(0),
+      ],
+   q(lisu (fraser)) => [
+      q(0069),
+      q(0),
+      ],
+   q(lycian) => [
+      q(0070),
+      q(0),
+      ],
+   q(lydian) => [
+      q(0071),
+      q(0),
+      ],
+   q(malayalam) => [
+      q(0077),
+      q(0),
+      ],
+   q(mandaic, mandaean) => [
+      q(0072),
+      q(0),
+      ],
+   q(manichaean) => [
+      q(0073),
+      q(0),
+      ],
+   q(mathematical notation) => [
+      q(0135),
+      q(0),
+      ],
+   q(mayan hieroglyphs) => [
+      q(0074),
+      q(0),
+      ],
+   q(meitei mayek (meithei, meetei)) => [
+      q(0080),
+      q(0),
+      ],
+   q(meroitic cursive) => [
+      q(0075),
+      q(0),
+      ],
+   q(meroitic hieroglyphs) => [
+      q(0076),
+      q(0),
+      ],
+   q(miao (pollard)) => [
+      q(0095),
+      q(0),
+      ],
+   q(mongolian) => [
+      q(0079),
+      q(0),
+      ],
+   q(moon (moon code, moon script, moon type)) => [
+      q(0078),
+      q(0),
+      ],
+   q(myanmar (burmese)) => [
+      q(0081),
+      q(0),
+      ],
+   q(n'ko) => [
+      q(0083),
+      q(0),
+      ],
+   q(nakhi geba ('na-'khi ggo-baw, naxi geba)) => [
+      q(0082),
+      q(0),
+      ],
+   q(new tai lue) => [
+      q(0117),
+      q(0),
+      ],
+   q(ogham) => [
+      q(0084),
+      q(0),
+      ],
+   q(ol chiki (ol cemet, ol, santali)) => [
+      q(0085),
+      q(0),
+      ],
+   q(old hungarian) => [
+      q(0048),
+      q(0),
+      ],
+   q(old italic (etruscan, oscan, etc.)) => [
+      q(0050),
+      q(0),
+      ],
+   q(old permic) => [
+      q(0089),
+      q(0),
+      ],
+   q(old persian) => [
+      q(0131),
+      q(0),
+      ],
+   q(old south arabian) => [
+      q(0104),
+      q(0),
+      ],
+   q(old turkic, orkhon runic) => [
+      q(0086),
+      q(0),
+      ],
+   q(oriya) => [
+      q(0087),
+      q(0),
+      ],
+   q(osmanya) => [
+      q(0088),
+      q(0),
+      ],
+   q(pahawh hmong) => [
+      q(0046),
+      q(0),
+      ],
+   q(phags-pa) => [
+      q(0090),
+      q(0),
+      ],
+   q(phoenician) => [
+      q(0094),
+      q(0),
+      ],
+   q(psalter pahlavi) => [
+      q(0092),
+      q(0),
+      ],
+   q(rejang (redjang, kaganga)) => [
+      q(0099),
+      q(0),
+      ],
+   q(reserved for private use (end)) => [
+      q(0098),
+      q(0),
+      ],
+   q(reserved for private use (start)) => [
+      q(0097),
+      q(0),
+      ],
+   q(rongorongo) => [
+      q(0100),
+      q(0),
+      ],
+   q(runic) => [
+      q(0101),
+      q(0),
+      ],
+   q(samaritan) => [
+      q(0102),
+      q(0),
+      ],
+   q(sarati) => [
+      q(0103),
+      q(0),
+      ],
+   q(saurashtra) => [
+      q(0105),
+      q(0),
+      ],
+   q(shavian (shaw)) => [
+      q(0107),
+      q(0),
+      ],
+   q(signwriting) => [
+      q(0106),
+      q(0),
+      ],
+   q(sinhala) => [
+      q(0108),
+      q(0),
+      ],
+   q(sundanese) => [
+      q(0109),
+      q(0),
+      ],
+   q(syloti nagri) => [
+      q(0110),
+      q(0),
+      ],
+   q(symbols) => [
+      q(0136),
+      q(0),
+      ],
+   q(syriac) => [
+      q(0111),
+      q(0),
+      ],
+   q(syriac (eastern variant)) => [
+      q(0114),
+      q(0),
+      ],
+   q(syriac (estrangelo variant)) => [
+      q(0112),
+      q(0),
+      ],
+   q(syriac (western variant)) => [
+      q(0113),
+      q(0),
+      ],
+   q(tagalog (baybayin, alibata)) => [
+      q(0123),
+      q(0),
+      ],
+   q(tagbanwa) => [
+      q(0115),
+      q(0),
+      ],
+   q(tai le) => [
+      q(0116),
+      q(0),
+      ],
+   q(tai tham (lanna)) => [
+      q(0060),
+      q(0),
+      ],
+   q(tai viet) => [
+      q(0119),
+      q(0),
+      ],
+   q(tamil) => [
+      q(0118),
+      q(0),
+      ],
+   q(telugu) => [
+      q(0120),
+      q(0),
+      ],
+   q(tengwar) => [
+      q(0121),
+      q(0),
+      ],
+   q(thaana) => [
+      q(0124),
+      q(0),
+      ],
+   q(thai) => [
+      q(0125),
+      q(0),
+      ],
+   q(tibetan) => [
+      q(0126),
+      q(0),
+      ],
+   q(tifinagh (berber)) => [
+      q(0122),
+      q(0),
+      ],
+   q(ugaritic) => [
+      q(0127),
+      q(0),
+      ],
+   q(unified canadian aboriginal syllabics) => [
+      q(0016),
+      q(0),
+      ],
+   q(vai) => [
+      q(0128),
+      q(0),
+      ],
+   q(visible speech) => [
+      q(0129),
+      q(0),
+      ],
+   q(warang citi (varang kshiti)) => [
+      q(0130),
+      q(0),
+      ],
+   q(yi) => [
+      q(0133),
+      q(0),
+      ],
+};
 
-%Code2ScriptID = (
+$Locale::Codes::Data{'script'}{'code2id'} = {
    q(alpha) => {
       q(Arab) => [
          q(0001),
@@ -1689,9 +2092,9 @@ use vars qw(
          q(0),
          ],
       },
-);
+};
 
-%ScriptID2Code = (
+$Locale::Codes::Data{'script'}{'id2code'} = {
    q(alpha) => {
       q(0001) => q(Arab),
       q(0002) => q(Armi),
@@ -1968,8 +2371,6 @@ use vars qw(
       q(0135) => q(995),
       q(0136) => q(996),
       },
-);
-
-
+};
 
 1;

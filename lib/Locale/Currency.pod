@@ -20,21 +20,14 @@ Locale::Currency - standard codes for currency identification
 The C<Locale::Currency> module provides access to standard codes used
 for identifying currencies and funds, such as those defined in ISO 4217.
 
-You can either access the codes via the L<conversion routines>
-(described below), or with the two functions which return lists of all
-currency codes or all currency names.
-
-=head1 CURRENCY NAMES
-
-Locale::Currency supports variant names for currencies.
-
-Currency names come from the standards, but common aliases are included
-(and others may be added). If you have a common alias for a currency,
-let me know and I'll add it, with some restrictions.
+Most of the routines take an optional additional argument which
+specifies the code set to use. If not specified, the default ISO
+4217 three-letter codes will be used.
 
 =head1 SUPPORTED CODE SETS
 
-The following code sets are currently supported:
+There are several different code sets you can use for identifying
+currencies. The ones currently supported are:
 
 =over 4
 
@@ -48,104 +41,48 @@ for testing purposes and XXX which is for transactions where no
 currency is involved) are omitted.
 
 This code set is identified with the symbol C<LOCALE_CURR_ALPHA>.
-It is the default code set in all functions.
+
+This is the default code set.
 
 =item B<num>
 
-This is the set of numeric codes from ISO 4217.
+This is the set of three-digit numeric codes from ISO 4217.
 
 This code set is identified with the symbol C<LOCALE_CURR_NUMERIC>.
 
 =back
 
-=head1 CONVERSION ROUTINES
-
-There are two conversion routines: C<code2currency()> and C<currency2code()>.
+=head1 ROUTINES
 
 =over 4
 
-=item code2currency()
+=item code2currency ( CODE [,CODESET] )
 
-This function takes a three letter currency code and returns a string
-which contains the name of the currency identified. If the code is not
-a valid currency code, as defined by ISO 4217, then C<undef> will be
-returned.
+=item currency2code ( NAME [,CODESET] )
 
-   $curr = code2currency($code);
+=item currency_code2code ( CODE ,CODESET ,CODESET2 )
 
-=item currency2code()
+=item all_currency_codes ( [CODESET] )
 
-This function takes a currency name and returns the corresponding
-three letter currency code, if such exists.  If the argument could not
-be identified as a currency name, then C<undef> will be returned.
+=item all_currency_names ( [CODESET] )
 
-   $code = currency2code('French Franc');
+=item Locale::Currency::rename_currency  ( CODE ,NEW_NAME [,CODESET] )
 
-The case of the currency name is not important.
+=item Locale::Currency::add_currency  ( CODE ,NAME [,CODESET] )
 
-=item currency_code2code( CODE, CODESET, CODESET )
+=item Locale::Currency::delete_currency  ( CODE [,CODESET] )
 
-This function takes a currency code from one code set, and returns the
-corresponding code from another code set.
+=item Locale::Currency::add_currency_alias  ( NAME ,NEW_NAME )
 
-Both CODESETs must be explicitly entered.
+=item Locale::Currency::delete_currency_alias  ( NAME )
 
-   currency_code2code('aym', LOCALE_CURR_ALPHA,
-                     LOCALE_CURR_NUMERIC);
-      => 'ay'
+=item Locale::Currency::rename_currency_code  ( CODE ,NEW_CODE [,CODESET] )
 
-If the code passed is not a valid currency code in the first code set,
-or if there isn't a code for the corresponding currency in the second
-code set, then C<undef> will be returned.
+=item Locale::Currency::add_currency_code_alias  ( CODE ,NEW_CODE [,CODESET] )
 
-=back
+=item Locale::Currency::delete_currency_code_alias  ( CODE [,CODESET] )
 
-=head1 QUERY ROUTINES
-
-There are two function which can be used to obtain a list of all
-currency codes, or all currency names:
-
-=over 4
-
-=item C<all_currency_codes()>
-
-Returns a list of all three-letter currency codes.  The codes are
-guaranteed to be all lower-case, and not in any particular order.
-
-=item C<all_currency_names()>
-
-Returns a list of all currency names for which there is a
-corresponding three-letter currency code. The names are capitalized,
-and not returned in any particular order.
-
-=back
-
-=head1 EXAMPLES
-
-The following example illustrates use of the C<code2currency()> function.
-The user is prompted for a currency code, and then told the corresponding
-currency name:
-
-   $| = 1;    # turn off buffering
-
-   print "Enter currency code: ";
-   chop($code = <STDIN>);
-   $curr = code2currency($code);
-   if (defined $curr)
-   {
-       print "$code = $curr\n";
-   } else {
-       print "'$code' is not a valid currency code!\n";
-   }
-
-=head1 KNOWN BUGS AND LIMITATIONS
-
-=over 4
-
-=item *
-
-Currently, currency names are in pure ASCII. I plan to relax that in the
-future.
+These routines are all documented in the Locale::Codes man page.
 
 =back
 

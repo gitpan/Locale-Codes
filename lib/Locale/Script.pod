@@ -21,22 +21,13 @@ Locale::Script - standard codes for script identification
 The C<Locale::Script> module provides access to standards codes used
 for identifying scripts, such as those defined in ISO 15924.
 
-You can either access the codes via the conversion routines
-(described below), or with the two functions which return lists
-of all script codes or all script names.
-
-=head1 SCRIPT NAMES
-
-Locale::Script supports variant names for countries.
-
-Script names come from the standards, but common aliases are included
-(and others may be added). If you have a common alias for a script,
-let me know and I'll add it, with some restrictions.
-
+Most of the routines take an optional additional argument which
+specifies the code set to use. If not specified, the default ISO
+15924 four-letter codes will be used.
 
 =head1 SUPPORTED CODE SETS
 
-There are many different code sets you can use for identifying
+There are several different code sets you can use for identifying
 scripts. The ones currently supported are:
 
 =over 4
@@ -46,102 +37,52 @@ scripts. The ones currently supported are:
 This is a set of four-letter (capitalized) codes from ISO 15924
 such as 'Phnx' for Phoenician.
 
-This code set is identified with the symbol C<LOCALE_SCRIPT_ALPHA>
-and is the default code set.
+This code set is identified with the symbol C<LOCALE_SCRIPT_ALPHA>.
 
 The Zxxx, Zyyy, and Zzzz codes are not used.
 
+This is the default code set.
+
 =item B<numeric>
 
-This is a set of numeric codes from ISO 15924 such as 115 for
-Phoenician.
+This is a set of three-digit numeric codes from ISO 15924 such as 115
+for Phoenician.
 
 This code set is identified with the symbol C<LOCALE_SCRIPT_NUMERIC>.
 
 =back
 
-=head1 CONVERSION ROUTINES
-
-There are three conversion routines: C<code2script()>, C<script2code()>,
-and C<script_code2code()>.
+=head1 ROUTINES
 
 =over 4
 
-=item code2script( CODE, [ CODESET ] )
+=item code2script ( CODE [,CODESET] )
 
-This function takes a script code and returns a string which contains
-the name of the script identified.  If the code is not a valid script
-code, as defined by ISO 15924, then C<undef> will be returned:
+=item script2code ( NAME [,CODESET] )
 
-   $script = code2script('Phnx');
+=item script_code2code ( CODE ,CODESET ,CODESET2 )
 
-=item script2code( STRING, [ CODESET ] )
+=item all_script_codes ( [CODESET] )
 
-This function takes a script name and returns the corresponding script
-code, if such exists.  If the argument could not be identified as a
-script name, then C<undef> will be returned:
+=item all_script_names ( [CODESET] )
 
-   $code = script2code('Phoenician', LOCALE_SCRIPT_NUMERIC);
+=item Locale::Script::rename_script  ( CODE ,NEW_NAME [,CODESET] )
 
-The case of the script name is not important.
+=item Locale::Script::add_script  ( CODE ,NAME [,CODESET] )
 
-=item script_code2code( CODE, CODESET, CODESET )
+=item Locale::Script::delete_script  ( CODE [,CODESET] )
 
-This function takes a script code from one code set, and returns the
-corresponding code from another code set.
+=item Locale::Script::add_script_alias  ( NAME ,NEW_NAME )
 
-    $alpha2 = script_code2code('Phnx',
-		 LOCALE_SCRIPT_ALPHA, LOCALE_SCRIPT_NUMERICAL);
+=item Locale::Script::delete_script_alias  ( NAME )
 
-If the code passed is not a valid script code in the first code set,
-or if there isn't a code for the corresponding script in the second
-code set, then C<undef> will be returned.
+=item Locale::Script::rename_script_code  ( CODE ,NEW_CODE [,CODESET] )
 
-=back
+=item Locale::Script::add_script_code_alias  ( CODE ,NEW_CODE [,CODESET] )
 
-=head1 QUERY ROUTINES
+=item Locale::Script::delete_script_code_alias  ( CODE [,CODESET] )
 
-There are two function which can be used to obtain a list of all codes,
-or all script names:
-
-=over 4
-
-=item C<all_script_codes ( [ CODESET ] )>
-
-Returns a list of all codes in the code set.
-
-=item C<all_script_names ( [ CODESET ] )>
-
-Returns a list of all script names for which there is a corresponding
-script code in the specified code set.
-
-=back
-
-=head1 EXAMPLES
-
-The following example illustrates use of the C<code2script()> function.
-The user is prompted for a script code, and then told the corresponding
-script name:
-
-   $| = 1;   # turn off buffering
-
-   print "Enter script code: ";
-   chop($code = <STDIN>);
-   $script = code2script($code, LOCALE_SCRIPT_ALPHA);
-   if (defined $script) {
-       print "$code = $script\n";
-   } else {
-       print "'$code' is not a valid script code!\n";
-   }
-
-=head1 KNOWN BUGS AND LIMITATIONS
-
-=over 4
-
-=item *
-
-Currently, script names are in pure ASCII. I plan to relax that in the
-future.
+These routines are all documented in the Locale::Codes man page.
 
 =back
 

@@ -34,6 +34,8 @@ sub test {
 
 $tests = "
 
+bo LOCALE_CODE_ALPHA_2 LOCALE_CODE_ALPHA_2 ~ bo
+
 bo LOCALE_CODE_ALPHA_3 LOCALE_CODE_ALPHA_3 ~ _undef_
 
 zz LOCALE_CODE_ALPHA_2 LOCALE_CODE_ALPHA_3 ~ _undef_

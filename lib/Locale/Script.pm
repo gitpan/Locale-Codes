@@ -11,8 +11,9 @@ require 5.002;
 
 require Exporter;
 use Carp;
+use Locale::Codes;
 use Locale::Constants;
-use Locale::ScriptCodes;
+use Locale::Codes::Script;
 
 #=======================================================================
 #       Public Global Variables
@@ -20,7 +21,7 @@ use Locale::ScriptCodes;
 
 use vars qw($VERSION @ISA @EXPORT @EXPORT_OK);
 
-$VERSION   = 3.00;
+$VERSION='3.10';
 @ISA       = qw(Exporter);
 @EXPORT    = qw(code2script
                 script2code
@@ -31,6 +32,35 @@ $VERSION   = 3.00;
                 LOCALE_SCRIPT_NUMERIC
                );
 
+sub _code {
+   my($code,$codeset) = @_;
+
+   $codeset = LOCALE_SCRIPT_DEFAULT  if (! defined($codeset)  ||  $codeset eq "");
+
+   if ($codeset =~ /^\d+$/) {
+      if      ($codeset ==  LOCALE_SCRIPT_ALPHA) {
+         $codeset = "alpha";
+      } elsif ($codeset ==  LOCALE_SCRIPT_NUMERIC) {
+         $codeset = "num";
+      } else {
+         return (1);
+      }
+   }
+
+   if      ($codeset eq "alpha") {
+      $code    = ucfirst(lc($code));
+   } elsif ($codeset eq "num") {
+      if (defined($code)  &&  $code ne "") {
+         return (1)  unless ($code =~ /^\d+$/);
+         $code    = sprintf("%.3d", $code);
+      }
+   } else {
+      return (1);
+   }
+
+   return (0,$code,$codeset);
+}
+
 #=======================================================================
 #
 # code2script ( CODE [,CODESET] )
@@ -38,32 +68,11 @@ $VERSION   = 3.00;
 #=======================================================================
 
 sub code2script {
-   my $code    = shift;
-   my $codeset = @_ > 0 ? shift : LOCALE_SCRIPT_DEFAULT;
+   my($err,$code,$codeset) = _code(@_);
+   return undef  if ($err  ||
+                     ! defined $code);
 
-   return undef unless defined $code;
-   return undef  if ($codeset !~ /^\d+$/);
-
-   if      ($codeset == LOCALE_SCRIPT_ALPHA) {
-      $code    = ucfirst(lc($code));
-      $codeset = "alpha";
-
-   } elsif ($codeset == LOCALE_SCRIPT_NUMERIC) {
-      $codeset = "num";
-
-   } else {
-      return undef;
-   }
-
-   if (exists $Locale::ScriptCodes::Code2ScriptID{$codeset}{$code}) {
-      my ($id,$i) = @{ $Locale::ScriptCodes::Code2ScriptID{$codeset}{$code} };
-      return $Locale::ScriptCodes::Script{$id}[$i];
-   } else {
-      #---------------------------------------------------------------
-      # no such script code!
-      #---------------------------------------------------------------
-      return undef;
-   }
+   return Locale::Codes::_code2name("script",$code,$codeset);
 }
 
 #=======================================================================
@@ -73,107 +82,192 @@ sub code2script {
 #=======================================================================
 
 sub script2code {
-   my $script = shift;
-   my $codeset = @_ > 0 ? shift : LOCALE_SCRIPT_DEFAULT;
+   my($script,$codeset) = @_;
+   my($err,$tmp);
+   ($err,$tmp,$codeset) = _code("",$codeset);
+   return undef  if ($err  ||
+                     ! defined $script);
 
-   return undef  if ($codeset !~ /^\d+$/);
-
-   if      ($codeset == LOCALE_SCRIPT_ALPHA) {
-      $codeset = "alpha";
-   } elsif ($codeset == LOCALE_SCRIPT_NUMERIC) {
-      $codeset = "num";
-   } else {
-      return undef;
-   }
-
-   return undef unless defined $script;
-   $script = lc($script);
-
-   if (exists $Locale::ScriptCodes::ScriptAlias{$script}) {
-      my $id = $Locale::ScriptCodes::ScriptAlias{$script};
-      if (exists $Locale::ScriptCodes::ScriptID2Code{$codeset}{$id}) {
-	 return $Locale::ScriptCodes::ScriptID2Code{$codeset}{$id};
-      }
-   }
-
-   #---------------------------------------------------------------
-   # no such script!
-   #---------------------------------------------------------------
-   return undef;
-  }
+   return Locale::Codes::_name2code("script",$script,$codeset);
+}
 
 #=======================================================================
 #
-# script_code2code ( NAME [, CODESET ] )
+# script_code2code ( CODE,CODESET_IN,CODESET_OUT )
 #
 #=======================================================================
 
 sub script_code2code {
    (@_ == 3) or croak "script_code2code() takes 3 arguments!";
+   my($code,$inset,$outset) = @_;
+   my($err,$tmp);
+   ($err,$code,$inset) = _code($code,$inset);
+   return undef  if ($err);
+   ($err,$tmp,$outset) = _code("",$outset);
+   return undef  if ($err);
 
-   my $code = shift;
-   my $inset = shift;
-   my $outset = shift;
-   my $outcode;
-   my $script;
-
-   return undef if $inset == $outset;
-   $script = code2script($code, $inset);
-   return undef if not defined $script;
-   $outcode = script2code($script, $outset);
-   return $outcode;
+   return Locale::Codes::_code2code("script",$code,$inset,$outset);
 }
 
 #=======================================================================
 #
-# all_script_codes ( [ CODESET ] )
+# all_script_codes ( [CODESET] )
 #
 #=======================================================================
 
 sub all_script_codes {
-   my $codeset = @_ > 0 ? shift : LOCALE_SCRIPT_DEFAULT;
+   my($codeset) = @_;
+   my($err,$tmp);
+   ($err,$tmp,$codeset) = _code("",$codeset);
+   return undef  if ($err);
 
-   return undef  if ($codeset !~ /^\d+$/);
-
-   if      ($codeset == LOCALE_SCRIPT_ALPHA) {
-      $codeset = "alpha";
-   } elsif ($codeset == LOCALE_SCRIPT_NUMERIC) {
-      $codeset = "num";
-   } else {
-      return undef;
-   }
-
-   my @codes = keys %{ $Locale::ScriptCodes::Code2ScriptID{$codeset} };
-   return (sort @codes);
+   return Locale::Codes::_all_codes("script",$codeset);
 }
 
 
 #=======================================================================
 #
-# all_script_names ( [ CODESET ] )
+# all_script_names ( [CODESET] )
 #
 #=======================================================================
 
 sub all_script_names {
-   my $codeset = @_ > 0 ? shift : LOCALE_SCRIPT_DEFAULT;
+   my($codeset) = @_;
+   my($err,$tmp);
+   ($err,$tmp,$codeset) = _code("",$codeset);
+   return undef  if ($err);
 
-   return undef  if ($codeset !~ /^\d+$/);
+   return Locale::Codes::_all_names("script",$codeset);
+}
 
-   if      ($codeset == LOCALE_SCRIPT_ALPHA) {
-      $codeset = "alpha";
-   } elsif ($codeset == LOCALE_SCRIPT_NUMERIC) {
-      $codeset = "num";
-   } else {
-      return undef;
-   }
+#=======================================================================
+#
+# rename_script ( CODE,NAME [,CODESET] )
+#
+#=======================================================================
 
-   my @codes = keys %{ $Locale::ScriptCodes::Code2ScriptID{$codeset} };
-   my @script;
-   foreach my $code (@codes) {
-      my($id,$i) = @{ $Locale::ScriptCodes::Code2ScriptID{$codeset}{$code} };
-      push @script,$Locale::ScriptCodes::Script{$id}[$i];
-   }
-   return (sort @script);
+sub rename_script {
+   my($code,$new_name,@args) = @_;
+   my $nowarn   = 0;
+   $nowarn      = 1, pop(@args)  if ($args[$#args] eq "nowarn");
+   my $codeset  = shift(@args);
+   my $err;
+   ($err,$code,$codeset) = _code($code,$codeset);
+
+   return Locale::Codes::_rename("script",$code,$new_name,$codeset,$nowarn);
+}
+
+#=======================================================================
+#
+# add_script ( CODE,NAME [,CODESET] )
+#
+#=======================================================================
+
+sub add_script {
+   my($code,$name,@args) = @_;
+   my $nowarn   = 0;
+   $nowarn      = 1, pop(@args)  if ($args[$#args] eq "nowarn");
+   my $codeset  = shift(@args);
+   my $err;
+   ($err,$code,$codeset) = _code($code,$codeset);
+
+   return Locale::Codes::_add_code("script",$code,$name,$codeset,$nowarn);
+}
+
+#=======================================================================
+#
+# delete_script ( CODE [,CODESET] )
+#
+#=======================================================================
+
+sub delete_script {
+   my($code,@args) = @_;
+   my $nowarn   = 0;
+   $nowarn      = 1, pop(@args)  if ($args[$#args] eq "nowarn");
+   my $codeset  = shift(@args);
+   my $err;
+   ($err,$code,$codeset) = _code($code,$codeset);
+
+   return Locale::Codes::_delete_code("script",$code,$codeset,$nowarn);
+}
+
+#=======================================================================
+#
+# add_script_alias ( NAME,NEW_NAME )
+#
+#=======================================================================
+
+sub add_script_alias {
+   my($name,$new_name,$nowarn) = @_;
+   $nowarn   = (defined($nowarn)  &&  $nowarn eq "nowarn" ? 1 : 0);
+
+   return Locale::Codes::_add_alias("script",$name,$new_name,$nowarn);
+}
+
+#=======================================================================
+#
+# delete_script_alias ( NAME )
+#
+#=======================================================================
+
+sub delete_script_alias {
+   my($name,$nowarn) = @_;
+   $nowarn   = (defined($nowarn)  &&  $nowarn eq "nowarn" ? 1 : 0);
+
+   return Locale::Codes::_delete_alias("script",$name,$nowarn);
+}
+
+#=======================================================================
+#
+# rename_script_code ( CODE,NEW_CODE [,CODESET] )
+#
+#=======================================================================
+
+sub rename_script_code {
+   my($code,$new_code,@args) = @_;
+   my $nowarn   = 0;
+   $nowarn      = 1, pop(@args)  if ($args[$#args] eq "nowarn");
+   my $codeset  = shift(@args);
+   my $err;
+   ($err,$code,$codeset)     = _code($code,$codeset);
+   ($err,$new_code,$codeset) = _code($new_code,$codeset)  if (! $err);
+
+   return Locale::Codes::_rename_code("script",$code,$new_code,$codeset,$nowarn);
+}
+
+#=======================================================================
+#
+# add_script_code_alias ( CODE,NEW_CODE [,CODESET] )
+#
+#=======================================================================
+
+sub add_script_code_alias {
+   my($code,$new_code,@args) = @_;
+   my $nowarn   = 0;
+   $nowarn      = 1, pop(@args)  if ($args[$#args] eq "nowarn");
+   my $codeset  = shift(@args);
+   my $err;
+   ($err,$code,$codeset)     = _code($code,$codeset);
+   ($err,$new_code,$codeset) = _code($new_code,$codeset)  if (! $err);
+
+   return Locale::Codes::_add_code_alias("script",$code,$new_code,$codeset,$nowarn);
+}
+
+#=======================================================================
+#
+# delete_script_code_alias ( CODE [,CODESET] )
+#
+#=======================================================================
+
+sub delete_script_code_alias {
+   my($code,@args) = @_;
+   my $nowarn   = 0;
+   $nowarn      = 1, pop(@args)  if ($args[$#args] eq "nowarn");
+   my $codeset  = shift(@args);
+   my $err;
+   ($err,$code,$codeset)     = _code($code,$codeset);
+
+   return Locale::Codes::_delete_code_alias("script",$code,$codeset,$nowarn);
 }
 
 1;

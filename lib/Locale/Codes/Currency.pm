@@ -1,14 +1,14 @@
-package Locale::CurrencyCodes;
+package Locale::Codes::Currency;
 
 # This file was automatically generated.  Any changes to this file will
 # be lost the next time 'get_codes' is run.
-#    Generated on: Wed Feb 10 06:59:09 EST 2010
+#    Generated on: Tue Feb 16 14:02:23 EST 2010
 
 =pod
 
 =head1 NAME
 
-Locale::CurrencyCodes - currency codes for the Locale::Currency module
+Locale::Codes::Currency - currency codes for the Locale::Currency module
 
 =head1 SYNOPSIS
 
@@ -37,16 +37,11 @@ use warnings;
 require 5.002;
 
 use vars qw($VERSION);
-$VERSION='3.00';
+$VERSION='3.10';
 
-use vars qw(
-   %Currency
-   %CurrencyAlias
-   %Code2CurrencyID
-   %CurrencyID2Code
-);
+$Locale::Codes::Data{'currency'}{'id'} = '0180';
 
-%Currency = (
+$Locale::Codes::Data{'currency'}{'id2names'} = {
    q(0001) => [
       q(Afghani),
       ],
@@ -584,191 +579,728 @@ use vars qw(
    q(0179) => [
       q(UIC-Franc),
       ],
-);
+};
 
-%CurrencyAlias = (
-   q(afghani) => q(0001),
-   q(algerian dinar) => q(0004),
-   q(argentine peso) => q(0008),
-   q(armenian dram) => q(0009),
-   q(aruban guilder) => q(0010),
-   q(australian dollar) => q(0011),
-   q(azerbaijanian manat) => q(0012),
-   q(bahamian dollar) => q(0013),
-   q(bahraini dinar) => q(0014),
-   q(baht) => q(0150),
-   q(balboa) => q(0119),
-   q(barbados dollar) => q(0016),
-   q(belarussian ruble) => q(0017),
-   q(belize dollar) => q(0018),
-   q(bermudian dollar (customarily known as bermuda dollar)) => q(0020),
-   q(bolivar fuerte) => q(0165),
-   q(boliviano) => q(0023),
-   q(bond markets units european composite unit (eurco)) => q(0171),
-   q(brazilian real) => q(0028),
-   q(brunei dollar) => q(0029),
-   q(bulgarian lev) => q(0030),
-   q(burundi franc) => q(0031),
-   q(canadian dollar) => q(0034),
-   q(cape verde escudo) => q(0035),
-   q(cayman islands dollar) => q(0036),
-   q(cedi) => q(0063),
-   q(cfa franc bceao) => q(0019),
-   q(cfa franc beac) => q(0033),
-   q(cfp franc) => q(0060),
-   q(chilean peso) => q(0037),
-   q(colombian peso) => q(0040),
-   q(comoro franc) => q(0042),
-   q(congolese franc) => q(0043),
-   q(convertible marks) => q(0025),
-   q(cordoba oro) => q(0115),
-   q(costa rican colon) => q(0045),
-   q(croatian kuna) => q(0046),
-   q(cuban peso) => q(0047),
-   q(czech koruna) => q(0049),
-   q(dalasi) => q(0061),
-   q(danish krone) => q(0050),
-   q(denar) => q(0098),
-   q(djibouti franc) => q(0051),
-   q(dobra) => q(0131),
-   q(dominican peso) => q(0052),
-   q(dong) => q(0166),
-   q(east caribbean dollar) => q(0007),
-   q(egyptian pound) => q(0053),
-   q(el salvador colon) => q(0054),
-   q(ethiopian birr) => q(0057),
-   q(euro) => q(0002),
-   q(european monetary unit (e.m.u.-6)) => q(0172),
-   q(european unit of account 17(e.u.a.-17)) => q(0174),
-   q(european unit of account 9(e.u.a.-9)) => q(0173),
-   q(falkland islands pound) => q(0058),
-   q(fiji dollar) => q(0059),
-   q(forint) => q(0073),
-   q(gibraltar pound) => q(0064),
-   q(gold) => q(0170),
-   q(gourde) => q(0070),
-   q(guarani) => q(0121),
-   q(guinea franc) => q(0067),
-   q(guinea-bissau peso) => q(0068),
-   q(guyana dollar) => q(0069),
-   q(hong kong dollar) => q(0072),
-   q(hryvnia) => q(0157),
-   q(iceland krona) => q(0074),
-   q(indian rupee) => q(0021),
-   q(iranian rial) => q(0076),
-   q(iraqi dinar) => q(0077),
-   q(jamaican dollar) => q(0079),
-   q(jordanian dinar) => q(0081),
-   q(kenyan shilling) => q(0083),
-   q(kina) => q(0120),
-   q(kip) => q(0088),
-   q(kroon) => q(0056),
-   q(kuwaiti dinar) => q(0086),
-   q(kwacha) => q(0100),
-   q(kwanza) => q(0006),
-   q(kyat) => q(0111),
-   q(lari) => q(0062),
-   q(latvian lats) => q(0089),
-   q(lebanese pound) => q(0090),
-   q(lek) => q(0003),
-   q(lempira) => q(0071),
-   q(leone) => q(0135),
-   q(liberian dollar) => q(0093),
-   q(libyan dinar) => q(0094),
-   q(lilangeni) => q(0142),
-   q(lithuanian litas) => q(0096),
-   q(loti) => q(0092),
-   q(malagasy ariary) => q(0099),
-   q(malaysian ringgit) => q(0101),
-   q(manat) => q(0155),
-   q(mauritius rupee) => q(0104),
-   q(metical) => q(0110),
-   q(mexican peso) => q(0105),
-   q(mexican unidad de inversion (udi)) => q(0106),
-   q(moldovan leu) => q(0107),
-   q(moroccan dirham) => q(0109),
-   q(mvdol) => q(0024),
-   q(naira) => q(0116),
-   q(nakfa) => q(0055),
-   q(namibia dollar) => q(0112),
-   q(nepalese rupee) => q(0113),
-   q(netherlands antillian guilder) => q(0114),
-   q(new israeli sheqel) => q(0078),
-   q(new leu) => q(0126),
-   q(new taiwan dollar) => q(0147),
-   q(new zealand dollar) => q(0044),
-   q(ngultrum) => q(0022),
-   q(north korean won) => q(0084),
-   q(norwegian krone) => q(0027),
-   q(nuevo sol) => q(0122),
-   q(ouguiya) => q(0103),
-   q(pa'anga) => q(0151),
-   q(pakistan rupee) => q(0118),
-   q(palladium) => q(0176),
-   q(pataca) => q(0097),
-   q(peso convertible) => q(0048),
-   q(peso uruguayo) => q(0161),
-   q(philippine peso) => q(0123),
-   q(platinum) => q(0177),
-   q(pound sterling) => q(0066),
-   q(pula) => q(0026),
-   q(qatari rial) => q(0125),
-   q(quetzal) => q(0065),
-   q(rand) => q(0091),
-   q(rial omani) => q(0117),
-   q(riel) => q(0032),
-   q(rufiyaa) => q(0102),
-   q(rupiah) => q(0075),
-   q(russian ruble) => q(0127),
-   q(rwanda franc) => q(0128),
-   q(saint helena pound) => q(0129),
-   q(saudi riyal) => q(0132),
-   q(sdr) => q(0175),
-   q(serbian dinar) => q(0133),
-   q(seychelles rupee) => q(0134),
-   q(silver) => q(0178),
-   q(singapore dollar) => q(0136),
-   q(solomon islands dollar) => q(0137),
-   q(som) => q(0087),
-   q(somali shilling) => q(0138),
-   q(somoni) => q(0148),
-   q(sri lanka rupee) => q(0139),
-   q(sudanese pound) => q(0140),
-   q(surinam dollar) => q(0141),
-   q(swedish krona) => q(0143),
-   q(swiss franc) => q(0095),
-   q(syrian pound) => q(0146),
-   q(taka) => q(0015),
-   q(tala) => q(0130),
-   q(tanzanian shilling) => q(0149),
-   q(tenge) => q(0082),
-   q(trinidad and tobago dollar) => q(0152),
-   q(tugrik) => q(0108),
-   q(tunisian dinar) => q(0153),
-   q(turkish lira) => q(0154),
-   q(uae dirham) => q(0158),
-   q(uganda shilling) => q(0156),
-   q(uic-franc) => q(0179),
-   q(unidad de valor real) => q(0041),
-   q(unidades de fomento) => q(0038),
-   q(uruguay peso en unidades indexadas) => q(0162),
-   q(us dollar) => q(0005),
-   q(us dollar (next day)) => q(0160),
-   q(us dollar (same day)) => q(0159),
-   q(uzbekistan sum) => q(0163),
-   q(vatu) => q(0164),
-   q(wir euro) => q(0145),
-   q(wir franc) => q(0144),
-   q(won) => q(0085),
-   q(yemeni rial) => q(0167),
-   q(yen) => q(0080),
-   q(yuan renminbi) => q(0039),
-   q(zambian kwacha) => q(0168),
-   q(zimbabwe dollar) => q(0169),
-   q(zloty) => q(0124),
-);
+$Locale::Codes::Data{'currency'}{'alias2id'} = {
+   q(afghani) => [
+      q(0001),
+      q(0),
+      ],
+   q(algerian dinar) => [
+      q(0004),
+      q(0),
+      ],
+   q(argentine peso) => [
+      q(0008),
+      q(0),
+      ],
+   q(armenian dram) => [
+      q(0009),
+      q(0),
+      ],
+   q(aruban guilder) => [
+      q(0010),
+      q(0),
+      ],
+   q(australian dollar) => [
+      q(0011),
+      q(0),
+      ],
+   q(azerbaijanian manat) => [
+      q(0012),
+      q(0),
+      ],
+   q(bahamian dollar) => [
+      q(0013),
+      q(0),
+      ],
+   q(bahraini dinar) => [
+      q(0014),
+      q(0),
+      ],
+   q(baht) => [
+      q(0150),
+      q(0),
+      ],
+   q(balboa) => [
+      q(0119),
+      q(0),
+      ],
+   q(barbados dollar) => [
+      q(0016),
+      q(0),
+      ],
+   q(belarussian ruble) => [
+      q(0017),
+      q(0),
+      ],
+   q(belize dollar) => [
+      q(0018),
+      q(0),
+      ],
+   q(bermudian dollar (customarily known as bermuda dollar)) => [
+      q(0020),
+      q(0),
+      ],
+   q(bolivar fuerte) => [
+      q(0165),
+      q(0),
+      ],
+   q(boliviano) => [
+      q(0023),
+      q(0),
+      ],
+   q(bond markets units european composite unit (eurco)) => [
+      q(0171),
+      q(0),
+      ],
+   q(brazilian real) => [
+      q(0028),
+      q(0),
+      ],
+   q(brunei dollar) => [
+      q(0029),
+      q(0),
+      ],
+   q(bulgarian lev) => [
+      q(0030),
+      q(0),
+      ],
+   q(burundi franc) => [
+      q(0031),
+      q(0),
+      ],
+   q(canadian dollar) => [
+      q(0034),
+      q(0),
+      ],
+   q(cape verde escudo) => [
+      q(0035),
+      q(0),
+      ],
+   q(cayman islands dollar) => [
+      q(0036),
+      q(0),
+      ],
+   q(cedi) => [
+      q(0063),
+      q(0),
+      ],
+   q(cfa franc bceao) => [
+      q(0019),
+      q(0),
+      ],
+   q(cfa franc beac) => [
+      q(0033),
+      q(0),
+      ],
+   q(cfp franc) => [
+      q(0060),
+      q(0),
+      ],
+   q(chilean peso) => [
+      q(0037),
+      q(0),
+      ],
+   q(colombian peso) => [
+      q(0040),
+      q(0),
+      ],
+   q(comoro franc) => [
+      q(0042),
+      q(0),
+      ],
+   q(congolese franc) => [
+      q(0043),
+      q(0),
+      ],
+   q(convertible marks) => [
+      q(0025),
+      q(0),
+      ],
+   q(cordoba oro) => [
+      q(0115),
+      q(0),
+      ],
+   q(costa rican colon) => [
+      q(0045),
+      q(0),
+      ],
+   q(croatian kuna) => [
+      q(0046),
+      q(0),
+      ],
+   q(cuban peso) => [
+      q(0047),
+      q(0),
+      ],
+   q(czech koruna) => [
+      q(0049),
+      q(0),
+      ],
+   q(dalasi) => [
+      q(0061),
+      q(0),
+      ],
+   q(danish krone) => [
+      q(0050),
+      q(0),
+      ],
+   q(denar) => [
+      q(0098),
+      q(0),
+      ],
+   q(djibouti franc) => [
+      q(0051),
+      q(0),
+      ],
+   q(dobra) => [
+      q(0131),
+      q(0),
+      ],
+   q(dominican peso) => [
+      q(0052),
+      q(0),
+      ],
+   q(dong) => [
+      q(0166),
+      q(0),
+      ],
+   q(east caribbean dollar) => [
+      q(0007),
+      q(0),
+      ],
+   q(egyptian pound) => [
+      q(0053),
+      q(0),
+      ],
+   q(el salvador colon) => [
+      q(0054),
+      q(0),
+      ],
+   q(ethiopian birr) => [
+      q(0057),
+      q(0),
+      ],
+   q(euro) => [
+      q(0002),
+      q(0),
+      ],
+   q(european monetary unit (e.m.u.-6)) => [
+      q(0172),
+      q(0),
+      ],
+   q(european unit of account 17(e.u.a.-17)) => [
+      q(0174),
+      q(0),
+      ],
+   q(european unit of account 9(e.u.a.-9)) => [
+      q(0173),
+      q(0),
+      ],
+   q(falkland islands pound) => [
+      q(0058),
+      q(0),
+      ],
+   q(fiji dollar) => [
+      q(0059),
+      q(0),
+      ],
+   q(forint) => [
+      q(0073),
+      q(0),
+      ],
+   q(gibraltar pound) => [
+      q(0064),
+      q(0),
+      ],
+   q(gold) => [
+      q(0170),
+      q(0),
+      ],
+   q(gourde) => [
+      q(0070),
+      q(0),
+      ],
+   q(guarani) => [
+      q(0121),
+      q(0),
+      ],
+   q(guinea franc) => [
+      q(0067),
+      q(0),
+      ],
+   q(guinea-bissau peso) => [
+      q(0068),
+      q(0),
+      ],
+   q(guyana dollar) => [
+      q(0069),
+      q(0),
+      ],
+   q(hong kong dollar) => [
+      q(0072),
+      q(0),
+      ],
+   q(hryvnia) => [
+      q(0157),
+      q(0),
+      ],
+   q(iceland krona) => [
+      q(0074),
+      q(0),
+      ],
+   q(indian rupee) => [
+      q(0021),
+      q(0),
+      ],
+   q(iranian rial) => [
+      q(0076),
+      q(0),
+      ],
+   q(iraqi dinar) => [
+      q(0077),
+      q(0),
+      ],
+   q(jamaican dollar) => [
+      q(0079),
+      q(0),
+      ],
+   q(jordanian dinar) => [
+      q(0081),
+      q(0),
+      ],
+   q(kenyan shilling) => [
+      q(0083),
+      q(0),
+      ],
+   q(kina) => [
+      q(0120),
+      q(0),
+      ],
+   q(kip) => [
+      q(0088),
+      q(0),
+      ],
+   q(kroon) => [
+      q(0056),
+      q(0),
+      ],
+   q(kuwaiti dinar) => [
+      q(0086),
+      q(0),
+      ],
+   q(kwacha) => [
+      q(0100),
+      q(0),
+      ],
+   q(kwanza) => [
+      q(0006),
+      q(0),
+      ],
+   q(kyat) => [
+      q(0111),
+      q(0),
+      ],
+   q(lari) => [
+      q(0062),
+      q(0),
+      ],
+   q(latvian lats) => [
+      q(0089),
+      q(0),
+      ],
+   q(lebanese pound) => [
+      q(0090),
+      q(0),
+      ],
+   q(lek) => [
+      q(0003),
+      q(0),
+      ],
+   q(lempira) => [
+      q(0071),
+      q(0),
+      ],
+   q(leone) => [
+      q(0135),
+      q(0),
+      ],
+   q(liberian dollar) => [
+      q(0093),
+      q(0),
+      ],
+   q(libyan dinar) => [
+      q(0094),
+      q(0),
+      ],
+   q(lilangeni) => [
+      q(0142),
+      q(0),
+      ],
+   q(lithuanian litas) => [
+      q(0096),
+      q(0),
+      ],
+   q(loti) => [
+      q(0092),
+      q(0),
+      ],
+   q(malagasy ariary) => [
+      q(0099),
+      q(0),
+      ],
+   q(malaysian ringgit) => [
+      q(0101),
+      q(0),
+      ],
+   q(manat) => [
+      q(0155),
+      q(0),
+      ],
+   q(mauritius rupee) => [
+      q(0104),
+      q(0),
+      ],
+   q(metical) => [
+      q(0110),
+      q(0),
+      ],
+   q(mexican peso) => [
+      q(0105),
+      q(0),
+      ],
+   q(mexican unidad de inversion (udi)) => [
+      q(0106),
+      q(0),
+      ],
+   q(moldovan leu) => [
+      q(0107),
+      q(0),
+      ],
+   q(moroccan dirham) => [
+      q(0109),
+      q(0),
+      ],
+   q(mvdol) => [
+      q(0024),
+      q(0),
+      ],
+   q(naira) => [
+      q(0116),
+      q(0),
+      ],
+   q(nakfa) => [
+      q(0055),
+      q(0),
+      ],
+   q(namibia dollar) => [
+      q(0112),
+      q(0),
+      ],
+   q(nepalese rupee) => [
+      q(0113),
+      q(0),
+      ],
+   q(netherlands antillian guilder) => [
+      q(0114),
+      q(0),
+      ],
+   q(new israeli sheqel) => [
+      q(0078),
+      q(0),
+      ],
+   q(new leu) => [
+      q(0126),
+      q(0),
+      ],
+   q(new taiwan dollar) => [
+      q(0147),
+      q(0),
+      ],
+   q(new zealand dollar) => [
+      q(0044),
+      q(0),
+      ],
+   q(ngultrum) => [
+      q(0022),
+      q(0),
+      ],
+   q(north korean won) => [
+      q(0084),
+      q(0),
+      ],
+   q(norwegian krone) => [
+      q(0027),
+      q(0),
+      ],
+   q(nuevo sol) => [
+      q(0122),
+      q(0),
+      ],
+   q(ouguiya) => [
+      q(0103),
+      q(0),
+      ],
+   q(pa'anga) => [
+      q(0151),
+      q(0),
+      ],
+   q(pakistan rupee) => [
+      q(0118),
+      q(0),
+      ],
+   q(palladium) => [
+      q(0176),
+      q(0),
+      ],
+   q(pataca) => [
+      q(0097),
+      q(0),
+      ],
+   q(peso convertible) => [
+      q(0048),
+      q(0),
+      ],
+   q(peso uruguayo) => [
+      q(0161),
+      q(0),
+      ],
+   q(philippine peso) => [
+      q(0123),
+      q(0),
+      ],
+   q(platinum) => [
+      q(0177),
+      q(0),
+      ],
+   q(pound sterling) => [
+      q(0066),
+      q(0),
+      ],
+   q(pula) => [
+      q(0026),
+      q(0),
+      ],
+   q(qatari rial) => [
+      q(0125),
+      q(0),
+      ],
+   q(quetzal) => [
+      q(0065),
+      q(0),
+      ],
+   q(rand) => [
+      q(0091),
+      q(0),
+      ],
+   q(rial omani) => [
+      q(0117),
+      q(0),
+      ],
+   q(riel) => [
+      q(0032),
+      q(0),
+      ],
+   q(rufiyaa) => [
+      q(0102),
+      q(0),
+      ],
+   q(rupiah) => [
+      q(0075),
+      q(0),
+      ],
+   q(russian ruble) => [
+      q(0127),
+      q(0),
+      ],
+   q(rwanda franc) => [
+      q(0128),
+      q(0),
+      ],
+   q(saint helena pound) => [
+      q(0129),
+      q(0),
+      ],
+   q(saudi riyal) => [
+      q(0132),
+      q(0),
+      ],
+   q(sdr) => [
+      q(0175),
+      q(0),
+      ],
+   q(serbian dinar) => [
+      q(0133),
+      q(0),
+      ],
+   q(seychelles rupee) => [
+      q(0134),
+      q(0),
+      ],
+   q(silver) => [
+      q(0178),
+      q(0),
+      ],
+   q(singapore dollar) => [
+      q(0136),
+      q(0),
+      ],
+   q(solomon islands dollar) => [
+      q(0137),
+      q(0),
+      ],
+   q(som) => [
+      q(0087),
+      q(0),
+      ],
+   q(somali shilling) => [
+      q(0138),
+      q(0),
+      ],
+   q(somoni) => [
+      q(0148),
+      q(0),
+      ],
+   q(sri lanka rupee) => [
+      q(0139),
+      q(0),
+      ],
+   q(sudanese pound) => [
+      q(0140),
+      q(0),
+      ],
+   q(surinam dollar) => [
+      q(0141),
+      q(0),
+      ],
+   q(swedish krona) => [
+      q(0143),
+      q(0),
+      ],
+   q(swiss franc) => [
+      q(0095),
+      q(0),
+      ],
+   q(syrian pound) => [
+      q(0146),
+      q(0),
+      ],
+   q(taka) => [
+      q(0015),
+      q(0),
+      ],
+   q(tala) => [
+      q(0130),
+      q(0),
+      ],
+   q(tanzanian shilling) => [
+      q(0149),
+      q(0),
+      ],
+   q(tenge) => [
+      q(0082),
+      q(0),
+      ],
+   q(trinidad and tobago dollar) => [
+      q(0152),
+      q(0),
+      ],
+   q(tugrik) => [
+      q(0108),
+      q(0),
+      ],
+   q(tunisian dinar) => [
+      q(0153),
+      q(0),
+      ],
+   q(turkish lira) => [
+      q(0154),
+      q(0),
+      ],
+   q(uae dirham) => [
+      q(0158),
+      q(0),
+      ],
+   q(uganda shilling) => [
+      q(0156),
+      q(0),
+      ],
+   q(uic-franc) => [
+      q(0179),
+      q(0),
+      ],
+   q(unidad de valor real) => [
+      q(0041),
+      q(0),
+      ],
+   q(unidades de fomento) => [
+      q(0038),
+      q(0),
+      ],
+   q(uruguay peso en unidades indexadas) => [
+      q(0162),
+      q(0),
+      ],
+   q(us dollar) => [
+      q(0005),
+      q(0),
+      ],
+   q(us dollar (next day)) => [
+      q(0160),
+      q(0),
+      ],
+   q(us dollar (same day)) => [
+      q(0159),
+      q(0),
+      ],
+   q(uzbekistan sum) => [
+      q(0163),
+      q(0),
+      ],
+   q(vatu) => [
+      q(0164),
+      q(0),
+      ],
+   q(wir euro) => [
+      q(0145),
+      q(0),
+      ],
+   q(wir franc) => [
+      q(0144),
+      q(0),
+      ],
+   q(won) => [
+      q(0085),
+      q(0),
+      ],
+   q(yemeni rial) => [
+      q(0167),
+      q(0),
+      ],
+   q(yen) => [
+      q(0080),
+      q(0),
+      ],
+   q(yuan renminbi) => [
+      q(0039),
+      q(0),
+      ],
+   q(zambian kwacha) => [
+      q(0168),
+      q(0),
+      ],
+   q(zimbabwe dollar) => [
+      q(0169),
+      q(0),
+      ],
+   q(zloty) => [
+      q(0124),
+      q(0),
+      ],
+};
 
-%Code2CurrencyID = (
+$Locale::Codes::Data{'currency'}{'code2id'} = {
    q(alpha) => {
       q(AED) => [
          q(0158),
@@ -2201,9 +2733,9 @@ use vars qw(
          q(0),
          ],
       },
-);
+};
 
-%CurrencyID2Code = (
+$Locale::Codes::Data{'currency'}{'id2code'} = {
    q(alpha) => {
       q(0001) => q(AFN),
       q(0002) => q(EUR),
@@ -2565,8 +3097,6 @@ use vars qw(
       q(0177) => q(962),
       q(0178) => q(961),
       },
-);
-
-
+};
 
 1;

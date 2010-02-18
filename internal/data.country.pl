@@ -54,6 +54,7 @@
    "The Democratic Republic of the Congo"         => "Congo, The Democratic Republic of the",
    "The Republic of the Congo"                    => "Congo",
    "The former Yugoslav Republic of Macedonia"    => "Macedonia, The Former Yugoslav Republic of",
+   "UK"                                           => "United Kingdom",
    "US"                                           => "United States",
    "USA"                                          => "United States",
    "United Kingdom of Great Britain and Northern Ireland" => "United Kingdom",

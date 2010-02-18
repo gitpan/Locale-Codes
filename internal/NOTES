@@ -21,28 +21,29 @@ Before every release, spellcheck the documents:
 Get the newest codes:
 
    ./internal/get_codes -c
-   diff lib/Locale/CountryCodes.pm{.bak,}
+   diff lib/Locale/Codes/Country.pm{.bak,}
 
    ./internal/get_codes -l
-   diff lib/Locale/LanguageCodes.pm{.bak,}
+   diff lib/Locale/Codes/Language.pm{.bak,}
 
    ./internal/get_codes -r
-   diff lib/Locale/CurrencyCodes.pm{.bak,}
+   diff lib/Locale/Codes/Currency.pm{.bak,}
 
    ./internal/get_codes -s
-   diff lib/Locale/ScriptCodes.pm{.bak,}
+   diff lib/Locale/Codes/Script.pm{.bak,}
 
    ./internal/get_codes -C
+   rm lib/Locale/Codes/*.bak
 
 #########################################################################
 Set the release version
 
    v=`cat internal/VERSION`
    for i in \
-       internal/tzdata \
+       internal/get_codes \
        `find lib -name \*.pm` \
    ;do
-      sed -e "s,VERSION='.*',VERSION='$v'," $i > z
+      sed -e "s,VERSION *=.*;,VERSION='$v';," $i > z
       mv z $i
    done
 

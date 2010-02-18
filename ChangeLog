@@ -1,6 +1,30 @@
 
 		ChangeLog for Locale-Codes Distribution
 
+3.11
+
+3.10  2010-02-18 sbeck
+	* Moved support files into the Locale::Codes namespace.
+	* The work done in each of the Locale::XXX modules was
+		virtually identical to each other. It has all
+		been moved to a central module and the
+		Locale::XXX moduels are now just wrappers.
+	* The XXX_code2code functions would return undef if the
+		same codeset were passed in for both the 2nd and
+		3rd arguments. This doesn't make sense and has
+		been changed.
+	* Added all semi-private routines (except for the
+		couple that were already present):
+			rename_XXX
+			add_XXX
+			delete_XXX
+			add_XXX_alias
+			delete_XXX_alias
+			rename_XXX_code
+			add_XXX_code_alias
+			delete_XXX_code_alias
+	* Added "UK" alias. Steve Hay
+
 3.01  2010-02-15 sbeck
 	* Fixed Makefile.PL and Build.PL to install as core
 		modules.
