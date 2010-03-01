@@ -18,7 +18,7 @@ use Archive::Zip;
 use lib "./internal";
 
 use vars qw($VERSION);
-$VERSION='3.10';
+$VERSION='3.11';
 
 use vars qw($DEBUG);
 $DEBUG = 0;
@@ -94,6 +94,16 @@ use vars qw(%country_nga_orig %country_nga_ignore);
 
 $country_nga_url    = "http://earth-info.nga.mil/gns/html/digraphs.htm";
 ($country_nga_file) = $country_nga_url =~ m,/([^/]*)$,;
+
+#
+# IANA domains
+#
+
+use vars qw($country_iana_url $country_iana_file);
+use vars qw(%country_iana_orig);
+
+$country_iana_url    = "http://www.iana.org/domains/root/db/index.html";
+($country_iana_file) = $country_iana_url =~ m,/([^/]*)$,;
 
 #
 # This is the CIA World Factbook, which is assumed to be a reliable
@@ -311,6 +321,9 @@ sub do_country {
    print_table("country")  if ($DEBUG == 2);
 
    do_country_nga();
+   print_table("country")  if ($DEBUG == 2);
+
+   do_country_iana();
    print_table("country")  if ($DEBUG == 2);
 
    do_country_cia();
@@ -553,6 +566,60 @@ sub do_country_nga {
 }
 
 ########################################
+sub do_country_iana {
+
+   print "\nINFO [iana]: expect Acension, European, Soviet, Portuguse, Yugo\n";
+
+   ###
+   ### The IANA data contains the domain names
+   ###
+
+   system("wget -N -q $country_iana_url");
+   my @in = `cat $country_iana_file`;
+   chomp(@in);
+   my $in = join("",@in);
+
+   # Clean up some things that could cause problems in parsing:
+
+   strip_tags(\$in,1,"a");
+   $in =~ s,\&nbsp;, ,g;
+   $in =~ s,\(being phased out\), ,g;
+   $in =~ s,\s+, ,g;
+
+   # Look for a table who's first row has the header:
+   #    Sponsoring Organisation
+
+   my $found = jump_to_row(\$in,"Sponsoring Organisation");
+   if (! $found) {
+      die "ERROR [iana]: country code file format changed!\n";
+   }
+
+   while (1) {
+      my @row = get_row("iana",\$in);
+      last  if (! @row);
+
+      my($dom,$type,$country) = @row;
+      next  unless ($type eq "country-code");
+      $dom     =~ s/^\.//;
+      $country =~ s,<br.*,,;
+
+      if (exists $country_un_orig{$country}) {
+         $country = $country_un_orig{$country};
+      }
+
+      my($err,$countryID,$i,$t) = get_countryID("iana",$country);
+      next  if ($err);
+
+      if ($t eq "new") {
+         print "INFO [iana]: new country: $dom\t$country\n";
+      }
+
+      $Code2CountryID{"dom"}{$dom} = [ $countryID, $i ];
+      $CountryID2Code{"dom"}{$countryID} = $dom;
+   }
+}
+
+########################################
 sub do_country_cia {
 
    print "\nINFO [cia]: expect Antarctica, Bouvet, British, Christmas, Cocos,\n" .
@@ -613,12 +680,14 @@ sub do_country_cia {
       # Read the next entry
       #
 
+      my($country,$fips,$alpha2,$alpha3,$num,$stanag,$dom);
+
       my $found   = jump_to_table(\$in);
       if (! $found) {
          print "ERROR [cia]: malformed file\n";
          last;
       }
-      my $country = get_entry(\$in);
+      $country = get_entry(\$in);
       if (! $country) {
          # The first entry is empty if it's at the end of the entries
          # for a given letter.
@@ -633,15 +702,18 @@ sub do_country_cia {
          $country = $country_cia_orig{$country};
       }
 
-      my $fips    = uc(get_entry(\$in));
-      $found      = jump_to_table(\$in);
+      $fips    = uc(get_entry(\$in));
+      $found   = jump_to_table(\$in);
       if (! $found) {
          print "ERROR [cia]: malformed file\n";
          last;
       }
-      my $alpha2  = lc(get_entry(\$in));
-      my $alpha3  = lc(get_entry(\$in));
-      my $num     = get_entry(\$in);
+      $alpha2  = lc(get_entry(\$in));
+      $alpha3  = lc(get_entry(\$in));
+      $num     = get_entry(\$in);
+      $stanag  = get_entry(\$in);
+      $dom     = uc(get_entry(\$in));
+      $dom     =~ s/^\.//;
 
       next  if (exists $country_cia_ignore{$country});
 
@@ -653,6 +725,8 @@ sub do_country_cia {
         if (exists $country_cia_codes{"num"}{$country});
       $fips = $country_cia_codes{"fips"}{$country}
         if (exists $country_cia_codes{"fips"}{$country});
+      $dom  = $country_cia_codes{"dom"}{$country}
+        if (exists $country_cia_codes{"dom"}{$country});
 
       #
       # Get the countryID if the country or ANY of the codes match.
@@ -685,6 +759,12 @@ sub do_country_cia {
          }
       }
 
+      if ($countryID == -1  &&  $dom ne "-") {
+         if (exists $Code2CountryID{"dom"}{$dom}) {
+            ($countryID,$i) = @{ $Code2CountryID{"dom"}{$dom} };
+         }
+      }
+
       if ($countryID == -1) {
          $countryID = $CountryID++;
          $i = 0;
@@ -714,6 +794,11 @@ sub do_country_cia {
 
       if ($fips ne "-") {
          my $err = check_code("cia","fips",$fips,$country,$countryID);
+         next  if ($err);
+      }
+
+      if ($dom ne "-") {
+         my $err = check_code("cia","dom",$dom,$country,$countryID);
          next  if ($err);
       }
 
@@ -1282,13 +1367,15 @@ sub write_module {
    my $timestamp   = `date`;
    chomp($timestamp);
 
+   my $podstr = '=pod';    # so the CPAN indexer won't treat this as a POD file
+
    print $out "package Locale::Codes::$module;
 
 # This file was automatically generated.  Any changes to this file will
 # be lost the next time 'get_codes' is run.
 #    Generated on: $timestamp
 
-=pod
+$podstr
 
 =head1 NAME
 
@@ -1321,7 +1408,7 @@ use warnings;
 require 5.002;
 
 use vars qw(\$VERSION);
-\$VERSION='3.10';
+\$VERSION='3.11';
 
 \$Locale::Codes::Data{'$type'}{'id'} = '$id';
 
@@ -1403,6 +1490,7 @@ sub do_clean {
    system("rm -f $country_un_file");
    system("rm -f $country_nga_file");
    system("rm -f $country_cia_file");
+   system("rm -f $country_iana_file");
    system("rm -f $language_iso_file");
    system("rm -f $currency_iso_file");
    system("rm -f $script_iso_file");

@@ -70,6 +70,13 @@ National Geospatial-Intelligence Agency.
 
 This code set is identified with the symbol C<LOCALE_CODE_FIPS>.
 
+=item B<dom>
+
+The IANA is responsible for assigning two-letter (uppercase) top-level
+domain names to each country.
+
+This code set is identified with the symbol C<LOCALE_CODE_DOM>.
+
 =back
 
 =head1 ROUTINES
@@ -168,6 +175,10 @@ get as much of the data from here as I can.
 =item http://earth-info.nga.mil/gns/html/digraphs.htm
 
 The official list of the FIPS 10 codes.
+
+=item http://www.iana.org/domains/
+
+Official source of the top-level domain names.
 
 =item https://www.cia.gov/library/publications/the-world-factbook/appendix/print_appendix-d.html
 

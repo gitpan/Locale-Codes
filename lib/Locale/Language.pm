@@ -21,7 +21,7 @@ use Locale::Codes::Language;
 
 use vars qw($VERSION @ISA @EXPORT @EXPORT_OK);
 
-$VERSION='3.10';
+$VERSION='3.11';
 @ISA       = qw(Exporter);
 @EXPORT    = qw(code2language
                 language2code
@@ -35,6 +35,7 @@ $VERSION='3.10';
 
 sub _code {
    my($code,$codeset) = @_;
+   $code = ""  if (! $code);
 
    $codeset = LOCALE_LANG_DEFAULT  if (! defined($codeset)  ||  $codeset eq "");
 

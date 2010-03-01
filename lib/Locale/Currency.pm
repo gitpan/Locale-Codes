@@ -21,7 +21,7 @@ use Locale::Codes::Currency;
 
 use vars qw($VERSION @ISA @EXPORT @EXPORT_OK);
 
-$VERSION='3.10';
+$VERSION='3.11';
 @ISA       = qw(Exporter);
 @EXPORT    = qw(code2currency
                 currency2code
@@ -34,6 +34,7 @@ $VERSION='3.10';
 
 sub _code {
    my($code,$codeset) = @_;
+   $code = ""  if (! $code);
 
    $codeset = LOCALE_CURR_DEFAULT  if (! defined($codeset)  ||  $codeset eq "");
 

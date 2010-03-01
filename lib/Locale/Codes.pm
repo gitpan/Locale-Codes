@@ -27,7 +27,7 @@ use vars qw($VERSION %Data);
 #              { id        }                      = FIRST_UNUSED_ID
 #              { codealias }{ CODESET } { ALIAS } = CODE
 
-$VERSION='3.10';
+$VERSION='3.11';
 
 #=======================================================================
 #
@@ -62,6 +62,7 @@ sub _code2name {
 
 sub _name2code {
    my($type,$name,$codeset) = @_;
+   $name = ""  if (! $name);
    $name = lc($name);
 
    if (exists $Data{$type}{'alias2id'}{$name}) {

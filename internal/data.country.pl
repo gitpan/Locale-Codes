@@ -356,6 +356,13 @@
   );
 
 ################################################################################
+# IANA (source of top level domains)
+
+%country_iana_orig =
+  (
+  );
+
+################################################################################
 # CIA World Factbook (checks for codes)
 
 %country_cia_orig =
@@ -384,6 +391,10 @@
                 "Svalbard"        => "-",
                },
    "fips"   => {
+               },
+   "dom"    => {"Gaza Strip"      => "-",
+                "West Bank"       => "-",
+                "Svalbard"        => "-",
                },
   );
 

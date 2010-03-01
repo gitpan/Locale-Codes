@@ -21,7 +21,7 @@ use Locale::Codes::Country;
 
 use vars qw($VERSION @ISA @EXPORT @EXPORT_OK);
 
-$VERSION='3.10';
+$VERSION='3.11';
 @ISA       = qw(Exporter);
 @EXPORT    = qw(code2country
                 country2code
@@ -32,10 +32,12 @@ $VERSION='3.10';
                 LOCALE_CODE_ALPHA_3
                 LOCALE_CODE_NUMERIC
                 LOCALE_CODE_FIPS
+                LOCALE_CODE_DOM
                );
 
 sub _code {
    my($code,$codeset) = @_;
+   $code = ""  if (! $code);
 
    $codeset = LOCALE_CODE_DEFAULT  if (! defined($codeset)  ||  $codeset eq "");
 
@@ -48,6 +50,8 @@ sub _code {
          $codeset = "num";
       } elsif ($codeset ==  LOCALE_CODE_FIPS) {
          $codeset = "fips";
+      } elsif ($codeset ==  LOCALE_CODE_DOM) {
+         $codeset = "dom";
       } else {
          return (1);
       }
@@ -61,7 +65,8 @@ sub _code {
          return (1)  unless ($code =~ /^\d+$/);
          $code    = sprintf("%.3d", $code);
       }
-   } elsif ($codeset eq "fips") {
+   } elsif ($codeset eq "fips"  ||
+            $codeset eq "dom") {
       $code    = uc($code);
    } else {
       return (1);

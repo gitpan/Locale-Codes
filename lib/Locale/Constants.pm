@@ -16,12 +16,13 @@ require Exporter;
 
 use vars qw($VERSION @ISA @EXPORT);
 
-$VERSION='3.10';
+$VERSION='3.11';
 @ISA	 = qw(Exporter);
 @EXPORT  = qw(LOCALE_CODE_ALPHA_2
               LOCALE_CODE_ALPHA_3
               LOCALE_CODE_NUMERIC
               LOCALE_CODE_FIPS
+              LOCALE_CODE_DOM
               LOCALE_CODE_DEFAULT
 
               LOCALE_LANG_ALPHA_2
@@ -46,6 +47,7 @@ use constant LOCALE_CODE_ALPHA_2   => 1;
 use constant LOCALE_CODE_ALPHA_3   => 2;
 use constant LOCALE_CODE_NUMERIC   => 3;
 use constant LOCALE_CODE_FIPS      => 4;
+use constant LOCALE_CODE_DOM       => 5;
 
 use constant LOCALE_CODE_DEFAULT   => LOCALE_CODE_ALPHA_2;
 
