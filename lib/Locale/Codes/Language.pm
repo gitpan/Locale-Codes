@@ -2,7 +2,7 @@ package Locale::Codes::Language;
 
 # This file was automatically generated.  Any changes to this file will
 # be lost the next time 'get_codes' is run.
-#    Generated on: Mon Mar  1 13:02:21 EST 2010
+#    Generated on: Mon Apr  5 15:43:17 EDT 2010
 
 =pod
 
@@ -37,7 +37,7 @@ use warnings;
 require 5.002;
 
 use vars qw($VERSION);
-$VERSION='3.11';
+$VERSION='3.12';
 
 $Locale::Codes::Data{'language'}{'id'} = '0486';
 
@@ -604,6 +604,7 @@ $Locale::Codes::Data{'language'}{'id2names'} = {
       ],
    q(0179) => [
       q(Hmong),
+      q(Mong),
       ],
    q(0180) => [
       q(Hiri Motu),
@@ -2941,6 +2942,10 @@ $Locale::Codes::Data{'language'}{'alias2id'} = {
    q(mon-khmer languages) => [
       q(0282),
       q(0),
+      ],
+   q(mong) => [
+      q(0179),
+      q(1),
       ],
    q(mongo) => [
       q(0252),

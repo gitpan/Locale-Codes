@@ -56,31 +56,31 @@ This code set is identified with the symbol C<LOCALE_SCRIPT_NUMERIC>.
 
 =over 4
 
-=item code2script ( CODE [,CODESET] )
+=item B<code2script ( CODE [,CODESET] )>
 
-=item script2code ( NAME [,CODESET] )
+=item B<script2code ( NAME [,CODESET] )>
 
-=item script_code2code ( CODE ,CODESET ,CODESET2 )
+=item B<script_code2code ( CODE ,CODESET ,CODESET2 )>
 
-=item all_script_codes ( [CODESET] )
+=item B<all_script_codes ( [CODESET] )>
 
-=item all_script_names ( [CODESET] )
+=item B<all_script_names ( [CODESET] )>
 
-=item Locale::Script::rename_script  ( CODE ,NEW_NAME [,CODESET] )
+=item B<Locale::Script::rename_script  ( CODE ,NEW_NAME [,CODESET] )>
 
-=item Locale::Script::add_script  ( CODE ,NAME [,CODESET] )
+=item B<Locale::Script::add_script  ( CODE ,NAME [,CODESET] )>
 
-=item Locale::Script::delete_script  ( CODE [,CODESET] )
+=item B<Locale::Script::delete_script  ( CODE [,CODESET] )>
 
-=item Locale::Script::add_script_alias  ( NAME ,NEW_NAME )
+=item B<Locale::Script::add_script_alias  ( NAME ,NEW_NAME )>
 
-=item Locale::Script::delete_script_alias  ( NAME )
+=item B<Locale::Script::delete_script_alias  ( NAME )>
 
-=item Locale::Script::rename_script_code  ( CODE ,NEW_CODE [,CODESET] )
+=item B<Locale::Script::rename_script_code  ( CODE ,NEW_CODE [,CODESET] )>
 
-=item Locale::Script::add_script_code_alias  ( CODE ,NEW_CODE [,CODESET] )
+=item B<Locale::Script::add_script_code_alias  ( CODE ,NEW_CODE [,CODESET] )>
 
-=item Locale::Script::delete_script_code_alias  ( CODE [,CODESET] )
+=item B<Locale::Script::delete_script_code_alias  ( CODE [,CODESET] )>
 
 These routines are all documented in the Locale::Codes man page.
 
@@ -90,11 +90,11 @@ These routines are all documented in the Locale::Codes man page.
 
 =over 4
 
-=item Locale::Codes
+=item B<Locale::Codes>
 
-=item Locale::Constants
+=item B<Locale::Constants>
 
-=item http://www.unicode.org/iso15924/
+=item B<http://www.unicode.org/iso15924/>
 
 Home page for ISO 15924.
 

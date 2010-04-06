@@ -3,16 +3,16 @@
 require 5.002;
 
 $runtests=shift(@ARGV);
-if ( -f "t/test.pl" ) {
-  require "t/test.pl";
+if ( -f "t/testfunc.pl" ) {
+  require "t/testfunc.pl";
   $dir="./lib";
   $tdir="t";
-} elsif ( -f "test.pl" ) {
-  require "test.pl";
+} elsif ( -f "testfunc.pl" ) {
+  require "testfunc.pl";
   $dir="../lib";
   $tdir=".";
 } else {
-  die "ERROR: cannot find test.pl\n";
+  die "ERROR: cannot find testfunc.pl\n";
 }
 
 unshift(@INC,$dir);

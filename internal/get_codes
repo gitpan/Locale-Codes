@@ -18,7 +18,7 @@ use Archive::Zip;
 use lib "./internal";
 
 use vars qw($VERSION);
-$VERSION='3.11';
+$VERSION='3.12';
 
 use vars qw($DEBUG);
 $DEBUG = 0;
@@ -568,7 +568,7 @@ sub do_country_nga {
 ########################################
 sub do_country_iana {
 
-   print "\nINFO [iana]: expect Acension, European, Soviet, Portuguse, Yugo\n";
+   print "\nINFO [iana]: expect Acension, European, Soviet, Portuguese\n";
 
    ###
    ### The IANA data contains the domain names
@@ -1156,10 +1156,11 @@ sub do_script_iso {
    system("wget -N -q $script_iso_url");
    my $zip = Archive::Zip->new($script_iso_file);
 
-   if ($zip->numberOfMembers != 1) {
+   my @members = grep(/^iso15924.*\.txt/,$zip->memberNames());
+   if (@members != 1) {
       die "ERROR [iso]: zip file changed format\n";
    }
-   my($file) = $zip->memberNames();
+   my($file) = @members;
    $zip->extractMember($file,$script_iso_tmp);
 
    #
@@ -1408,7 +1409,7 @@ use warnings;
 require 5.002;
 
 use vars qw(\$VERSION);
-\$VERSION='3.11';
+\$VERSION='3.12';
 
 \$Locale::Codes::Data{'$type'}{'id'} = '$id';
 
@@ -1495,6 +1496,7 @@ sub do_clean {
    system("rm -f $currency_iso_file");
    system("rm -f $script_iso_file");
    system("rm -f $script_iso_tmp");
+   system("rm -rf __MACOSX");
 }
 
 ############################################################################

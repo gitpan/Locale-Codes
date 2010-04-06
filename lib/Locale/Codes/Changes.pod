@@ -8,7 +8,7 @@ Locale::Codes::Changes - details important changes after 2.07
 
 =over 4
 
-=item Changed XXX_code2code behavior slightly
+=item B<Changed XXX_code2code behavior slightly>
 
 In previous versions, passing in the same code set for both code set
 arguments would automatically return undef. For example:
@@ -28,7 +28,7 @@ returned:
    country_code2code('bol',LOCALE_CODE_ALPHA_2,LOCALE_CODE_ALPHA_2);
       => undef
 
-=item Added many semi-private routines
+=item B<Added many semi-private routines>
 
 Previous versions had only two semi-private routines: rename_country
 and alias_code which had the ability to modify the internal data in
@@ -84,7 +84,7 @@ The full set of routines includes:
 
 =over 4
 
-=item New maintainer
+=item B<New maintainer>
 
 From 1997 to 2004, Locale::Codes was maintained by Neil
 Bowers. Unfortunately, no updates were made from June 2004 to January
@@ -94,7 +94,7 @@ standards since then, so the data included was out-of-date.
 I contacted Neil to get his permission to assume maintenance of
 the module, and he kindly agreed.
 
-=item All codes are generated from standards
+=item B<All codes are generated from standards>
 
 All of the values returned by the various functions are now values
 directly from the standards. This means that the values returned in
@@ -115,7 +115,7 @@ no longer supported. For example, 2.07 treated "Zaire" as an alias for
 "Congo", but the country changed it's name, and "Zaire" is not in the
 standard, so it has been dropped in 3.00.
 
-=item Added several code sets from standards
+=item B<Added several code sets from standards>
 
 I've added the following code sets:
 
@@ -123,7 +123,7 @@ I've added the following code sets:
    Alpha-3 and Term language codes
    Numeric currency codes
 
-=item Locale::Script changed
+=item B<Locale::Script changed>
 
 In 2.xx, Locale::Script assigned scripts to country codes, which is NOT
 how it is done currently in the standards. It appears that an older version
@@ -134,7 +134,7 @@ As a result, the Locale::Script module is completely incompatible with
 the 2.xx version with respect to the types of codes it supports. None of
 the old codes will work.
 
-=item Added missing functions
+=item B<Added missing functions>
 
 I've added in some functions which were "missing" previously (since there was
 only one set of codes supported, the code2code functions didn't apply):
@@ -144,7 +144,7 @@ only one set of codes supported, the code2code functions didn't apply):
 
 so the interfaces for each type of codes are consistent.
 
-=item Dropped support for _alias_code
+=item B<Dropped support for _alias_code>
 
 In Locale::Country, _alias_code was an allowed, but deprecated function
 which was documented to be supported in the 2.xx series. I've removed it.

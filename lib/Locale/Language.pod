@@ -59,31 +59,31 @@ This code set is identified with the symbol C<LOCALE_LANG_TERM>.
 
 =over 4
 
-=item code2language ( CODE [,CODESET] )
+=item B<code2language ( CODE [,CODESET] )>
 
-=item language2code ( NAME [,CODESET] )
+=item B<language2code ( NAME [,CODESET] )>
 
-=item language_code2code ( CODE ,CODESET ,CODESET2 )
+=item B<language_code2code ( CODE ,CODESET ,CODESET2 )>
 
-=item all_language_codes ( [CODESET] )
+=item B<all_language_codes ( [CODESET] )>
 
-=item all_language_names ( [CODESET] )
+=item B<all_language_names ( [CODESET] )>
 
-=item Locale::Language::rename_language  ( CODE ,NEW_NAME [,CODESET] )
+=item B<Locale::Language::rename_language  ( CODE ,NEW_NAME [,CODESET] )>
 
-=item Locale::Language::add_language  ( CODE ,NAME [,CODESET] )
+=item B<Locale::Language::add_language  ( CODE ,NAME [,CODESET] )>
 
-=item Locale::Language::delete_language  ( CODE [,CODESET] )
+=item B<Locale::Language::delete_language  ( CODE [,CODESET] )>
 
-=item Locale::Language::add_language_alias  ( NAME ,NEW_NAME )
+=item B<Locale::Language::add_language_alias  ( NAME ,NEW_NAME )>
 
-=item Locale::Language::delete_language_alias  ( NAME )
+=item B<Locale::Language::delete_language_alias  ( NAME )>
 
-=item Locale::Language::rename_language_code  ( CODE ,NEW_CODE [,CODESET] )
+=item B<Locale::Language::rename_language_code  ( CODE ,NEW_CODE [,CODESET] )>
 
-=item Locale::Language::add_language_code_alias  ( CODE ,NEW_CODE [,CODESET] )
+=item B<Locale::Language::add_language_code_alias  ( CODE ,NEW_CODE [,CODESET] )>
 
-=item Locale::Language::delete_language_code_alias  ( CODE [,CODESET] )
+=item B<Locale::Language::delete_language_code_alias  ( CODE [,CODESET] )>
 
 These routines are all documented in the Locale::Codes man page.
 
@@ -93,11 +93,11 @@ These routines are all documented in the Locale::Codes man page.
 
 =over 4
 
-=item Locale::Codes
+=item B<Locale::Codes>
 
-=item Locale::Constants
+=item B<Locale::Constants>
 
-=item http://www.loc.gov/standards/iso639-2/
+=item B<http://www.loc.gov/standards/iso639-2/>
 
 Source of the ISO 639 codes.
 

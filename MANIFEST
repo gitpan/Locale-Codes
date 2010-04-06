@@ -49,5 +49,5 @@ t/pod_coverage.t
 t/runtests
 t/runtests.bat
 t/script2code.t
-t/test.pl
+t/testfunc.pl
 META.yml

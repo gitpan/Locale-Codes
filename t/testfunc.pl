@@ -34,6 +34,8 @@
 # 2009-09-30  Much better support for references.
 #
 # 2010-02-05  Fixed bug in passing tests as lists
+#
+# 2010-04-05  Renamed to testfunc.pl to avoid being called in a core module
 
 ###############################################################################
 

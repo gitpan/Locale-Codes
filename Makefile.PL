@@ -15,7 +15,7 @@ my %requires = (
 
 WriteMakefile(
         NAME             => 'Locale::Codes',
-        VERSION          => '3.11',
+        VERSION          => '3.12',
         ($] >= 5.002
         ? (ABSTRACT=>'a distribution of modules to handle locale codes',
            AUTHOR  =>'Sullivan Beck (sbeck@cpan.org)')

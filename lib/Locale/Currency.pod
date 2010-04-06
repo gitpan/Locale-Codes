@@ -56,31 +56,31 @@ This code set is identified with the symbol C<LOCALE_CURR_NUMERIC>.
 
 =over 4
 
-=item code2currency ( CODE [,CODESET] )
+=item B<code2currency ( CODE [,CODESET] )>
 
-=item currency2code ( NAME [,CODESET] )
+=item B<currency2code ( NAME [,CODESET] )>
 
-=item currency_code2code ( CODE ,CODESET ,CODESET2 )
+=item B<currency_code2code ( CODE ,CODESET ,CODESET2 )>
 
-=item all_currency_codes ( [CODESET] )
+=item B<all_currency_codes ( [CODESET] )>
 
-=item all_currency_names ( [CODESET] )
+=item B<all_currency_names ( [CODESET] )>
 
-=item Locale::Currency::rename_currency  ( CODE ,NEW_NAME [,CODESET] )
+=item B<Locale::Currency::rename_currency  ( CODE ,NEW_NAME [,CODESET] )>
 
-=item Locale::Currency::add_currency  ( CODE ,NAME [,CODESET] )
+=item B<Locale::Currency::add_currency  ( CODE ,NAME [,CODESET] )>
 
-=item Locale::Currency::delete_currency  ( CODE [,CODESET] )
+=item B<Locale::Currency::delete_currency  ( CODE [,CODESET] )>
 
-=item Locale::Currency::add_currency_alias  ( NAME ,NEW_NAME )
+=item B<Locale::Currency::add_currency_alias  ( NAME ,NEW_NAME )>
 
-=item Locale::Currency::delete_currency_alias  ( NAME )
+=item B<Locale::Currency::delete_currency_alias  ( NAME )>
 
-=item Locale::Currency::rename_currency_code  ( CODE ,NEW_CODE [,CODESET] )
+=item B<Locale::Currency::rename_currency_code  ( CODE ,NEW_CODE [,CODESET] )>
 
-=item Locale::Currency::add_currency_code_alias  ( CODE ,NEW_CODE [,CODESET] )
+=item B<Locale::Currency::add_currency_code_alias  ( CODE ,NEW_CODE [,CODESET] )>
 
-=item Locale::Currency::delete_currency_code_alias  ( CODE [,CODESET] )
+=item B<Locale::Currency::delete_currency_code_alias  ( CODE [,CODESET] )>
 
 These routines are all documented in the Locale::Codes man page.
 
@@ -90,11 +90,11 @@ These routines are all documented in the Locale::Codes man page.
 
 =over 4
 
-=item Locale::Codes
+=item B<Locale::Codes>
 
-=item Locale::Constants
+=item B<Locale::Constants>
 
-=item http://www.iso.org/iso/support/currency_codes_list-1.htm
+=item B<http://www.iso.org/iso/support/currency_codes_list-1.htm>
 
 The ISO 4217 data.
 
