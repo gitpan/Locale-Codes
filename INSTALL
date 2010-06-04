@@ -1,41 +1,11 @@
-INSTALLING AUTOMATICALLY
-------------------------
+For instructions on installing this, or any other perl module in
+a UNIX environment, please refer to:
 
-The easiest way to install a perl module is to use the
-CPAN or CPANPLUS methods.
+   http://faq.perl.org/perlfaq8.html#How_do_I_install_a_m
 
-This can be done in the following ways:
+For instructions in a Windows environment running ActivePerl,
+refer to one of the following (depending on your version of perl):
 
-CPAN:
-
-   % perl -MCPAN -e shell
-   > install _MODULE_
-   > quit
-
-CPANPLUS:
-
-   % cpanp
-   > i _MODULE_
-   > q
-
-In both cases _MODULE_ is the name of the module. Please refer to the
-documentation on CPAN or CPANPLUS for more information.
-
-
-INSTALLING MANUALLY
--------------------
-
-If Module::Build is installed, you can install it by running:
-
-    perl Build.PL
-    perl Build
-    perl Build test
-    perl Build install
-
-Or using the older Makefile.PL method:
-
-    perl Makefile.PL
-    make
-    make test
-    make install
-
+   http://docs.activestate.com/activeperl/5.6/faq/ActivePerl-faq2.html
+   http://docs.activestate.com/activeperl/5.8/faq/ActivePerl-faq2.html
+   http://docs.activestate.com/activeperl/5.10/faq/ActivePerl-faq2.html

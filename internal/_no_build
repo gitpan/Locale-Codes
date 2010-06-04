@@ -1,0 +1,4 @@
+This is just a touchfile to make sure that I don't autogenerate the
+Makefile.PL/Build.PL files. This module does things in a nonstandard
+way, so I'll keep them up-to-date by hand.
+

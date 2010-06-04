@@ -18,7 +18,7 @@ use Archive::Zip;
 use lib "./internal";
 
 use vars qw($VERSION);
-$VERSION='3.12';
+$VERSION='3.13';
 
 use vars qw($DEBUG);
 $DEBUG = 0;
@@ -1409,7 +1409,7 @@ use warnings;
 require 5.002;
 
 use vars qw(\$VERSION);
-\$VERSION='3.12';
+\$VERSION='3.13';
 
 \$Locale::Codes::Data{'$type'}{'id'} = '$id';
 

@@ -1,7 +1,10 @@
 Build.PL
 ChangeLog
-examples/README.examples
+examples/code2country
+examples/country2code
 INSTALL
+internal/_no_build
+internal/_no_tests
 internal/build.yaml
 internal/data.country.pl
 internal/data.currency.pl
