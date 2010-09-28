@@ -18,7 +18,7 @@ use Archive::Zip;
 use lib "./internal";
 
 use vars qw($VERSION);
-$VERSION='3.13';
+$VERSION='3.14';
 
 use vars qw($DEBUG);
 $DEBUG = 0;
@@ -600,6 +600,11 @@ sub do_country_iana {
 
       my($dom,$type,$country) = @row;
       next  unless ($type eq "country-code");
+
+      # *** FIX ***
+      # For now, we'll remove foreign character domains.
+      next  unless ($dom =~ /^\.[A-Z][A-Z]/);
+
       $dom     =~ s/^\.//;
       $country =~ s,<br.*,,;
 
@@ -1409,7 +1414,7 @@ use warnings;
 require 5.002;
 
 use vars qw(\$VERSION);
-\$VERSION='3.13';
+\$VERSION='3.14';
 
 \$Locale::Codes::Data{'$type'}{'id'} = '$id';
 

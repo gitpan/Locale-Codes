@@ -13,6 +13,7 @@ internal/data.script.pl
 internal/get_codes
 internal/ispell.isp
 internal/NOTES
+internal/TODO
 internal/VERSION
 lib/Locale/Codes.pm
 lib/Locale/Codes.pod

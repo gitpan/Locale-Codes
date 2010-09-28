@@ -40,6 +40,8 @@ Set the release version
 
    v=`cat internal/VERSION`
    for i in \
+       Makefile.PL \
+       Build.PL \
        internal/get_codes \
        `find lib -name \*.pm` \
    ;do
@@ -63,3 +65,29 @@ Update the copyright
 #########################################################################
 Regenerate the MANIFEST, Build.PL, Makefile.PL
 Run the kwalitee tests
+
+#########################################################################
+To create a patch for perl:
+
+   cd /tmp
+   git clone git://perl5.git.perl.org/perl.git perl-git
+   cd perl-git
+
+   git branch sbeck
+   git checkout sbeck
+
+Update Porting/Maintainers.pl
+Copy in the modified files.
+
+   git commit -a -m 'Bump Locale-Codes from 3.12 to 3.13'
+   git format-patch origin
+   mv 0001* /tmp
+
+Modify the patch to include the correct email address at the top
+(and make sure it didn't modify Porters/Maintainers.pl except
+for my change).
+
+   ./Configure -des -Dusedevel
+   make test
+
+and make sure that the tests all succeed. Then submit the patch.

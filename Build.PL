@@ -2,6 +2,8 @@ use Module::Build;
 use strict;
 use warnings;
 
+my $VERSION='3.14';
+
 my %requires = (
                  'perl'                     => '5.002',
                  'Carp'                     => '0',
@@ -17,7 +19,7 @@ my %build_mods = (
 
 my $build = Module::Build->new(
         license            => 'perl',
-        dist_version       => '3.13',
+        dist_version       => $VERSION,
         dist_author        => 'Sullivan Beck <sbeck@cpan.org>',
         module_name        => 'Locale::Codes',
         dist_abstract      => 'a distribution of modules to handle locale codes',

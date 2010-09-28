@@ -1,0 +1,6 @@
+
+Based on RT-61345:
+
+   Add support for language subtags:
+      http://www.iana.org/assignments/language-subtag-registry
+      http://www.w3.org/International/articles/language-tags/

@@ -3,6 +3,8 @@ use ExtUtils::MakeMaker;
 use 5.002;
 use strict;
 use warnings;
+my $VERSION='3.14';
+
 my %requires = (
                  'Carp'                     => '0',
                  'Exporter'                 => '0',
@@ -15,7 +17,7 @@ my %requires = (
 
 WriteMakefile(
         NAME             => 'Locale::Codes',
-        VERSION          => '3.13',
+        VERSION          => $VERSION,
         ($] >= 5.002
         ? (ABSTRACT=>'a distribution of modules to handle locale codes',
            AUTHOR  =>'Sullivan Beck (sbeck@cpan.org)')
