@@ -18,19 +18,20 @@ Before every release, spellcheck the documents:
    done
 
 #########################################################################
-Get the newest codes:
+Get the newest codes. Be sure to read the entire diff to make sure that
+no HTML is getting added to a code.
 
    ./internal/get_codes -c
-   diff lib/Locale/Codes/Country.pm{.bak,}
+   diff lib/Locale/Codes/Country.pm{.bak,} | less
 
    ./internal/get_codes -l
-   diff lib/Locale/Codes/Language.pm{.bak,}
+   diff lib/Locale/Codes/Language.pm{.bak,} | less
 
    ./internal/get_codes -r
-   diff lib/Locale/Codes/Currency.pm{.bak,}
+   diff lib/Locale/Codes/Currency.pm{.bak,} | less
 
    ./internal/get_codes -s
-   diff lib/Locale/Codes/Script.pm{.bak,}
+   diff lib/Locale/Codes/Script.pm{.bak,} | less
 
    ./internal/get_codes -C
    rm lib/Locale/Codes/*.bak
@@ -77,17 +78,32 @@ To create a patch for perl:
    git checkout sbeck
 
 Update Porting/Maintainers.pl
+
 Copy in the modified files.
 
-   git commit -a -m 'Bump Locale-Codes from 3.12 to 3.13'
+   cd cpan/Locale-Codes
+   for i in `find . -type f` ;do
+      cp -p ~/perl-modules/Locale-Codes-*/$i $i
+   done
+   chmod -x t/*
+   cd ../..
+
+Create the patch
+
+   git config --global user.name "Sullivan Beck"
+   git config --global user.email 'sbeck@cpan.org'
+
+   git commit -a -m 'Bump Locale-Codes from 3.13 to 3.14'
    git format-patch origin
    mv 0001* /tmp
 
 Modify the patch to include the correct email address at the top
 (and make sure it didn't modify Porters/Maintainers.pl except
-for my change).
+for my change). Also, make sure there are no permission changes
+in the patch.
 
    ./Configure -des -Dusedevel
    make test
 
 and make sure that the tests all succeed. Then submit the patch.
+

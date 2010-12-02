@@ -17,11 +17,15 @@ use Archive::Zip;
 
 use lib "./internal";
 
-use vars qw($VERSION);
-$VERSION='3.14';
+our $VERSION;
+$VERSION='3.15';
 
-use vars qw($DEBUG);
+our $DEBUG;
 $DEBUG = 0;
+
+# so the CPAN indexer won't treat this as a POD file
+our $podstr = '=pod';
+our $hdstr  = '=head1';
 
 ###############################################################################
 # GLOBAL VARIABLES
@@ -44,12 +48,12 @@ $DEBUG = 0;
 #                                    In the given CODESET, the COUNTRY_ID
 #                                    corresponds to the given CODE.
 
-use vars qw( $CountryID %Country %CountryAlias %Code2CountryID %CountryID2Code );
-use vars qw(%country_alias);
+our($CountryID,%Country,%CountryAlias,%Code2CountryID,%CountryID2Code);
+our(%country_alias);
 
 $CountryID = "0001";
 
-use vars qw( $ModDir $CountryModule );
+our($ModDir,$CountryModule);
 
 $ModDir        = "lib/Locale/Codes";
 $CountryModule = "Country";
@@ -65,8 +69,8 @@ $CountryModule = "Country";
 # first country for error checking.
 #
 
-use vars qw($country_iso_url $country_iso_file $country_iso_1st);
-use vars qw(%country_iso_orig);
+our($country_iso_url,$country_iso_file,$country_iso_1st);
+our(%country_iso_orig);
 
 $country_iso_url    = "http://www.iso.org/iso/list-en1-semic-3.txt";
 $country_iso_1st    = "AFGHANISTAN";
@@ -78,8 +82,8 @@ $country_iso_1st    = "AFGHANISTAN";
 # of this data, this is an official source.
 #
 
-use vars qw($country_un_url $country_un_file);
-use vars qw(%country_un_orig);
+our($country_un_url,$country_un_file);
+our(%country_un_orig);
 
 $country_un_url    = "http://unstats.un.org/unsd/methods/m49/m49alpha.htm";
 ($country_un_file) = $country_un_url =~ m,/([^/]*)$,;
@@ -89,8 +93,8 @@ $country_un_url    = "http://unstats.un.org/unsd/methods/m49/m49alpha.htm";
 # for FIPS 10 codes.
 #
 
-use vars qw($country_nga_url $country_nga_file);
-use vars qw(%country_nga_orig %country_nga_ignore);
+our($country_nga_url,$country_nga_file);
+our(%country_nga_orig,%country_nga_ignore);
 
 $country_nga_url    = "http://earth-info.nga.mil/gns/html/digraphs.htm";
 ($country_nga_file) = $country_nga_url =~ m,/([^/]*)$,;
@@ -99,8 +103,8 @@ $country_nga_url    = "http://earth-info.nga.mil/gns/html/digraphs.htm";
 # IANA domains
 #
 
-use vars qw($country_iana_url $country_iana_file);
-use vars qw(%country_iana_orig);
+our($country_iana_url,$country_iana_file);
+our(%country_iana_orig);
 
 $country_iana_url    = "http://www.iana.org/domains/root/db/index.html";
 ($country_iana_file) = $country_iana_url =~ m,/([^/]*)$,;
@@ -113,8 +117,8 @@ $country_iana_url    = "http://www.iana.org/domains/root/db/index.html";
 # We have to force-override some codes.
 #
 
-use vars qw($country_cia_url $country_cia_file $country_cia_last);
-use vars qw(%country_cia_ignore %country_cia_orig %country_cia_codes);
+our($country_cia_url,$country_cia_file,$country_cia_last);
+our(%country_cia_ignore,%country_cia_orig,%country_cia_codes);
 
 $country_cia_url = "https://www.cia.gov/library/publications/the-world-factbook/appendix/print_appendix-d.html";
 ($country_cia_file) = $country_cia_url =~ m,/([^/]*)$,;
@@ -141,12 +145,12 @@ require "data.country.pl";
 #                                     In the given CODESET, the LANGUAGE_ID
 #                                     corresponds to the given CODE.
 
-use vars qw( $LanguageID %Language %LanguageAlias %Code2LanguageID %LanguageID2Code );
-use vars qw(%language_alias);
+our($LanguageID,%Language,%LanguageAlias,%Code2LanguageID,%LanguageID2Code);
+our(%language_alias);
 
 $LanguageID = "0001";
 
-use vars qw( $LanguageModule );
+our($LanguageModule);
 
 $LanguageModule = "Language";
 
@@ -158,8 +162,8 @@ $LanguageModule = "Language";
 # UTF-8. And (amazingly enough) it's available in a field delimited file!!!
 #
 
-use vars qw($language_iso_url $language_iso_file);
-use vars qw(%language_iso_orig);
+our($language_iso_url,$language_iso_file);
+our(%language_iso_orig);
 
 $language_iso_url    = "http://www.loc.gov/standards/iso639-2/ISO-639-2_utf-8.txt";
 ($language_iso_file) = $language_iso_url =~ m,/([^/]*)$,;
@@ -185,12 +189,12 @@ require "data.language.pl";
 #                                      In the given CODESET, the CURRENCY_ID
 #                                      corresponds to the given CODE.
 
-use vars qw( $CurrencyID %Currency %CurrencyAlias %Code2CurrencyID %CurrencyID2Code );
-use vars qw(%currency_alias);
+our($CurrencyID,%Currency,%CurrencyAlias,%Code2CurrencyID,%CurrencyID2Code);
+our(%currency_alias);
 
 $CurrencyID = "0001";
 
-use vars qw( $CurrencyModule );
+our($CurrencyModule);
 
 $CurrencyModule = "Currency";
 
@@ -198,8 +202,8 @@ $CurrencyModule = "Currency";
 # We'll first read data from the official ISO 4217.
 #
 
-use vars qw($currency_iso_url $currency_iso_file $currency_iso_last);
-use vars qw(%currency_iso_orig %currency_iso_ignore);
+our($currency_iso_url,$currency_iso_file,$currency_iso_last);
+our(%currency_iso_orig,%currency_iso_ignore);
 
 $currency_iso_url    = "http://www.iso.org/iso/support/currency_codes_list-1.htm";
 ($currency_iso_file) = $currency_iso_url =~ m,/([^/]*)$,;
@@ -226,12 +230,12 @@ require "data.currency.pl";
 #                                     In the given CODESET, the SCRIPT_ID
 #                                     corresponds to the given CODE.
 
-use vars qw( $ScriptID %Script %ScriptAlias %Code2ScriptID %ScriptID2Code );
-use vars qw(%script_alias);
+our($ScriptID,%Script,%ScriptAlias,%Code2ScriptID,%ScriptID2Code);
+our(%script_alias);
 
 $ScriptID = "0001";
 
-use vars qw( $ScriptModule );
+our($ScriptModule);
 
 $ScriptModule = "Script";
 
@@ -243,8 +247,8 @@ $ScriptModule = "Script";
 # UTF-8. And (amazingly enough) it's available in a field delimited file!!!
 #
 
-use vars qw($script_iso_url $script_iso_file $script_iso_tmp);
-use vars qw(%script_iso_orig %script_iso_ignore);
+our($script_iso_url,$script_iso_file,$script_iso_tmp);
+our(%script_iso_orig,%script_iso_ignore);
 
 $script_iso_url    = "http://www.unicode.org/iso15924/iso15924.txt.zip";
 ($script_iso_file) = $script_iso_url =~ m,/([^/]*)$,;
@@ -256,7 +260,7 @@ require "data.script.pl";
 # HELP
 ###############################################################################
 
-use vars qw($usage);
+our($usage);
 my $COM = $0;
 $COM =~ s/^.*\///;
 
@@ -1373,8 +1377,6 @@ sub write_module {
    my $timestamp   = `date`;
    chomp($timestamp);
 
-   my $podstr = '=pod';    # so the CPAN indexer won't treat this as a POD file
-
    print $out "package Locale::Codes::$module;
 
 # This file was automatically generated.  Any changes to this file will
@@ -1383,22 +1385,22 @@ sub write_module {
 
 $podstr
 
-=head1 NAME
+$hdstr NAME
 
 Locale::Codes::$module - $type codes for the Locale::$module module
 
-=head1 SYNOPSIS
+$hdstr SYNOPSIS
 
 This module contains data used by the Locale::$module module. It is
 not intended to be used directly, and contains no calleable routines.
 
-=head1 AUTHOR
+$hdstr AUTHOR
 
 See Locale::Codes for full author history.
 
 Currently maintained by Sullivan Beck (sbeck\@cpan.org).
 
-=head1 COPYRIGHT
+$hdstr COPYRIGHT
 
    Copyright (c) 1997-2001 Canon Research Centre Europe (CRE).
    Copyright (c) 2001-2010 Neil Bowers
@@ -1413,8 +1415,8 @@ use strict;
 use warnings;
 require 5.002;
 
-use vars qw(\$VERSION);
-\$VERSION='3.14';
+our(\$VERSION);
+\$VERSION='3.15';
 
 \$Locale::Codes::Data{'$type'}{'id'} = '$id';
 

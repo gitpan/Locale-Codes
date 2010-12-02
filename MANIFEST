@@ -3,7 +3,6 @@ ChangeLog
 examples/code2country
 examples/country2code
 INSTALL
-internal/_no_build
 internal/_no_tests
 internal/build.yaml
 internal/data.country.pl

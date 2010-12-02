@@ -4,8 +4,6 @@ author:
   - 'Sullivan Beck <sbeck@cpan.org>'
 build_requires:
   Test::More: 0
-  Test::Pod: 0
-  Test::Pod::Coverage: 0
 configure_requires:
   Module::Build: 0.36
 generated_by: 'Module::Build version 0.3603'
@@ -17,39 +15,38 @@ name: Locale-Codes
 provides:
   Locale::Codes:
     file: lib/Locale/Codes.pm
-    version: 3.14
+    version: 3.15
   Locale::Codes::Country:
     file: lib/Locale/Codes/Country.pm
-    version: 3.14
+    version: 3.15
   Locale::Codes::Currency:
     file: lib/Locale/Codes/Currency.pm
-    version: 3.14
+    version: 3.15
   Locale::Codes::Language:
     file: lib/Locale/Codes/Language.pm
-    version: 3.14
+    version: 3.15
   Locale::Codes::Script:
     file: lib/Locale/Codes/Script.pm
-    version: 3.14
+    version: 3.15
   Locale::Constants:
     file: lib/Locale/Constants.pm
-    version: 3.14
+    version: 3.15
   Locale::Country:
     file: lib/Locale/Country.pm
-    version: 3.14
+    version: 3.15
   Locale::Currency:
     file: lib/Locale/Currency.pm
-    version: 3.14
+    version: 3.15
   Locale::Language:
     file: lib/Locale/Language.pm
-    version: 3.14
+    version: 3.15
   Locale::Script:
     file: lib/Locale/Script.pm
-    version: 3.14
+    version: 3.15
 requires:
   Carp: 0
   Exporter: 0
-  constant: 0
   perl: 5.002
 resources:
   license: http://dev.perl.org/licenses/
-version: 3.14
+version: 3.15
