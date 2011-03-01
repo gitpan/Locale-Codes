@@ -1,5 +1,5 @@
 #!/usr/bin/perl -w
-# Copyright (c) 2010-2010 Sullivan Beck.  All rights reserved.
+# Copyright (c) 2010-2011 Sullivan Beck.  All rights reserved.
 # This program is free software; you can redistribute it and/or modify it
 # under the same terms as Perl itself.
 
@@ -50,7 +50,9 @@
    "Republic of Moldova"                          => "Moldova, Republic of",
    "Saint Helena"                                 => "Saint Helena, Ascension and Tristan da Cunha",
    "Saint-Barthelemy"                             => "Saint Barthelemy",
-   "Saint-Martin (French part)"                   => "Saint Martin",
+   "Saint-Martin (French part)"                   => "Saint Martin (French part)",
+   "Saint-Martin"                                 => "Saint Martin (French part)",
+   "Saint Martin"                                 => "Saint Martin (French part)",
    "South Korea"                                  => "Korea, Republic of",
    "Svalbard and Jan Mayen Islands"               => "Svalbard and Jan Mayen",
    "Taiwan"                                       => "Taiwan, Province of China",
@@ -88,7 +90,7 @@
 %country_iso_orig =
   (
    "AFGHANISTAN"                                  => "Afghanistan",
-   "ÅLAND ISLANDS"                                => "Aland Islands",
+   "Ã…LAND ISLANDS"                                => "Aland Islands",
    "ALBANIA"                                      => "Albania",
    "ALGERIA"                                      => "Algeria",
    "AMERICAN SAMOA"                               => "American Samoa",
@@ -114,6 +116,7 @@
    "BERMUDA"                                      => "Bermuda",
    "BHUTAN"                                       => "Bhutan",
    "BOLIVIA, PLURINATIONAL STATE OF"              => "Bolivia, Plurinational State of",
+   "BONAIRE, SAINT EUSTATIUS AND SABA"            => "Bonaire, Saint Eustatius and Saba",
    "BOSNIA AND HERZEGOVINA"                       => "Bosnia and Herzegovina",
    "BOTSWANA"                                     => "Botswana",
    "BOUVET ISLAND"                                => "Bouvet Island",
@@ -140,9 +143,10 @@
    "CONGO, THE DEMOCRATIC REPUBLIC OF THE"        => "Congo, The Democratic Republic of the",
    "COOK ISLANDS"                                 => "Cook Islands",
    "COSTA RICA"                                   => "Costa Rica",
-   "CÔTE D'IVOIRE"                                => "Cote d'Ivoire",
+   "CÃ”TE D'IVOIRE"                                => "Cote d'Ivoire",
    "CROATIA"                                      => "Croatia",
    "CUBA"                                         => "Cuba",
+   "CURAÃ‡AO"                                      => "Curacao",
    "CYPRUS"                                       => "Cyprus",
    "CZECH REPUBLIC"                               => "Czech Republic",
    "DENMARK"                                      => "Denmark",
@@ -266,15 +270,15 @@
    "PORTUGAL"                                     => "Portugal",
    "PUERTO RICO"                                  => "Puerto Rico",
    "QATAR"                                        => "Qatar",
-   "RÉUNION"                                      => "Reunion",
+   "RÃ‰UNION"                                      => "Reunion",
    "ROMANIA"                                      => "Romania",
    "RUSSIAN FEDERATION"                           => "Russian Federation",
    "RWANDA"                                       => "Rwanda",
-   "SAINT BARTHÉLEMY"                             => "Saint Barthelemy",
+   "SAINT BARTHÃ‰LEMY"                             => "Saint Barthelemy",
    "SAINT HELENA, ASCENSION AND TRISTAN DA CUNHA" => "Saint Helena, Ascension and Tristan da Cunha",
    "SAINT KITTS AND NEVIS"                        => "Saint Kitts and Nevis",
    "SAINT LUCIA"                                  => "Saint Lucia",
-   "SAINT MARTIN"                                 => "Saint Martin",
+   "SAINT MARTIN (FRENCH PART)"                   => "Saint Martin (French part)",
    "SAINT PIERRE AND MIQUELON"                    => "Saint Pierre and Miquelon",
    "SAINT VINCENT AND THE GRENADINES"             => "Saint Vincent and the Grenadines",
    "SAMOA"                                        => "Samoa",
@@ -286,6 +290,7 @@
    "SEYCHELLES"                                   => "Seychelles",
    "SIERRA LEONE"                                 => "Sierra Leone",
    "SINGAPORE"                                    => "Singapore",
+   "SINT MAARTEN (DUTCH PART)"                    => "Sint Maarten (Dutch part)",
    "SLOVAKIA"                                     => "Slovakia",
    "SLOVENIA"                                     => "Slovenia",
    "SOLOMON ISLANDS"                              => "Solomon Islands",
@@ -342,8 +347,9 @@
   (
    '&Aring;land Islands'                          => "Aland Islands",
    'C&ocirc;te d'."'Ivoire"                       => "Cote d'Ivoire",
-   'Réunion'                                      => "Reunion",
+   'RÃ©union'                                      => "Reunion",
    'Saint-Barth&eacute;lemy'                      => "Saint-Barthelemy",
+   'Cura&ccedil;ao'                               => "Curacao",
   );
 
 ################################################################################
@@ -363,6 +369,10 @@
 
 %country_iana_orig =
   (
+   "Cote d&#39;Ivoire"                            => "Cote d'Ivoire",
+   "CuraÃ§ao"                                      => "Curacao",
+   "Korea, Democratic People&#39;s Republic of"   => "Korea, Democratic People's Republic of",
+   "Lao People&#39;s Democratic Republic"         => "Lao People's Democratic Republic",
   );
 
 ################################################################################
@@ -413,4 +423,3 @@
 # cperl-brace-imaginary-offset: 0
 # cperl-label-offset: -2
 # End:
-

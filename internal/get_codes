@@ -1,5 +1,5 @@
 #!/usr/bin/perl -w
-# Copyright (c) 2010-2010 Sullivan Beck.  All rights reserved.
+# Copyright (c) 2010-2011 Sullivan Beck.  All rights reserved.
 # This program is free software; you can redistribute it and/or modify it
 # under the same terms as Perl itself.
 
@@ -14,11 +14,13 @@ use IO::File;
 use strict;
 use warnings;
 use Archive::Zip;
+use Encode;
+use Text::CSV::Slurp;
 
 use lib "./internal";
 
 our $VERSION;
-$VERSION='3.15';
+$VERSION='3.16';
 
 our $DEBUG;
 $DEBUG = 0;
@@ -106,8 +108,8 @@ $country_nga_url    = "http://earth-info.nga.mil/gns/html/digraphs.htm";
 our($country_iana_url,$country_iana_file);
 our(%country_iana_orig);
 
-$country_iana_url    = "http://www.iana.org/domains/root/db/index.html";
-($country_iana_file) = $country_iana_url =~ m,/([^/]*)$,;
+$country_iana_url    = "http://www.iana.org/domains/root/db/";
+($country_iana_file) = "index.html";
 
 #
 # This is the CIA World Factbook, which is assumed to be a reliable
@@ -202,12 +204,12 @@ $CurrencyModule = "Currency";
 # We'll first read data from the official ISO 4217.
 #
 
-our($currency_iso_url,$currency_iso_file,$currency_iso_last);
+our($currency_iso_url,$currency_iso_file,$currency_csv_file);
 our(%currency_iso_orig,%currency_iso_ignore);
 
-$currency_iso_url    = "http://www.iso.org/iso/support/currency_codes_list-1.htm";
+$currency_iso_url    = "http://www.currency-iso.org/dl_iso_table_a1.xls";
 ($currency_iso_file) = $currency_iso_url =~ m,/([^/]*)$,;
-$currency_iso_last   = "XXX";
+$currency_csv_file   = "currency.csv";
 
 require "data.currency.pl";
 
@@ -359,6 +361,10 @@ sub do_country_iso {
    chomp(@in);
    chop(@in);
 
+   my $in = join("\n",@in);
+   $in = encode('UTF-8',decode('ISO-8859-1',$in));
+   @in = split("\n",$in);
+
    # File is a line of text followed by a blank line followed by the
    # codes as ORIGNAME;CODE .
 
@@ -370,6 +376,7 @@ sub do_country_iso {
    shift(@in);
 
    foreach my $line (@in) {
+      next  if (! $line);
       if ($line !~ /^(.*);(.*)$/) {
          die "ERROR [iso]: line invalid\n" .
              "             $line\n";
@@ -405,6 +412,7 @@ sub do_country_un {
    my @in = `cat $country_un_file`;
    chomp(@in);
    my $in = join("",@in);
+   $in = encode('UTF-8',decode('ISO-8859-1',$in));
 
    # Clean up some things that could cause problems in parsing:
 
@@ -468,8 +476,8 @@ sub do_country_nga {
 
    print "\nINFO [nga]: expect Serbia, Ashmore, Baker, Bassas, Clipperton,\n" .
            "            Coral, Europa, Gaza, Glorioso, Howland, Jan Mayen,\n" .
-           "            Jarvis, Johnston, Juan, Kingman, Midway, Navassa, Palmyra,\n" .
-           "            Paracel, Spratly, Svalbard, Tromelin, Wake, West\n";
+           "            Jarvis, Johnston, Juan, Kingman, Midway, Navassa, Netherlands,\n" .
+           "            Palmyra, Paracel, Spratly, Svalbard, Tromelin, Wake, West\n";
 
    ###
    ### The NGA data contains the FIPS 10 codes
@@ -611,9 +619,10 @@ sub do_country_iana {
 
       $dom     =~ s/^\.//;
       $country =~ s,<br.*,,;
+      $country =~ s,\s+$,,;
 
-      if (exists $country_un_orig{$country}) {
-         $country = $country_un_orig{$country};
+      if (exists $country_iana_orig{$country}) {
+         $country = $country_iana_orig{$country};
       }
 
       my($err,$countryID,$i,$t) = get_countryID("iana",$country);
@@ -632,8 +641,8 @@ sub do_country_iana {
 sub do_country_cia {
 
    print "\nINFO [cia]: expect Antarctica, Bouvet, British, Christmas, Cocos,\n" .
-         "            France (Metro), French, Heard, Kosovo, Montenegro,\n" .
-         "            Saint Barth, Saint Martin, Serbia, Taiwan, US\n";
+         "            Curacao, France (Metro), French, Heard, Kosovo, Montenegro,\n" .
+         "            Netherlands, Saint Barth, Saint Martin, Serbia, Taiwan, US\n";
 
    ###
    ### The CIA data is used to check:
@@ -1023,116 +1032,82 @@ sub do_currency_iso {
    ###
 
    system("wget -N -q $currency_iso_url");
-   my @in = `cat $currency_iso_file`;
-   chomp(@in);
-   my $in = join("",@in);
+   system("xls2csv -x $currency_iso_file -b WINDOWS-1252 -c $currency_csv_file -a UTF-8 -q");
+   my @in = `cat $currency_csv_file`;
+   shift(@in);
+   my $in = Text::CSV::Slurp->load(string => join("",@in));
 
-   # Clean up some things that could cause problems in parsing:
+   foreach my $ele (@$in) {
+      my $ent      = $$ele{'ENTITY'};
+      my $currency = $$ele{'Currency'};
+      my $alpha    = $$ele{'Alphabetic Code'};
+      my $num      = $$ele{'Numeric Code'};
+      $num         = ""  if ($num eq "Nil");
+      $currency    =~ s/\s+$//;
 
-   strip_tags(\$in,1,"p","a","strong","div");
-   $in =~ s,\&nbsp;, ,g;
-   $in =~ s,†,,g;
-   $in =~ s,‡,,g;
-   $in =~ s,\s+, ,g;
+      next  if (! $alpha  &&  ! $num);
 
-   # Look for a table who's first row has the header:
-   #    Entity
-
-   my $found = jump_to_row(\$in,"Entity");
-   if (! $found) {
-      die "ERROR [iso]: currency code file format changed!\n";
-   }
-
-   LINE: while (1) {
-      my @row = get_row("iso",\$in);
-      last  if (! @row);
-
-      my($ent,$currencies,$alphas,$nums) = @row;
-      $nums     = ""  if ($nums eq "Nil");
-      next  if (! $alphas  &&  ! $nums);
-
-      my(@currency,@num,@alpha,$done);
-      @currency = split(/<br\s*\/><br\s*\/>/,$currencies);
-      @num      = split(/<br\s*\/><br\s*\/>/,$nums);
-      @alpha    = split(/<br\s*\/><br\s*\/>/,$alphas);
-
-      if ( ($nums    &&  $#num   != $#currency)  ||
-           ($alphas  &&  $#alpha != $#currency) ) {
-         print "WARNING [iso]: Invalid line: $currencies => $alphas, $nums\n";
-         next;
+      if (exists $currency_iso_orig{$currency}) {
+         $currency = $currency_iso_orig{$currency};
       }
 
-      for (my $i=0; $i<=$#currency; $i++) {
-         my $currency = $currency[$i];
-         my $num      = (@num   ? $num[$i]   : "");
-         my $alpha    = (@alpha ? $alpha[$i] : "");
-         $done        = 1  if ($alpha eq $currency_iso_last);
-
-         if (exists $currency_iso_orig{$currency}) {
-            $currency = $currency_iso_orig{$currency};
-         }
-
-         if ($num) {
-            if ($num !~ /^\d+$/  ||  length($num) > 3) {
-               print "WARNING [iso]: Invalid numeric code: $currency => $num\n";
-               next LINE;
-            }
-         }
-
-         $alpha = uc($alpha);
-         if ($alpha  &&  $alpha !~ /^[A-Z][A-Z][A-Z]$/) {
-            print "WARNING [iso]: Invalid alpha code: $currency => $alpha\n";
+      if ($num) {
+         if ($num !~ /^\d+$/  ||  length($num) > 3) {
+            print "WARNING [iso]: Invalid numeric code: $currency => $num\n";
             next LINE;
          }
-
-         next  if (exists $currency_iso_ignore{$alpha});
-
-         # There's a lot of duplication, so make sure that if this code
-         # exists, it is consistant.
-
-         my $new = 1;
-         my @currencyID;
-         if (exists $Code2CurrencyID{"num"}{$num}) {
-            $new = 0;
-            my($currencyID,$i) = @{ $Code2CurrencyID{"num"}{$num} };
-            push(@currencyID,$currencyID);
-         }
-         if (exists $Code2CurrencyID{"alpha"}{$alpha}) {
-            $new = 0;
-            my($currencyID,$i) = @{ $Code2CurrencyID{"alpha"}{$alpha} };
-            push(@currencyID,$currencyID);
-         }
-
-         if ($#currencyID == 1) {
-            if ($currencyID[0] != $currencyID[1]) {
-               print "WARNING [iso]: CurrencyID mismatch: $currency => $alpha,$num\n";
-               next LINE;
-            }
-         }
-
-         my $currencyID;
-         if ($new) {
-            $currencyID = $CurrencyID++;
-            $Currency{$currencyID} = [ $currency ];
-            $CurrencyAlias{lc($currency)} = [ $currencyID, 0 ]
-         } else {
-            $currencyID = $currencyID[0];
-         }
-
-         if ($num) {
-            $num = "0$num"  while (length($num) < 3);
-            $Code2CurrencyID{"num"}{$num} = [ $currencyID, 0 ];
-            $CurrencyID2Code{"num"}{$currencyID} = $num;
-         }
-
-         if ($alpha) {
-            $Code2CurrencyID{"alpha"}{$alpha} = [ $currencyID, 0 ];
-            $CurrencyID2Code{"alpha"}{$currencyID} = $alpha;
-         }
-
       }
 
-      last  if ($done);
+      $alpha = uc($alpha);
+      if ($alpha  &&  $alpha !~ /^[A-Z][A-Z][A-Z]$/) {
+         print "WARNING [iso]: Invalid alpha code: $currency => $alpha\n";
+         next LINE;
+      }
+
+      next  if (exists $currency_iso_ignore{$alpha});
+
+      # There's a lot of duplication, so make sure that if this code
+      # exists, it is consistant.
+
+      my $new = 1;
+      my @currencyID;
+      if (exists $Code2CurrencyID{"num"}{$num}) {
+         $new = 0;
+         my($currencyID,$i) = @{ $Code2CurrencyID{"num"}{$num} };
+         push(@currencyID,$currencyID);
+      }
+      if (exists $Code2CurrencyID{"alpha"}{$alpha}) {
+         $new = 0;
+         my($currencyID,$i) = @{ $Code2CurrencyID{"alpha"}{$alpha} };
+         push(@currencyID,$currencyID);
+      }
+
+      if ($#currencyID == 1) {
+         if ($currencyID[0] != $currencyID[1]) {
+            print "WARNING [iso]: CurrencyID mismatch: $currency => $alpha,$num\n";
+            next LINE;
+         }
+      }
+
+      my $currencyID;
+      if ($new) {
+         $currencyID = $CurrencyID++;
+         $Currency{$currencyID} = [ $currency ];
+         $CurrencyAlias{lc($currency)} = [ $currencyID, 0 ]
+      } else {
+         $currencyID = $currencyID[0];
+      }
+
+      if ($num) {
+         $num = "0$num"  while (length($num) < 3);
+         $Code2CurrencyID{"num"}{$num} = [ $currencyID, 0 ];
+         $CurrencyID2Code{"num"}{$currencyID} = $num;
+      }
+
+      if ($alpha) {
+         $Code2CurrencyID{"alpha"}{$alpha} = [ $currencyID, 0 ];
+         $CurrencyID2Code{"alpha"}{$currencyID} = $alpha;
+      }
    }
 }
 
@@ -1180,9 +1155,7 @@ sub do_script_iso {
    # Every line has an unprintable character at the end.
    #
 
-   open(my $in,'<:encoding(utf8)',$script_iso_tmp);
-   my @in = <$in>;
-   close($in);
+   my @in = `cat $script_iso_tmp`;
    chomp(@in);
    chop(@in);
 
@@ -1368,9 +1341,6 @@ sub write_module {
    }
 
    my $file = "$ModDir/$module.pm";
-   if (-f $file) {
-      system("mv $file $file.bak");
-   }
 
    my $out = new IO::File;
    $out->open(">$file");
@@ -1404,7 +1374,7 @@ $hdstr COPYRIGHT
 
    Copyright (c) 1997-2001 Canon Research Centre Europe (CRE).
    Copyright (c) 2001-2010 Neil Bowers
-   Copyright (c) 2010-2010 Sullivan Beck
+   Copyright (c) 2010-2011 Sullivan Beck
 
 This module is free software; you can redistribute it and/or
 modify it under the same terms as Perl itself.
@@ -1416,7 +1386,7 @@ use warnings;
 require 5.002;
 
 our(\$VERSION);
-\$VERSION='3.15';
+\$VERSION='3.16';
 
 \$Locale::Codes::Data{'$type'}{'id'} = '$id';
 
@@ -1501,6 +1471,7 @@ sub do_clean {
    system("rm -f $country_iana_file");
    system("rm -f $language_iso_file");
    system("rm -f $currency_iso_file");
+   system("rm -f $currency_csv_file");
    system("rm -f $script_iso_file");
    system("rm -f $script_iso_tmp");
    system("rm -rf __MACOSX");

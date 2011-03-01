@@ -21,15 +21,19 @@ Before every release, spellcheck the documents:
 Get the newest codes. Be sure to read the entire diff to make sure that
 no HTML is getting added to a code.
 
+   mv lib/Locale/Codes/Country.pm{,.bak}
    ./internal/get_codes -c
    diff lib/Locale/Codes/Country.pm{.bak,} | less
 
+   mv lib/Locale/Codes/Language.pm{,.bak}
    ./internal/get_codes -l
    diff lib/Locale/Codes/Language.pm{.bak,} | less
 
+   mv lib/Locale/Codes/Currency.pm{,.bak}
    ./internal/get_codes -r
    diff lib/Locale/Codes/Currency.pm{.bak,} | less
 
+   mv lib/Locale/Codes/Script.pm{,.bak}
    ./internal/get_codes -s
    diff lib/Locale/Codes/Script.pm{.bak,} | less
 

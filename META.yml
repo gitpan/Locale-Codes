@@ -15,38 +15,38 @@ name: Locale-Codes
 provides:
   Locale::Codes:
     file: lib/Locale/Codes.pm
-    version: 3.15
+    version: 3.16
   Locale::Codes::Country:
     file: lib/Locale/Codes/Country.pm
-    version: 3.15
+    version: 3.16
   Locale::Codes::Currency:
     file: lib/Locale/Codes/Currency.pm
-    version: 3.15
+    version: 3.16
   Locale::Codes::Language:
     file: lib/Locale/Codes/Language.pm
-    version: 3.15
+    version: 3.16
   Locale::Codes::Script:
     file: lib/Locale/Codes/Script.pm
-    version: 3.15
+    version: 3.16
   Locale::Constants:
     file: lib/Locale/Constants.pm
-    version: 3.15
+    version: 3.16
   Locale::Country:
     file: lib/Locale/Country.pm
-    version: 3.15
+    version: 3.16
   Locale::Currency:
     file: lib/Locale/Currency.pm
-    version: 3.15
+    version: 3.16
   Locale::Language:
     file: lib/Locale/Language.pm
-    version: 3.15
+    version: 3.16
   Locale::Script:
     file: lib/Locale/Script.pm
-    version: 3.15
+    version: 3.16
 requires:
   Carp: 0
   Exporter: 0
   perl: 5.002
 resources:
   license: http://dev.perl.org/licenses/
-version: 3.15
+version: 3.16
