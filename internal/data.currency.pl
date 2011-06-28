@@ -7,6 +7,8 @@
   (
   );
 
+################################################################################
+
 %currency_iso_orig =
   (
    "CFA Franc BCEAO "      => "CFA Franc BCEAO",
@@ -16,13 +18,19 @@
    "Pa’anga"               => "Pa'anga",
    "US Dollar (Next day) " => "US Dollar (Next day)",
    "US Dollar (Same day) " => "US Dollar (Same day)",
+   "Bond Markets Unit European Monetary Unit (E.M.U.-6) "
+                           => "Bond Markets Unit European Monetary Unit (E.M.U.-6)",
   );
 
 %currency_iso_ignore =
   (
-    "XFU"  => 1,
-    "XTS"  => 1,
-    "XXX"  => 1,
+   "name"   => {},
+   "num"    => {},
+   "alpha"  => {
+                "XFU"  => 1,
+                "XTS"  => 1,
+                "XXX"  => 1,
+               },
   );
 
 1;
@@ -37,4 +45,3 @@
 # cperl-brace-imaginary-offset: 0
 # cperl-label-offset: -2
 # End:
-

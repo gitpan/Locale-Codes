@@ -2,7 +2,7 @@
 
 require 5.002;
 
-use Locale::Country;
+use Locale::Codes::Country;
 
 print country2code('Bolivia'),"\n";
 print country2code('Bolivia, Plurinational State of'),"\n";

@@ -1,3 +1,52 @@
+http://www.iana.org/assignments/language-subtag-registry
+   Type: language
+   Subtag: aa
+     => alpha-2 country code
+
+   Type: language
+   Subtag: aaa
+     => alpha-3 country code
+
+   Type: script
+   Subtag: Aaaa
+     => alpha script code
+
+   Type: region
+   Subtag: AX
+     => region code
+
+   ignore
+   Deprecated: DATE
+
+Create a new module:
+   Locale::ExtLanguage - extended language codes
+
+   Type: extlang
+   Subtag: ads
+   Description: Adamorobe Sign Language
+
+   Locale::Regions - region codes
+
+   Type: region
+   Subtag: UM
+   Description: United States Minor Outlying Islands
+
+=========
+
+Create a new package:  Locale-Codes-Links
+   links codes of one type to another
+      NOT necessarily 1-to-1
+   function:
+      link(TYPE1 [CODESET1 [CODE1]] TYPE2 [CODESET2 [CODE2]])
+         => ( LINK1, LINK2, ...)     all links between types
+
+   TYPE = Language, Script, ...
+   LINK = [ CODESET1,CODE1, CODESET2,CODE2 ]
+
+   If all 6 pieces of information are given, returns 1 if the link exists.
+
+   Locale::Codes::Links::Language-ExtLanguage
+      links ExtLanguage to Language
 
 Based on RT-61345:
 

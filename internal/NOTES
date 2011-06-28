@@ -9,33 +9,33 @@ It's also available in case someone ever chooses to fork the
 module (though I hope that won't be necessary).
 
 #########################################################################
-Before every release, spellcheck the documents:
-
-   for i in `find lib -type f -name \*.pod` ;do
-      podspell $i > $i.txt
-      ispell -p internal/ispell.isp $i.txt
-      rm -f $i.txt $i.txt.bak
-   done
-
-#########################################################################
 Get the newest codes. Be sure to read the entire diff to make sure that
 no HTML is getting added to a code.
 
-   mv lib/Locale/Codes/Country.pm{,.bak}
+   cp lib/Locale/Codes/Country_Codes.pm{,.bak}
+   cp lib/Locale/Codes/Language_Codes.pm{,.bak}
+   cp lib/Locale/Codes/Currency_Codes.pm{,.bak}
+   cp lib/Locale/Codes/Script_Codes.pm{,.bak}
+   cp lib/Locale/Codes/LangExt_Codes.pm{,.bak}
+
    ./internal/get_codes -c
-   diff lib/Locale/Codes/Country.pm{.bak,} | less
+   diff lib/Locale/Codes/Country_Codes.pm{.bak,}
 
-   mv lib/Locale/Codes/Language.pm{,.bak}
    ./internal/get_codes -l
-   diff lib/Locale/Codes/Language.pm{.bak,} | less
+   diff lib/Locale/Codes/Language_Codes.pm{.bak,}
 
-   mv lib/Locale/Codes/Currency.pm{,.bak}
    ./internal/get_codes -r
-   diff lib/Locale/Codes/Currency.pm{.bak,} | less
+   diff lib/Locale/Codes/Currency_Codes.pm{.bak,}
 
-   mv lib/Locale/Codes/Script.pm{,.bak}
    ./internal/get_codes -s
-   diff lib/Locale/Codes/Script.pm{.bak,} | less
+   diff lib/Locale/Codes/Script_Codes.pm{.bak,}
+
+   ./internal/get_codes -L
+   diff lib/Locale/Codes/LangExt_Codes.pm{.bak,}
+
+   ./internal/get_codes -V
+   diff lib/Locale/Codes/LangVar_Codes.pm{.bak,}
+
 
    ./internal/get_codes -C
    rm lib/Locale/Codes/*.bak
@@ -56,7 +56,16 @@ Set the release version
    chmod +x internal/get_codes
 
 #########################################################################
-Update the history file with the date
+Before every release, spellcheck the documents:
+
+   for i in `find lib -type f -name \*.pod` ;do
+      podspell $i > $i.txt
+      ispell -p internal/ispell.isp $i.txt
+      rm -f $i.txt $i.txt.bak
+   done
+
+#########################################################################
+Update the Change file with the date
 
 #########################################################################
 Update the copyright
@@ -92,12 +101,12 @@ Copy in the modified files.
    chmod -x t/*
    cd ../..
 
-Create the patch
+Create the patch (NOTE: fix the version numbers):
 
    git config --global user.name "Sullivan Beck"
    git config --global user.email 'sbeck@cpan.org'
 
-   git commit -a -m 'Bump Locale-Codes from 3.13 to 3.14'
+   git commit -a -m 'Bump Locale-Codes from 3.15 to 3.16'
    git format-patch origin
    mv 0001* /tmp
 

@@ -18,6 +18,8 @@
    "China, Macao Special Administrative Region"   => "Macao",
    "Cocos Islands"                                => "Cocos (Keeling) Islands",
    "Congo (Brazzaville)"                          => "Congo",
+   "Congo, Democratic Republic of the"            => "Congo, The Democratic Republic of the",
+   "Congo, Republic of the"                       => "Congo",
    "Democratic People's Republic of Korea"        => "Korea, Democratic People's Republic of",
    "Democratic Republic of the Congo"             => "Congo, The Democratic Republic of the",
    "East Timor"                                   => "Timor-Leste",
@@ -39,6 +41,7 @@
    "Macao Special Administrative Region of China" => "Macao",
    "Macau S.A.R"                                  => "Macao",
    "Macau S.A.R."                                 => "Macao",
+   "Macau"                                        => "Macao",
    "Macedonia"                                    => "Macedonia, The Former Yugoslav Republic of",
    "Macedonia, Former Yugoslav Republic of"       => "Macedonia, The Former Yugoslav Republic of",
    "Micronesia (Federated States of)"             => "Micronesia, Federated States of",
@@ -49,11 +52,12 @@
    "Republic of Korea"                            => "Korea, Republic of",
    "Republic of Moldova"                          => "Moldova, Republic of",
    "Saint Helena"                                 => "Saint Helena, Ascension and Tristan da Cunha",
+   "Saint Martin"                                 => "Saint Martin (French part)",
    "Saint-Barthelemy"                             => "Saint Barthelemy",
    "Saint-Martin (French part)"                   => "Saint Martin (French part)",
    "Saint-Martin"                                 => "Saint Martin (French part)",
-   "Saint Martin"                                 => "Saint Martin (French part)",
    "South Korea"                                  => "Korea, Republic of",
+   "South Georgia and the Islands"                => "South Georgia and the South Sandwich Islands",
    "Svalbard and Jan Mayen Islands"               => "Svalbard and Jan Mayen",
    "Taiwan"                                       => "Taiwan, Province of China",
    "The Bahamas"                                  => "Bahamas",
@@ -68,6 +72,7 @@
    "United States Virgin Islands"                 => "Virgin Islands, U.S.",
    "United States of America"                     => "United States",
    "Vatican City"                                 => "Holy See (Vatican City State)",
+   "Holy See (Vatican City)"                      => "Holy See (Vatican City State)",
    "Venezuela (Bolivarian Republic of)"           => "Venezuela, Bolivarian Republic of",
    "Venezuela"                                    => "Venezuela, Bolivarian Republic of",
    "Vietnam"                                      => "Viet Nam",
@@ -76,13 +81,6 @@
    "Virgin Islands"                               => "Virgin Islands, U.S.",
    "Wallis and Futuna Islands"                    => "Wallis and Futuna",
   );
-
-# From v. 2.xx:
-#   Zaire
-#   Serbia and Montenegro
-#   Yugoslavia
-#   Jan Mayen
-#   Svalbard
 
 ################################################################################
 # ISO 3166-1 countries
@@ -116,7 +114,7 @@
    "BERMUDA"                                      => "Bermuda",
    "BHUTAN"                                       => "Bhutan",
    "BOLIVIA, PLURINATIONAL STATE OF"              => "Bolivia, Plurinational State of",
-   "BONAIRE, SAINT EUSTATIUS AND SABA"            => "Bonaire, Saint Eustatius and Saba",
+   "BONAIRE, SINT EUSTATIUS AND SABA"             => "Bonaire, Saint Eustatius and Saba",
    "BOSNIA AND HERZEGOVINA"                       => "Bosnia and Herzegovina",
    "BOTSWANA"                                     => "Botswana",
    "BOUVET ISLAND"                                => "Bouvet Island",
@@ -340,6 +338,12 @@
    "ZIMBABWE"                                     => "Zimbabwe",
   );
 
+%country_iso_ignore =
+  (
+   'name'   => {},
+   'alpha2' => {},
+  );
+
 ################################################################################
 # United Nations (source of alpha-3 and numeric codes)
 
@@ -352,6 +356,13 @@
    'Cura&ccedil;ao'                               => "Curacao",
   );
 
+%country_un_ignore =
+  (
+   'name'   => {},
+   'num'    => {},
+   'alpha3' => {},
+  );
+
 ################################################################################
 # NGA (source of FIPS 10 codes)
 
@@ -361,7 +372,10 @@
 
 %country_nga_ignore =
   (
-   "Golan Heights (Israeli-occupied)"            => 1,
+   'name'   => {
+                "Golan Heights (Israeli-occupied)"            => 1,
+               },
+   'fips'   => {},
   );
 
 ################################################################################
@@ -375,6 +389,12 @@
    "Lao People&#39;s Democratic Republic"         => "Lao People's Democratic Republic",
   );
 
+%country_iana_ignore =
+  (
+   'name'   => {},
+   'dom'    => {},
+  );
+
 ################################################################################
 # CIA World Factbook (checks for codes)
 
@@ -384,9 +404,17 @@
 
 %country_cia_ignore =
   (
-   "Western Samoa"               => 1,
-   "World"                       => 1,
-   "Zaire"                       => 1,
+   'name'   => {
+                "Western Samoa"               => 1,
+                "World"                       => 1,
+                "Zaire"                       => 1,
+               },
+   'fips'   => {},
+   'num'    => {},
+   'stanag' => {},
+   'dom'    => {},
+   'alpha2' => {},
+   'alpha3' => {},
   );
 
 %country_cia_codes =

@@ -7,6 +7,8 @@
   (
   );
 
+################################################################################
+
 %script_iso_orig =
   (
    "Ethiopic (Geʻez)"                => "Ethiopic (Geez)",
@@ -25,10 +27,43 @@
 
 %script_iso_ignore =
   (
-   "Zxxx"    => 1,
-   "Zyyy"    => 1,
-   "Zzzz"    => 1,
+   'name'   => {},
+   'num'    => {},
+   'alpha'  => {
+                "Zxxx"    => 1,
+                "Zyyy"    => 1,
+                "Zzzz"    => 1,
+               },
   );
+
+################################################################################
+
+%script_iana_orig =
+  (
+   "Geʻez"               => "Ge'ez",
+   "Hangŭl"              => "Hangul",
+   "Hanunóo"             => "Hanunoo",
+   "Nüshu"               => "Nushu",
+   "N’Ko"                => "N'Ko",
+   "'Na-'Khi ²Ggŏ-¹baw"  => "'Na-'Khi Ggo-baw",
+   "Śāradā"              => "Sarada",
+   "Ṭākrī"               => "Takri",
+   "Ṭāṅkrī"              => "Tankri",
+   "Róng"                => "Rong",
+  );
+
+%script_iana_ignore =
+  (
+   'name'   => {
+                "Private use"   => 1,
+               },
+   'alpha'  => {
+                "Zxxx"    => 1,
+                "Zyyy"    => 1,
+                "Zzzz"    => 1,
+               },
+  );
+
 1;
 
 # Local Variables:
