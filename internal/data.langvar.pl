@@ -3,21 +3,18 @@
 # This program is free software; you can redistribute it and/or modify it
 # under the same terms as Perl itself.
 
-%langvar_alias =
-  (
-  );
+$Data{'langvar'}{'alias'} = {
+};
 
 ################################################################################
 
-%langvar_iana_orig =
-  (
+$Data{'langvar'}{'iana'}{'orig'}{'name'} = {
    'Norwegian in Høgnorsk (High Norwegian) orthography' =>
        'Norwegian in Hognorsk (High Norwegian) orthography',
-  );
+};
 
-%langvar_iana_ignore =
-  (
-  );
+$Data{'langvar'}{'iana'}{'ignore'} = {
+};
 
 1;
 

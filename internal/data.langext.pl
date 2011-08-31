@@ -3,25 +3,22 @@
 # This program is free software; you can redistribute it and/or modify it
 # under the same terms as Perl itself.
 
-%langext_alias =
-  (
-  );
+$Data{'langext'}{'alias'} = {
+};
 
 ################################################################################
 
-%langext_iana_orig =
-  (
+$Data{'langext'}{'iana'}{'orig'}{'name'} = {
    "Lengua de señas catalana"        => "Lengua de senas catalana",
    "finlandssvenskt teckenspråk"     => "finlandssvenskt teckensprak",
    "Lengua de Señas Panameñas"       => "Lengua de Senas Panamenas",
    "Lengua de Señas del Paraguay"    => "Lengua de Senas del Paraguay",
    "Türk İşaret Dili"                => "Turk Isaret Dili",
    "Urubú-Kaapor Sign Language"      => "Urubu-Kaapor Sign Language",
-  );
+};
 
-%langext_iana_ignore =
-  (
-  );
+$Data{'langext'}{'iana'}{'ignore'} = {
+};
 
 1;
 

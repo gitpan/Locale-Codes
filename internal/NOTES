@@ -17,6 +17,7 @@ no HTML is getting added to a code.
    cp lib/Locale/Codes/Currency_Codes.pm{,.bak}
    cp lib/Locale/Codes/Script_Codes.pm{,.bak}
    cp lib/Locale/Codes/LangExt_Codes.pm{,.bak}
+   cp lib/Locale/Codes/LangVar_Codes.pm{,.bak}
 
    ./internal/get_codes -c
    diff lib/Locale/Codes/Country_Codes.pm{.bak,}
@@ -95,11 +96,45 @@ Update Porting/Maintainers.pl
 Copy in the modified files.
 
    cd cpan/Locale-Codes
+   dir=`find ~/perl-modules -type d -name Locale-Codes\*`
+
    for i in `find . -type f` ;do
-      cp -p ~/perl-modules/Locale-Codes-*/$i $i
+      if [ ! -e $dir/$i ]; then
+         echo "Remove: $i"
+         git rm $i
+      else
+         cp -p ~/perl-modules/Locale-Codes-*/$i $i
+      fi
    done
+
+   for i in `cd $dir; find . -type f` ;do
+      tmp=`echo $i | sed -e 's,\(examples\|internal\)/,,'`
+      if [ "$tmp" != "$i" -o \
+           "$tmp"  = "./README" -o \
+           "$tmp"  = "./INSTALL" -o \
+           "$tmp"  = "./Build.PL" -o \
+           "$tmp"  = "./Makefile.PL" -o \
+           "$tmp"  = "./MANIFEST" -o \
+           "$tmp"  = "./META.yml" -o \
+           "$tmp"  = "./t/runtests.bat" -o \
+           "$tmp"  = "./t/runtests" -o \
+           "$tmp"  = "./t/pod.t" -o \
+           "$tmp"  = "./t/pod_coverage.t" \
+         ]; then
+         continue
+      fi
+
+      if [ ! -e $i ]; then
+         echo "Added: $i"
+         cp -p ~/perl-modules/Locale-Codes-*/$i $i
+         git add $i
+      fi
+   done
+
    chmod -x t/*
    cd ../..
+
+Modify the MANIFEST file if any files are added/removed.
 
 Create the patch (NOTE: fix the version numbers):
 
@@ -119,4 +154,3 @@ in the patch.
    make test
 
 and make sure that the tests all succeed. Then submit the patch.
-

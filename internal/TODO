@@ -1,35 +1,20 @@
-http://www.iana.org/assignments/language-subtag-registry
-   Type: language
-   Subtag: aa
-     => alpha-2 country code
+Add iso 639-5
+  http://www.loc.gov/standards/iso639-5/id.php
+  http://www.loc.gov/standards/iso639-2/php/code_list.php  (639-1, 639-2)
 
-   Type: language
-   Subtag: aaa
-     => alpha-3 country code
+http://tools.ietf.org/html/rfc5646
+language tags (i.e. language [-script] [-region] [-variant]* [-extension]* [-privateuse]
+   language :
+     x-*
+     i-*
+     alpha-2 language code
+     alpha-3 language code
+     qaa-qtz-*
+   region :
+     alpha-2 country code
+     UN M.49 code
 
-   Type: script
-   Subtag: Aaaa
-     => alpha script code
-
-   Type: region
-   Subtag: AX
-     => region code
-
-   ignore
-   Deprecated: DATE
-
-Create a new module:
-   Locale::ExtLanguage - extended language codes
-
-   Type: extlang
-   Subtag: ads
-   Description: Adamorobe Sign Language
-
-   Locale::Regions - region codes
-
-   Type: region
-   Subtag: UM
-   Description: United States Minor Outlying Islands
+Type: region   ISO 3166-1, UN M.49
 
 =========
 

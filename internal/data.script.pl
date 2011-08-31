@@ -3,14 +3,12 @@
 # This program is free software; you can redistribute it and/or modify it
 # under the same terms as Perl itself.
 
-%script_alias =
-  (
-  );
+$Data{'script'}{'alias'} = {
+};
 
 ################################################################################
 
-%script_iso_orig =
-  (
+$Data{'script'}{'iso'}{'orig'}{'name'} = {
    "Ethiopic (Geʻez)"                => "Ethiopic (Geez)",
    "Hangul (Hangŭl, Hangeul)"        => "Hangul (Hangul, Hangeul)",
    "Hanunoo (Hanunóo)"               => "Hanunoo (Hanunoo)",
@@ -23,10 +21,9 @@
       "Ol Chiki (Ol Cemet, Ol, Santali)",
    "Sharada, Śāradā"                  => "Sharada, Sarada",
    "Takri, Ṭākrī, Ṭāṅkrī"              => "Takri, Takri, Tankri",
-  );
+};
 
-%script_iso_ignore =
-  (
+$Data{'script'}{'iso'}{'ignore'} = {
    'name'   => {},
    'num'    => {},
    'alpha'  => {
@@ -34,12 +31,11 @@
                 "Zyyy"    => 1,
                 "Zzzz"    => 1,
                },
-  );
+};
 
 ################################################################################
 
-%script_iana_orig =
-  (
+$Data{'script'}{'iana'}{'orig'}{'name'} = {
    "Geʻez"               => "Ge'ez",
    "Hangŭl"              => "Hangul",
    "Hanunóo"             => "Hanunoo",
@@ -50,10 +46,9 @@
    "Ṭākrī"               => "Takri",
    "Ṭāṅkrī"              => "Tankri",
    "Róng"                => "Rong",
-  );
+};
 
-%script_iana_ignore =
-  (
+$Data{'script'}{'iana'}{'ignore'} = {
    'name'   => {
                 "Private use"   => 1,
                },
@@ -62,7 +57,7 @@
                 "Zyyy"    => 1,
                 "Zzzz"    => 1,
                },
-  );
+};
 
 1;
 

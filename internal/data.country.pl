@@ -6,8 +6,7 @@
 # This is used to match country names from one source with those from
 # an existing source.
 #
-%country_alias =
-  (
+$Data{'country'}{'alias'} = {
    "Bahamas, The"                                 => "Bahamas",
    "Bolivia (Plurinational State of)"             => "Bolivia, Plurinational State of",
    "Bolivia"                                      => "Bolivia, Plurinational State of",
@@ -80,13 +79,12 @@
    "Virgin Islands (US)"                          => "Virgin Islands, U.S.",
    "Virgin Islands"                               => "Virgin Islands, U.S.",
    "Wallis and Futuna Islands"                    => "Wallis and Futuna",
-  );
+};
 
 ################################################################################
 # ISO 3166-1 countries
 
-%country_iso_orig =
-  (
+$Data{'country'}{'iso'}{'orig'}{'name'} = {
    "AFGHANISTAN"                                  => "Afghanistan",
    "ÅLAND ISLANDS"                                => "Aland Islands",
    "ALBANIA"                                      => "Albania",
@@ -336,108 +334,57 @@
    "YEMEN"                                        => "Yemen",
    "ZAMBIA"                                       => "Zambia",
    "ZIMBABWE"                                     => "Zimbabwe",
-  );
+};
 
-%country_iso_ignore =
-  (
+$Data{'country'}{'iso'}{'ignore'} = {
    'name'   => {},
    'alpha2' => {},
-  );
+};
 
 ################################################################################
 # United Nations (source of alpha-3 and numeric codes)
 
-%country_un_orig =
-  (
+$Data{'country'}{'un'}{'orig'}{'name'} = {
    '&Aring;land Islands'                          => "Aland Islands",
    'C&ocirc;te d'."'Ivoire"                       => "Cote d'Ivoire",
    'Réunion'                                      => "Reunion",
    'Saint-Barth&eacute;lemy'                      => "Saint-Barthelemy",
    'Cura&ccedil;ao'                               => "Curacao",
-  );
+};
 
-%country_un_ignore =
-  (
+$Data{'country'}{'un'}{'ignore'} = {
    'name'   => {},
    'num'    => {},
    'alpha3' => {},
-  );
+};
 
 ################################################################################
 # NGA (source of FIPS 10 codes)
 
-%country_nga_orig =
-  (
-  );
+$Data{'country'}{'nga'}{'orig'}{'name'} = {
+};
 
-%country_nga_ignore =
-  (
+$Data{'country'}{'nga'}{'ignore'} = {
    'name'   => {
                 "Golan Heights (Israeli-occupied)"            => 1,
                },
    'fips'   => {},
-  );
+};
 
 ################################################################################
 # IANA (source of top level domains)
 
-%country_iana_orig =
-  (
+$Data{'country'}{'iana'}{'orig'}{'name'} = {
    "Cote d&#39;Ivoire"                            => "Cote d'Ivoire",
    "Curaçao"                                      => "Curacao",
    "Korea, Democratic People&#39;s Republic of"   => "Korea, Democratic People's Republic of",
    "Lao People&#39;s Democratic Republic"         => "Lao People's Democratic Republic",
-  );
+};
 
-%country_iana_ignore =
-  (
+$Data{'country'}{'iana'}{'ignore'} = {
    'name'   => {},
    'dom'    => {},
-  );
-
-################################################################################
-# CIA World Factbook (checks for codes)
-
-%country_cia_orig =
-  (
-  );
-
-%country_cia_ignore =
-  (
-   'name'   => {
-                "Western Samoa"               => 1,
-                "World"                       => 1,
-                "Zaire"                       => 1,
-               },
-   'fips'   => {},
-   'num'    => {},
-   'stanag' => {},
-   'dom'    => {},
-   'alpha2' => {},
-   'alpha3' => {},
-  );
-
-%country_cia_codes =
-  (
-   "alpha2" => {"Gaza Strip"      => "-",
-                "West Bank"       => "-",
-                "Svalbard"        => "-",
-               },
-   "alpha3" => {"Gaza Strip"      => "-",
-                "West Bank"       => "-",
-                "Svalbard"        => "-",
-               },
-   "num"    => {"Gaza Strip"      => "-",
-                "West Bank"       => "-",
-                "Svalbard"        => "-",
-               },
-   "fips"   => {
-               },
-   "dom"    => {"Gaza Strip"      => "-",
-                "West Bank"       => "-",
-                "Svalbard"        => "-",
-               },
-  );
+};
 
 1;
 

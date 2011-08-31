@@ -3,14 +3,12 @@
 # This program is free software; you can redistribute it and/or modify it
 # under the same terms as Perl itself.
 
-%currency_alias =
-  (
-  );
+$Data{'currency'}{'alias'} = {
+};
 
 ################################################################################
 
-%currency_iso_orig =
-  (
+$Data{'currency'}{'iso'}{'orig'}{'name'} = {
    "CFA Franc BCEAO "      => "CFA Franc BCEAO",
    "CFA Franc BEAC "       => "CFA Franc BEAC",
    "Ngultrum "             => "Ngultrum",
@@ -20,10 +18,9 @@
    "US Dollar (Same day) " => "US Dollar (Same day)",
    "Bond Markets Unit European Monetary Unit (E.M.U.-6) "
                            => "Bond Markets Unit European Monetary Unit (E.M.U.-6)",
-  );
+};
 
-%currency_iso_ignore =
-  (
+$Data{'currency'}{'iso'}{'ignore'} = {
    "name"   => {},
    "num"    => {},
    "alpha"  => {
@@ -31,7 +28,7 @@
                 "XTS"  => 1,
                 "XXX"  => 1,
                },
-  );
+};
 
 1;
 

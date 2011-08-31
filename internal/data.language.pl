@@ -3,50 +3,43 @@
 # This program is free software; you can redistribute it and/or modify it
 # under the same terms as Perl itself.
 
-%language_alias =
-  (
+$Data{'language'}{'alias'} = {
    "Greek"                            => 'Greek, Modern (1453-)',
    "Tonga"                            => 'Tonga (Tonga Islands)',
-  );
+};
 
 ################################################################################
 
-%language_iso2_orig =
-  (
-   "Bokm\x{e5}l, Norwegian; Norwegian Bokm\x{e5}l"
-                                      => 'Bokmal, Norwegian; Norwegian Bokmal',
-   "Occitan (post 1500); Proven\x{e7}al"
-                                      => 'Occitan (post 1500); Provencal',
+$Data{'language'}{'iso2'}{'orig'}{'name'} = {
+   "Bokm\x{e5}l, Norwegian"           => 'Bokmal, Norwegian',
+   "Norwegian Bokm\x{e5}l"            => 'Norwegian Bokmal',
+   "Proven\x{e7}al"                   => 'Provencal',
    "Proven\x{e7}al, Old (to 1500)"    => 'Provencal, Old (to 1500)',
    "Volap\x{fc}k"                     => 'Volapuk',
-  );
+};
 
-%language_iso2_ignore =
-  (
+$Data{'language'}{'iso2'}{'ignore'} = {
    "name"    => {},
    "alpha2"  => {},
    "alpha3"  => {},
    "term"    => {},
-  );
+};
 
 ################################################################################
 
-%language_iso5_orig =
-  (
+$Data{'language'}{'iso5'}{'orig'}{'name'} = {
    "Creoles and pidgins, English‑based" => "Creoles and pidgins, English-based",
    "Creoles and pidgins, French‑based"  => "Creoles and pidgins, French-based",
-  );
+};
 
-%language_iso5_ignore =
-  (
+$Data{'language'}{'iso5'}{'ignore'} = {
    "name"    => {},
    "alpha3"  => {},
-  );
+};
 
 ################################################################################
 
-%language_iana_orig =
-  (
+$Data{'language'}{'iana'}{'orig'}{'name'} = {
    "Norwegian Bokmål"                              => "Norwegian Bokmal",
    "Volapük"                                       => "Volapuk",
    "Arbëreshë Albanian"                            => "Arbereshe Albanian",
@@ -151,7 +144,7 @@
    "Guajá"                                         => "Guaja",
    "Gavião Do Jiparaná"                            => "Gaviao Do Jiparana",
    "Pará Gavião"                                   => "Para Gaviao",
-   "Gwichʼin"                                      => "Gwich'in",
+   "Gwichʼin"                                       => "Gwich'in",
    "Wè Southern"                                   => "We Southern",
    "Ngäbere"                                       => "Ngabere",
    "Hakö"                                          => "Hako",
@@ -306,11 +299,11 @@
    "Santa Inés Ahuatempan Popoloca"                => "Santa Ines Ahuatempan Popoloca",
    "Pémono"                                        => "Pemono",
    "Pááfang"                                       => "Paafang",
-   "Ardhamāgadhī Prākrit"                          => "Ardhamagadhi Prakrit",
+   "Ardhamāgadhī Prākrit"                           => "Ardhamagadhi Prakrit",
    "Pökoot"                                        => "Pokoot",
    "Pilagá"                                        => "Pilaga",
    "Palikúr"                                       => "Palikur",
-   "Māhārāṣṭri Prākrit"                            => "Maharastri Prakrit",
+   "Māhārāṣṭri Prākrit"                              => "Maharastri Prakrit",
    "Potiguára"                                     => "Potiguara",
    "Pokangá"                                       => "Pokanga",
    "San Luís Temalacayuca Popoloca"                => "San Luis Temalacayuca Popoloca",
@@ -467,15 +460,17 @@
    "Azoyú Me'phaa"                                 => "Azoyu Me'phaa",
    "Urubú-Kaapor Sign Language"                    => "Urubu-Kaapor Sign Language",
    "Urubú-Kaapor"                                  => "Urubu-Kaapor",
-  );
+   "Kɛlɛngaxo Bozo"                                => "Kelengazxo Bozo",
+   "Nêlêmwa-Nixumwak"                              => "Nelemwa-Nixumwak",
+};
 
-%language_iana_ignore =
-  (
+$Data{'language'}{'iana'}{'ignore'} = {
    "name"    => {
                  "Private use"      => 1,
                 },
-   "code"    => {},
-  );
+   "alpha2"  => {},
+   "alpha3"  => {},
+};
 
 1;
 
