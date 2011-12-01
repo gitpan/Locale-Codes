@@ -8,28 +8,28 @@ DESCRIPTION
 
     Currently, the following modules are included:
 
-    Locale::Codes::Country
+    Locale::Codes::Country, Locale::Country
         This includes support for country codes (such as those listed in
         ISO-3166) to specify the country.
 
         Because this module was originally distributed as Locale::Country,
         it is also available under that name.
 
-    Locale::Codes::Language
+    Locale::Codes::Language, Locale::Language
         This includes support for language codes (such as those listed in
         ISO-639) to specify the language.
 
         Because this module was originally distributed as Locale::Language,
         it is also available under that name.
 
-    Locale::Codes::Currency
+    Locale::Codes::Currency, Locale::Currency
         This includes support for currency codes (such as those listed in
         ISO-4217) to specify the currency.
 
         Because this module was originally distributed as Locale::Currency,
         it is also available under that name.
 
-    Locale::Codes::Script
+    Locale::Codes::Script, Locale::Script
         This includes support for script codes (such as those listed in
         ISO-15924) to specify the script.
 
@@ -45,6 +45,10 @@ DESCRIPTION
         This includes support for language variation codes (such as those
         listed in the IANA language registry) to specify the language
         variation.
+
+    Locale::Codes::LangFam
+        This includes support for language family codes (such as those
+        listed in ISO 639-5) to specify families of languages.
 
     Each module can support an arbitrary number of code sets, and it it not
     required that the relationship between these code sets be one-to-one.
@@ -74,6 +78,7 @@ DESCRIPTION
     Locale::Codes::Script_codes
     Locale::Codes::LangExt_codes
     Locale::Codes::LangVar_codes
+    Locale::Codes::LangFam_codes
 
     These modules are not intended to be used by programmers. They contain
     functions or data that are used by the modules listed above.
@@ -164,6 +169,19 @@ COMMON ALIASES
     removed. Other aliases (if any) which no longer appear in any standard
     (and which are not common variations of the name in the standards) have
     also been removed.
+
+DEPRECATED CODES
+    Occasionally, a code is deprecated, but it may still be desirable to
+    have access to it.
+
+    Although there is no way to see every code that has ever existed and
+    been deprecated (since most codesets do not have that information
+    available), as of version 3.20, every code which has ever been included
+    in these modules can be referenced.
+
+    For more information, refer to the documentation on the code2XXX,
+    XXX2code, all_XXX_codes, and all_XXX_names function in the
+    Locale::Codes::API documentation.
 
 SEE ALSO
     Locale::Codes::API

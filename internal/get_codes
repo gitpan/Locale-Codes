@@ -20,7 +20,7 @@ use Text::CSV::Slurp;
 use lib "./internal";
 
 our $VERSION;
-$VERSION='3.18';
+$VERSION='3.20';
 
 # so the CPAN indexer won't treat this as a POD file
 our $podstr = '=pod';
@@ -136,6 +136,13 @@ our $langvar_iana_url   = $language_iana_url;
 
 require "data.langvar.pl";
 
+########################################
+# LANGUAGE FAMILIESS
+
+our $langfam_iso_url   = "http://www.loc.gov/standards/iso639-5/id.php";
+
+require "data.langfam.pl";
+
 # ########################################
 # # REGIONS
 
@@ -173,6 +180,7 @@ $usage=
       -s/--script     : Get the script codes
       -L/--langext    : Get the language extension codes
       -V/--langvar    : Get the language variation codes
+      -F/--langfam    : Get the language family codes
       -C/--clean      : Clean up all temporary files
 ";
 
@@ -187,6 +195,7 @@ my $do_currency = 0;
 my $do_script   = 0;
 my $do_langext  = 0;
 my $do_langvar  = 0;
+my $do_langfam  = 0;
 my $do_clean    = 0;
 
 while ($_ = shift) {
@@ -201,6 +210,7 @@ while ($_ = shift) {
    $do_script = 1,   next  if ($_ eq "-s"   ||  $_ eq "--script");
    $do_langext = 1,  next  if ($_ eq "-L"   ||  $_ eq "--langext");
    $do_langvar = 1,  next  if ($_ eq "-V"   ||  $_ eq "--langvar");
+   $do_langfam = 1,  next  if ($_ eq "-F"   ||  $_ eq "--langfam");
    $do_clean = 1,    next  if ($_ eq "-C"   ||  $_ eq "--clean");
 }
 
@@ -221,6 +231,7 @@ do_currency()   if ($do_all  ||  $do_currency);
 do_script()     if ($do_all  ||  $do_script);
 do_langext()    if ($do_all  ||  $do_langext);
 do_langvar()    if ($do_all  ||  $do_langvar);
+do_langfam()    if ($do_all  ||  $do_langfam);
 do_clean()      if ($do_all  ||  $do_clean);
 
 ############################################################################
@@ -231,10 +242,10 @@ sub do_country {
    print "Country codes...\n";
    $Module   = "Country";
 
-   _do_codeset('country','iso',  ['alpha2'],       ['alpha2']);
-   _do_codeset('country','un',   ['num','alpha3'], ['num','alpha3']);
-   _do_codeset('country','nga',  ['fips'],         ['fips']);
-   _do_codeset('country','iana', ['dom'],          ['dom']);
+   _do_codeset('country','iso',  ['alpha-2'],           ['alpha-2']);
+   _do_codeset('country','un',   ['numeric','alpha-3'], ['numeric','alpha-3']);
+   _do_codeset('country','nga',  ['fips-10'],           ['fips-10']);
+   _do_codeset('country','iana', ['dom'],               ['dom']);
 
    do_aliases("country");
 
@@ -559,9 +570,9 @@ sub do_language {
 
    $Module   = "Language";
 
-   _do_codeset('language','iso2',  ['alpha3','term','alpha2'],       ['term']);
-   _do_codeset('language','iso5',  ['alpha3'],                       []);
-   _do_codeset('language','iana',  ['alpha2','alpha3'],              []);
+   _do_codeset('language','iso2',  ['alpha-3','term','alpha-2'],       ['term']);
+   _do_codeset('language','iso5',  ['alpha-3'],                        []);
+   _do_codeset('language','iana',  ['alpha-2','alpha-3'],              []);
 
    do_aliases("language");
 
@@ -1057,6 +1068,103 @@ sub do_langvar {
 }
 
 ############################################################################
+# DO_LANGFAM
+############################################################################
+
+sub do_langfam {
+   print "LangFam codes...\n";
+
+   $Module   = "LangFam";
+
+   _do_codeset('langfam','iso', ['alpha'],             []);
+
+   do_aliases("langfam");
+
+   write_module("langfam");
+}
+
+########################################
+
+#
+# ISO 639-5
+#
+# <table class="Dynamic639-5OutputTables" ... >
+#   <tr valign="top">
+#       <th scope="col">Identifier<br />Indicatif</th>
+#       <th scope="col">English name<br />Nom anglais</th>
+#       <th scope="col">French name<br />Nom français</th>
+#       <th scope="col">639-2</th>
+#       <th scope="col">Hierarchy<br />Hiérarchie</th>
+#       <th scope="col">Notes<br />Notes</th>
+#   </tr>
+#   <tr>
+#       <td scope="row">aav</td>
+#       <td>Austro-Asiatic languages</td>
+#       <td>austro-asiatiques, langues</td>
+#       <td>
+#           <br />
+#       </td>
+#       <td>aav</td>
+#       <td>
+#           <br />
+#       </td>
+#   </tr>
+#
+# ...
+#
+#   <tr valign="top">
+#       <td colspan="6">
+#            <ol class="loweralpha">
+
+{
+   my $in;
+
+   sub _init_langfam_iso {
+      $in = _read_file('url'        => $langfam_iso_url,
+                       'type'       => 'html',
+                       'as_list'    => 0,
+                       'html_strip' => [ qw(br p strong div) ],
+                       'html_repl'  => [ qw(&nbsp;) ],
+
+                      );
+
+      # Look for a table who's first row has the header:
+      #    Identifier
+
+      my $found = jump_to_row(\$in,"Identifier");
+      if (! $found) {
+         die "ERROR [iso]: language family code file format changed!\n";
+      }
+   }
+
+   sub _read_langfam_iso {
+      while (1) {
+         my @row = get_row("iso",\$in);
+         return ()  if (! @row);
+
+         my($alpha,$langfam) = @row;
+
+         return ()  if ($alpha =~ /class="loweralpha"/);
+
+         if (! $alpha  ||  ! $langfam) {
+            $alpha   = ''  if (! $alpha);
+            $langfam = ''  if (! $langfam);
+            print "WARNING [iso]: Invalid langfam code: $langfam => $alpha\n";
+            next;
+         }
+
+         $alpha = lc($alpha);
+         if ($alpha !~ /^[a-z][a-z][a-z]$/) {
+            print "WARNING [iso]: Invalid alpha code: $langfam => $alpha\n";
+            next;
+         }
+
+         return($alpha,$langfam);
+      }
+   }
+}
+
+############################################################################
 # PRINT_TABLE
 ############################################################################
 
@@ -1382,7 +1490,7 @@ use warnings;
 require 5.002;
 
 our(\$VERSION);
-\$VERSION='3.18';
+\$VERSION='3.20';
 
 \$Locale::Codes::Data{'$type'}{'id'} = '$ID';
 

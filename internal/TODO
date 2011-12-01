@@ -1,6 +1,6 @@
-Add iso 639-5
-  http://www.loc.gov/standards/iso639-5/id.php
-  http://www.loc.gov/standards/iso639-2/php/code_list.php  (639-1, 639-2)
+Remove alias_code Dec 2013 .
+
+=========
 
 http://tools.ietf.org/html/rfc5646
 language tags (i.e. language [-script] [-region] [-variant]* [-extension]* [-privateuse]

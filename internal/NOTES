@@ -18,6 +18,7 @@ no HTML is getting added to a code.
    cp lib/Locale/Codes/Script_Codes.pm{,.bak}
    cp lib/Locale/Codes/LangExt_Codes.pm{,.bak}
    cp lib/Locale/Codes/LangVar_Codes.pm{,.bak}
+   cp lib/Locale/Codes/LangFam_Codes.pm{,.bak}
 
    ./internal/get_codes -c
    diff lib/Locale/Codes/Country_Codes.pm{.bak,}
@@ -37,9 +38,27 @@ no HTML is getting added to a code.
    ./internal/get_codes -V
    diff lib/Locale/Codes/LangVar_Codes.pm{.bak,}
 
+   ./internal/get_codes -F
+   diff lib/Locale/Codes/LangFam_Codes.pm{.bak,}
+
 
    ./internal/get_codes -C
    rm lib/Locale/Codes/*.bak
+
+#########################################################################
+Update documentation
+
+   sed -e 's,Locale::Codes::Country,Locale::Country,g' \
+       lib/Locale/Codes/Country.pod > lib/Locale/Country.pod
+
+   sed -e 's,Locale::Codes::Language,Locale::Language,g' \
+       lib/Locale/Codes/Language.pod > lib/Locale/Language.pod
+
+   sed -e 's,Locale::Codes::Currency,Locale::Currency,g' \
+       lib/Locale/Codes/Currency.pod > lib/Locale/Currency.pod
+
+   sed -e 's,Locale::Codes::Script,Locale::Script,g' \
+       lib/Locale/Codes/Script.pod > lib/Locale/Script.pod
 
 #########################################################################
 Set the release version
@@ -49,12 +68,13 @@ Set the release version
        Makefile.PL \
        Build.PL \
        internal/get_codes \
+       internal/deprecate_codes \
        `find lib -name \*.pm` \
    ;do
       sed -e "s,VERSION *=.*;,VERSION='$v';," $i > z
       mv z $i
    done
-   chmod +x internal/get_codes
+   chmod +x internal/get_codes internal/deprecate_codes
 
 #########################################################################
 Before every release, spellcheck the documents:
@@ -64,6 +84,12 @@ Before every release, spellcheck the documents:
       ispell -p internal/ispell.isp $i.txt
       rm -f $i.txt $i.txt.bak
    done
+
+#########################################################################
+Update the deprecated codes modules.
+
+   ./internal/dump_curr
+   ./internal/deprecate_codes
 
 #########################################################################
 Update the Change file with the date

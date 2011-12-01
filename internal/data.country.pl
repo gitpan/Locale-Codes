@@ -36,7 +36,6 @@ $Data{'country'}{'alias'} = {
    "Iran"                                         => "Iran, Islamic Republic of",
    "Kazakstan"                                    => "Kazakhstan",
    "Keeling Islands"                              => "Cocos (Keeling) Islands",
-   "Libya"                                        => "Libyan Arab Jamahiriya",
    "Macao Special Administrative Region of China" => "Macao",
    "Macau S.A.R"                                  => "Macao",
    "Macau S.A.R."                                 => "Macao",
@@ -211,7 +210,7 @@ $Data{'country'}{'iso'}{'orig'}{'name'} = {
    "LEBANON"                                      => "Lebanon",
    "LESOTHO"                                      => "Lesotho",
    "LIBERIA"                                      => "Liberia",
-   "LIBYAN ARAB JAMAHIRIYA"                       => "Libyan Arab Jamahiriya",
+   "LIBYA"                                        => "Libya",
    "LIECHTENSTEIN"                                => "Liechtenstein",
    "LITHUANIA"                                    => "Lithuania",
    "LUXEMBOURG"                                   => "Luxembourg",
@@ -293,6 +292,7 @@ $Data{'country'}{'iso'}{'orig'}{'name'} = {
    "SOMALIA"                                      => "Somalia",
    "SOUTH AFRICA"                                 => "South Africa",
    "SOUTH GEORGIA AND THE SOUTH SANDWICH ISLANDS" => "South Georgia and the South Sandwich Islands",
+   "SOUTH SUDAN"                                  => "South Sudan",
    "SPAIN"                                        => "Spain",
    "SRI LANKA"                                    => "Sri Lanka",
    "SUDAN"                                        => "Sudan",
@@ -338,7 +338,7 @@ $Data{'country'}{'iso'}{'orig'}{'name'} = {
 
 $Data{'country'}{'iso'}{'ignore'} = {
    'name'   => {},
-   'alpha2' => {},
+   'alpha-2' => {},
 };
 
 ################################################################################
@@ -353,9 +353,9 @@ $Data{'country'}{'un'}{'orig'}{'name'} = {
 };
 
 $Data{'country'}{'un'}{'ignore'} = {
-   'name'   => {},
-   'num'    => {},
-   'alpha3' => {},
+   'name'    => {},
+   'numeric' => {},
+   'alpha-3' => {},
 };
 
 ################################################################################
@@ -368,7 +368,7 @@ $Data{'country'}{'nga'}{'ignore'} = {
    'name'   => {
                 "Golan Heights (Israeli-occupied)"            => 1,
                },
-   'fips'   => {},
+   'fips-10'=> {},
 };
 
 ################################################################################
