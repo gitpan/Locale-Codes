@@ -101,3 +101,4 @@ t/script2code.t
 t/script2code_old.t
 t/testfunc.pl
 META.yml
+META.json

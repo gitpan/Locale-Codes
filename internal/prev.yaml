@@ -137,7 +137,7 @@ country:
       lt: Lithuania
       lu: Luxembourg
       lv: Latvia
-      ly: Libyan Arab Jamahiriya
+      ly: Libya
       ma: Morocco
       mc: Monaco
       md: Moldova, Republic of
@@ -630,9 +630,9 @@ country:
       liberia: 
         - lr
         - Liberia
-      libyan arab jamahiriya: 
+      libya: 
         - ly
-        - Libyan Arab Jamahiriya
+        - Libya
       liechtenstein: 
         - li
         - Liechtenstein
@@ -1121,7 +1121,7 @@ country:
       lao: Lao People's Democratic Republic
       lbn: Lebanon
       lbr: Liberia
-      lby: Libyan Arab Jamahiriya
+      lby: Libya
       lca: Saint Lucia
       lie: Liechtenstein
       lka: Sri Lanka
@@ -1601,9 +1601,9 @@ country:
       liberia: 
         - lbr
         - Liberia
-      libyan arab jamahiriya: 
+      libya: 
         - lby
-        - Libyan Arab Jamahiriya
+        - Libya
       liechtenstein: 
         - lie
         - Liechtenstein
@@ -2098,7 +2098,7 @@ country:
       LT: Lithuania
       LU: Luxembourg
       LV: Latvia
-      LY: Libyan Arab Jamahiriya
+      LY: Libya
       MA: Morocco
       MC: Monaco
       MD: Moldova, Republic of
@@ -2600,9 +2600,9 @@ country:
       liberia: 
         - LR
         - Liberia
-      libyan arab jamahiriya: 
+      libya: 
         - LY
-        - Libyan Arab Jamahiriya
+        - Libya
       liechtenstein: 
         - LI
         - Liechtenstein
@@ -4146,7 +4146,7 @@ country:
       426: Lesotho
       428: Latvia
       430: Liberia
-      434: Libyan Arab Jamahiriya
+      434: Libya
       438: Liechtenstein
       440: Lithuania
       442: Luxembourg
@@ -4636,9 +4636,9 @@ country:
       liberia: 
         - 430
         - Liberia
-      libyan arab jamahiriya: 
+      libya: 
         - 434
-        - Libyan Arab Jamahiriya
+        - Libya
       liechtenstein: 
         - 438
         - Liechtenstein

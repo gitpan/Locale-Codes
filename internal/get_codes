@@ -1,5 +1,5 @@
 #!/usr/bin/perl -w
-# Copyright (c) 2010-2011 Sullivan Beck.  All rights reserved.
+# Copyright (c) 2010-2012 Sullivan Beck.  All rights reserved.
 # This program is free software; you can redistribute it and/or modify it
 # under the same terms as Perl itself.
 
@@ -20,7 +20,7 @@ use Text::CSV::Slurp;
 use lib "./internal";
 
 our $VERSION;
-$VERSION='3.20';
+$VERSION='3.21';
 
 # so the CPAN indexer won't treat this as a POD file
 our $podstr = '=pod';
@@ -1478,7 +1478,7 @@ $hdstr COPYRIGHT
 
    Copyright (c) 1997-2001 Canon Research Centre Europe (CRE).
    Copyright (c) 2001-2010 Neil Bowers
-   Copyright (c) 2010-2011 Sullivan Beck
+   Copyright (c) 2010-2012 Sullivan Beck
 
 This module is free software; you can redistribute it and/or
 modify it under the same terms as Perl itself.
@@ -1490,13 +1490,13 @@ use warnings;
 require 5.002;
 
 our(\$VERSION);
-\$VERSION='3.20';
+\$VERSION='3.21';
 
 \$Locale::Codes::Data{'$type'}{'id'} = '$ID';
 
 ";
 
-   foreach my $h qw(id2names alias2id code2id id2code) {
+   foreach my $h (qw(id2names alias2id code2id id2code)) {
       my $hash = $hashes{$h};
       print $out "\$Locale::Codes::Data{'$type'}{'$h'} = {\n";
       _write_hash($out,$hash);
@@ -1878,5 +1878,5 @@ sub strip_tags {
 # cperl-continued-brace-offset: 0
 # cperl-brace-offset: 0
 # cperl-brace-imaginary-offset: 0
-# cperl-label-offset: -2
+# cperl-label-offset: 0
 # End:
