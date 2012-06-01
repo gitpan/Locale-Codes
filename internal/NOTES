@@ -83,7 +83,7 @@ Set the release version
       sed -e "s,VERSION *=.*;,VERSION='$v';," $i > z
       mv z $i
    done
-   chmod +x internal/get_codes internal/deprecate_codes internal/dump_curr
+   chmod +x internal/get_codes internal/deprecate_codes
 
 #########################################################################
 Before every release, spellcheck the documents:
@@ -142,6 +142,7 @@ Copy in the modified files.
            "$tmp"  = "./Makefile.PL" -o \
            "$tmp"  = "./MANIFEST" -o \
            "$tmp"  = "./META.yml" -o \
+           "$tmp"  = "./META.json" -o \
            "$tmp"  = "./t/runtests.bat" -o \
            "$tmp"  = "./t/runtests" -o \
            "$tmp"  = "./t/pod.t" -o \
@@ -180,3 +181,31 @@ in the patch.
    make test
 
 and make sure that the tests all succeed. Then submit the patch.
+
+====
+
+To: perl5-porters@perl.org
+Subject: PATCH: Bump Locale-Codes from 3.20 to 3.21
+
+I just released Locale-Codes-3.21 which contains the core modules Locale::Country, Locale::Language, and Locale::Currency.  Due to the size of the patch (due to adding some new codesets), I'm including a link here instead of sending it as an attachment:
+
+http://sullybeck.com/0001-Bump-Locale-Codes-from-3.16-to-3.17.patch
+
+OR
+
+I just released Locale-Codes-3.21 which contains the core modules Locale::Country, Locale::Language, and Locale::Currency.  The patch is attached here.
+
+====
+Background:
+
+The core modules Locale::Country, Locale::Language, and Locale::Currency
+(all part of the Locale-Codes distribution) should be updated on a
+regular basis. They contain "codes" from various internet standards
+which change over time.
+
+I plan on releasing new versions at 4 times a year to keep the codes
+up-to-date. At this point, I'm not planning on any significant code
+changes (other than bug fixes), so the only significant changes
+between releases should be to update the codes.
+
+

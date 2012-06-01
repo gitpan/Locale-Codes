@@ -20,7 +20,7 @@ use Text::CSV::Slurp;
 use lib "./internal";
 
 our $VERSION;
-$VERSION='3.21';
+$VERSION='3.22';
 
 # so the CPAN indexer won't treat this as a POD file
 our $podstr = '=pod';
@@ -1487,10 +1487,11 @@ modify it under the same terms as Perl itself.
 
 use strict;
 use warnings;
+use utf8;
 require 5.002;
 
 our(\$VERSION);
-\$VERSION='3.21';
+\$VERSION='3.22';
 
 \$Locale::Codes::Data{'$type'}{'id'} = '$ID';
 

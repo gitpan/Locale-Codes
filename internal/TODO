@@ -1,5 +1,7 @@
 Remove alias_code Dec 2013 .
 
+Add Storable as a build prereq. (in t/*.pl)
+
 =========
 
 http://tools.ietf.org/html/rfc5646

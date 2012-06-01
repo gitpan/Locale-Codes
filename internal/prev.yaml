@@ -1990,7 +1990,7 @@ country:
       BL: Saint Barthelemy
       BM: Bermuda
       BN: Brunei Darussalam
-      BO: Bolivia
+      BO: Bolivia, Plurinational State of
       BQ: Bonaire, Sint Eustatius and Saba
       BR: Brazil
       BS: Bahamas
@@ -2161,7 +2161,7 @@ country:
       SD: Sudan
       SE: Sweden
       SG: Singapore
-      SH: Saint Helena
+      SH: Saint Helena, Ascension and Tristan da Cunha
       SI: Slovenia
       SJ: Svalbard and Jan Mayen
       SK: Slovakia
@@ -2297,9 +2297,9 @@ country:
       bhutan: 
         - BT
         - Bhutan
-      bolivia: 
+      bolivia, plurinational state of: 
         - BO
-        - Bolivia
+        - Bolivia, Plurinational State of
       bonaire, sint eustatius and saba: 
         - BQ
         - Bonaire, Sint Eustatius and Saba
@@ -2783,9 +2783,9 @@ country:
       saint barthelemy: 
         - BL
         - Saint Barthelemy
-      saint helena: 
+      saint helena, ascension and tristan da cunha: 
         - SH
-        - Saint Helena
+        - Saint Helena, Ascension and Tristan da Cunha
       saint kitts and nevis: 
         - KN
         - Saint Kitts and Nevis
@@ -5052,7 +5052,7 @@ currency:
       FKP: Falkland Islands Pound
       GBP: Pound Sterling
       GEL: Lari
-      GHS: Cedi
+      GHS: Ghana Cedi
       GIP: Gibraltar Pound
       GMD: Dalasi
       GNF: Guinea Franc
@@ -5103,7 +5103,7 @@ currency:
       MXN: Mexican Peso
       MXV: Mexican Unidad de Inversion (UDI)
       MYR: Malaysian Ringgit
-      MZN: Metical
+      MZN: Mozambique Metical
       NAD: Namibia Dollar
       NGN: Naira
       NIO: Cordoba Oro
@@ -5119,7 +5119,7 @@ currency:
       PLN: Zloty
       PYG: Guarani
       QAR: Qatari Rial
-      RON: Leu
+      RON: New Romanian Leu
       RSD: Serbian Dinar
       RUB: Russian Ruble
       RWF: Rwanda Franc
@@ -5140,7 +5140,7 @@ currency:
       SZL: Lilangeni
       THB: Baht
       TJS: Somoni
-      TMT: New Manat
+      TMT: Turkmenistan New Manat
       TND: Tunisian Dinar
       TOP: Pa'anga
       TRY: Turkish Lira
@@ -5266,9 +5266,6 @@ currency:
       cayman islands dollar: 
         - KYD
         - Cayman Islands Dollar
-      cedi: 
-        - GHS
-        - Cedi
       cfa franc bceao: 
         - XOF
         - CFA Franc BCEAO
@@ -5353,6 +5350,9 @@ currency:
       forint: 
         - HUF
         - Forint
+      ghana cedi: 
+        - GHS
+        - Ghana Cedi
       gibraltar pound: 
         - GIP
         - Gibraltar Pound
@@ -5434,9 +5434,6 @@ currency:
       leone: 
         - SLL
         - Leone
-      leu: 
-        - RON
-        - Leu
       liberian dollar: 
         - LRD
         - Liberian Dollar
@@ -5461,9 +5458,6 @@ currency:
       mauritius rupee: 
         - MUR
         - Mauritius Rupee
-      metical: 
-        - MZN
-        - Metical
       mexican peso: 
         - MXN
         - Mexican Peso
@@ -5476,6 +5470,9 @@ currency:
       moroccan dirham: 
         - MAD
         - Moroccan Dirham
+      mozambique metical: 
+        - MZN
+        - Mozambique Metical
       mvdol: 
         - BOV
         - Mvdol
@@ -5497,9 +5494,9 @@ currency:
       new israeli sheqel: 
         - ILS
         - New Israeli Sheqel
-      new manat: 
-        - TMT
-        - New Manat
+      new romanian leu: 
+        - RON
+        - New Romanian Leu
       new taiwan dollar: 
         - TWD
         - New Taiwan Dollar
@@ -5659,6 +5656,9 @@ currency:
       turkish lira: 
         - TRY
         - Turkish Lira
+      turkmenistan new manat: 
+        - TMT
+        - Turkmenistan New Manat
       uae dirham: 
         - AED
         - UAE Dirham
@@ -5850,15 +5850,15 @@ currency:
       901: New Taiwan Dollar
       931: Peso Convertible
       932: Zimbabwe Dollar
-      934: New Manat
-      936: Cedi
+      934: Turkmenistan New Manat
+      936: Ghana Cedi
       937: Bolivar Fuerte
       938: Sudanese Pound
       940: Uruguay Peso en Unidades Indexadas (URUIURUI)
       941: Serbian Dinar
-      943: Metical
+      943: Mozambique Metical
       944: Azerbaijanian Manat
-      946: Leu
+      946: New Romanian Leu
       947: WIR Euro
       948: WIR Franc
       949: Turkish Lira
@@ -5985,9 +5985,6 @@ currency:
       cayman islands dollar: 
         - 136
         - Cayman Islands Dollar
-      cedi: 
-        - 936
-        - Cedi
       cfa franc bceao: 
         - 952
         - CFA Franc BCEAO
@@ -6072,6 +6069,9 @@ currency:
       forint: 
         - 348
         - Forint
+      ghana cedi: 
+        - 936
+        - Ghana Cedi
       gibraltar pound: 
         - 292
         - Gibraltar Pound
@@ -6153,9 +6153,6 @@ currency:
       leone: 
         - 694
         - Leone
-      leu: 
-        - 946
-        - Leu
       liberian dollar: 
         - 430
         - Liberian Dollar
@@ -6180,9 +6177,6 @@ currency:
       mauritius rupee: 
         - 480
         - Mauritius Rupee
-      metical: 
-        - 943
-        - Metical
       mexican peso: 
         - 484
         - Mexican Peso
@@ -6195,6 +6189,9 @@ currency:
       moroccan dirham: 
         - 504
         - Moroccan Dirham
+      mozambique metical: 
+        - 943
+        - Mozambique Metical
       mvdol: 
         - 984
         - Mvdol
@@ -6216,9 +6213,9 @@ currency:
       new israeli sheqel: 
         - 376
         - New Israeli Sheqel
-      new manat: 
-        - 934
-        - New Manat
+      new romanian leu: 
+        - 946
+        - New Romanian Leu
       new taiwan dollar: 
         - 901
         - New Taiwan Dollar
@@ -6378,6 +6375,9 @@ currency:
       turkish lira: 
         - 949
         - Turkish Lira
+      turkmenistan new manat: 
+        - 934
+        - Turkmenistan New Manat
       uae dirham: 
         - 784
         - UAE Dirham
@@ -39461,6 +39461,7 @@ langvar:
       biscayan: Biscayan dialect of Basque
       biske: The San Giorgio dialect of Resian
       boont: Boontling
+      emodeng: Early Modern English (1500-1700)
       fonipa: International Phonetic Alphabet
       fonupa: Uralic Phonetic Alphabet
       fonxsamp: X-SAMPA transcription
@@ -39477,12 +39478,14 @@ langvar:
       ndyuka: Ndyuka dialect
       nedis: Natisone dialect
       njiva: The Gniva dialect of Resian
+      nulik: Volapuk nulik
       osojs: The Oseacco dialect of Resian
       pamaka: Pamaka dialect
       petr1708: Petrine orthography
       pinyin: Pinyin romanization
       polyton: Polytonic Greek
       puter: Puter idiom of Romansh
+      rigik: Volapuk rigik
       rozaj: Resian
       rumgr: Rumantsch Grischun
       scotland: Scottish Standard English
@@ -39527,6 +39530,9 @@ langvar:
       common cornish orthography of revived cornish: 
         - kkcor
         - Common Cornish orthography of Revived Cornish
+      early modern english (1500-1700): 
+        - emodeng
+        - Early Modern English (1500-1700)
       early modern french: 
         - 1694acad
         - Early Modern French
@@ -39650,6 +39656,12 @@ langvar:
       vedic sanskrit: 
         - vaidika
         - Vedic Sanskrit
+      volapuk nulik: 
+        - nulik
+        - Volapuk nulik
+      volapuk rigik: 
+        - rigik
+        - Volapuk rigik
       wade-giles romanization: 
         - wadegile
         - Wade-Giles romanization
@@ -39711,6 +39723,7 @@ script:
       Hant: Han (Traditional variant)
       Hebr: Hebrew
       Hira: Hiragana
+      Hluw: Anatolian Hieroglyphs
       Hmng: Pahawh Hmong
       Hrkt: Japanese syllabaries (alias for Hiragana + Katakana)
       Hung: Old Hungarian
@@ -39823,6 +39836,9 @@ script:
       afaka: 
         - Afak
         - Afaka
+      anatolian hieroglyphs: 
+        - Hluw
+        - Anatolian Hieroglyphs
       arabic: 
         - Arab
         - Arabic
@@ -40299,6 +40315,7 @@ script:
       "050": Egyptian hieroglyphs
       "060": Egyptian hieratic
       "070": Egyptian demotic
+      "080": Anatolian Hieroglyphs (Luwian Hieroglyphs, Hittite Hieroglyphs)
       "090": Mayan hieroglyphs
       "095": SignWriting
       100: Meroitic Hieroglyphs
@@ -40377,7 +40394,7 @@ script:
       321: Takri, Takri, Tankri
       322: Khojki
       325: Bengali
-      326: Tiruta
+      326: Tirhuta
       327: Oriya
       330: Tibetan
       331: Phags-pa
@@ -40454,6 +40471,9 @@ script:
       afaka: 
         - 439
         - Afaka
+      anatolian hieroglyphs (luwian hieroglyphs, hittite hieroglyphs): 
+        - '080'
+        - Anatolian Hieroglyphs (Luwian Hieroglyphs, Hittite Hieroglyphs)
       arabic: 
         - 160
         - Arabic
@@ -40898,9 +40918,9 @@ script:
       tifinagh (berber): 
         - 120
         - Tifinagh (Berber)
-      tiruta: 
+      tirhuta: 
         - 326
-        - Tiruta
+        - Tirhuta
       ugaritic: 
         - '040'
         - Ugaritic

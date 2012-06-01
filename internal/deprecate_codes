@@ -118,10 +118,11 @@ modify it under the same terms as Perl itself.
 
 use strict;
 use warnings;
+use utf8;
 require 5.002;
 
 our(\$VERSION);
-\$VERSION='3.21';
+\$VERSION='3.22';
 
 ";
 

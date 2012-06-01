@@ -200,6 +200,15 @@ SEE ALSO
     Locale::Codes::Currency
         Codes for identification of currencies and funds.
 
+    Locale::Codes::LangExt
+        Codes for identification of language extensions.
+
+    Locale::Codes::LangVar
+        Codes for identification of language variations.
+
+    Locale::Codes::LangFam
+        Codes for identification of language families.
+
     Locale::Codes::Changes
         A history of changes made to this distribution.
 

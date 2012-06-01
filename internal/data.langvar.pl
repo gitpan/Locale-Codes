@@ -11,6 +11,17 @@ $Data{'langvar'}{'alias'} = {
 $Data{'langvar'}{'iana'}{'orig'}{'name'} = {
    'Norwegian in Høgnorsk (High Norwegian) orthography' =>
        'Norwegian in Hognorsk (High Norwegian) orthography',
+   "Volapük nulik"                     => "Volapuk nulik",
+   "Volapük perevidöl"                 => "Volapuk perevidol",
+   "Volapük nulädik"                   => "Volapuk nuladik",
+   "de Jong's Volapük"                 => "de Jong's Volapuk",
+   "New Volapük"                       => "New Volapuk",
+   "Revised Volapük"                   => "Revised Volapuk",
+   "Modern Volapük"                    => "Modern Volapuk",
+   "Volapük rigik"                     => "Volapuk rigik",
+   "Schleyer's Volapük"                => "Schleyer's Volapuk",
+   "Original Volapük"                  => "Original Volapuk",
+   "Classic Volapük"                   => "Classic Volapuk",
 };
 
 $Data{'langvar'}{'iana'}{'ignore'} = {

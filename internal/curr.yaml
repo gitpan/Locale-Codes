@@ -1990,7 +1990,7 @@ country:
       BL: Saint Barthelemy
       BM: Bermuda
       BN: Brunei Darussalam
-      BO: Bolivia
+      BO: Bolivia, Plurinational State of
       BQ: Bonaire, Sint Eustatius and Saba
       BR: Brazil
       BS: Bahamas
@@ -2161,7 +2161,7 @@ country:
       SD: Sudan
       SE: Sweden
       SG: Singapore
-      SH: Saint Helena
+      SH: Saint Helena, Ascension and Tristan da Cunha
       SI: Slovenia
       SJ: Svalbard and Jan Mayen
       SK: Slovakia
@@ -2297,9 +2297,9 @@ country:
       bhutan: 
         - BT
         - Bhutan
-      bolivia: 
+      bolivia, plurinational state of: 
         - BO
-        - Bolivia
+        - Bolivia, Plurinational State of
       bonaire, sint eustatius and saba: 
         - BQ
         - Bonaire, Sint Eustatius and Saba
@@ -2783,9 +2783,9 @@ country:
       saint barthelemy: 
         - BL
         - Saint Barthelemy
-      saint helena: 
+      saint helena, ascension and tristan da cunha: 
         - SH
-        - Saint Helena
+        - Saint Helena, Ascension and Tristan da Cunha
       saint kitts and nevis: 
         - KN
         - Saint Kitts and Nevis
@@ -39478,14 +39478,14 @@ langvar:
       ndyuka: Ndyuka dialect
       nedis: Natisone dialect
       njiva: The Gniva dialect of Resian
-      nulik: "Volap\xC3\xBCk nulik"
+      nulik: Volapuk nulik
       osojs: The Oseacco dialect of Resian
       pamaka: Pamaka dialect
       petr1708: Petrine orthography
       pinyin: Pinyin romanization
       polyton: Polytonic Greek
       puter: Puter idiom of Romansh
-      rigik: "Volap\xC3\xBCk rigik"
+      rigik: Volapuk rigik
       rozaj: Resian
       rumgr: Rumantsch Grischun
       scotland: Scottish Standard English
@@ -39656,12 +39656,12 @@ langvar:
       vedic sanskrit: 
         - vaidika
         - Vedic Sanskrit
-      "volap\xC3\xBCk nulik": 
+      volapuk nulik: 
         - nulik
-        - "Volap\xC3\xBCk nulik"
-      "volap\xC3\xBCk rigik": 
+        - Volapuk nulik
+      volapuk rigik: 
         - rigik
-        - "Volap\xC3\xBCk rigik"
+        - Volapuk rigik
       wade-giles romanization: 
         - wadegile
         - Wade-Giles romanization

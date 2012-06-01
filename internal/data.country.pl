@@ -375,10 +375,14 @@ $Data{'country'}{'nga'}{'ignore'} = {
 # IANA (source of top level domains)
 
 $Data{'country'}{'iana'}{'orig'}{'name'} = {
+   "Åland Islands"                                => "Aland Islands",
+   "Côte d&#39;Ivoire"                            => "Cote d'Ivoire",
    "Cote d&#39;Ivoire"                            => "Cote d'Ivoire",
    "Curaçao"                                      => "Curacao",
    "Korea, Democratic People&#39;s Republic of"   => "Korea, Democratic People's Republic of",
    "Lao People&#39;s Democratic Republic"         => "Lao People's Democratic Republic",
+   "RÉUNION"                                      => "Reunion",
+   "Saint Barthélemy"                             => "Saint Barthelemy",
 };
 
 $Data{'country'}{'iana'}{'ignore'} = {
