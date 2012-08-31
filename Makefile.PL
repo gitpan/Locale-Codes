@@ -5,7 +5,6 @@ use strict;
 use warnings;
 my %requires = (
                  'Carp'                     => '0',
-                 'Exporter'                 => '0',
                  'utf8'                     => '0',
                  'Storable'                 => '0',
                  'Test::More'               => '0',
@@ -14,7 +13,7 @@ my %requires = (
 
 WriteMakefile(
         NAME             => 'Locale::Codes',
-        VERSION          => '3.22',
+        VERSION          => '3.23',
         ($] >= 5.002
         ? (ABSTRACT=>'a distribution of modules to handle locale codes',
            AUTHOR  =>'Sullivan Beck (sbeck@cpan.org)')

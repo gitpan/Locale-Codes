@@ -462,6 +462,8 @@ $Data{'language'}{'iana'}{'orig'}{'name'} = {
    "Urubú-Kaapor"                                  => "Urubu-Kaapor",
    "Kɛlɛngaxo Bozo"                                => "Kelengazxo Bozo",
    "Nêlêmwa-Nixumwak"                              => "Nelemwa-Nixumwak",
+   "Kirya-Konzəl"                                  => "Kirya-Konzel",
+   "Dũya"                                          => "Duya",
 };
 
 $Data{'language'}{'iana'}{'ignore'} = {

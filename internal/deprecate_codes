@@ -117,27 +117,27 @@ modify it under the same terms as Perl itself.
 =cut
 
 use strict;
+require 5.006;
 use warnings;
 use utf8;
-require 5.002;
 
 our(\$VERSION);
-\$VERSION='3.22';
+\$VERSION='3.23';
 
 ";
 
-   foreach my $codeset (keys %{ $ALL_CODESETS{$type}{'codesets'} }) {
+   foreach my $codeset (sort keys %{ $ALL_CODESETS{$type}{'codesets'} }) {
       print $out "\$Locale::Codes::Retired{'$type'}{'$codeset'}{'code'} = {\n";
-      foreach my $code (keys %{ $Locale::Codes::Retired{$type}{$codeset}{'code'} }) {
+      foreach my $code (sort keys %{ $Locale::Codes::Retired{$type}{$codeset}{'code'} }) {
          my $name = $Locale::Codes::Retired{$type}{$codeset}{'code'}{$code};
          print $out "   q($code) => q($name),\n";
       }
       print $out "};\n\n";
    }
 
-   foreach my $codeset (keys %{ $ALL_CODESETS{$type}{'codesets'} }) {
+   foreach my $codeset (sort keys %{ $ALL_CODESETS{$type}{'codesets'} }) {
       print $out "\$Locale::Codes::Retired{'$type'}{'$codeset'}{'name'} = {\n";
-      foreach my $lc (keys %{ $Locale::Codes::Retired{$type}{$codeset}{'name'} }) {
+      foreach my $lc (sort keys %{ $Locale::Codes::Retired{$type}{$codeset}{'name'} }) {
          my ($code,$name) =
            @{ $Locale::Codes::Retired{$type}{$codeset}{'name'}{$lc} };
          print $out "   q($lc) => [ q($code), q($name) ],\n";

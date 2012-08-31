@@ -5,7 +5,6 @@ use warnings;
 my %requires = (
                  'perl'                     => '5.002',
                  'Carp'                     => '0',
-                 'Exporter'                 => '0',
                  'utf8'                     => '0',
                );
 my %build_mods = (
@@ -21,7 +20,7 @@ my $class = Module::Build->subclass(
 
 my $build = $class->new(
         license            => 'perl',
-        dist_version       => '3.22',
+        dist_version       => '3.23',
         dist_author        => 'Sullivan Beck <sbeck@cpan.org>',
         module_name        => 'Locale::Codes',
         dist_abstract      => 'a distribution of modules to handle locale codes',

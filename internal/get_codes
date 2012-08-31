@@ -20,7 +20,7 @@ use Text::CSV::Slurp;
 use lib "./internal";
 
 our $VERSION;
-$VERSION='3.22';
+$VERSION='3.23';
 
 # so the CPAN indexer won't treat this as a POD file
 our $podstr = '=pod';
@@ -262,8 +262,7 @@ sub do_country {
 #
 # File format:
 # =================
-#    a long comment^M
-#    ^M
+#    a comment^M
 #    AFGHANISTAN;AF^M
 #    ALBANIA;AL^M
 # =================
@@ -279,17 +278,15 @@ sub do_country {
    sub _init_country_iso {
       $in = _read_file('url'       => $country_iso_url,
                        'as_list'   => 1,
-                       'encoding'  => 'ISO-8859-1',
                        'chop'      => 1,
                       );
 
-      # Make sure that line 2 is blank and line 3 contains the first country.
+      # Make sure that line 2 contains the first country.
 
-      if ($$in[1]  ||  $$in[2] !~ /^$country_iso_1st;/) {
+      if ($$in[1] !~ /^$country_iso_1st;/) {
          die "ERROR [iso]: country code file format changed!\n";
       }
 
-      shift(@$in);
       shift(@$in);
    }
 
@@ -1486,12 +1483,12 @@ modify it under the same terms as Perl itself.
 =cut
 
 use strict;
+require 5.006;
 use warnings;
 use utf8;
-require 5.002;
 
 our(\$VERSION);
-\$VERSION='3.22';
+\$VERSION='3.23';
 
 \$Locale::Codes::Data{'$type'}{'id'} = '$ID';
 
