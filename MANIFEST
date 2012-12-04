@@ -22,6 +22,7 @@ internal/NOTES
 internal/prev.yaml
 internal/TODO
 internal/VERSION
+internal/z.pl
 lib/Locale/Codes.pm
 lib/Locale/Codes.pod
 lib/Locale/Codes/API.pod

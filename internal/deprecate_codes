@@ -122,7 +122,7 @@ use warnings;
 use utf8;
 
 our(\$VERSION);
-\$VERSION='3.23';
+\$VERSION='3.24';
 
 ";
 

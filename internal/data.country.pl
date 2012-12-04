@@ -362,12 +362,12 @@ $Data{'country'}{'un'}{'ignore'} = {
 # NGA (source of FIPS 10 codes)
 
 $Data{'country'}{'nga'}{'orig'}{'name'} = {
+    "Côte d’Ivoire"                               => "Cote d'Ivoire",
+    "Curaçao"                                     => "Curacao",
 };
 
 $Data{'country'}{'nga'}{'ignore'} = {
-   'name'   => {
-                "Golan Heights (Israeli-occupied)"            => 1,
-               },
+   'name'   => {},
    'fips-10'=> {},
 };
 

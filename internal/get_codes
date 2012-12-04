@@ -16,11 +16,13 @@ use warnings;
 use Archive::Zip;
 use Encode;
 use Text::CSV::Slurp;
+use Spreadsheet::XLSX;
+use Text::Iconv;
 
 use lib "./internal";
 
 our $VERSION;
-$VERSION='3.23';
+$VERSION='3.24';
 
 # so the CPAN indexer won't treat this as a POD file
 our $podstr = '=pod';
@@ -42,7 +44,7 @@ our $hdstr  = '=head1';
 #                                   Aliases are all lowercase.
 #  %Code2ID{CODESET}{CODE}       => [ COUNTRY_ID, I ]
 #                                   In a given CODESET, CODE corresponds to
-#                                   the I'th entry list of countries.
+#                                   the I'th entry in the list of countries.
 #  %ID2Code{CODESET}{COUNTRY_ID} => CODE
 #                                   In the given CODESET, the COUNTRY_ID
 #                                   corresponds to the given CODE.
@@ -88,9 +90,13 @@ our $country_iso_1st    = "AFGHANISTAN";
 
 our $country_un_url     = "http://unstats.un.org/unsd/methods/m49/m49alpha.htm";
 
-our $country_nga_url    = "http://earth-info.nga.mil/gns/html/digraphs.htm";
+our $country_nga_url    =
+ "http://earth-info.nga.mil/gns/html/GEOPOLITICAL ENTITIES AND CODES 01SEPT12.xlsx";
 
-our $country_iana_url   = "http://www.iana.org/domains/root/db/";
+# IANA publishes a list of codes.  The country names must be looked up in an
+# extended list of ISO 3166 codes.
+our $country_iana_url1  = "http://www.iana.org/domains/root/db/";
+our $country_iana_url2  = "http://www.iso.org/iso/home/standards/country_codes/iso-3166-1_decoding_table.htm";
 
 require "data.country.pl";
 
@@ -239,6 +245,12 @@ do_clean()      if ($do_all  ||  $do_clean);
 ############################################################################
 
 sub do_country {
+   print "Please visit the URL:\n" .
+         "   http://earth-info.nga.mil/gns/html/gazetteers2.html\n" .
+         "To make sure that the \$country_nga_url is up-to-date.\n" .
+         "Hit any key to continue...\n\n";
+   my $c = getone();
+
    print "Country codes...\n";
    $Module   = "Country";
 
@@ -400,98 +412,54 @@ sub do_country {
 # The National Geospatial-Intelligence Agency is the official source
 # for FIPS 10 codes.
 #
-# File format:
-# ============
-#    <tr>
-#      <td width="38%" class="style1"><b>SHORT FORM NAME</b></td>
-#      <td width="48%" class="style1"><b>LONG FORM NAME</b></td>
-#      <td width="14%" class="style1"><b>CODE</b></td>
-#    </tr>
-#    <tr>
-#      <td class="style1">Albania</td>
-#      <td class="style1">Republic of Albania </td>
-#      <td class="style1">AL</td>
-#    </tr>
+# Spreadsheet format:
+# ===================
 #    ...
-#    <tr>
-#      <td class="style1"><b>Short Form Name</b></td>
-#      <td class="style1"><b>Long Form Name</b></td>
-#      <td class="style1"><b>Code</b></td>
-#    </tr>
-#    <tr>
-#      <td class="style1">American Samoa [United States] </td>
-#      <td class="style1">Territory of American Samoa </td>
-#      <td class="style1">AQ</td>
-#    </tr>
-# ============
+#    Code   Name (Upper Case)  Name (Upper and Lower Case)
+#    AF     AFGANISTAN         Afganistan
+# ===================
 #
 
 {
    my $in;
-   my $first_table;
 
    sub _init_country_nga {
       $in = _read_file('url'       => $country_nga_url,
-                       'type'      => 'html',
-                       'as_list'   => 0,
-                       'html_strip' => [ qw(br p strong div) ],
-                       'html_repl'  => [ '&nbsp;',
-                                         'Other:',
-                                         '[United States}',
-                                         qr/\(see note[^\)]*\)/,
-                                         qr/\[[^\]]*\]/
-                                       ],
+                       'type'      => 'xlsx',
+                       'sheet'     => 'TABLE 1',
+                       'as_list'   => 1,
                       );
 
-      # Look for a table who's first row has the header:
-      #    SHORT FORM NAME
-      #
-      # After reading that entire table, we'll look for a second
-      # table who's first row has the header
-      #    Short Form Name
+      # Look for a row that has 'Code' in it:
 
-      my $found = jump_to_row(\$in,"SHORT FORM NAME");
-      if (! $found) {
+      while (@$in) {
+         my $line = shift(@$in);
+         last  if ($line =~ /\"Code\"/);
+      }
+
+      if (! @$in) {
          die "ERROR [nga]: country code file format changed!\n";
       }
-      $first_table = 1;
    }
 
    sub _read_country_nga {
       while (1) {
-         my @row = get_row("nga",\$in);
+         return ()  if (! @$in);
+         my $line = shift(@$in);
 
-         if (! @row  &&  $first_table) {
-            my $found = jump_to_row(\$in,"Short Form Name");
-            if (! $found) {
-               die "ERROR [nga]: country code file format changed!\n";
+         if ($line =~ /^\"(.*)\",\"(.*)\",\"(.*)\"$/) {
+            my($fips,$name) = ($1,$3);
+            $fips  =~ s/\s*//g;
+
+            if ($fips !~ /^[A-Z][A-Z]$/) {
+               print "WARNING [nga]: Invalid code: $name => $fips\n";
             }
-            $first_table = 0;
 
-            @row = get_row("nga",\$in);
+            return ($fips,$name);
          }
 
-         return ()  if (! @row);
-
-         my($short,$long,$fips) = @row;
-
-         $fips  = uc($fips);
-         next  if ($fips eq "N/A");
-
-         @row = ($fips);
-         push(@row,$short)  if ($short ne 'None');
-         push(@row,$long)   if ($long ne 'None');
-
-         if (@row == 1) {
-            print "ERROR [nga]: no country name: $fips\n";
-            next;
-         }
-
-         if ($fips !~ /^[A-Z][A-Z]$/) {
-            print "WARNING [nga]: Invalid code: $short => $fips\n";
-         }
-
-         return @row;
+         print "WARNING [nga]: Invalid line: $line\n";
+         next;
       }
    }
 }
@@ -501,42 +469,82 @@ sub do_country {
 #
 # IANA Domain Registry
 #
-# The IANA domain registry is the official source of domain codes.
+# The IANA domain registry is the official source of domain management.
+# The codes are stored in the IANA URL, but the country names must be
+# read from the extended ISO list.
 #
-# File format:
+# File format for the IANA URL:
 # ============
-#    <tr>
+#    <tr ...>
 #       <th>Domain</th>
 #       <th>Type</th>
-#       <th>Purpose / Sponsoring Organisation</th>
+#       <th>Sponsoring Organisation</th>
 #    </tr>
-#    <tr class="iana-group-1 iana-type-1">
-#       <td><a href="/domains/root/db/ad.html">.AD</a></td>
+#    <tr ...>
+#       <td><span ...><a ...>.AD</a></span></td>
 #       <td>country-code</td>
-#       <td>Andorra<br/><span class="tld-table-so">Andorra Telecom</span></td>
+#       ...
 #    </tr>
 # ============
 #
+# The extended ISO list is of the format:
+# ============
+#    <tr ...>
+#       <th>Domain</th>
+#       <th>Type</th>
+#       <th>Sponsoring Organisation</th>
+#    </tr>
+#    <tr ...>
+#       <td><span ...><a ...>.AD</a></span></td>
+#       <td>country-code</td>
+#       ...
+#    </tr>
+# ============
+
 
 {
    my $in;
+   my %codes;
 
    sub _init_country_iana {
-      $in = _read_file('url'       => $country_iana_url,
+      $in = _read_file('url'       => $country_iana_url2,
                        'type'      => 'html',
                        'as_list'   => 0,
                        'html_strip' => [ qw(a) ],
-                       'html_repl'  => [ '&nbsp;',
-                                         '(being phased out)'
-                                       ],
+                      );
+
+      # Look for a table who's first row has the header
+      #    Remark
+
+      my $found = jump_to_row(\$in,'Remark');
+      if (! $found) {
+         die "ERROR [iana]: extended ISO file format changed!\n";
+      }
+      _read_country_iana_extiso();
+
+      $in = _read_file('url'       => $country_iana_url1,
+                       'type'      => 'html',
+                       'as_list'   => 0,
+                       'html_strip' => [ qw(a span) ],
                       );
 
       # Look for a table who's first row has the header:
       #    Sponsoring Organisation
 
-      my $found = jump_to_row(\$in,"Sponsoring Organisation");
+      $found = jump_to_row(\$in,"Sponsoring Organisation");
       if (! $found) {
          die "ERROR [iana]: country code file format changed!\n";
+      }
+   }
+
+   sub _read_country_iana_extiso {
+      while (1) {
+         my @row = get_row("iana_extiso",\$in);
+         return ()  if (! @row);
+
+         my($dom,$country,$remark,$status) = @row;
+         next  if (! $country);
+         $codes{lc($dom)} = $country;
       }
    }
 
@@ -545,14 +553,21 @@ sub do_country {
          my @row = get_row("iana",\$in);
          return ()  if (! @row);
 
-         my($dom,$type,$country) = @row;
+         my($dom,$type,$tmp) = @row;
          next  unless ($type eq "country-code"  &&
-                       $dom =~ /^\.[A-Z][A-Z]/);
+                       $dom =~ /^\.[a-z][a-z]/);
 
          $dom     =~ s/^\.//;
-         $country =~ s,<br.*,,;
-         $country =~ s,\s+$,,;
 
+         my $country;
+
+         if (exists $Code2ID{'alpha-2'}{$dom}) {
+            my ($id,$i) = @{ $Code2ID{'alpha-2'}{$dom} };
+            my @name    = @{ $ID2Names{$id} };
+            $country    = $name[$i];
+         } else {
+            $country    = $codes{$dom};
+         }
          return ($dom,$country);
       }
    }
@@ -1488,7 +1503,7 @@ use warnings;
 use utf8;
 
 our(\$VERSION);
-\$VERSION='3.23';
+\$VERSION='3.24';
 
 \$Locale::Codes::Data{'$type'}{'id'} = '$ID';
 
@@ -1589,6 +1604,8 @@ sub _read_file {
       $file .= ".htm";
    } elsif ($type eq 'xls') {
       $file .= ".xls";
+   } elsif ($type eq 'xlsx') {
+      $file .= ".xlsx";
    } elsif ($type eq 'zip') {
       $file2 = "$file.txt";
       $file .= ".zip";
@@ -1597,7 +1614,7 @@ sub _read_file {
    }
 
    my $url  = $opts{'url'};
-   system("wget -N -q -O $file $url");
+   system("wget -N -q -O $file '$url'");
 
    #
    # Read the local file
@@ -1618,6 +1635,33 @@ sub _read_file {
       my $in = Text::CSV::Slurp->load(string => join("",@in));
       @in = @$in;
       $opts{'as_list'} = 1;   # required
+
+   } elsif ($type eq 'xlsx') {
+      #
+      # Read an XLSX file
+      #
+      my $excel     = Spreadsheet::XLSX->new($file);
+      foreach my $sheet (@{$excel->{Worksheet}}) {
+         my $name = $sheet->{Name};
+         next  if ($opts{'sheet'}  &&  $opts{'sheet'} ne $name);
+
+         $sheet->{MaxRow} ||= $sheet->{MinRow};
+
+         foreach my $row ($sheet->{MinRow} .. $sheet->{MaxRow}) {
+            $sheet->{MaxCol} ||= $sheet->{MinCol};
+
+            my @row = ();
+            foreach my $col ($sheet->{MinCol} ..  $sheet->{MaxCol}) {
+               my $cell = $sheet->{Cells}[$row][$col];
+               my $val  = $cell->{Val}  if ($cell);
+               $val     = ''  if (! defined $val);
+               push(@row,"\"$val\"");
+            }
+
+            push(@in,join(',',@row) . "\n");
+         }
+      }
+
 
    } elsif ($type eq 'zip') {
       #
@@ -1692,9 +1736,9 @@ sub _read_file {
 }
 
 sub _do_codeset {
-   my($type,$cat,$codes,$stdcodes) = @_;
+   my($type,$cat,$codesets,$stdcodesets) = @_;
 
-   foreach my $codeset (@$stdcodes) {
+   foreach my $codeset (@$stdcodesets) {
       $Std{$codeset}{'std'} = 1;
    }
 
@@ -1714,10 +1758,10 @@ sub _do_codeset {
       last  if (! @ele);
 
       my (%codes,@names);
-      foreach my $code (@$codes) {
-         my $val = shift(@ele);
-         next  if (! $val);
-         $codes{$code} = $val;
+      foreach my $codeset (@$codesets) {
+         my $code = shift(@ele);
+         next  if (! $code);
+         $codes{$codeset} = $code;
       }
       next  if (! %codes);
       foreach my $name (@ele) {
@@ -1727,9 +1771,9 @@ sub _do_codeset {
 
       # Check to see if any of these are ignored.
 
-      foreach my $code (sort keys %codes) {
-         my $val = $codes{$code};
-         next ELE  if (exists $Data{$type}{$cat}{'ignore'}{$code}{$val});
+      foreach my $codeset (sort keys %codes) {
+         my $code = $codes{$codeset};
+         next ELE  if (exists $Data{$type}{$cat}{'ignore'}{$codeset}{$code});
       }
 
       foreach my $name (@names) {
@@ -1738,10 +1782,10 @@ sub _do_codeset {
 
       # If data needs to be transformed, do it now.
 
-      foreach my $code (sort keys %codes) {
-         my $orig = $codes{$code};
-         if (exists $Data{$type}{$cat}{'orig'}{$code}{$orig}) {
-            $codes{$code} = $Data{$type}{$cat}{'orig'}{$code}{$orig};
+      foreach my $codeset (sort keys %codes) {
+         my $code = $codes{$codeset};
+         if (exists $Data{$type}{$cat}{'orig'}{$codeset}{$code}) {
+            $codes{$codeset} = $Data{$type}{$cat}{'orig'}{$codeset}{$code};
          }
       }
 
@@ -1753,9 +1797,9 @@ sub _do_codeset {
 
       # Check that everything is ASCII
 
-      foreach my $code (sort keys %codes) {
-         my $val = $codes{$code};
-         _ascii_new($type,$cat,$code,$val);
+      foreach my $codeset (sort keys %codes) {
+         my $code = $codes{$codeset};
+         _ascii_new($type,$cat,$codeset,$code);
       }
 
       foreach my $name (@names) {
@@ -1769,12 +1813,12 @@ sub _do_codeset {
 
       # Store the codes
 
-      foreach my $code (keys %codes) {
-         my $val = $codes{$code};
-         $Code2ID{$code}{$val}       = [ $id, $subid ];
-         $ID2Code{$code}{$id}        = $val;
-         if ($Std{$code}{'std'}) {
-            $Std{$code}{$val}        = 1;
+      foreach my $codeset (keys %codes) {
+         my $code = $codes{$codeset};
+         $Code2ID{$codeset}{$code}       = [ $id, $subid ];
+         $ID2Code{$codeset}{$id}         = $code;
+         if ($Std{$codeset}{'std'}) {
+            $Std{$codeset}{$code}        = 1;
          }
       }
 
@@ -1867,6 +1911,43 @@ sub strip_tags {
       $$inref =~ s,</?$tag[^>]*>, ,g;
    }
 }
+
+###############################################################################
+
+BEGIN {
+   use POSIX qw(:termios_h);
+
+   my $fd_stdin = fileno(STDIN);
+
+   my $term     = POSIX::Termios->new();
+   $term->getattr($fd_stdin);
+   my $oterm    = $term->getlflag();
+
+   my $echo     = ECHO | ECHOK | ICANON;
+   my $noecho   = $oterm & ~$echo;
+
+   sub cbreak {
+      $term->setlflag($noecho);
+      $term->setcc(VTIME, 1);
+      $term->setattr($fd_stdin, TCSANOW);
+   }
+
+   sub cooked {
+      $term->setlflag($oterm);
+      $term->setcc(VTIME, 0);
+      $term->setattr($fd_stdin, TCSANOW);
+   }
+
+   sub getone {
+      my $key = '';
+      cbreak();
+      sysread(STDIN, $key, 1);
+      cooked();
+      return $key;
+   }
+}
+
+END { cooked() }
 
 # Local Variables:
 # mode: cperl

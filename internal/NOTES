@@ -12,34 +12,88 @@ module (though I hope that won't be necessary).
 Get the newest codes. Be sure to read the entire diff to make sure that
 no HTML is getting added to a code.
 
-   cp lib/Locale/Codes/Country_Codes.pm{,.bak}
-   cp lib/Locale/Codes/Language_Codes.pm{,.bak}
-   cp lib/Locale/Codes/Currency_Codes.pm{,.bak}
-   cp lib/Locale/Codes/Script_Codes.pm{,.bak}
-   cp lib/Locale/Codes/LangExt_Codes.pm{,.bak}
-   cp lib/Locale/Codes/LangVar_Codes.pm{,.bak}
-   cp lib/Locale/Codes/LangFam_Codes.pm{,.bak}
+debug=0
 
-   ./internal/get_codes -c
-   diff lib/Locale/Codes/Country_Codes.pm{.bak,}
+codes () {
+   t=$1
 
-   ./internal/get_codes -l
-   diff lib/Locale/Codes/Language_Codes.pm{.bak,}
+   if   [ "$t" = "country" ]; then
+      tt=Country
+      sets="alpha-2 alpha-3 numeric fips-10 dom"
+      opt='-c'
+   elif [ "$t" = "language" ]; then
+      tt=Language
+      sets="alpha-2 alpha-3 term"
+      opt='-l'
+   elif [ "$t" = "currency" ]; then
+      tt=Currency
+      sets="alpha num"
+      opt='-r'
+   elif [ "$t" = "script" ]; then
+      tt=Script
+      sets="alpha num"
+      opt='-s'
+   elif [ "$t" = "langext" ]; then
+      tt=LangExt
+      sets="alpha"
+      opt='-L'
+   elif [ "$t" = "langvar" ]; then
+      tt=LangVar
+      sets="alpha"
+      opt='-V'
+   elif [ "$t" = "langfam" ]; then
+      tt=LangFam
+      sets="alpha"
+      opt='-F'
+   fi
+   mod=Locale::Codes::$tt
+   f="lib/Locale/Codes/${tt}_Codes.pm"
 
-   ./internal/get_codes -r
-   diff lib/Locale/Codes/Currency_Codes.pm{.bak,}
+   echo "###########################################################"
+   echo "$tt"
+   echo "###########################################################"
 
-   ./internal/get_codes -s
-   diff lib/Locale/Codes/Script_Codes.pm{.bak,}
+   cat <<EOF > /tmp/z.pl
+use ${mod};
+for my \$set (qw(${sets})) {
+  @c = all_${t}_codes(\$set);
+  \$num = @c;
+  print "\$set = \$num\\n";
+}
+EOF
 
-   ./internal/get_codes -L
-   diff lib/Locale/Codes/LangExt_Codes.pm{.bak,}
+   if [ -f "$f.bak" ]; then
+      mv $f.bak $f
+   fi
 
-   ./internal/get_codes -V
-   diff lib/Locale/Codes/LangVar_Codes.pm{.bak,}
+   PERL5LIB="./lib" perl /tmp/z.pl > /tmp/z.orig
 
-   ./internal/get_codes -F
-   diff lib/Locale/Codes/LangFam_Codes.pm{.bak,}
+   cp $f $f.bak
+
+   if [ "$debug" = "1" ]; then
+      deb=-d
+   else
+      deb=
+   fi
+
+   perl $deb ./internal/get_codes $opt
+   diff $f.bak $f
+
+   echo "##########################"
+   echo "OLD"
+   cat /tmp/z.orig
+   echo "NEW"
+
+   PERL5LIB="./lib" perl /tmp/z.pl
+}
+
+   codes country
+   codes language
+   codes currency
+   codes script
+   codes langext
+   codes langvar
+   codes langfam
 
 
    ./internal/get_codes -C
