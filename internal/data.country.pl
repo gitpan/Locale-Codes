@@ -1,5 +1,5 @@
 #!/usr/bin/perl -w
-# Copyright (c) 2010-2012 Sullivan Beck.  All rights reserved.
+# Copyright (c) 2010-2013 Sullivan Beck.  All rights reserved.
 # This program is free software; you can redistribute it and/or modify it
 # under the same terms as Perl itself.
 
@@ -44,7 +44,6 @@ $Data{'country'}{'alias'} = {
    "Macedonia, Former Yugoslav Republic of"       => "Macedonia, The Former Yugoslav Republic of",
    "Micronesia (Federated States of)"             => "Micronesia, Federated States of",
    "North Korea"                                  => "Korea, Democratic People's Republic of",
-   "Occupied Palestinian Territory"               => "Palestinian Territory, Occupied",
    "Pitcairn Island"                              => "Pitcairn",
    "Pitcairn Islands"                             => "Pitcairn",
    "Republic of Korea"                            => "Korea, Republic of",
@@ -56,7 +55,9 @@ $Data{'country'}{'alias'} = {
    "Saint-Martin"                                 => "Saint Martin (French part)",
    "South Korea"                                  => "Korea, Republic of",
    "South Georgia and the Islands"                => "South Georgia and the South Sandwich Islands",
+   "State of Palestine"                           => "Palestine, State of",
    "Svalbard and Jan Mayen Islands"               => "Svalbard and Jan Mayen",
+   "Syria"                                        => "Syrian Arab Republic",
    "Taiwan"                                       => "Taiwan, Province of China",
    "The Bahamas"                                  => "Bahamas",
    "The Democratic Republic of the Congo"         => "Congo, The Democratic Republic of the",
@@ -254,7 +255,7 @@ $Data{'country'}{'iso'}{'orig'}{'name'} = {
    "OMAN"                                         => "Oman",
    "PAKISTAN"                                     => "Pakistan",
    "PALAU"                                        => "Palau",
-   "PALESTINIAN TERRITORY, OCCUPIED"              => "Palestinian Territory, Occupied",
+   "PALESTINE, STATE OF"                          => "Palestine, State of",
    "PANAMA"                                       => "Panama",
    "PAPUA NEW GUINEA"                             => "Papua New Guinea",
    "PARAGUAY"                                     => "Paraguay",

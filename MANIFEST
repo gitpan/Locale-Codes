@@ -3,7 +3,6 @@ ChangeLog
 examples/code2country
 examples/country2code
 INSTALL
-internal/.NOTES.swp
 internal/_no_tests
 internal/build.yaml
 internal/curr.yaml
@@ -22,7 +21,6 @@ internal/NOTES
 internal/prev.yaml
 internal/TODO
 internal/VERSION
-internal/z.pl
 lib/Locale/Codes.pm
 lib/Locale/Codes.pod
 lib/Locale/Codes/API.pod

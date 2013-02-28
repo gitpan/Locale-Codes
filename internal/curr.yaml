@@ -184,7 +184,7 @@ country:
       pm: Saint Pierre and Miquelon
       pn: Pitcairn
       pr: Puerto Rico
-      ps: Palestinian Territory, Occupied
+      ps: Palestine, State of
       pt: Portugal
       pw: Palau
       py: Paraguay
@@ -759,9 +759,9 @@ country:
       palau: 
         - pw
         - Palau
-      palestinian territory, occupied: 
+      palestine, state of: 
         - ps
-        - Palestinian Territory, Occupied
+        - Palestine, State of
       panama: 
         - pa
         - Panama
@@ -1178,7 +1178,7 @@ country:
       prk: Democratic People's Republic of Korea
       prt: Portugal
       pry: Paraguay
-      pse: Occupied Palestinian Territory
+      pse: State of Palestine
       pyf: French Polynesia
       qat: Qatar
       reu: Reunion
@@ -1712,9 +1712,6 @@ country:
       norway: 
         - nor
         - Norway
-      occupied palestinian territory: 
-        - pse
-        - Occupied Palestinian Territory
       oman: 
         - omn
         - Oman
@@ -1847,6 +1844,9 @@ country:
       sri lanka: 
         - lka
         - Sri Lanka
+      state of palestine: 
+        - pse
+        - State of Palestine
       sudan: 
         - sdn
         - Sudan
@@ -1960,261 +1960,261 @@ country:
         - Zimbabwe
   dom: 
     code: 
-      ac: ~
-      ad: ~
-      ae: ~
-      af: ~
-      ag: ~
-      ai: ~
-      al: ~
-      am: ~
-      an: ~
-      ao: ~
-      aq: ~
-      ar: ~
-      as: ~
-      at: ~
-      au: ~
-      aw: ~
-      ax: ~
-      az: ~
-      ba: ~
-      bb: ~
-      bd: ~
-      be: ~
-      bf: ~
-      bg: ~
-      bh: ~
-      bi: ~
-      bj: ~
-      bl: ~
-      bm: ~
-      bn: ~
-      bo: ~
-      bq: ~
-      br: ~
-      bs: ~
-      bt: ~
-      bv: ~
-      bw: ~
-      by: ~
-      bz: ~
-      ca: ~
-      cc: ~
-      cd: ~
-      cf: ~
-      cg: ~
-      ch: ~
-      ci: ~
-      ck: ~
-      cl: ~
-      cm: ~
-      cn: ~
-      co: ~
-      cr: ~
-      cu: ~
-      cv: ~
-      cw: ~
-      cx: ~
-      cy: ~
-      cz: ~
-      de: ~
-      dj: ~
-      dk: ~
-      dm: ~
-      do: ~
-      dz: ~
-      ec: ~
-      ee: ~
-      eg: ~
-      eh: ~
-      er: ~
-      es: ~
-      et: ~
-      eu: ~
-      fi: ~
-      fj: ~
-      fk: ~
-      fm: ~
-      fo: ~
-      fr: ~
-      ga: ~
-      gb: ~
-      gd: ~
-      ge: ~
-      gf: ~
-      gg: ~
-      gh: ~
-      gi: ~
-      gl: ~
-      gm: ~
-      gn: ~
-      gp: ~
-      gq: ~
-      gr: ~
-      gs: ~
-      gt: ~
-      gu: ~
-      gw: ~
-      gy: ~
-      hk: ~
-      hm: ~
-      hn: ~
-      hr: ~
-      ht: ~
-      hu: ~
-      id: ~
-      ie: ~
-      il: ~
-      im: ~
-      in: ~
-      io: ~
-      iq: ~
-      ir: ~
-      is: ~
-      it: ~
-      je: ~
-      jm: ~
-      jo: ~
-      jp: ~
-      ke: ~
-      kg: ~
-      kh: ~
-      ki: ~
-      km: ~
-      kn: ~
-      kp: ~
-      kr: ~
-      kw: ~
-      ky: ~
-      kz: ~
-      la: ~
-      lb: ~
-      lc: ~
-      li: ~
-      lk: ~
-      lr: ~
-      ls: ~
-      lt: ~
-      lu: ~
-      lv: ~
-      ly: ~
-      ma: ~
-      mc: ~
-      md: ~
-      me: ~
-      mf: ~
-      mg: ~
-      mh: ~
-      mk: ~
-      ml: ~
-      mm: ~
-      mn: ~
-      mo: ~
-      mp: ~
-      mq: ~
-      mr: ~
-      ms: ~
-      mt: ~
-      mu: ~
-      mv: ~
-      mw: ~
-      mx: ~
-      my: ~
-      mz: ~
-      na: ~
-      nc: ~
-      ne: ~
-      nf: ~
-      ng: ~
-      ni: ~
-      nl: ~
-      "no": ~
-      np: ~
-      nr: ~
-      nu: ~
-      nz: ~
-      om: ~
-      pa: ~
-      pe: ~
-      pf: ~
-      pg: ~
-      ph: ~
-      pk: ~
-      pl: ~
-      pm: ~
-      pn: ~
-      pr: ~
-      ps: ~
-      pt: ~
-      pw: ~
-      py: ~
-      qa: ~
-      re: ~
-      ro: ~
-      rs: ~
-      ru: ~
-      rw: ~
-      sa: ~
-      sb: ~
-      sc: ~
-      sd: ~
-      se: ~
-      sg: ~
-      sh: ~
-      si: ~
-      sj: ~
-      sk: ~
-      sl: ~
-      sm: ~
-      sn: ~
-      so: ~
-      sr: ~
-      ss: ~
-      st: ~
-      su: ~
-      sv: ~
-      sx: ~
-      sy: ~
-      sz: ~
-      tc: ~
-      td: ~
-      tf: ~
-      tg: ~
-      th: ~
-      tj: ~
-      tk: ~
-      tl: ~
-      tm: ~
-      tn: ~
-      to: ~
-      tp: ~
-      tr: ~
-      tt: ~
-      tv: ~
-      tw: ~
-      tz: ~
-      ua: ~
-      ug: ~
-      uk: ~
-      um: ~
-      us: ~
-      uy: ~
-      uz: ~
-      va: ~
-      vc: ~
-      ve: ~
-      vg: ~
-      vi: ~
-      vn: ~
-      vu: ~
-      wf: ~
-      ws: ~
-      ye: ~
-      yt: ~
-      za: ~
-      zm: ~
-      zw: ~
+      ac: Ascension Island
+      ad: Andorra
+      ae: United Arab Emirates
+      af: Afghanistan
+      ag: Antigua and Barbuda
+      ai: Anguilla
+      al: Albania
+      am: Armenia
+      an: Netherlands Antilles
+      ao: Angola
+      aq: Antarctica
+      ar: Argentina
+      as: American Samoa
+      at: Austria
+      au: Australia
+      aw: Aruba
+      ax: Aland Islands
+      az: Azerbaijan
+      ba: Bosnia and Herzegovina
+      bb: Barbados
+      bd: Bangladesh
+      be: Belgium
+      bf: Burkina Faso
+      bg: Bulgaria
+      bh: Bahrain
+      bi: Burundi
+      bj: Benin
+      bl: Saint Barthelemy
+      bm: Bermuda
+      bn: Brunei Darussalam
+      bo: Bolivia, Plurinational State of
+      bq: Bonaire, Saint Eustatius and Saba
+      br: Brazil
+      bs: Bahamas
+      bt: Bhutan
+      bv: Bouvet Island
+      bw: Botswana
+      by: Belarus
+      bz: Belize
+      ca: Canada
+      cc: Cocos (Keeling) Islands
+      cd: Congo, The Democratic Republic of the
+      cf: Central African Republic
+      cg: Congo
+      ch: Switzerland
+      ci: Cote d'Ivoire
+      ck: Cook Islands
+      cl: Chile
+      cm: Cameroon
+      cn: China
+      co: Colombia
+      cr: Costa Rica
+      cu: Cuba
+      cv: Cape Verde
+      cw: Curacao
+      cx: Christmas Island
+      cy: Cyprus
+      cz: Czech Republic
+      de: Germany
+      dj: Djibouti
+      dk: Denmark
+      dm: Dominica
+      do: Dominican Republic
+      dz: Algeria
+      ec: Ecuador
+      ee: Estonia
+      eg: Egypt
+      eh: Western Sahara
+      er: Eritrea
+      es: Spain
+      et: Ethiopia
+      eu: European Union
+      fi: Finland
+      fj: Fiji
+      fk: Falkland Islands (Malvinas)
+      fm: Micronesia, Federated States of
+      fo: Faroe Islands
+      fr: France
+      ga: Gabon
+      gb: United Kingdom
+      gd: Grenada
+      ge: Georgia
+      gf: French Guiana
+      gg: Guernsey
+      gh: Ghana
+      gi: Gibraltar
+      gl: Greenland
+      gm: Gambia
+      gn: Guinea
+      gp: Guadeloupe
+      gq: Equatorial Guinea
+      gr: Greece
+      gs: South Georgia and the South Sandwich Islands
+      gt: Guatemala
+      gu: Guam
+      gw: Guinea-Bissau
+      gy: Guyana
+      hk: Hong Kong
+      hm: Heard Island and Mcdonald Islands
+      hn: Honduras
+      hr: Croatia
+      ht: Haiti
+      hu: Hungary
+      id: Indonesia
+      ie: Ireland
+      il: Israel
+      im: Isle of Man
+      in: India
+      io: British Indian Ocean Territory
+      iq: Iraq
+      ir: Iran, Islamic Republic of
+      is: Iceland
+      it: Italy
+      je: Jersey
+      jm: Jamaica
+      jo: Jordan
+      jp: Japan
+      ke: Kenya
+      kg: Kyrgyzstan
+      kh: Cambodia
+      ki: Kiribati
+      km: Comoros
+      kn: Saint Kitts and Nevis
+      kp: Korea, Democratic People's Republic of
+      kr: Korea, Republic of
+      kw: Kuwait
+      ky: Cayman Islands
+      kz: Kazakhstan
+      la: Lao People's Democratic Republic
+      lb: Lebanon
+      lc: Saint Lucia
+      li: Liechtenstein
+      lk: Sri Lanka
+      lr: Liberia
+      ls: Lesotho
+      lt: Lithuania
+      lu: Luxembourg
+      lv: Latvia
+      ly: Libya
+      ma: Morocco
+      mc: Monaco
+      md: Moldova, Republic of
+      me: Montenegro
+      mf: Saint Martin (French part)
+      mg: Madagascar
+      mh: Marshall Islands
+      mk: Macedonia, The Former Yugoslav Republic of
+      ml: Mali
+      mm: Myanmar
+      mn: Mongolia
+      mo: Macao
+      mp: Northern Mariana Islands
+      mq: Martinique
+      mr: Mauritania
+      ms: Montserrat
+      mt: Malta
+      mu: Mauritius
+      mv: Maldives
+      mw: Malawi
+      mx: Mexico
+      my: Malaysia
+      mz: Mozambique
+      na: Namibia
+      nc: New Caledonia
+      ne: Niger
+      nf: Norfolk Island
+      ng: Nigeria
+      ni: Nicaragua
+      nl: Netherlands
+      "no": Norway
+      np: Nepal
+      nr: Nauru
+      nu: Niue
+      nz: New Zealand
+      om: Oman
+      pa: Panama
+      pe: Peru
+      pf: French Polynesia
+      pg: Papua New Guinea
+      ph: Philippines
+      pk: Pakistan
+      pl: Poland
+      pm: Saint Pierre and Miquelon
+      pn: Pitcairn
+      pr: Puerto Rico
+      ps: Palestine, State of
+      pt: Portugal
+      pw: Palau
+      py: Paraguay
+      qa: Qatar
+      re: Reunion
+      ro: Romania
+      rs: Serbia
+      ru: Russian Federation
+      rw: Rwanda
+      sa: Saudi Arabia
+      sb: Solomon Islands
+      sc: Seychelles
+      sd: Sudan
+      se: Sweden
+      sg: Singapore
+      sh: Saint Helena, Ascension and Tristan da Cunha
+      si: Slovenia
+      sj: Svalbard and Jan Mayen
+      sk: Slovakia
+      sl: Sierra Leone
+      sm: San Marino
+      sn: Senegal
+      so: Somalia
+      sr: Suriname
+      ss: South Sudan
+      st: Sao Tome and Principe
+      su: USSR
+      sv: El Salvador
+      sx: Sint Maarten (Dutch part)
+      sy: Syrian Arab Republic
+      sz: Swaziland
+      tc: Turks and Caicos Islands
+      td: Chad
+      tf: French Southern Territories
+      tg: Togo
+      th: Thailand
+      tj: Tajikistan
+      tk: Tokelau
+      tl: Timor-Leste
+      tm: Turkmenistan
+      tn: Tunisia
+      to: Tonga
+      tp: East Timor
+      tr: Turkey
+      tt: Trinidad and Tobago
+      tv: Tuvalu
+      tw: Taiwan, Province of China
+      tz: Tanzania, United Republic of
+      ua: Ukraine
+      ug: Uganda
+      uk: United Kingdom
+      um: United States Minor Outlying Islands
+      us: United States
+      uy: Uruguay
+      uz: Uzbekistan
+      va: Holy See (Vatican City State)
+      vc: Saint Vincent and the Grenadines
+      ve: Venezuela, Bolivarian Republic of
+      vg: Virgin Islands, British
+      vi: Virgin Islands, U.S.
+      vn: Viet Nam
+      vu: Vanuatu
+      wf: Wallis and Futuna
+      ws: Samoa
+      ye: Yemen
+      yt: Mayotte
+      za: South Africa
+      zm: Zambia
+      zw: Zimbabwe
     name: 
       afghanistan: 
         - af
@@ -2735,9 +2735,9 @@ country:
       palau: 
         - pw
         - Palau
-      palestinian territory, occupied: 
+      palestine, state of: 
         - ps
-        - Palestinian Territory, Occupied
+        - Palestine, State of
       panama: 
         - pa
         - Panama
@@ -4141,7 +4141,7 @@ country:
       266: Gabon
       268: Georgia
       270: Gambia
-      275: Occupied Palestinian Territory
+      275: State of Palestine
       276: Germany
       288: Ghana
       292: Gibraltar
@@ -4783,9 +4783,6 @@ country:
       norway: 
         - 578
         - Norway
-      occupied palestinian territory: 
-        - 275
-        - Occupied Palestinian Territory
       oman: 
         - 512
         - Oman
@@ -4921,6 +4918,9 @@ country:
       sri lanka: 
         - 144
         - Sri Lanka
+      state of palestine: 
+        - 275
+        - State of Palestine
       sudan: 
         - 729
         - Sudan
@@ -5212,7 +5212,7 @@ currency:
       XUA: ADB Unit of Account
       YER: Yemeni Rial
       ZAR: Rand
-      ZMK: Zambian Kwacha
+      ZMW: Zambian Kwacha
       ZWL: Zimbabwe Dollar
     name: 
       adb unit of account: 
@@ -5744,7 +5744,7 @@ currency:
         - CNY
         - Yuan Renminbi
       zambian kwacha: 
-        - ZMK
+        - ZMW
         - Zambian Kwacha
       zimbabwe dollar: 
         - ZWL
@@ -5882,7 +5882,6 @@ currency:
       860: Uzbekistan Sum
       882: Tala
       886: Yemeni Rial
-      894: Zambian Kwacha
       901: New Taiwan Dollar
       931: Peso Convertible
       932: Zimbabwe Dollar
@@ -5912,6 +5911,7 @@ currency:
       962: Platinum
       964: Palladium
       965: ADB Unit of Account
+      967: Zambian Kwacha
       968: Surinam Dollar
       969: Malagasy Ariary
       970: Unidad de Valor Real
@@ -6463,7 +6463,7 @@ currency:
         - 156
         - Yuan Renminbi
       zambian kwacha: 
-        - 894
+        - 967
         - Zambian Kwacha
       zimbabwe dollar: 
         - 932
@@ -15874,6 +15874,7 @@ language:
       zen: Zenaga
       zga: Kinga
       zgb: Guibei Zhuang
+      zgh: Standard Moroccan Tamazight
       zgm: Minz Zhuang
       zgn: Guibian Zhuang
       zgr: Magori
@@ -35448,6 +35449,9 @@ language:
       standard malay: 
         - zsm
         - Standard Malay
+      standard moroccan tamazight: 
+        - zgh
+        - Standard Moroccan Tamazight
       stellingwerfs: 
         - stl
         - Stellingwerfs

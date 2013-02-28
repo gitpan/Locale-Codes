@@ -1,5 +1,5 @@
 #!/usr/bin/perl -w
-# Copyright (c) 2010-2012 Sullivan Beck.  All rights reserved.
+# Copyright (c) 2010-2013 Sullivan Beck.  All rights reserved.
 # This program is free software; you can redistribute it and/or modify it
 # under the same terms as Perl itself.
 
@@ -22,7 +22,7 @@ use Text::Iconv;
 use lib "./internal";
 
 our $VERSION;
-$VERSION='3.24';
+$VERSION='3.25';
 
 # so the CPAN indexer won't treat this as a POD file
 our $podstr = '=pod';
@@ -91,7 +91,7 @@ our $country_iso_1st    = "AFGHANISTAN";
 our $country_un_url     = "http://unstats.un.org/unsd/methods/m49/m49alpha.htm";
 
 our $country_nga_url    =
- "http://earth-info.nga.mil/gns/html/GEOPOLITICAL ENTITIES AND CODES 01SEPT12.xlsx";
+ "http://earth-info.nga.mil/gns/html/GEOPOLITICAL ENTITIES AND CODES 31DEC2012.xlsx";
 
 # IANA publishes a list of codes.  The country names must be looked up in an
 # extended list of ISO 3166 codes.
@@ -114,7 +114,7 @@ require "data.language.pl";
 ########################################
 # CURRENCY
 
-our $currency_iso_url    = "http://www.currency-iso.org/dl_iso_table_a1.xls";
+our $currency_iso_url    = "http://www.currency-iso.org/content/dam/isocy/downloads/dl_iso_table_a1.xls";
 
 require "data.currency.pl";
 
@@ -368,7 +368,7 @@ sub do_country {
 
       # Aargh.  The HTML is invalid and it breaks things.
 
-      $in =~ s,(LKA </td> </tr>) <td,$1 <tr> <td,;
+      $in =~ s,(PSE </td> </tr>) <td,$1 <tr> <td,;
 
       # Look for a table who's first row has the header:
       #    ISO ALPHA-3 code
@@ -1490,7 +1490,7 @@ $hdstr COPYRIGHT
 
    Copyright (c) 1997-2001 Canon Research Centre Europe (CRE).
    Copyright (c) 2001-2010 Neil Bowers
-   Copyright (c) 2010-2012 Sullivan Beck
+   Copyright (c) 2010-2013 Sullivan Beck
 
 This module is free software; you can redistribute it and/or
 modify it under the same terms as Perl itself.
@@ -1503,7 +1503,7 @@ use warnings;
 use utf8;
 
 our(\$VERSION);
-\$VERSION='3.24';
+\$VERSION='3.25';
 
 \$Locale::Codes::Data{'$type'}{'id'} = '$ID';
 

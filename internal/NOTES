@@ -149,7 +149,10 @@ Before every release, spellcheck the documents:
    done
 
 #########################################################################
-Update the deprecated codes modules.
+*** MAKE SURE TESTS PASS BEFORE DOING THIS ***
+
+Update the deprecated codes modules.  Don't do this until certain that
+the changes are good.
 
    ./internal/dump_curr
    ./internal/deprecate_codes
