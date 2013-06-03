@@ -1,6 +1,6 @@
 
 use ExtUtils::MakeMaker;
-use 5.002;
+use 5.006;
 use strict;
 use warnings;
 my %requires = (
@@ -13,8 +13,8 @@ my %requires = (
 
 WriteMakefile(
         NAME             => 'Locale::Codes',
-        VERSION          => '3.25',
-        ($] >= 5.002
+        VERSION          => '3.26',
+        ($] >= 5.006
         ? (ABSTRACT=>'a distribution of modules to handle locale codes',
            AUTHOR  =>'Sullivan Beck (sbeck@cpan.org)')
         : ()),

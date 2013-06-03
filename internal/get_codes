@@ -22,11 +22,14 @@ use Text::Iconv;
 use lib "./internal";
 
 our $VERSION;
-$VERSION='3.25';
+$VERSION='3.26';
 
 # so the CPAN indexer won't treat this as a POD file
 our $podstr = '=pod';
 our $hdstr  = '=head1';
+
+# Some required executables
+my @exe     = qw( wget xls2csv );
 
 ###############################################################################
 # GLOBAL VARIABLES
@@ -91,7 +94,7 @@ our $country_iso_1st    = "AFGHANISTAN";
 our $country_un_url     = "http://unstats.un.org/unsd/methods/m49/m49alpha.htm";
 
 our $country_nga_url    =
- "http://earth-info.nga.mil/gns/html/GEOPOLITICAL ENTITIES AND CODES 31DEC2012.xlsx";
+ "http://earth-info.nga.mil/gns/html/GEOPOLITICAL ENTITIES AND CODES 30APR2013.xlsx";
 
 # IANA publishes a list of codes.  The country names must be looked up in an
 # extended list of ISO 3166 codes.
@@ -223,6 +226,12 @@ while ($_ = shift) {
 ############################################################################
 # MAIN PROGRAM
 ############################################################################
+
+foreach my $exe (@exe) {
+   if (system("which $exe > /dev/null") != 0) {
+      die "ERROR: required executable not found: $exe\n";
+   }
+}
 
 $ID       = "0001";
 %ID2Names = ();
@@ -1478,7 +1487,7 @@ Locale::Codes::${Module}_Codes - $type codes for the Locale::Codes::$Module modu
 $hdstr SYNOPSIS
 
 This module contains data used by the Locale::Codes::$Module module. It is
-not intended to be used directly, and contains no calleable routines.
+not intended to be used directly, and contains no callable routines.
 
 $hdstr AUTHOR
 
@@ -1503,7 +1512,7 @@ use warnings;
 use utf8;
 
 our(\$VERSION);
-\$VERSION='3.25';
+\$VERSION='3.26';
 
 \$Locale::Codes::Data{'$type'}{'id'} = '$ID';
 

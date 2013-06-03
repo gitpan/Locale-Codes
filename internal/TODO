@@ -1,5 +1,8 @@
 Remove alias_code Dec 2013 .
 
+Add GENC country codes (replacement for FIPS-10):
+   https://nsgreg.nga.mil/genc/discovery
+
 Add Storable as a build prereq. (in t/*.pl)
 
 =========
