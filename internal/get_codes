@@ -22,7 +22,7 @@ use Text::Iconv;
 use lib "./internal";
 
 our $VERSION;
-$VERSION='3.26';
+$VERSION='3.27';
 
 # so the CPAN indexer won't treat this as a POD file
 our $podstr = '=pod';
@@ -93,9 +93,6 @@ our $country_iso_1st    = "AFGHANISTAN";
 
 our $country_un_url     = "http://unstats.un.org/unsd/methods/m49/m49alpha.htm";
 
-our $country_nga_url    =
- "http://earth-info.nga.mil/gns/html/GEOPOLITICAL ENTITIES AND CODES 30APR2013.xlsx";
-
 # IANA publishes a list of codes.  The country names must be looked up in an
 # extended list of ISO 3166 codes.
 our $country_iana_url1  = "http://www.iana.org/domains/root/db/";
@@ -117,7 +114,7 @@ require "data.language.pl";
 ########################################
 # CURRENCY
 
-our $currency_iso_url    = "http://www.currency-iso.org/content/dam/isocy/downloads/dl_iso_table_a1.xls";
+our $currency_iso_url    = "http://www.currency-iso.org/dam/downloads/table_a1.xls";
 
 require "data.currency.pl";
 
@@ -254,18 +251,11 @@ do_clean()      if ($do_all  ||  $do_clean);
 ############################################################################
 
 sub do_country {
-   print "Please visit the URL:\n" .
-         "   http://earth-info.nga.mil/gns/html/gazetteers2.html\n" .
-         "To make sure that the \$country_nga_url is up-to-date.\n" .
-         "Hit any key to continue...\n\n";
-   my $c = getone();
-
    print "Country codes...\n";
    $Module   = "Country";
 
    _do_codeset('country','iso',  ['alpha-2'],           ['alpha-2']);
    _do_codeset('country','un',   ['numeric','alpha-3'], ['numeric','alpha-3']);
-   _do_codeset('country','nga',  ['fips-10'],           ['fips-10']);
    _do_codeset('country','iana', ['dom'],               ['dom']);
 
    do_aliases("country");
@@ -409,66 +399,6 @@ sub do_country {
          }
 
          return($num,$alpha3,$country);
-      }
-   }
-}
-
-########################################
-
-#
-# FIPS 10
-#
-# The National Geospatial-Intelligence Agency is the official source
-# for FIPS 10 codes.
-#
-# Spreadsheet format:
-# ===================
-#    ...
-#    Code   Name (Upper Case)  Name (Upper and Lower Case)
-#    AF     AFGANISTAN         Afganistan
-# ===================
-#
-
-{
-   my $in;
-
-   sub _init_country_nga {
-      $in = _read_file('url'       => $country_nga_url,
-                       'type'      => 'xlsx',
-                       'sheet'     => 'TABLE 1',
-                       'as_list'   => 1,
-                      );
-
-      # Look for a row that has 'Code' in it:
-
-      while (@$in) {
-         my $line = shift(@$in);
-         last  if ($line =~ /\"Code\"/);
-      }
-
-      if (! @$in) {
-         die "ERROR [nga]: country code file format changed!\n";
-      }
-   }
-
-   sub _read_country_nga {
-      while (1) {
-         return ()  if (! @$in);
-         my $line = shift(@$in);
-
-         if ($line =~ /^\"(.*)\",\"(.*)\",\"(.*)\"$/) {
-            my($fips,$name) = ($1,$3);
-            $fips  =~ s/\s*//g;
-
-            if ($fips !~ /^[A-Z][A-Z]$/) {
-               print "WARNING [nga]: Invalid code: $name => $fips\n";
-            }
-
-            return ($fips,$name);
-         }
-
-         print "WARNING [nga]: Invalid line: $line\n";
-         next;
       }
    }
 }
@@ -806,6 +736,7 @@ sub do_currency {
 
    sub _init_currency_iso {
       $in = _read_file('url'       => $currency_iso_url,
+                       'head'      => 'ENTITY,Currency',
                        'as_list'   => 1,
                        'type'      => 'xls',
                        'encoding'  => 'UTF-8',
@@ -1472,7 +1403,8 @@ sub write_module {
    my $timestamp   = `date`;
    chomp($timestamp);
 
-   print $out "package Locale::Codes::${Module}_Codes;
+   print $out "package #
+Locale::Codes::${Module}_Codes;
 
 # This file was automatically generated.  Any changes to this file will
 # be lost the next time 'get_codes' is run.
@@ -1512,7 +1444,7 @@ use warnings;
 use utf8;
 
 our(\$VERSION);
-\$VERSION='3.26';
+\$VERSION='3.27';
 
 \$Locale::Codes::Data{'$type'}{'id'} = '$ID';
 
@@ -1640,7 +1572,14 @@ sub _read_file {
       $cmd   .= " -a $opts{encoding}"  if ($opts{'encoding'});
       system($cmd);
       @in = `cat $csv`;
-      shift(@in);
+      if ($opts{'head'}) {
+         my $head = $opts{'head'};
+         while ($in[0] !~ /$head/) {
+            shift(@in);
+         }
+      } else {
+         shift(@in);
+      }
       my $in = Text::CSV::Slurp->load(string => join("",@in));
       @in = @$in;
       $opts{'as_list'} = 1;   # required

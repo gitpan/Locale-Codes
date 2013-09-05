@@ -8,12 +8,13 @@ my %requires = (
                  'utf8'                     => '0',
                  'Storable'                 => '0',
                  'Test::More'               => '0',
+                 'ExtUtils::MakeMaker'      => '0',
                );
 
 
 WriteMakefile(
         NAME             => 'Locale::Codes',
-        VERSION          => '3.26',
+        VERSION          => '3.27',
         ($] >= 5.006
         ? (ABSTRACT=>'a distribution of modules to handle locale codes',
            AUTHOR  =>'Sullivan Beck (sbeck@cpan.org)')

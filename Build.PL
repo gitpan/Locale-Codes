@@ -11,6 +11,9 @@ my %build_mods = (
                  'Storable'                 => '0',
                  'Test::More'               => '0',
                );
+my %config_mods = (
+                 'Module::Build'            => '0.21',
+               );
 
 
 my $class = Module::Build->subclass(
@@ -20,12 +23,13 @@ my $class = Module::Build->subclass(
 
 my $build = $class->new(
         license            => 'perl',
-        dist_version       => '3.26',
+        dist_version       => '3.27',
         dist_author        => 'Sullivan Beck <sbeck@cpan.org>',
         module_name        => 'Locale::Codes',
         dist_abstract      => 'a distribution of modules to handle locale codes',
         requires           => \%requires,
         build_requires     => \%build_mods,
+        configure_requires => \%config_mods,
         sign               => 1,
         installdirs        => 'core',
 );

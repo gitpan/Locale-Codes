@@ -19,7 +19,7 @@ codes () {
 
    if   [ "$t" = "country" ]; then
       tt=Country
-      sets="alpha-2 alpha-3 numeric fips-10 dom"
+      sets="alpha-2 alpha-3 numeric dom"
       opt='-c'
    elif [ "$t" = "language" ]; then
       tt=Language

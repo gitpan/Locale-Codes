@@ -14,6 +14,7 @@ $Data{'currency'}{'iso'}{'orig'}{'name'} = {
    "Ngultrum "             => "Ngultrum",
    "Unidades de fomento "  => "Unidades de fomento",
    "Pa’anga"               => "Pa'anga",
+   "Pa\x{2019}anga"        => "Pa'anga",
    "US Dollar (Next day) " => "US Dollar (Next day)",
    "US Dollar (Same day) " => "US Dollar (Same day)",
    "Bond Markets Unit European Monetary Unit (E.M.U.-6) "

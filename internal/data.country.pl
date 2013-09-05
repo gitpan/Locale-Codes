@@ -360,19 +360,6 @@ $Data{'country'}{'un'}{'ignore'} = {
 };
 
 ################################################################################
-# NGA (source of FIPS 10 codes)
-
-$Data{'country'}{'nga'}{'orig'}{'name'} = {
-    "Côte d’Ivoire"                               => "Cote d'Ivoire",
-    "Curaçao"                                     => "Curacao",
-};
-
-$Data{'country'}{'nga'}{'ignore'} = {
-   'name'   => {},
-   'fips-10'=> {},
-};
-
-################################################################################
 # IANA (source of top level domains)
 
 $Data{'country'}{'iana'}{'orig'}{'name'} = {
