@@ -22,11 +22,7 @@ use Text::Iconv;
 use lib "./internal";
 
 our $VERSION;
-$VERSION='3.27';
-
-# so the CPAN indexer won't treat this as a POD file
-our $podstr = '=pod';
-our $hdstr  = '=head1';
+$VERSION='3.28';
 
 # Some required executables
 my @exe     = qw( wget xls2csv );
@@ -739,6 +735,7 @@ sub do_currency {
                        'head'      => 'ENTITY,Currency',
                        'as_list'   => 1,
                        'type'      => 'xls',
+                       'join'      => [ 'MACEDONIA' ],
                        'encoding'  => 'UTF-8',
                       );
 
@@ -752,7 +749,9 @@ sub do_currency {
          my $currency = $$ele{'Currency'};
          my $alpha    = $$ele{'Alphabetic Code'};
          my $num      = $$ele{'Numeric Code'};
-         $num         = ""  if ($num eq "Nil");
+         $num         = ""  if (! defined($num)  ||  $num eq "Nil");
+         $currency    = ""  if (! defined($currency));
+         $alpha       = ""  if (! defined($alpha));
          $currency    =~ s/\s+$//;
 
          if ($num) {
@@ -1410,41 +1409,13 @@ Locale::Codes::${Module}_Codes;
 # be lost the next time 'get_codes' is run.
 #    Generated on: $timestamp
 
-$podstr
-
-$hdstr NAME
-
-Locale::Codes::${Module}_Codes - $type codes for the Locale::Codes::$Module module
-
-$hdstr SYNOPSIS
-
-This module contains data used by the Locale::Codes::$Module module. It is
-not intended to be used directly, and contains no callable routines.
-
-$hdstr AUTHOR
-
-See Locale::Codes for full author history.
-
-Currently maintained by Sullivan Beck (sbeck\@cpan.org).
-
-$hdstr COPYRIGHT
-
-   Copyright (c) 1997-2001 Canon Research Centre Europe (CRE).
-   Copyright (c) 2001-2010 Neil Bowers
-   Copyright (c) 2010-2013 Sullivan Beck
-
-This module is free software; you can redistribute it and/or
-modify it under the same terms as Perl itself.
-
-=cut
-
 use strict;
 require 5.006;
 use warnings;
 use utf8;
 
 our(\$VERSION);
-\$VERSION='3.27';
+\$VERSION='3.28';
 
 \$Locale::Codes::Data{'$type'}{'id'} = '$ID';
 
@@ -1568,8 +1539,14 @@ sub _read_file {
       #
       my $csv = $file;
       $csv    =~ s/.xls/.csv/;
-      my $cmd = "xls2csv -x $file -b WINDOWS-1252 -c $csv -q";
-      $cmd   .= " -a $opts{encoding}"  if ($opts{'encoding'});
+
+      # Old command
+      #my $cmd = "xls2csv -x $file -b WINDOWS-1252 -c $csv -q";
+      #$cmd   .= " -a $opts{encoding}"  if ($opts{'encoding'});
+
+      # New command
+      my $cmd = "xls2csv -o $csv $file";
+
       system($cmd);
       @in = `cat $csv`;
       if ($opts{'head'}) {
@@ -1580,6 +1557,25 @@ sub _read_file {
       } else {
          shift(@in);
       }
+
+      if ($opts{'join'}) {
+         # Some CSV files have newlines in the value.  This looks
+         # for a string and when found, joins it and the next
+         # line (with the newline removed).
+         foreach my $string (@{ $opts{'join'} }) {
+            my @tmp;
+            while (@in) {
+               my $in = shift(@in);
+               if ($in =~ /$string/) {
+                  chomp($in);
+                  $in .= shift(@in);
+               }
+               push(@tmp,$in);
+            }
+            @in = @tmp;
+         }
+      }
+
       my $in = Text::CSV::Slurp->load(string => join("",@in));
       @in = @$in;
       $opts{'as_list'} = 1;   # required

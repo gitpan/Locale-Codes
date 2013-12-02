@@ -23,7 +23,7 @@ my $class = Module::Build->subclass(
 
 my $build = $class->new(
         license            => 'perl',
-        dist_version       => '3.27',
+        dist_version       => '3.28',
         dist_author        => 'Sullivan Beck <sbeck@cpan.org>',
         module_name        => 'Locale::Codes',
         dist_abstract      => 'a distribution of modules to handle locale codes',

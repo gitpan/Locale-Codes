@@ -21,6 +21,8 @@ $Data{'script'}{'iso'}{'orig'}{'name'} = {
       "Ol Chiki (Ol Cemet, Ol, Santali)",
    "Sharada, Śāradā"                  => "Sharada, Sarada",
    "Takri, Ṭākrī, Ṭāṅkrī"              => "Takri, Takri, Tankri",
+   "Modi, Moḍī"                        => "Modi, Modi",
+   "Siddham, Siddhaṃ, Siddhamātṛkā"    => "Siddham, Siddham, Siddhamatrka",
 };
 
 $Data{'script'}{'iso'}{'ignore'} = {

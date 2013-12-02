@@ -22,6 +22,7 @@ $Data{'langvar'}{'iana'}{'orig'}{'name'} = {
    "Schleyer's Volapük"                => "Schleyer's Volapuk",
    "Original Volapük"                  => "Original Volapuk",
    "Classic Volapük"                   => "Classic Volapuk",
+   "Slovene in Bohorič alphabet"       => "Slovene in Bohoric alphabet",
 };
 
 $Data{'langvar'}{'iana'}{'ignore'} = {

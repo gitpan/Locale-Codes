@@ -29,10 +29,6 @@ our %prev    = %{ LoadFile($prev) };
 
 our $mod_dir = "lib/Locale/Codes";
 
-# so the CPAN indexer won't treat this as a POD file
-our $podstr  = '=pod';
-our $hdstr   = '=head1';
-
 ############################################################################
 ############################################################################
 
@@ -89,41 +85,13 @@ Locale::Codes::${module}_Retired;
 # be lost the next time 'deprecate_codes' is run.
 #    Generated on: $timestamp
 
-$podstr
-
-$hdstr NAME
-
-Locale::Codes::${module}_Retired - retired $type codes for the Locale::Codes::$module module
-
-$hdstr SYNOPSIS
-
-This module contains data used by the Locale::Codes::$module module. It is
-not intended to be used directly, and contains no callable routines.
-
-$hdstr AUTHOR
-
-See Locale::Codes for full author history.
-
-Currently maintained by Sullivan Beck (sbeck\@cpan.org).
-
-$hdstr COPYRIGHT
-
-   Copyright (c) 1997-2001 Canon Research Centre Europe (CRE).
-   Copyright (c) 2001-2010 Neil Bowers
-   Copyright (c) 2010-2013 Sullivan Beck
-
-This module is free software; you can redistribute it and/or
-modify it under the same terms as Perl itself.
-
-=cut
-
 use strict;
 require 5.006;
 use warnings;
 use utf8;
 
 our(\$VERSION);
-\$VERSION='3.27';
+\$VERSION='3.28';
 
 ";
 
