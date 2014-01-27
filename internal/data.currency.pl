@@ -1,10 +1,11 @@
 #!/usr/bin/perl -w
-# Copyright (c) 2010-2013 Sullivan Beck.  All rights reserved.
+# Copyright (c) 2010-2014 Sullivan Beck.  All rights reserved.
 # This program is free software; you can redistribute it and/or modify it
 # under the same terms as Perl itself.
 
-$Data{'currency'}{'alias'} = {
-};
+$Data{'currency'}{'link'} =
+  [
+  ];
 
 ################################################################################
 
@@ -22,13 +23,12 @@ $Data{'currency'}{'iso'}{'orig'}{'name'} = {
 };
 
 $Data{'currency'}{'iso'}{'ignore'} = {
-   "name"   => {},
-   "num"    => {},
-   "alpha"  => {
-                "XFU"  => 1,
-                "XTS"  => 1,
-                "XXX"  => 1,
+   "name"   => {
+                "Codes specifically reserved for testing purposes"   => 1,
+                "The codes assigned for transactions where no currency is involved"    => 1,
                },
+   "num"    => {},
+   "alpha"  => {},
 };
 
 1;

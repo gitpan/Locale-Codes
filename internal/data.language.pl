@@ -1,12 +1,15 @@
 #!/usr/bin/perl -w
-# Copyright (c) 2010-2013 Sullivan Beck.  All rights reserved.
+# Copyright (c) 2010-2014 Sullivan Beck.  All rights reserved.
 # This program is free software; you can redistribute it and/or modify it
 # under the same terms as Perl itself.
 
-$Data{'language'}{'alias'} = {
-   "Greek"                            => 'Greek, Modern (1453-)',
-   "Tonga"                            => 'Tonga (Tonga Islands)',
-};
+$Data{'language'}{'link'} =
+  [
+   [ "Greek, Modern (1453-)",
+        "Greek" ],
+   [ "Tonga (Tonga Islands)",
+        "Tonga" ],
+  ];
 
 ################################################################################
 

@@ -1,12 +1,12 @@
 #!/usr/bin/perl -w
-# Copyright (c) 2010-2013 Sullivan Beck.  All rights reserved.
+# Copyright (c) 2010-2014 Sullivan Beck.  All rights reserved.
 # This program is free software; you can redistribute it and/or modify it
 # under the same terms as Perl itself.
 
 ###############################################################################
 ###############################################################################
-# This script is used to automatically generate the Locale::Codes module
-# which contain the actual codes.
+# This script is used to harvest data from the various standards and use that
+# data to automatically generate the Locale::Codes module containing that data.
 
 require 5.000000;
 use YAML;
@@ -22,7 +22,7 @@ use Text::Iconv;
 use lib "./internal";
 
 our $VERSION;
-$VERSION='3.28';
+$VERSION='3.29';
 
 # Some required executables
 my @exe     = qw( wget xls2csv );
@@ -40,22 +40,14 @@ my @exe     = qw( wget xls2csv );
 #                                   spelling and capitalization).
 #  %Alias{ALIAS}                 => [ COUNTRY_ID, I ]
 #                                   A hash of all aliases for a country.
-#                                   Aliases are all lowercase.
+#                                   Aliases are all lowercase.  It is
+#                                   the I'th entry in the list of countries.
 #  %Code2ID{CODESET}{CODE}       => [ COUNTRY_ID, I ]
 #                                   In a given CODESET, CODE corresponds to
 #                                   the I'th entry in the list of countries.
 #  %ID2Code{CODESET}{COUNTRY_ID} => CODE
 #                                   In the given CODESET, the COUNTRY_ID
 #                                   corresponds to the given CODE.
-#  %Std{CODESET}{'state'}        => 1/2
-#               {'codes'}{CODE}  => 1
-#                                   'state' is set to 1 if at least one source
-#                                   has been processed which included this
-#                                   codeset.  'state is set to 2 if an official
-#                                   source has been used (so no other source
-#                                   will be allowed to add additional codes).
-#                                   {'codes'}{CODE} will be set to 1 for each
-#                                   code in an official source.
 #
 # %Data is a complete description of changes that need to be made to the
 # raw data to turn it into the form used by the module.
@@ -74,8 +66,17 @@ my @exe     = qw( wget xls2csv );
 #      VALUE is one possible value for that KEY.  If an element is read in
 #         with KEY having this VALUE, the element is ignored.
 #
-#  $Data{TYPE}{'alias'}{ALIAS} => {NAME}
-#      Establishes an alias.
+#  $Data{TYPE}{SOURCE}{'new'}{NAME} => 1
+#      This permits the source to add a new element named NAME.
+#      The first source is automatically permitted to add all elements
+#      contained in it... all others must be explicitly permitted.
+#
+#  $Data{TYPE}{'link'} => [ [ NAME1a, NAME1b, ... ] [ NAME2a, NAME2b, ... ] ... ]
+#      Links all of NAMEi together (i.e. they are different names for the
+#      same element).
+#  $Data{TYPE}{'alias'}{ALIAS} => NAME
+#      Generated from 'link'.
+
 
 our($ModDir,$Module,$ID,%ID2Names,%Alias,%Code2ID,%ID2Code,%Std,%Data);
 
@@ -84,10 +85,7 @@ $ModDir = "lib/Locale/Codes";
 ########################################
 # COUNTRY
 
-our $country_iso_url    = "http://www.iso.org/iso/list-en1-semic-3.txt";
-our $country_iso_1st    = "AFGHANISTAN";
-
-our $country_un_url     = "http://unstats.un.org/unsd/methods/m49/m49alpha.htm";
+our $country_iso_url    = "http://www.iso.org/iso/home/standards/country_codes.htm";
 
 # IANA publishes a list of codes.  The country names must be looked up in an
 # extended list of ISO 3166 codes.
@@ -183,7 +181,6 @@ $usage=
       -L/--langext    : Get the language extension codes
       -V/--langvar    : Get the language variation codes
       -F/--langfam    : Get the language family codes
-      -C/--clean      : Clean up all temporary files
 ";
 
 ###############################################################################
@@ -198,7 +195,6 @@ my $do_script   = 0;
 my $do_langext  = 0;
 my $do_langvar  = 0;
 my $do_langfam  = 0;
-my $do_clean    = 0;
 
 while ($_ = shift) {
 
@@ -213,7 +209,6 @@ while ($_ = shift) {
    $do_langext = 1,  next  if ($_ eq "-L"   ||  $_ eq "--langext");
    $do_langvar = 1,  next  if ($_ eq "-V"   ||  $_ eq "--langvar");
    $do_langfam = 1,  next  if ($_ eq "-F"   ||  $_ eq "--langfam");
-   $do_clean = 1,    next  if ($_ eq "-C"   ||  $_ eq "--clean");
 }
 
 ############################################################################
@@ -240,7 +235,6 @@ do_script()     if ($do_all  ||  $do_script);
 do_langext()    if ($do_all  ||  $do_langext);
 do_langvar()    if ($do_all  ||  $do_langvar);
 do_langfam()    if ($do_all  ||  $do_langfam);
-do_clean()      if ($do_all  ||  $do_clean);
 
 ############################################################################
 # DO_COUNTRY
@@ -250,12 +244,11 @@ sub do_country {
    print "Country codes...\n";
    $Module   = "Country";
 
-   _do_codeset('country','iso',  ['alpha-2'],           ['alpha-2']);
-   _do_codeset('country','un',   ['numeric','alpha-3'], ['numeric','alpha-3']);
+   _do_codeset('country','iso',  ['alpha-2','alpha-3','numeric'],
+                                 ['alpha-2','alpha-3','numeric']);
    _do_codeset('country','iana', ['dom'],               ['dom']);
 
    do_aliases("country");
-
    write_module("country");
 }
 
@@ -264,139 +257,139 @@ sub do_country {
 #
 # ISO 3166-1
 #
-# The standard contains the alpha-2 codes.  This is the official source of these
-# codes.
+# The standard contains the alpha-2, alpha-3, and numeric codes.  This
+# is the official source of these codes.
 #
 # File format:
 # =================
-#    a comment^M
-#    AFGHANISTAN;AF^M
-#    ALBANIA;AL^M
+#    Country name
+#    Country french name
+#    alpha-2
+#    alpha-3
+#    numeric
 # =================
-#
-# Country names must be adjusted (since they're all uppercase).  Lines end with
-# a windows unprintable character that must be chopped off.  First line is (currently)
-# AFGANISTAN.
 #
 
 {
    my $in;
 
    sub _init_country_iso {
-      $in = _read_file('url'       => $country_iso_url,
+      my $inst = qq
+(Please download the data manually for ISO 3166 country codes.
+Go to the following URL:
+   $country_iso_url
+Click on:
+   'Online Browsing Platform'
+   'Officially assigned codes'
+   300 results per page
+Select the entire chart (not including the header).  If not all of the
+countries fit on a single page, do it in multiple steps.
+);
+
+      $in = _read_file('type'      => 'manual',
+                       'inst'      => $inst,
                        'as_list'   => 1,
-                       'chop'      => 1,
                       );
-
-      # Make sure that line 2 contains the first country.
-
-      if ($$in[1] !~ /^$country_iso_1st;/) {
-         die "ERROR [iso]: country code file format changed!\n";
-      }
-
-      shift(@$in);
    }
 
    sub _read_country_iso {
       while (@$in) {
-         my $line = shift(@$in);
-         next  if (! $line);
-
-         if ($line =~ /^(.+);([A-Z][A-Z])$/) {
-            my($name,$alpha2) = ($1,$2);
-            $alpha2 = lc($alpha2);
-            return($alpha2,$name);
-         }
-         die "ERROR [iso]: line invalid\n" .
-             "             $line\n";
+         my $name   = shift(@$in);
+         shift(@$in);
+         my $alpha2 = lc(shift(@$in));
+         my $alpha3 = lc(shift(@$in));
+         my $num    = shift(@$in);
+         $name      =~ s/\(the/\(The/;
+         return($alpha2,$alpha3,$num,_country_name($name));
       }
       return ();
    }
 }
 
-########################################
-
+# This takes some common country name formats and produces common aliases.
 #
-# UN Stats Division
-#
-# The UN Stats Division is the official source of the ISO 3166
-# 3-character codes and 3-digit codes.
-#
-# File format:
-# ============
-#    <tr>
-#      <td align=left valign=top class="theader" width="66">
-#        <div align="left"><strong>Numerical<br>code</strong></div>
-#      </td>
-#      <td valign=top class="theader" width="312">
-#        <strong>&nbsp;&nbsp;&nbsp;Country or area name</strong>
-#      </td>
-#      <td valign=top class="theader" width="121">
-#        <strong>ISO ALPHA-3 code</strong>
-#      </td>
-#    </tr>
-#    <tr>
-#      <td width="66" align=middle valign=top class="lcont">
-#        <p align=left>004 </p>
-#      </td>
-#      <td width="312" valign=top class="lcont">
-#        <p>Afghanistan </p>
-#      </td>
-#      <td width="121" valign=top class="lcont">
-#        <p>AFG </p>
-#      </td>
-#    </tr>
-# ============
-#
+sub _country_name {
+   my($name) = @_;
+   my @ret;
 
-{
-   my $in;
+   if ($name =~ /^(.+), The (.+?) of$/     ||
+       $name =~ /^(.+) \(The (.+?) of\)$/) {
 
-   sub _init_country_un {
-      $in = _read_file('url'        => $country_un_url,
-                       'type'       => 'html',
-                       'as_list'    => 0,
-                       'encoding'   => 'ISO-8859-1',
-                       'html_strip' => [ qw(br p strong div) ],
-                       'html_repl'  => [ qw(&nbsp;) ],
-                      );
+      # NAME1, The NAME2 of
+      # NAME1 (The NAME2 of) =>
+      #   The NAME2 of NAME1
+      #   NAME2 of NAME1
 
-      # Aargh.  The HTML is invalid and it breaks things.
+      my($n1,$n2) = ($1,$2);
+      push(@ret,"$n1, The $n2 of",
+                "$n1 (The $n2 of)",
+                "$n1, $n2 of",
+                "$n1 ($n2 of)",
+                "The $n2 of $n1",
+                "$n2 of $n1");
 
-      $in =~ s,(PSE </td> </tr>) <td,$1 <tr> <td,;
+   } elsif ($name =~ /^(.+), (.+?) of$/  |\
+            $name =~ /^(.+), \((.+?) of\)$/) {
 
-      # Look for a table who's first row has the header:
-      #    ISO ALPHA-3 code
+      # NAME1, NAME2 of
+      # NAME1, (NAME2 of) =>
+      #   NAME2 of NAME1
 
-      my $found = jump_to_row(\$in,"ISO ALPHA-3 code");
-      if (! $found) {
-         die "ERROR [un]: country code file format changed!\n";
-      }
+      my($n1,$n2) = ($1,$2);
+      push(@ret,"$n1, $n2 of",
+                "$n1 ($n2 of)",
+                "$n2 of $n1");
+
+   } elsif ($name =~ /^(.+), The$/ ||
+            $name =~ /^(.+) \(The\)$/) {
+
+      # NAME, The
+      # NAME (The) =>
+      #    The NAME
+      #    NAME
+
+      my($n1) = ($1);
+      push(@ret,$n1,
+                "The $n1",
+                "$n1, The",
+                "$n1 (The)");
+
+   # } elsif ($name =~ /^The (.+?) of (.+)$/) {
+
+   #    # The NAME2 of NAME1
+
+   #    my($n2,$n1) = ($1,$2);
+   #    push(@ret,"$n1, The $n2 of",
+   #              "$n1 (The $n2 of)",
+   #              "$n1, $n2 of",
+   #              "$n1 ($n2 of)",
+   #              "The $n2 of $n1",
+   #              "$n2 of $n1");
+
+   # } elsif ($name =~ /^(.+?) of (.+)$/) {
+
+   #    # NAME2 of NAME1
+
+   #    my($n2,$n1) = ($1,$2);
+   #    push(@ret,"$n1, $n2 of",
+   #              "$n1 ($n2 of)",
+   #              "$n2 of $n1");
+
+   # } elsif ($name =~ /^The (.+)$/) {
+
+   #    # The NAME
+
+   #    my($n1) = ($1);
+   #    push(@ret,$n1,
+   #              "The $n1",
+   #              "$n1, The",
+   #              "$n1 (The)");
+
+   } else {
+      push(@ret,$name);
    }
 
-   sub _read_country_un {
-      while (1) {
-         my @row = get_row("un",\$in);
-         return ()  if (! @row);
-         my ($num,$country,$alpha3) = @row;
-
-         if ($num) {
-            $num = "0$num"  while (length($num) < 3);
-            if ($num !~ /^\d\d\d$/) {
-               print "WARNING [un]: Invalid numeric code: $country => $num\n";
-               next;
-            }
-         }
-
-         $alpha3 = lc($alpha3);
-         if ($alpha3  &&  $alpha3 !~ /^[a-z][a-z][a-z]$/) {
-            print "WARNING [un]: Invalid alpha-3 code: $country => $alpha3\n";
-            next;
-         }
-
-         return($num,$alpha3,$country);
-      }
-   }
+   return @ret;
 }
 
 ########################################
@@ -425,14 +418,16 @@ sub do_country {
 # The extended ISO list is of the format:
 # ============
 #    <tr ...>
-#       <th>Domain</th>
-#       <th>Type</th>
-#       <th>Sponsoring Organisation</th>
+#       <th ...>Code</th>
+#       <th ...>Name</th>
+#       <th ...>Remark</th>
+#       <th ...>Status</th>
 #    </tr>
 #    <tr ...>
-#       <td><span ...><a ...>.AD</a></span></td>
-#       <td>country-code</td>
-#       ...
+#       <td ...><a ...></a>AD</td>
+#       <td ...>NAME</td>
+#       <td ...>...</td>
+#       <td ...>...</td>
 #    </tr>
 # ============
 
@@ -442,6 +437,12 @@ sub do_country {
    my %codes;
 
    sub _init_country_iana {
+
+      #
+      # Get the extended ISO list first as a hash:
+      #   $codes{CODE} = NAME
+      #
+
       $in = _read_file('url'       => $country_iana_url2,
                        'type'      => 'html',
                        'as_list'   => 0,
@@ -456,6 +457,10 @@ sub do_country {
          die "ERROR [iana]: extended ISO file format changed!\n";
       }
       _read_country_iana_extiso();
+
+      #
+      # The actual IANA list
+      #
 
       $in = _read_file('url'       => $country_iana_url1,
                        'type'      => 'html',
@@ -479,6 +484,14 @@ sub do_country {
 
          my($dom,$country,$remark,$status) = @row;
          next  if (! $country);
+         my @country = split(/\s+/,$country);
+         foreach my $c (@country) {
+            $c = ucfirst(lc($c));
+            $c = "of"  if ($c eq 'Of');
+            $c = "and" if ($c eq 'And');
+
+         }
+         $country = join(' ',@country);
          $codes{lc($dom)} = $country;
       }
    }
@@ -494,16 +507,16 @@ sub do_country {
 
          $dom     =~ s/^\.//;
 
-         my $country;
+         my @country;
 
          if (exists $Code2ID{'alpha-2'}{$dom}) {
             my ($id,$i) = @{ $Code2ID{'alpha-2'}{$dom} };
             my @name    = @{ $ID2Names{$id} };
-            $country    = $name[$i];
+            @country    = ($name[$i]);
          } else {
-            $country    = $codes{$dom};
+            @country    = _country_name($codes{$dom});
          }
-         return ($dom,$country);
+         return ($dom,@country);
       }
    }
 }
@@ -517,9 +530,12 @@ sub do_language {
 
    $Module   = "Language";
 
-   _do_codeset('language','iso2',  ['alpha-3','term','alpha-2'],       ['term']);
-   _do_codeset('language','iso5',  ['alpha-3'],                        []);
-   _do_codeset('language','iana',  ['alpha-2','alpha-3'],              []);
+   _do_codeset('language','iso2',  ['alpha-3','term','alpha-2'],
+                                   ['alpha-3','term','alpha-2']);
+   _do_codeset('language','iso5',  ['alpha-3'],
+                                   ['alpha-3'],'allow');
+   _do_codeset('language','iana',  ['alpha-2','alpha-3'],
+                                   ['alpha-2','alpha-3'],'allow');
 
    do_aliases("language");
 
@@ -785,8 +801,8 @@ sub do_script {
 
    $Module   = "Script";
 
-   _do_codeset('script','iso',  ['alpha','num'],       ['num']);
-   _do_codeset('script','iana', ['alpha'],             []);
+   _do_codeset('script','iso',  ['alpha','num'],       ['alpha','num']);
+   _do_codeset('script','iana', ['alpha'],             ['alpha'],  'allow');
 
    do_aliases("script");
 
@@ -887,7 +903,7 @@ sub do_langext {
 
    $Module   = "LangExt";
 
-   _do_codeset('langext','iana', ['alpha'],             []);
+   _do_codeset('langext','iana', ['alpha'],             ['alpha']);
 
    do_aliases("langext");
 
@@ -957,7 +973,7 @@ sub do_langvar {
 
    $Module   = "LangVar";
 
-   _do_codeset('langvar','iana', ['alpha'],             []);
+   _do_codeset('langvar','iana', ['alpha'],      ['alpha']);
 
    do_aliases("langvar");
 
@@ -1027,7 +1043,7 @@ sub do_langfam {
 
    $Module   = "LangFam";
 
-   _do_codeset('langfam','iso', ['alpha'],             []);
+   _do_codeset('langfam','iso', ['alpha'],     ['alpha']);
 
    do_aliases("langfam");
 
@@ -1238,46 +1254,69 @@ sub _get_ID {
    return(0,$currID,$i,$t);
 }
 
+# This takes a list of codes and names and checks to see if we've got
+# an ID for this element, or if it is a new element.
+#
+# If $second is non-zero, then this is the second (or more) codeset of
+# a given type and we are expected to always have an element to match
+# with, or that it is flagged in the data files as a known new value.
+# This can be overridden if $allow is non-zero.
+#
 sub _get_ID_new {
-   my($type,$cat,$codes,$names,$no_create) = @_;
-   my($id,$idtype,$subid) = ('','','');
+   my($type,$src,$second,$allow,$codes,$names) = @_;
+   my($id,$subid) = ('','');
 
-   # Check each of the names
+   #
+   # Check each of the names to see if it's been previously defined.
+   #
 
+   NAME:
    foreach my $name (@$names) {
-      if (exists $Alias{lc($name)}) {
 
-         # We've already defined this name before
+      #
+      # If we've already used this name before, it'll be defined in
+      # %Alias.  Make sure that the ID is the same for all names assigned
+      # to this element.
+      #
+
+      if (exists $Alias{lc($name)}) {
 
          my $i = $Alias{lc($name)}[0];
          if ($id  &&  $i ne $id) {
-            print "WARNING [$type,$cat]: alias refers to multiple elements: $name => $id,$i\n";
-            return (1);
-         }
-         ($id,$idtype) = ($i,'same');
-
-      } elsif (exists $Data{$type}{'alias'}{$name}) {
-
-         # It's a new alias for an existing element
-
-         my $c = $Data{$type}{'alias'}{$name};
-         if (! exists $Alias{lc($c)}) {
-            print "WARNING [$type,$cat]: alias referenced before it is defined: $name => $c\n";
-            return (1);
-         }
-
-         my $i = $Alias{lc($c)}[0];
-         if ($id  &&  $i ne $id) {
-            print "WARNING [$type,$cat]: alias refers to multiple elements: $name => $id,$i\n";
+            print "WARNING [$type,$src]: " .
+                  "name refers to multiple elements: $name => $id,$i\n";
             return (1);
          }
          $id = $i;
 
-         $idtype = "alias"  unless ($idtype);
+         next NAME;
+      }
+
+      #
+      # If we've already got an ID, or if this is the first standard
+      # read in, then this is just a new alias.
+      #
+
+      next NAME  if ($id  ||  ! $second  ||  $allow);
+
+      #
+      # If this is a totally new name, then we need to have explicitly
+      # allow it.
+      #
+
+      if (! exists $Data{$type}{$src}{'new'}{$name}) {
+         print "WARNING [$type,$src]: " .
+               "new name not allowed: $name\n";
+         return (1);
       }
    }
 
-   # Check each of the codes
+   #
+   # If any of the codes entered here are already defined in another
+   # data source, make sure they are consistent.  In general, if a
+   # codeset only comes from a single source, this should not be a
+   # problem.
+   #
 
    foreach my $codeset (keys %$codes) {
       my $code = $$codes{$codeset};
@@ -1285,15 +1324,18 @@ sub _get_ID_new {
       if (exists $Code2ID{$codeset}{$code}) {
          my($i,$s) = @{ $Code2ID{$codeset}{$code} };
          if ($id  &&  $i ne $id) {
-            print "WARNING [$type,$cat,$codeset]: code refers to multiple elements: $code => $id,$i\n";
+            print "WARNING [$type,$src,$codeset]: " .
+                  "code refers to multiple elements: $code => $id,$i\n";
             return (1);
          }
          ($id,$subid) = ($i,$s);
-         $idtype = 'code'  unless ($idtype);
       }
    }
 
-   # Store each of the names
+   #
+   # If it's a new name for an existing element, add each of the names
+   # to %Alias.
+   #
 
    if ($id) {
       my $name = $$names[0];
@@ -1314,23 +1356,20 @@ sub _get_ID_new {
       }
    }
 
+   #
    # If it's a new element, create it.
+   #
 
    if (! $id) {
-      if ($no_create) {
-         ($id,$subid,$idtype) = (-1,-1,'new');
-      } else {
-         $id    = $ID++;
-         $subid = 0;
-         $ID2Names{$id} = [ @$names ];
-         foreach my $name (@$names) {
-            $Alias{lc($name)} = [ $id, $subid ];
-         }
-         $idtype = 'new';
+      $id    = $ID++;
+      $subid = 0;
+      $ID2Names{$id} = [ @$names ];
+      foreach my $name (@$names) {
+         $Alias{lc($name)} = [ $id, $subid ];
       }
    }
 
-   return(0,$id,$subid,$idtype);
+   return(0,$id,$subid);
 }
 
 ########################################
@@ -1415,7 +1454,7 @@ use warnings;
 use utf8;
 
 our(\$VERSION);
-\$VERSION='3.28';
+\$VERSION='3.29';
 
 \$Locale::Codes::Data{'$type'}{'id'} = '$ID';
 
@@ -1487,15 +1526,6 @@ sub _write_sublist {
 }
 
 ############################################################################
-# DO_CLEAN
-############################################################################
-
-sub do_clean {
-   print "Cleaning...\n";
-   system("rm -f _init*");
-}
-
-############################################################################
 # HANDLE CODESET
 ############################################################################
 
@@ -1506,7 +1536,7 @@ sub _read_file {
    # Get the URL
    #
 
-   my $file  = (caller(1))[3];
+   my $file  = (caller(1))[3];          # _init_country_iso
    $file     =~ s/main:://;
    my $type  = $opts{'type'};
    $type     = 'text'  if (! $type);
@@ -1525,8 +1555,18 @@ sub _read_file {
       $file .= ".txt";
    }
 
-   my $url  = $opts{'url'};
-   system("wget -N -q -O $file '$url'");
+   if ($type eq 'manual') {
+      my $inst = $opts{'inst'};
+      print $inst,"\n";
+      print "Put the data into the file:\n";
+      print "   $file\n";
+      print "Strip out any leading/trailing blank lines.\n\n";
+      print "Press any key to continue...\n";
+      my $c = getone();
+   } else {
+      my $url  = $opts{'url'};
+      system("wget -N -q -O $file '$url'");
+   }
 
    #
    # Read the local file
@@ -1540,12 +1580,8 @@ sub _read_file {
       my $csv = $file;
       $csv    =~ s/.xls/.csv/;
 
-      # Old command
-      #my $cmd = "xls2csv -x $file -b WINDOWS-1252 -c $csv -q";
-      #$cmd   .= " -a $opts{encoding}"  if ($opts{'encoding'});
-
       # New command
-      my $cmd = "xls2csv -o $csv $file";
+      my $cmd = "xls2csv -o $csv $file; dos2unix $csv";
 
       system($cmd);
       @in = `cat $csv`;
@@ -1679,106 +1715,212 @@ sub _read_file {
    }
 }
 
-sub _do_codeset {
-   my($type,$cat,$codesets,$stdcodesets) = @_;
+{
+   my $second;       # This will be set to 1 once the first set is read in.
 
-   foreach my $codeset (@$stdcodesets) {
-      $Std{$codeset}{'std'} = 1;
-   }
+   # This reads a source of data containing one or more code sets of
+   # a given type.
+   #
+   #    $type          The type of codesets being input (country, language, etc.)
+   #    $src           The label for this source of data
+   #    $codesets      A listref of code sets that are included in this data
+   #                   source.  The order is important.  It tells what order the
+   #                   data is stored in the data source.  A data source may
+   #                   include data sets for which it is not the standard, and
+   #                   these will be used simply to match with existing elements.
+   #                   Element names (and links) will be determined using all
+   #                   sources, but codes will only be added from codesets for
+   #                   which a source is listed as a standard.
+   #    $stdcodesets   A listref of code sets.  This is the subset of $codesets
+   #                   for which this source is the standard.  The first time a
+   #                   codeset it read in, it must be from a standard.  Multiple
+   #                   standards can be used (and the data from them will be
+   #                   merged) but all standards should be read before other
+   #                   sources are read.
+   #    $allow_new     This source is allowed to add new codes without explicit
+   #                   allows.  This only applies to the second or higher source.
+   #
+   sub _do_codeset {
+      my($type,$src,$codesets,$stdcodesets,$allow) = @_;
+      if (! defined $second) {
+         $second = 0;
+      } else {
+         $second = 1;
+      }
+      my %std = map { $_,1 } @$stdcodesets;
 
-   no strict 'refs';
-
-   my $func = "_init_${type}_${cat}";
-   &$func();
-   $func    = "_read_${type}_${cat}";
-
- ELE: while (1) {
-
-      # Read the next element.
       #
-      # Output is (CODE1, CODE2, ... CODEN, NAME1, NAME2, ... NAMEM)
+      # The _init_TYPE_CAT function gets all of the data from
+      # this source and puts it in some sort of list.
+      #
+      # The _read_TYPE_CAT function reads one element from that list.
+      #
 
-      my @ele = &$func();
-      last  if (! @ele);
+      no strict 'refs';
 
-      my (%codes,@names);
-      foreach my $codeset (@$codesets) {
-         my $code = shift(@ele);
-         next  if (! $code);
-         $codes{$codeset} = $code;
-      }
-      next  if (! %codes);
-      foreach my $name (@ele) {
-         push(@names,$name)  if ($name);
-      }
-      next  if (! @names);
+      my $func = "_init_${type}_${src}";
+      &$func();
+      $func    = "_read_${type}_${src}";
 
-      # Check to see if any of these are ignored.
+      ELE:
+      while (1) {
 
-      foreach my $codeset (sort keys %codes) {
-         my $code = $codes{$codeset};
-         next ELE  if (exists $Data{$type}{$cat}{'ignore'}{$codeset}{$code});
-      }
+         #
+         # Read the next element.
+         #
+         # Output is (CODE1, CODE2, ... CODEN, NAME1, NAME2, ... NAMEM)
+         #
+         # The order of the codes is specified by $codesets.
+         #
 
-      foreach my $name (@names) {
-         next ELE  if (exists $Data{$type}{$cat}{'ignore'}{'name'}{$name});
-      }
+         my @ele = &$func();
+         last  if (! @ele);
 
-      # If data needs to be transformed, do it now.
+         #
+         # Store the codes in %codes
+         #    %codes = ( CODESET => CODE )
+         # If CODE is blank, it is quietly ignored.
+         #
+         # A code is also ignored if it is in the 'ignore' list.  If a name
+         # is ignored, the entire element is skipped.
+         #
 
-      foreach my $codeset (sort keys %codes) {
-         my $code = $codes{$codeset};
-         if (exists $Data{$type}{$cat}{'orig'}{$codeset}{$code}) {
-            $codes{$codeset} = $Data{$type}{$cat}{'orig'}{$codeset}{$code};
+         my (%codes,@names);
+         foreach my $codeset (@$codesets) {
+            my $code = shift(@ele);
+            next  if (! $code  ||
+                      exists $Data{$type}{$src}{'ignore'}{$codeset}{$code});
+            $codes{$codeset} = $code;
+         }
+         foreach my $name (@ele) {
+            if ($name) {
+               next ELE  if (exists $Data{$type}{$src}{'ignore'}{'name'}{$name});
+               push(@names,$name);
+            }
+         }
+
+         next  if (! @names  &&  ! %codes);
+         if (! @names) {
+            my @codes = sort values(%codes);
+            print "WARNING [$type,$src]: Codes with no name: @codes\n";
+            next;
+         }
+         if (! %codes) {
+            print "WARNING [$type,$src]: Element with no codes: @names\n";
+            next;
+         }
+
+         #
+         # Some codes and/or element names must be rewritten (probably
+         # to remove non-ASCII characters, but other reasons also
+         # occur).
+         #
+
+         foreach my $codeset (sort keys %codes) {
+            my $code = $codes{$codeset};
+            if (exists $Data{$type}{$src}{'orig'}{$codeset}{$code}) {
+               $codes{$codeset} = $Data{$type}{$src}{'orig'}{$codeset}{$code};
+            }
+         }
+
+         foreach my $name (@names) {
+            if (exists $Data{$type}{$src}{'orig'}{'name'}{$name}) {
+               $name = $Data{$type}{$src}{'orig'}{'name'}{$name};
+            }
+         }
+
+         #
+         # Check that everything is ASCII
+         #
+
+         foreach my $codeset (sort keys %codes) {
+            my $code = $codes{$codeset};
+            _ascii_new($type,$src,$codeset,$code);
+         }
+
+         foreach my $name (@names) {
+            _ascii_new($type,$src,'name',$name);
+         }
+
+         #
+         # Get the ID for the current element
+         #
+
+         my($err,$id,$subid) = _get_ID_new($type,$src,$second,$allow,
+                                           \%codes,\@names);
+         next  if ($err);
+
+         #
+         # Store the codes (but only if we're reading a standard).  If we're
+         # not reading from a standard, we'll check to see if this would have
+         # been a new code, and warn if it was.
+         #
+
+         foreach my $codeset (keys %codes) {
+            my $code = $codes{$codeset};
+
+            if ($std{$codeset}) {
+               $Code2ID{$codeset}{$code}       = [ $id, $subid ];
+               $ID2Code{$codeset}{$id}         = $code;
+
+            } elsif (! exists $Code2ID{$codeset}{$code}) {
+               print "WARNING [$type,$src,$codeset]: " .
+                     "new code not added from a non-standard source: $code\n";
+            }
          }
       }
 
-      foreach my $name (@names) {
-         if (exists $Data{$type}{$cat}{'orig'}{'name'}{$name}) {
-            $name = $Data{$type}{$cat}{'orig'}{'name'}{$name};
+      #
+      # Update %Alias with the values in $Data{TYPE}{'link'}.
+      #
+
+      my @tmp;
+      LINKS:
+      foreach my $links (@{ $Data{$type}{'link'} }) {
+
+         # Check to see if any of the names in a link group are defined
+         # in %Alias.  If any are, they must have the same ID.
+
+         my $id;
+         foreach my $link (@$links) {
+            if (exists $Alias{lc($link)}) {
+               my $i = $Alias{lc($link)}[0];
+               if ($id  &&  $i != $id) {
+                  print "WARNING [$type,$src]: " .
+                        "alias refers to multiple elements: $link\n";
+                  next LINKS;
+               }
+
+               $id = $i;
+            }
+         }
+
+         # If any are defined, add all the rest to %Alias with the same
+         # ID.  Otherwise, save this link group for later.
+
+         if ($id) {
+            foreach my $name (@$links) {
+               if (! exists $Alias{lc($name)}) {
+                  push @{ $ID2Names{$id} },$name;
+                  my $subid = $#{ $ID2Names{$id} };
+                  $Alias{lc($name)} = [ $id, $subid ];
+               }
+            }
+         } else {
+            push(@tmp,$links);
          }
       }
-
-      # Check that everything is ASCII
-
-      foreach my $codeset (sort keys %codes) {
-         my $code = $codes{$codeset};
-         _ascii_new($type,$cat,$codeset,$code);
-      }
-
-      foreach my $name (@names) {
-         _ascii_new($type,$cat,'name',$name);
-      }
-
-      # Get the ID for the current element
-
-      my($err,$id,$subid,$idtype) = _get_ID_new($type,$cat,\%codes,\@names);
-      next  if ($err);
-
-      # Store the codes
-
-      foreach my $codeset (keys %codes) {
-         my $code = $codes{$codeset};
-         $Code2ID{$codeset}{$code}       = [ $id, $subid ];
-         $ID2Code{$codeset}{$id}         = $code;
-         if ($Std{$codeset}{'std'}) {
-            $Std{$codeset}{$code}        = 1;
-         }
-      }
-
-      # *** FIX ***
-      # print out new aliases (unless this codeset hasn't been done before)
-      # print out new codes (if this codeset has a standard version or has been done before)
+      $Data{$type}{'link'} = \@tmp;
    }
 }
 
 sub _ascii_new {
-   my($type,$cat,$key,$val) = @_;
+   my($type,$src,$key,$val) = @_;
 
    if ($val !~ /^[[:ascii:]]*$/) {
       my $tmp = $val;
       $tmp =~ s/[[:ascii:]]//g;
-      print "NON-ASCII [$type:$cat:$key]: '$val' [$tmp]\n";
+      print "NON-ASCII [$type,$src,$key]: '$val' [$tmp]\n";
    }
 }
 
