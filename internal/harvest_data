@@ -22,7 +22,7 @@ use Text::Iconv;
 use lib "./internal";
 
 our $VERSION;
-$VERSION='3.29';
+$VERSION='3.30';
 
 # Some required executables
 my @exe     = qw( wget xls2csv );
@@ -89,8 +89,7 @@ our $country_iso_url    = "http://www.iso.org/iso/home/standards/country_codes.h
 
 # IANA publishes a list of codes.  The country names must be looked up in an
 # extended list of ISO 3166 codes.
-our $country_iana_url1  = "http://www.iana.org/domains/root/db/";
-our $country_iana_url2  = "http://www.iso.org/iso/home/standards/country_codes/iso-3166-1_decoding_table.htm";
+our $country_iana_url   = "http://www.iana.org/domains/root/db/";
 
 require "data.country.pl";
 
@@ -443,26 +442,30 @@ sub _country_name {
       #   $codes{CODE} = NAME
       #
 
-      $in = _read_file('url'       => $country_iana_url2,
-                       'type'      => 'html',
-                       'as_list'   => 0,
-                       'html_strip' => [ qw(a) ],
+      my $inst = qq
+(Please download the data manually for ISO 3166 country codes.
+Go to the following URL:
+   $country_iso_url
+Click on:
+   'Online Browsing Platform'
+   300 results per page
+Select the entire chart (not including the header).  If not all of the
+countries fit on a single page, do it in multiple steps.
+);
+
+      $in = _read_file('local'     => '_init_country_extiso',
+                       'type'      => 'manual',
+                       'inst'      => $inst,
+                       'as_list'   => 1,
                       );
 
-      # Look for a table who's first row has the header
-      #    Remark
-
-      my $found = jump_to_row(\$in,'Remark');
-      if (! $found) {
-         die "ERROR [iana]: extended ISO file format changed!\n";
-      }
       _read_country_iana_extiso();
 
       #
       # The actual IANA list
       #
 
-      $in = _read_file('url'       => $country_iana_url1,
+      $in = _read_file('url'       => $country_iana_url,
                        'type'      => 'html',
                        'as_list'   => 0,
                        'html_strip' => [ qw(a span) ],
@@ -471,27 +474,23 @@ sub _country_name {
       # Look for a table who's first row has the header:
       #    Sponsoring Organisation
 
-      $found = jump_to_row(\$in,"Sponsoring Organisation");
+      my $found = jump_to_row(\$in,"Sponsoring Organisation");
       if (! $found) {
          die "ERROR [iana]: country code file format changed!\n";
       }
    }
 
    sub _read_country_iana_extiso {
-      while (1) {
-         my @row = get_row("iana_extiso",\$in);
-         return ()  if (! @row);
-
-         my($dom,$country,$remark,$status) = @row;
-         next  if (! $country);
-         my @country = split(/\s+/,$country);
-         foreach my $c (@country) {
-            $c = ucfirst(lc($c));
-            $c = "of"  if ($c eq 'Of');
-            $c = "and" if ($c eq 'And');
-
+      while (@$in) {
+         my($country,$dom);
+         if ($$in[0] =~ /^[A-Z][A-Z]$/) {
+            $country = '';
+         } else {
+            $country = shift(@$in);
          }
-         $country = join(' ',@country);
+         $dom     = shift(@$in);
+         shift(@$in);
+         next  if (! $country);
          $codes{lc($dom)} = $country;
       }
    }
@@ -513,8 +512,10 @@ sub _country_name {
             my ($id,$i) = @{ $Code2ID{'alpha-2'}{$dom} };
             my @name    = @{ $ID2Names{$id} };
             @country    = ($name[$i]);
-         } else {
+         } elsif (exists $codes{$dom}) {
             @country    = _country_name($codes{$dom});
+         } else {
+            next;
          }
          return ($dom,@country);
       }
@@ -1357,15 +1358,16 @@ sub _get_ID_new {
    }
 
    #
-   # If it's a new element, create it.
+   # If it's a new element, create it and all aliases.
    #
 
    if (! $id) {
-      $id    = $ID++;
-      $subid = 0;
+      $id     = $ID++;
+      $subid  = 0;
       $ID2Names{$id} = [ @$names ];
+      my $sid = $subid;
       foreach my $name (@$names) {
-         $Alias{lc($name)} = [ $id, $subid ];
+         $Alias{lc($name)} = [ $id, $sid++ ];
       }
    }
 
@@ -1445,7 +1447,7 @@ sub write_module {
 Locale::Codes::${Module}_Codes;
 
 # This file was automatically generated.  Any changes to this file will
-# be lost the next time 'get_codes' is run.
+# be lost the next time 'harvest_data' is run.
 #    Generated on: $timestamp
 
 use strict;
@@ -1454,7 +1456,7 @@ use warnings;
 use utf8;
 
 our(\$VERSION);
-\$VERSION='3.29';
+\$VERSION='3.30';
 
 \$Locale::Codes::Data{'$type'}{'id'} = '$ID';
 
@@ -1536,8 +1538,16 @@ sub _read_file {
    # Get the URL
    #
 
-   my $file  = (caller(1))[3];          # _init_country_iso
-   $file     =~ s/main:://;
+   # The temporary file
+   my $file;                     # _init_country_iso
+   if (exists $opts{'local'}) {
+      $file  = $opts{'local'};
+   } else {
+      $file  = (caller(1))[3];
+      $file  =~ s/main:://;
+   }
+
+   # The type of file
    my $type  = $opts{'type'};
    $type     = 'text'  if (! $type);
    my $file2 = '';
@@ -1555,6 +1565,7 @@ sub _read_file {
       $file .= ".txt";
    }
 
+   # Get the file
    if ($type eq 'manual') {
       my $inst = $opts{'inst'};
       print $inst,"\n";

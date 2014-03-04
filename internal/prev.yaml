@@ -31,7 +31,7 @@ country:
       bm: Bermuda
       bn: Brunei Darussalam
       bo: Bolivia, Plurinational State of
-      bq: Bonaire, Saint Eustatius and Saba
+      bq: Bonaire, Sint Eustatius and Saba
       br: Brazil
       bs: Bahamas
       bt: Bhutan
@@ -41,7 +41,7 @@ country:
       bz: Belize
       ca: Canada
       cc: Cocos (Keeling) Islands
-      cd: Congo, The Democratic Republic of the
+      cd: Congo (The Democratic Republic of the)
       cf: Central African Republic
       cg: Congo
       ch: Switzerland
@@ -73,8 +73,8 @@ country:
       et: Ethiopia
       fi: Finland
       fj: Fiji
-      fk: Falkland Islands (Malvinas)
-      fm: Micronesia, Federated States of
+      fk: Falkland Islands (The) [Malvinas]
+      fm: Micronesia, The Federated States of
       fo: Faroe Islands
       fr: France
       ga: Gabon
@@ -97,7 +97,7 @@ country:
       gw: Guinea-Bissau
       gy: Guyana
       hk: Hong Kong
-      hm: Heard Island and Mcdonald Islands
+      hm: Heard Island and McDonald Islands
       hn: Honduras
       hr: Croatia
       ht: Haiti
@@ -109,7 +109,7 @@ country:
       in: India
       io: British Indian Ocean Territory
       iq: Iraq
-      ir: Iran, Islamic Republic of
+      ir: Iran, The Islamic Republic of
       is: Iceland
       it: Italy
       je: Jersey
@@ -122,8 +122,8 @@ country:
       ki: Kiribati
       km: Comoros
       kn: Saint Kitts and Nevis
-      kp: Korea, Democratic People's Republic of
-      kr: Korea, Republic of
+      kp: Korea, The Democratic People's Republic of
+      kr: Korea, The Republic of
       kw: Kuwait
       ky: Cayman Islands
       kz: Kazakhstan
@@ -140,12 +140,12 @@ country:
       ly: Libya
       ma: Morocco
       mc: Monaco
-      md: Moldova, Republic of
+      md: Moldova, The Republic of
       me: Montenegro
       mf: Saint Martin (French part)
       mg: Madagascar
       mh: Marshall Islands
-      mk: Macedonia, The Former Yugoslav Republic of
+      mk: Macedonia, The former Yugoslav Republic of
       ml: Mali
       mm: Myanmar
       mn: Mongolia
@@ -229,7 +229,7 @@ country:
       tr: Turkey
       tt: Trinidad and Tobago
       tv: Tuvalu
-      tw: Taiwan, Province of China
+      tw: Taiwan (Province of China)
       tz: Tanzania, United Republic of
       ua: Ukraine
       ug: Uganda
@@ -237,11 +237,11 @@ country:
       us: United States
       uy: Uruguay
       uz: Uzbekistan
-      va: Holy See (Vatican City State)
+      va: Holy See (The) [Vatican City State]
       vc: Saint Vincent and the Grenadines
-      ve: Venezuela, Bolivarian Republic of
-      vg: Virgin Islands, British
-      vi: Virgin Islands, U.S.
+      ve: "Venezuela, Bolivarian Republic of "
+      vg: Virgin Islands (British)
+      vi: Virgin Islands (U.S.)
       vn: Viet Nam
       vu: Vanuatu
       wf: Wallis and Futuna
@@ -333,9 +333,9 @@ country:
       bolivia, plurinational state of: 
         - bo
         - Bolivia, Plurinational State of
-      bonaire, saint eustatius and saba: 
+      bonaire, sint eustatius and saba: 
         - bq
-        - Bonaire, Saint Eustatius and Saba
+        - Bonaire, Sint Eustatius and Saba
       bosnia and herzegovina: 
         - ba
         - Bosnia and Herzegovina
@@ -405,9 +405,9 @@ country:
       congo: 
         - cg
         - Congo
-      congo, the democratic republic of the: 
+      congo (the democratic republic of the): 
         - cd
-        - Congo, The Democratic Republic of the
+        - Congo (The Democratic Republic of the)
       cook islands: 
         - ck
         - Cook Islands
@@ -465,9 +465,9 @@ country:
       ethiopia: 
         - et
         - Ethiopia
-      falkland islands (malvinas): 
+      falkland islands (the) [malvinas]: 
         - fk
-        - Falkland Islands (Malvinas)
+        - Falkland Islands (The) [Malvinas]
       faroe islands: 
         - fo
         - Faroe Islands
@@ -542,10 +542,10 @@ country:
         - Haiti
       heard island and mcdonald islands: 
         - hm
-        - Heard Island and Mcdonald Islands
-      holy see (vatican city state): 
+        - Heard Island and McDonald Islands
+      holy see (the) [vatican city state]: 
         - va
-        - Holy See (Vatican City State)
+        - Holy See (The) [Vatican City State]
       honduras: 
         - hn
         - Honduras
@@ -564,9 +564,9 @@ country:
       indonesia: 
         - id
         - Indonesia
-      iran, islamic republic of: 
+      iran, the islamic republic of: 
         - ir
-        - Iran, Islamic Republic of
+        - Iran, The Islamic Republic of
       iraq: 
         - iq
         - Iraq
@@ -603,12 +603,12 @@ country:
       kiribati: 
         - ki
         - Kiribati
-      korea, democratic people's republic of: 
+      korea, the democratic people's republic of: 
         - kp
-        - Korea, Democratic People's Republic of
-      korea, republic of: 
+        - Korea, The Democratic People's Republic of
+      korea, the republic of: 
         - kr
-        - Korea, Republic of
+        - Korea, The Republic of
       kuwait: 
         - kw
         - Kuwait
@@ -647,7 +647,7 @@ country:
         - Macao
       macedonia, the former yugoslav republic of: 
         - mk
-        - Macedonia, The Former Yugoslav Republic of
+        - Macedonia, The former Yugoslav Republic of
       madagascar: 
         - mg
         - Madagascar
@@ -684,12 +684,12 @@ country:
       mexico: 
         - mx
         - Mexico
-      micronesia, federated states of: 
+      micronesia, the federated states of: 
         - fm
-        - Micronesia, Federated States of
-      moldova, republic of: 
+        - Micronesia, The Federated States of
+      moldova, the republic of: 
         - md
-        - Moldova, Republic of
+        - Moldova, The Republic of
       monaco: 
         - mc
         - Monaco
@@ -903,9 +903,9 @@ country:
       syrian arab republic: 
         - sy
         - Syrian Arab Republic
-      taiwan, province of china: 
+      taiwan (province of china): 
         - tw
-        - Taiwan, Province of China
+        - Taiwan (Province of China)
       tajikistan: 
         - tj
         - Tajikistan
@@ -972,18 +972,18 @@ country:
       vanuatu: 
         - vu
         - Vanuatu
-      venezuela, bolivarian republic of: 
+      "venezuela, bolivarian republic of ": 
         - ve
-        - Venezuela, Bolivarian Republic of
+        - "Venezuela, Bolivarian Republic of "
       viet nam: 
         - vn
         - Viet Nam
-      virgin islands, british: 
+      virgin islands (british): 
         - vg
-        - Virgin Islands, British
-      virgin islands, u.s.: 
+        - Virgin Islands (British)
+      virgin islands (u.s.): 
         - vi
-        - Virgin Islands, U.S.
+        - Virgin Islands (U.S.)
       wallis and futuna: 
         - wf
         - Wallis and Futuna
@@ -1012,6 +1012,8 @@ country:
       arg: Argentina
       arm: Armenia
       asm: American Samoa
+      ata: Antarctica
+      atf: French Southern Territories
       atg: Antigua and Barbuda
       aus: Australia
       aut: Austria
@@ -1019,39 +1021,42 @@ country:
       bdi: Burundi
       bel: Belgium
       ben: Benin
-      bes: Bonaire, Saint Eustatius and Saba
+      bes: Bonaire, Sint Eustatius and Saba
       bfa: Burkina Faso
       bgd: Bangladesh
       bgr: Bulgaria
       bhr: Bahrain
       bhs: Bahamas
       bih: Bosnia and Herzegovina
-      blm: Saint-Barthelemy
+      blm: Saint Barthelemy
       blr: Belarus
       blz: Belize
       bmu: Bermuda
-      bol: Bolivia (Plurinational State of)
+      bol: Bolivia, Plurinational State of
       bra: Brazil
       brb: Barbados
       brn: Brunei Darussalam
       btn: Bhutan
+      bvt: Bouvet Island
       bwa: Botswana
       caf: Central African Republic
       can: Canada
+      cck: Cocos (Keeling) Islands
       che: Switzerland
       chl: Chile
       chn: China
       civ: Cote d'Ivoire
       cmr: Cameroon
-      cod: Democratic Republic of the Congo
+      cod: Congo (The Democratic Republic of the)
       cog: Congo
       cok: Cook Islands
       col: Colombia
       com: Comoros
-      cpv: Cabo Verde
+      cpv: Cape Verde
       cri: Costa Rica
       cub: Cuba
       cuw: Curacao
+      cxr: Christmas Island
       cym: Cayman Islands
       cyp: Cyprus
       cze: Czech Republic
@@ -1070,12 +1075,12 @@ country:
       eth: Ethiopia
       fin: Finland
       fji: Fiji
-      flk: Falkland Islands (Malvinas)
+      flk: Falkland Islands (The) [Malvinas]
       fra: France
-      fro: Faeroe Islands
-      fsm: Micronesia (Federated States of)
+      fro: Faroe Islands
+      fsm: Micronesia, The Federated States of
       gab: Gabon
-      gbr: United Kingdom of Great Britain and Northern Ireland
+      gbr: United Kingdom
       geo: Georgia
       ggy: Guernsey
       gha: Ghana
@@ -1092,7 +1097,8 @@ country:
       guf: French Guiana
       gum: Guam
       guy: Guyana
-      hkg: China, Hong Kong Special Administrative Region
+      hkg: Hong Kong
+      hmd: Heard Island and McDonald Islands
       hnd: Honduras
       hrv: Croatia
       hti: Haiti
@@ -1100,8 +1106,9 @@ country:
       idn: Indonesia
       imn: Isle of Man
       ind: India
+      iot: British Indian Ocean Territory
       irl: Ireland
-      irn: Iran (Islamic Republic of)
+      irn: Iran, The Islamic Republic of
       irq: Iraq
       isl: Iceland
       isr: Israel
@@ -1116,7 +1123,7 @@ country:
       khm: Cambodia
       kir: Kiribati
       kna: Saint Kitts and Nevis
-      kor: Republic of Korea
+      kor: Korea, The Republic of
       kwt: Kuwait
       lao: Lao People's Democratic Republic
       lbn: Lebanon
@@ -1129,16 +1136,16 @@ country:
       ltu: Lithuania
       lux: Luxembourg
       lva: Latvia
-      mac: China, Macao Special Administrative Region
-      maf: Saint-Martin (French part)
+      mac: Macao
+      maf: Saint Martin (French part)
       mar: Morocco
       mco: Monaco
-      mda: Republic of Moldova
+      mda: Moldova, The Republic of
       mdg: Madagascar
       mdv: Maldives
       mex: Mexico
       mhl: Marshall Islands
-      mkd: The former Yugoslav Republic of Macedonia
+      mkd: Macedonia, The former Yugoslav Republic of
       mli: Mali
       mlt: Malta
       mmr: Myanmar
@@ -1175,10 +1182,10 @@ country:
       png: Papua New Guinea
       pol: Poland
       pri: Puerto Rico
-      prk: Democratic People's Republic of Korea
+      prk: Korea, The Democratic People's Republic of
       prt: Portugal
       pry: Paraguay
-      pse: State of Palestine
+      pse: Palestine, State of
       pyf: French Polynesia
       qat: Qatar
       reu: Reunion
@@ -1189,8 +1196,9 @@ country:
       sdn: Sudan
       sen: Senegal
       sgp: Singapore
-      shn: Saint Helena
-      sjm: Svalbard and Jan Mayen Islands
+      sgs: South Georgia and the South Sandwich Islands
+      shn: Saint Helena, Ascension and Tristan da Cunha
+      sjm: Svalbard and Jan Mayen
       slb: Solomon Islands
       sle: Sierra Leone
       slv: El Salvador
@@ -1221,20 +1229,22 @@ country:
       tun: Tunisia
       tur: Turkey
       tuv: Tuvalu
-      tza: United Republic of Tanzania
+      twn: Taiwan (Province of China)
+      tza: Tanzania, United Republic of
       uga: Uganda
       ukr: Ukraine
+      umi: United States Minor Outlying Islands
       ury: Uruguay
-      usa: United States of America
+      usa: United States
       uzb: Uzbekistan
-      vat: Holy See
+      vat: Holy See (The) [Vatican City State]
       vct: Saint Vincent and the Grenadines
-      ven: Venezuela (Bolivarian Republic of)
-      vgb: British Virgin Islands
-      vir: United States Virgin Islands
+      ven: "Venezuela, Bolivarian Republic of "
+      vgb: Virgin Islands (British)
+      vir: Virgin Islands (U.S.)
       vnm: Viet Nam
       vut: Vanuatu
-      wlf: Wallis and Futuna Islands
+      wlf: Wallis and Futuna
       wsm: Samoa
       yem: Yemen
       zaf: South Africa
@@ -1265,6 +1275,9 @@ country:
       anguilla: 
         - aia
         - Anguilla
+      antarctica: 
+        - ata
+        - Antarctica
       antigua and barbuda: 
         - atg
         - Antigua and Barbuda
@@ -1316,24 +1329,27 @@ country:
       bhutan: 
         - btn
         - Bhutan
-      bolivia (plurinational state of): 
+      bolivia, plurinational state of: 
         - bol
-        - Bolivia (Plurinational State of)
-      bonaire, saint eustatius and saba: 
+        - Bolivia, Plurinational State of
+      bonaire, sint eustatius and saba: 
         - bes
-        - Bonaire, Saint Eustatius and Saba
+        - Bonaire, Sint Eustatius and Saba
       bosnia and herzegovina: 
         - bih
         - Bosnia and Herzegovina
       botswana: 
         - bwa
         - Botswana
+      bouvet island: 
+        - bvt
+        - Bouvet Island
       brazil: 
         - bra
         - Brazil
-      british virgin islands: 
-        - vgb
-        - British Virgin Islands
+      british indian ocean territory: 
+        - iot
+        - British Indian Ocean Territory
       brunei darussalam: 
         - brn
         - Brunei Darussalam
@@ -1346,9 +1362,6 @@ country:
       burundi: 
         - bdi
         - Burundi
-      cabo verde: 
-        - cpv
-        - Cabo Verde
       cambodia: 
         - khm
         - Cambodia
@@ -1358,6 +1371,9 @@ country:
       canada: 
         - can
         - Canada
+      cape verde: 
+        - cpv
+        - Cape Verde
       cayman islands: 
         - cym
         - Cayman Islands
@@ -1373,12 +1389,12 @@ country:
       china: 
         - chn
         - China
-      china, hong kong special administrative region: 
-        - hkg
-        - China, Hong Kong Special Administrative Region
-      china, macao special administrative region: 
-        - mac
-        - China, Macao Special Administrative Region
+      christmas island: 
+        - cxr
+        - Christmas Island
+      cocos (keeling) islands: 
+        - cck
+        - Cocos (Keeling) Islands
       colombia: 
         - col
         - Colombia
@@ -1388,6 +1404,9 @@ country:
       congo: 
         - cog
         - Congo
+      congo (the democratic republic of the): 
+        - cod
+        - Congo (The Democratic Republic of the)
       cook islands: 
         - cok
         - Cook Islands
@@ -1412,12 +1431,6 @@ country:
       czech republic: 
         - cze
         - Czech Republic
-      democratic people's republic of korea: 
-        - prk
-        - Democratic People's Republic of Korea
-      democratic republic of the congo: 
-        - cod
-        - Democratic Republic of the Congo
       denmark: 
         - dnk
         - Denmark
@@ -1451,12 +1464,12 @@ country:
       ethiopia: 
         - eth
         - Ethiopia
-      faeroe islands: 
-        - fro
-        - Faeroe Islands
-      falkland islands (malvinas): 
+      falkland islands (the) [malvinas]: 
         - flk
-        - Falkland Islands (Malvinas)
+        - Falkland Islands (The) [Malvinas]
+      faroe islands: 
+        - fro
+        - Faroe Islands
       fiji: 
         - fji
         - Fiji
@@ -1472,6 +1485,9 @@ country:
       french polynesia: 
         - pyf
         - French Polynesia
+      french southern territories: 
+        - atf
+        - French Southern Territories
       gabon: 
         - gab
         - Gabon
@@ -1523,12 +1539,18 @@ country:
       haiti: 
         - hti
         - Haiti
-      holy see: 
+      heard island and mcdonald islands: 
+        - hmd
+        - Heard Island and McDonald Islands
+      holy see (the) [vatican city state]: 
         - vat
-        - Holy See
+        - Holy See (The) [Vatican City State]
       honduras: 
         - hnd
         - Honduras
+      hong kong: 
+        - hkg
+        - Hong Kong
       hungary: 
         - hun
         - Hungary
@@ -1541,9 +1563,9 @@ country:
       indonesia: 
         - idn
         - Indonesia
-      iran (islamic republic of): 
+      iran, the islamic republic of: 
         - irn
-        - Iran (Islamic Republic of)
+        - Iran, The Islamic Republic of
       iraq: 
         - irq
         - Iraq
@@ -1580,6 +1602,12 @@ country:
       kiribati: 
         - kir
         - Kiribati
+      korea, the democratic people's republic of: 
+        - prk
+        - Korea, The Democratic People's Republic of
+      korea, the republic of: 
+        - kor
+        - Korea, The Republic of
       kuwait: 
         - kwt
         - Kuwait
@@ -1613,6 +1641,12 @@ country:
       luxembourg: 
         - lux
         - Luxembourg
+      macao: 
+        - mac
+        - Macao
+      macedonia, the former yugoslav republic of: 
+        - mkd
+        - Macedonia, The former Yugoslav Republic of
       madagascar: 
         - mdg
         - Madagascar
@@ -1649,9 +1683,12 @@ country:
       mexico: 
         - mex
         - Mexico
-      micronesia (federated states of): 
+      micronesia, the federated states of: 
         - fsm
-        - Micronesia (Federated States of)
+        - Micronesia, The Federated States of
+      moldova, the republic of: 
+        - mda
+        - Moldova, The Republic of
       monaco: 
         - mco
         - Monaco
@@ -1721,6 +1758,9 @@ country:
       palau: 
         - plw
         - Palau
+      palestine, state of: 
+        - pse
+        - Palestine, State of
       panama: 
         - pan
         - Panama
@@ -1751,12 +1791,6 @@ country:
       qatar: 
         - qat
         - Qatar
-      republic of korea: 
-        - kor
-        - Republic of Korea
-      republic of moldova: 
-        - mda
-        - Republic of Moldova
       reunion: 
         - reu
         - Reunion
@@ -1769,27 +1803,27 @@ country:
       rwanda: 
         - rwa
         - Rwanda
-      saint helena: 
+      saint barthelemy: 
+        - blm
+        - Saint Barthelemy
+      saint helena, ascension and tristan da cunha: 
         - shn
-        - Saint Helena
+        - Saint Helena, Ascension and Tristan da Cunha
       saint kitts and nevis: 
         - kna
         - Saint Kitts and Nevis
       saint lucia: 
         - lca
         - Saint Lucia
+      saint martin (french part): 
+        - maf
+        - Saint Martin (French part)
       saint pierre and miquelon: 
         - spm
         - Saint Pierre and Miquelon
       saint vincent and the grenadines: 
         - vct
         - Saint Vincent and the Grenadines
-      saint-barthelemy: 
-        - blm
-        - Saint-Barthelemy
-      saint-martin (french part): 
-        - maf
-        - Saint-Martin (French part)
       samoa: 
         - wsm
         - Samoa
@@ -1835,6 +1869,9 @@ country:
       south africa: 
         - zaf
         - South Africa
+      south georgia and the south sandwich islands: 
+        - sgs
+        - South Georgia and the South Sandwich Islands
       south sudan: 
         - ssd
         - South Sudan
@@ -1844,18 +1881,15 @@ country:
       sri lanka: 
         - lka
         - Sri Lanka
-      state of palestine: 
-        - pse
-        - State of Palestine
       sudan: 
         - sdn
         - Sudan
       suriname: 
         - sur
         - Suriname
-      svalbard and jan mayen islands: 
+      svalbard and jan mayen: 
         - sjm
-        - Svalbard and Jan Mayen Islands
+        - Svalbard and Jan Mayen
       swaziland: 
         - swz
         - Swaziland
@@ -1868,15 +1902,18 @@ country:
       syrian arab republic: 
         - syr
         - Syrian Arab Republic
+      taiwan (province of china): 
+        - twn
+        - Taiwan (Province of China)
       tajikistan: 
         - tjk
         - Tajikistan
+      tanzania, united republic of: 
+        - tza
+        - Tanzania, United Republic of
       thailand: 
         - tha
         - Thailand
-      the former yugoslav republic of macedonia: 
-        - mkd
-        - The former Yugoslav Republic of Macedonia
       timor-leste: 
         - tls
         - Timor-Leste
@@ -1916,18 +1953,15 @@ country:
       united arab emirates: 
         - are
         - United Arab Emirates
-      united kingdom of great britain and northern ireland: 
+      united kingdom: 
         - gbr
-        - United Kingdom of Great Britain and Northern Ireland
-      united republic of tanzania: 
-        - tza
-        - United Republic of Tanzania
-      united states of america: 
+        - United Kingdom
+      united states: 
         - usa
-        - United States of America
-      united states virgin islands: 
-        - vir
-        - United States Virgin Islands
+        - United States
+      united states minor outlying islands: 
+        - umi
+        - United States Minor Outlying Islands
       uruguay: 
         - ury
         - Uruguay
@@ -1937,15 +1971,21 @@ country:
       vanuatu: 
         - vut
         - Vanuatu
-      venezuela (bolivarian republic of): 
+      "venezuela, bolivarian republic of ": 
         - ven
-        - Venezuela (Bolivarian Republic of)
+        - "Venezuela, Bolivarian Republic of "
       viet nam: 
         - vnm
         - Viet Nam
-      wallis and futuna islands: 
+      virgin islands (british): 
+        - vgb
+        - Virgin Islands (British)
+      virgin islands (u.s.): 
+        - vir
+        - Virgin Islands (U.S.)
+      wallis and futuna: 
         - wlf
-        - Wallis and Futuna Islands
+        - Wallis and Futuna
       western sahara: 
         - esh
         - Western Sahara
@@ -1991,7 +2031,7 @@ country:
       bm: Bermuda
       bn: Brunei Darussalam
       bo: Bolivia, Plurinational State of
-      bq: Bonaire, Saint Eustatius and Saba
+      bq: Bonaire, Sint Eustatius and Saba
       br: Brazil
       bs: Bahamas
       bt: Bhutan
@@ -2001,7 +2041,7 @@ country:
       bz: Belize
       ca: Canada
       cc: Cocos (Keeling) Islands
-      cd: Congo, The Democratic Republic of the
+      cd: Congo (The Democratic Republic of the)
       cf: Central African Republic
       cg: Congo
       ch: Switzerland
@@ -2034,8 +2074,8 @@ country:
       eu: European Union
       fi: Finland
       fj: Fiji
-      fk: Falkland Islands (Malvinas)
-      fm: Micronesia, Federated States of
+      fk: Falkland Islands (The) [Malvinas]
+      fm: Micronesia, The Federated States of
       fo: Faroe Islands
       fr: France
       ga: Gabon
@@ -2058,7 +2098,7 @@ country:
       gw: Guinea-Bissau
       gy: Guyana
       hk: Hong Kong
-      hm: Heard Island and Mcdonald Islands
+      hm: Heard Island and McDonald Islands
       hn: Honduras
       hr: Croatia
       ht: Haiti
@@ -2070,7 +2110,7 @@ country:
       in: India
       io: British Indian Ocean Territory
       iq: Iraq
-      ir: Iran, Islamic Republic of
+      ir: Iran, The Islamic Republic of
       is: Iceland
       it: Italy
       je: Jersey
@@ -2083,8 +2123,8 @@ country:
       ki: Kiribati
       km: Comoros
       kn: Saint Kitts and Nevis
-      kp: Korea, Democratic People's Republic of
-      kr: Korea, Republic of
+      kp: Korea, The Democratic People's Republic of
+      kr: Korea, The Republic of
       kw: Kuwait
       ky: Cayman Islands
       kz: Kazakhstan
@@ -2101,12 +2141,12 @@ country:
       ly: Libya
       ma: Morocco
       mc: Monaco
-      md: Moldova, Republic of
+      md: Moldova, The Republic of
       me: Montenegro
       mf: Saint Martin (French part)
       mg: Madagascar
       mh: Marshall Islands
-      mk: Macedonia, The Former Yugoslav Republic of
+      mk: Macedonia, The former Yugoslav Republic of
       ml: Mali
       mm: Myanmar
       mn: Mongolia
@@ -2192,7 +2232,7 @@ country:
       tr: Turkey
       tt: Trinidad and Tobago
       tv: Tuvalu
-      tw: Taiwan, Province of China
+      tw: Taiwan (Province of China)
       tz: Tanzania, United Republic of
       ua: Ukraine
       ug: Uganda
@@ -2201,11 +2241,11 @@ country:
       us: United States
       uy: Uruguay
       uz: Uzbekistan
-      va: Holy See (Vatican City State)
+      va: Holy See (The) [Vatican City State]
       vc: Saint Vincent and the Grenadines
-      ve: Venezuela, Bolivarian Republic of
-      vg: Virgin Islands, British
-      vi: Virgin Islands, U.S.
+      ve: "Venezuela, Bolivarian Republic of "
+      vg: Virgin Islands (British)
+      vi: Virgin Islands (U.S.)
       vn: Viet Nam
       vu: Vanuatu
       wf: Wallis and Futuna
@@ -2300,9 +2340,9 @@ country:
       bolivia, plurinational state of: 
         - bo
         - Bolivia, Plurinational State of
-      bonaire, saint eustatius and saba: 
+      bonaire, sint eustatius and saba: 
         - bq
-        - Bonaire, Saint Eustatius and Saba
+        - Bonaire, Sint Eustatius and Saba
       bosnia and herzegovina: 
         - ba
         - Bosnia and Herzegovina
@@ -2372,9 +2412,9 @@ country:
       congo: 
         - cg
         - Congo
-      congo, the democratic republic of the: 
+      congo (the democratic republic of the): 
         - cd
-        - Congo, The Democratic Republic of the
+        - Congo (The Democratic Republic of the)
       cook islands: 
         - ck
         - Cook Islands
@@ -2438,9 +2478,9 @@ country:
       european union: 
         - eu
         - European Union
-      falkland islands (malvinas): 
+      falkland islands (the) [malvinas]: 
         - fk
-        - Falkland Islands (Malvinas)
+        - Falkland Islands (The) [Malvinas]
       faroe islands: 
         - fo
         - Faroe Islands
@@ -2515,10 +2555,10 @@ country:
         - Haiti
       heard island and mcdonald islands: 
         - hm
-        - Heard Island and Mcdonald Islands
-      holy see (vatican city state): 
+        - Heard Island and McDonald Islands
+      holy see (the) [vatican city state]: 
         - va
-        - Holy See (Vatican City State)
+        - Holy See (The) [Vatican City State]
       honduras: 
         - hn
         - Honduras
@@ -2537,9 +2577,9 @@ country:
       indonesia: 
         - id
         - Indonesia
-      iran, islamic republic of: 
+      iran, the islamic republic of: 
         - ir
-        - Iran, Islamic Republic of
+        - Iran, The Islamic Republic of
       iraq: 
         - iq
         - Iraq
@@ -2576,12 +2616,12 @@ country:
       kiribati: 
         - ki
         - Kiribati
-      korea, democratic people's republic of: 
+      korea, the democratic people's republic of: 
         - kp
-        - Korea, Democratic People's Republic of
-      korea, republic of: 
+        - Korea, The Democratic People's Republic of
+      korea, the republic of: 
         - kr
-        - Korea, Republic of
+        - Korea, The Republic of
       kuwait: 
         - kw
         - Kuwait
@@ -2620,7 +2660,7 @@ country:
         - Macao
       macedonia, the former yugoslav republic of: 
         - mk
-        - Macedonia, The Former Yugoslav Republic of
+        - Macedonia, The former Yugoslav Republic of
       madagascar: 
         - mg
         - Madagascar
@@ -2657,12 +2697,12 @@ country:
       mexico: 
         - mx
         - Mexico
-      micronesia, federated states of: 
+      micronesia, the federated states of: 
         - fm
-        - Micronesia, Federated States of
-      moldova, republic of: 
+        - Micronesia, The Federated States of
+      moldova, the republic of: 
         - md
-        - Moldova, Republic of
+        - Moldova, The Republic of
       monaco: 
         - mc
         - Monaco
@@ -2879,9 +2919,9 @@ country:
       syrian arab republic: 
         - sy
         - Syrian Arab Republic
-      taiwan, province of china: 
+      taiwan (province of china): 
         - tw
-        - Taiwan, Province of China
+        - Taiwan (Province of China)
       tajikistan: 
         - tj
         - Tajikistan
@@ -2951,18 +2991,18 @@ country:
       vanuatu: 
         - vu
         - Vanuatu
-      venezuela, bolivarian republic of: 
+      "venezuela, bolivarian republic of ": 
         - ve
-        - Venezuela, Bolivarian Republic of
+        - "Venezuela, Bolivarian Republic of "
       viet nam: 
         - vn
         - Viet Nam
-      virgin islands, british: 
+      virgin islands (british): 
         - vg
-        - Virgin Islands, British
-      virgin islands, u.s.: 
+        - Virgin Islands (British)
+      virgin islands (u.s.): 
         - vi
-        - Virgin Islands, U.S.
+        - Virgin Islands (U.S.)
       wallis and futuna: 
         - wf
         - Wallis and Futuna
@@ -2982,6 +3022,7 @@ country:
     code: 
       "004": Afghanistan
       "008": Albania
+      "010": Antarctica
       "012": Algeria
       "016": American Samoa
       "020": Andorra
@@ -2999,13 +3040,15 @@ country:
       "056": Belgium
       "060": Bermuda
       "064": Bhutan
-      "068": Bolivia (Plurinational State of)
+      "068": Bolivia, Plurinational State of
       "070": Bosnia and Herzegovina
       "072": Botswana
+      "074": Bouvet Island
       "076": Brazil
       "084": Belize
+      "086": British Indian Ocean Territory
       "090": Solomon Islands
-      "092": British Virgin Islands
+      "092": Virgin Islands (British)
       "096": Brunei Darussalam
       100: Bulgaria
       104: Myanmar
@@ -3014,18 +3057,21 @@ country:
       116: Cambodia
       120: Cameroon
       124: Canada
-      132: Cabo Verde
+      132: Cape Verde
       136: Cayman Islands
       140: Central African Republic
       144: Sri Lanka
       148: Chad
       152: Chile
       156: China
+      158: Taiwan (Province of China)
+      162: Christmas Island
+      166: Cocos (Keeling) Islands
       170: Colombia
       174: Comoros
       175: Mayotte
       178: Congo
-      180: Democratic Republic of the Congo
+      180: Congo (The Democratic Republic of the)
       184: Cook Islands
       188: Costa Rica
       191: Croatia
@@ -3042,19 +3088,21 @@ country:
       231: Ethiopia
       232: Eritrea
       233: Estonia
-      234: Faeroe Islands
-      238: Falkland Islands (Malvinas)
+      234: Faroe Islands
+      238: Falkland Islands (The) [Malvinas]
+      239: South Georgia and the South Sandwich Islands
       242: Fiji
       246: Finland
       248: Aland Islands
       250: France
       254: French Guiana
       258: French Polynesia
+      260: French Southern Territories
       262: Djibouti
       266: Gabon
       268: Georgia
       270: Gambia
-      275: State of Palestine
+      275: Palestine, State of
       276: Germany
       288: Ghana
       292: Gibraltar
@@ -3068,14 +3116,15 @@ country:
       324: Guinea
       328: Guyana
       332: Haiti
-      336: Holy See
+      334: Heard Island and McDonald Islands
+      336: Holy See (The) [Vatican City State]
       340: Honduras
-      344: China, Hong Kong Special Administrative Region
+      344: Hong Kong
       348: Hungary
       352: Iceland
       356: India
       360: Indonesia
-      364: Iran (Islamic Republic of)
+      364: Iran, The Islamic Republic of
       368: Iraq
       372: Ireland
       376: Israel
@@ -3086,8 +3135,8 @@ country:
       398: Kazakhstan
       400: Jordan
       404: Kenya
-      408: Democratic People's Republic of Korea
-      410: Republic of Korea
+      408: Korea, The Democratic People's Republic of
+      410: Korea, The Republic of
       414: Kuwait
       417: Kyrgyzstan
       418: Lao People's Democratic Republic
@@ -3099,7 +3148,7 @@ country:
       438: Liechtenstein
       440: Lithuania
       442: Luxembourg
-      446: China, Macao Special Administrative Region
+      446: Macao
       450: Madagascar
       454: Malawi
       458: Malaysia
@@ -3112,7 +3161,7 @@ country:
       484: Mexico
       492: Monaco
       496: Mongolia
-      498: Republic of Moldova
+      498: Moldova, The Republic of
       499: Montenegro
       500: Montserrat
       504: Morocco
@@ -3125,7 +3174,7 @@ country:
       531: Curacao
       533: Aruba
       534: Sint Maarten (Dutch part)
-      535: Bonaire, Saint Eustatius and Saba
+      535: Bonaire, Sint Eustatius and Saba
       540: New Caledonia
       548: Vanuatu
       554: New Zealand
@@ -3136,7 +3185,8 @@ country:
       574: Norfolk Island
       578: Norway
       580: Northern Mariana Islands
-      583: Micronesia (Federated States of)
+      581: United States Minor Outlying Islands
+      583: Micronesia, The Federated States of
       584: Marshall Islands
       585: Palau
       586: Pakistan
@@ -3156,17 +3206,16 @@ country:
       642: Romania
       643: Russian Federation
       646: Rwanda
-      652: Saint-Barthelemy
-      654: Saint Helena
+      652: Saint Barthelemy
+      654: Saint Helena, Ascension and Tristan da Cunha
       659: Saint Kitts and Nevis
       660: Anguilla
       662: Saint Lucia
-      663: Saint-Martin (French part)
+      663: Saint Martin (French part)
       666: Saint Pierre and Miquelon
       670: Saint Vincent and the Grenadines
       674: San Marino
       678: Sao Tome and Principe
-      680: Sark
       682: Saudi Arabia
       686: Senegal
       688: Serbia
@@ -3184,7 +3233,7 @@ country:
       729: Sudan
       732: Western Sahara
       740: Suriname
-      744: Svalbard and Jan Mayen Islands
+      744: Svalbard and Jan Mayen
       748: Swaziland
       752: Sweden
       756: Switzerland
@@ -3203,21 +3252,20 @@ country:
       798: Tuvalu
       800: Uganda
       804: Ukraine
-      807: The former Yugoslav Republic of Macedonia
+      807: Macedonia, The former Yugoslav Republic of
       818: Egypt
-      826: United Kingdom of Great Britain and Northern Ireland
-      830: Channel Islands
+      826: United Kingdom
       831: Guernsey
       832: Jersey
       833: Isle of Man
-      834: United Republic of Tanzania
-      840: United States of America
-      850: United States Virgin Islands
+      834: Tanzania, United Republic of
+      840: United States
+      850: Virgin Islands (U.S.)
       854: Burkina Faso
       858: Uruguay
       860: Uzbekistan
-      862: Venezuela (Bolivarian Republic of)
-      876: Wallis and Futuna Islands
+      862: "Venezuela, Bolivarian Republic of "
+      876: Wallis and Futuna
       882: Samoa
       887: Yemen
       894: Zambia
@@ -3246,6 +3294,9 @@ country:
       anguilla: 
         - 660
         - Anguilla
+      antarctica: 
+        - '010'
+        - Antarctica
       antigua and barbuda: 
         - '028'
         - Antigua and Barbuda
@@ -3297,24 +3348,27 @@ country:
       bhutan: 
         - '064'
         - Bhutan
-      bolivia (plurinational state of): 
+      bolivia, plurinational state of: 
         - '068'
-        - Bolivia (Plurinational State of)
-      bonaire, saint eustatius and saba: 
+        - Bolivia, Plurinational State of
+      bonaire, sint eustatius and saba: 
         - 535
-        - Bonaire, Saint Eustatius and Saba
+        - Bonaire, Sint Eustatius and Saba
       bosnia and herzegovina: 
         - '070'
         - Bosnia and Herzegovina
       botswana: 
         - '072'
         - Botswana
+      bouvet island: 
+        - '074'
+        - Bouvet Island
       brazil: 
         - '076'
         - Brazil
-      british virgin islands: 
-        - '092'
-        - British Virgin Islands
+      british indian ocean territory: 
+        - '086'
+        - British Indian Ocean Territory
       brunei darussalam: 
         - '096'
         - Brunei Darussalam
@@ -3327,9 +3381,6 @@ country:
       burundi: 
         - 108
         - Burundi
-      cabo verde: 
-        - 132
-        - Cabo Verde
       cambodia: 
         - 116
         - Cambodia
@@ -3339,6 +3390,9 @@ country:
       canada: 
         - 124
         - Canada
+      cape verde: 
+        - 132
+        - Cape Verde
       cayman islands: 
         - 136
         - Cayman Islands
@@ -3348,21 +3402,18 @@ country:
       chad: 
         - 148
         - Chad
-      channel islands: 
-        - 830
-        - Channel Islands
       chile: 
         - 152
         - Chile
       china: 
         - 156
         - China
-      china, hong kong special administrative region: 
-        - 344
-        - China, Hong Kong Special Administrative Region
-      china, macao special administrative region: 
-        - 446
-        - China, Macao Special Administrative Region
+      christmas island: 
+        - 162
+        - Christmas Island
+      cocos (keeling) islands: 
+        - 166
+        - Cocos (Keeling) Islands
       colombia: 
         - 170
         - Colombia
@@ -3372,6 +3423,9 @@ country:
       congo: 
         - 178
         - Congo
+      congo (the democratic republic of the): 
+        - 180
+        - Congo (The Democratic Republic of the)
       cook islands: 
         - 184
         - Cook Islands
@@ -3396,12 +3450,6 @@ country:
       czech republic: 
         - 203
         - Czech Republic
-      democratic people's republic of korea: 
-        - 408
-        - Democratic People's Republic of Korea
-      democratic republic of the congo: 
-        - 180
-        - Democratic Republic of the Congo
       denmark: 
         - 208
         - Denmark
@@ -3435,12 +3483,12 @@ country:
       ethiopia: 
         - 231
         - Ethiopia
-      faeroe islands: 
-        - 234
-        - Faeroe Islands
-      falkland islands (malvinas): 
+      falkland islands (the) [malvinas]: 
         - 238
-        - Falkland Islands (Malvinas)
+        - Falkland Islands (The) [Malvinas]
+      faroe islands: 
+        - 234
+        - Faroe Islands
       fiji: 
         - 242
         - Fiji
@@ -3456,6 +3504,9 @@ country:
       french polynesia: 
         - 258
         - French Polynesia
+      french southern territories: 
+        - 260
+        - French Southern Territories
       gabon: 
         - 266
         - Gabon
@@ -3507,12 +3558,18 @@ country:
       haiti: 
         - 332
         - Haiti
-      holy see: 
+      heard island and mcdonald islands: 
+        - 334
+        - Heard Island and McDonald Islands
+      holy see (the) [vatican city state]: 
         - 336
-        - Holy See
+        - Holy See (The) [Vatican City State]
       honduras: 
         - 340
         - Honduras
+      hong kong: 
+        - 344
+        - Hong Kong
       hungary: 
         - 348
         - Hungary
@@ -3525,9 +3582,9 @@ country:
       indonesia: 
         - 360
         - Indonesia
-      iran (islamic republic of): 
+      iran, the islamic republic of: 
         - 364
-        - Iran (Islamic Republic of)
+        - Iran, The Islamic Republic of
       iraq: 
         - 368
         - Iraq
@@ -3564,6 +3621,12 @@ country:
       kiribati: 
         - 296
         - Kiribati
+      korea, the democratic people's republic of: 
+        - 408
+        - Korea, The Democratic People's Republic of
+      korea, the republic of: 
+        - 410
+        - Korea, The Republic of
       kuwait: 
         - 414
         - Kuwait
@@ -3597,6 +3660,12 @@ country:
       luxembourg: 
         - 442
         - Luxembourg
+      macao: 
+        - 446
+        - Macao
+      macedonia, the former yugoslav republic of: 
+        - 807
+        - Macedonia, The former Yugoslav Republic of
       madagascar: 
         - 450
         - Madagascar
@@ -3633,9 +3702,12 @@ country:
       mexico: 
         - 484
         - Mexico
-      micronesia (federated states of): 
+      micronesia, the federated states of: 
         - 583
-        - Micronesia (Federated States of)
+        - Micronesia, The Federated States of
+      moldova, the republic of: 
+        - 498
+        - Moldova, The Republic of
       monaco: 
         - 492
         - Monaco
@@ -3705,6 +3777,9 @@ country:
       palau: 
         - 585
         - Palau
+      palestine, state of: 
+        - 275
+        - Palestine, State of
       panama: 
         - 591
         - Panama
@@ -3735,12 +3810,6 @@ country:
       qatar: 
         - 634
         - Qatar
-      republic of korea: 
-        - 410
-        - Republic of Korea
-      republic of moldova: 
-        - 498
-        - Republic of Moldova
       reunion: 
         - 638
         - Reunion
@@ -3753,27 +3822,27 @@ country:
       rwanda: 
         - 646
         - Rwanda
-      saint helena: 
+      saint barthelemy: 
+        - 652
+        - Saint Barthelemy
+      saint helena, ascension and tristan da cunha: 
         - 654
-        - Saint Helena
+        - Saint Helena, Ascension and Tristan da Cunha
       saint kitts and nevis: 
         - 659
         - Saint Kitts and Nevis
       saint lucia: 
         - 662
         - Saint Lucia
+      saint martin (french part): 
+        - 663
+        - Saint Martin (French part)
       saint pierre and miquelon: 
         - 666
         - Saint Pierre and Miquelon
       saint vincent and the grenadines: 
         - 670
         - Saint Vincent and the Grenadines
-      saint-barthelemy: 
-        - 652
-        - Saint-Barthelemy
-      saint-martin (french part): 
-        - 663
-        - Saint-Martin (French part)
       samoa: 
         - 882
         - Samoa
@@ -3783,9 +3852,6 @@ country:
       sao tome and principe: 
         - 678
         - Sao Tome and Principe
-      sark: 
-        - 680
-        - Sark
       saudi arabia: 
         - 682
         - Saudi Arabia
@@ -3822,6 +3888,9 @@ country:
       south africa: 
         - 710
         - South Africa
+      south georgia and the south sandwich islands: 
+        - 239
+        - South Georgia and the South Sandwich Islands
       south sudan: 
         - 728
         - South Sudan
@@ -3831,18 +3900,15 @@ country:
       sri lanka: 
         - 144
         - Sri Lanka
-      state of palestine: 
-        - 275
-        - State of Palestine
       sudan: 
         - 729
         - Sudan
       suriname: 
         - 740
         - Suriname
-      svalbard and jan mayen islands: 
+      svalbard and jan mayen: 
         - 744
-        - Svalbard and Jan Mayen Islands
+        - Svalbard and Jan Mayen
       swaziland: 
         - 748
         - Swaziland
@@ -3855,15 +3921,18 @@ country:
       syrian arab republic: 
         - 760
         - Syrian Arab Republic
+      taiwan (province of china): 
+        - 158
+        - Taiwan (Province of China)
       tajikistan: 
         - 762
         - Tajikistan
+      tanzania, united republic of: 
+        - 834
+        - Tanzania, United Republic of
       thailand: 
         - 764
         - Thailand
-      the former yugoslav republic of macedonia: 
-        - 807
-        - The former Yugoslav Republic of Macedonia
       timor-leste: 
         - 626
         - Timor-Leste
@@ -3903,18 +3972,15 @@ country:
       united arab emirates: 
         - 784
         - United Arab Emirates
-      united kingdom of great britain and northern ireland: 
+      united kingdom: 
         - 826
-        - United Kingdom of Great Britain and Northern Ireland
-      united republic of tanzania: 
-        - 834
-        - United Republic of Tanzania
-      united states of america: 
+        - United Kingdom
+      united states: 
         - 840
-        - United States of America
-      united states virgin islands: 
-        - 850
-        - United States Virgin Islands
+        - United States
+      united states minor outlying islands: 
+        - 581
+        - United States Minor Outlying Islands
       uruguay: 
         - 858
         - Uruguay
@@ -3924,15 +3990,21 @@ country:
       vanuatu: 
         - 548
         - Vanuatu
-      venezuela (bolivarian republic of): 
+      "venezuela, bolivarian republic of ": 
         - 862
-        - Venezuela (Bolivarian Republic of)
+        - "Venezuela, Bolivarian Republic of "
       viet nam: 
         - 704
         - Viet Nam
-      wallis and futuna islands: 
+      virgin islands (british): 
+        - '092'
+        - Virgin Islands (British)
+      virgin islands (u.s.): 
+        - 850
+        - Virgin Islands (U.S.)
+      wallis and futuna: 
         - 876
-        - Wallis and Futuna Islands
+        - Wallis and Futuna
       western sahara: 
         - 732
         - Western Sahara
@@ -4036,7 +4108,6 @@ currency:
       LRD: Liberian Dollar
       LSL: Loti
       LTL: Lithuanian Litas
-      LVL: Latvian Lats
       LYD: Libyan Dinar
       MAD: Moroccan Dirham
       MDL: Moldovan Leu
@@ -4367,9 +4438,6 @@ currency:
       lari: 
         - GEL
         - Lari
-      latvian lats: 
-        - LVL
-        - Latvian Lats
       lebanese pound: 
         - LBP
         - Lebanese Pound
@@ -4729,7 +4797,6 @@ currency:
       418: Kip
       422: Lebanese Pound
       426: Loti
-      428: Latvian Lats
       430: Liberian Dollar
       434: Libyan Dinar
       440: Lithuanian Litas
@@ -5082,9 +5149,6 @@ currency:
       lari: 
         - 981
         - Lari
-      latvian lats: 
-        - 428
-        - Latvian Lats
       lebanese pound: 
         - 422
         - Lebanese Pound
@@ -6324,7 +6388,7 @@ language:
       cy: Welsh
       da: Danish
       de: German
-      dv: Divehi
+      dv: Dhivehi
       dz: Dzongkha
       ee: Ewe
       el: Modern Greek (1453-)
@@ -6341,7 +6405,7 @@ language:
       fr: French
       fy: Western Frisian
       ga: Irish
-      gd: Gaelic
+      gd: Scottish Gaelic
       gl: Galician
       gn: Guarani
       gu: Gujarati
@@ -6402,16 +6466,16 @@ language:
       mt: Maltese
       my: Burmese
       na: Nauru
-      nb: Bokmal, Norwegian
-      nd: Ndebele, North
+      nb: Norwegian Bokmal
+      nd: North Ndebele
       ne: Nepali (macrolanguage)
       ng: Ndonga
       nl: Dutch
       nn: Norwegian Nynorsk
       "no": Norwegian
-      nr: Ndebele, South
+      nr: South Ndebele
       nv: Navajo
-      ny: Chichewa
+      ny: Nyanja
       oc: Occitan (post 1500)
       oj: Ojibwa
       om: Oromo
@@ -6540,9 +6604,6 @@ language:
       bislama: 
         - bi
         - Bislama
-      bokmal, norwegian: 
-        - nb
-        - Bokmal, Norwegian
       bosnian: 
         - bs
         - Bosnian
@@ -6567,9 +6628,6 @@ language:
       chechen: 
         - ce
         - Chechen
-      chichewa: 
-        - ny
-        - Chichewa
       chinese: 
         - zh
         - Chinese
@@ -6597,9 +6655,9 @@ language:
       danish: 
         - da
         - Danish
-      divehi: 
+      dhivehi: 
         - dv
-        - Divehi
+        - Dhivehi
       dutch: 
         - nl
         - Dutch
@@ -6633,9 +6691,6 @@ language:
       fulah: 
         - ff
         - Fulah
-      gaelic: 
-        - gd
-        - Gaelic
       galician: 
         - gl
         - Galician
@@ -6813,27 +6868,30 @@ language:
       navajo: 
         - nv
         - Navajo
-      ndebele, north: 
-        - nd
-        - Ndebele, North
-      ndebele, south: 
-        - nr
-        - Ndebele, South
       ndonga: 
         - ng
         - Ndonga
       nepali (macrolanguage): 
         - ne
         - Nepali (macrolanguage)
+      north ndebele: 
+        - nd
+        - North Ndebele
       northern sami: 
         - se
         - Northern Sami
       norwegian: 
         - 'no'
         - Norwegian
+      norwegian bokmal: 
+        - nb
+        - Norwegian Bokmal
       norwegian nynorsk: 
         - nn
         - Norwegian Nynorsk
+      nyanja: 
+        - ny
+        - Nyanja
       occitan (post 1500): 
         - oc
         - Occitan (post 1500)
@@ -6894,6 +6952,9 @@ language:
       sardinian: 
         - sc
         - Sardinian
+      scottish gaelic: 
+        - gd
+        - Scottish Gaelic
       serbian: 
         - sr
         - Serbian
@@ -6921,6 +6982,9 @@ language:
       somali: 
         - so
         - Somali
+      south ndebele: 
+        - nr
+        - South Ndebele
       southern sotho: 
         - st
         - Southern Sotho
@@ -8176,7 +8240,7 @@ language:
       byk: Biao
       byl: Bayono
       bym: Bidyara
-      byn: Blin
+      byn: Bilin
       byo: Biyo
       byp: Bumaji
       byq: Basay
@@ -11670,7 +11734,7 @@ language:
       net: Nete
       neu: Neo
       nev: Nyaheun
-      new: Nepal Bhasa
+      new: Newari
       nex: Neme
       ney: Neyo
       nez: Nez Perce
@@ -12774,7 +12838,7 @@ language:
       rum: Romanian
       run: Rundi
       ruo: Istro Romanian
-      rup: Aromanian
+      rup: Macedo-Romanian
       ruq: Megleno Romanian
       rus: Russian
       rut: Rutul
@@ -16191,9 +16255,6 @@ language:
       armenian sign language: 
         - aen
         - Armenian Sign Language
-      aromanian: 
-        - rup
-        - Aromanian
       arop-lokep: 
         - apr
         - Arop-Lokep
@@ -17628,6 +17689,9 @@ language:
       bile: 
         - bil
         - Bile
+      bilin: 
+        - byn
+        - Bilin
       bilma kanuri: 
         - bms
         - Bilma Kanuri
@@ -17775,9 +17839,6 @@ language:
       blang: 
         - blr
         - Blang
-      blin: 
-        - byn
-        - Blin
       blissymbols: 
         - zbl
         - Blissymbols
@@ -26904,6 +26965,9 @@ language:
       macanese: 
         - mzs
         - Macanese
+      macedo-romanian: 
+        - rup
+        - Macedo-Romanian
       macedonian: 
         - mac
         - Macedonian
@@ -29649,9 +29713,6 @@ language:
       neo-hittite: 
         - nei
         - Neo-Hittite
-      nepal bhasa: 
-        - new
-        - Nepal Bhasa
       nepalese sign language: 
         - nsp
         - Nepalese Sign Language
@@ -29673,6 +29734,9 @@ language:
       new zealand sign language: 
         - nzs
         - New Zealand Sign Language
+      newari: 
+        - new
+        - Newari
       neyo: 
         - ney
         - Neyo
@@ -39070,18 +39134,21 @@ langvar:
       arevela: Eastern Armenian
       arevmda: Western Armenian
       baku1926: Unified Turkic Latin Alphabet (Historical)
+      barla: The Barlavento dialect group of Kabuverdianu
       bauddha: Buddhist Hybrid Sanskrit
       biscayan: Biscayan dialect of Basque
       biske: The San Giorgio dialect of Resian
       bohoric: Slovene in Bohoric alphabet
       boont: Boontling
       dajnko: Slovene in Dajnko alphabet
+      ekavsk: Serbian with Ekavian pronunciation
       emodeng: Early Modern English (1500-1700)
       fonipa: International Phonetic Alphabet
       fonupa: Uralic Phonetic Alphabet
       fonxsamp: X-SAMPA transcription
       hepburn: Hepburn romanization
       hognorsk: Norwegian in Hognorsk (High Norwegian) orthography
+      ijekavsk: Serbian with Ijekavian pronunciation
       itihasa: Epic Sanskrit
       jauer: Jauer dialect of Romansh
       jyutping: Jyutping Cantonese Romanization
@@ -39108,6 +39175,7 @@ langvar:
       scotland: Scottish Standard English
       scouse: Scouse
       solba: The Stolvizza dialect of Resian
+      sotav: The Sotavento dialect group of Kabuverdianu
       surmiran: Surmiran idiom of Romansh
       sursilv: Sursilvan idiom of Romansh
       sutsilv: Sutsilvan idiom of Romansh
@@ -39220,6 +39288,12 @@ langvar:
       scouse: 
         - scouse
         - Scouse
+      serbian with ekavian pronunciation: 
+        - ekavsk
+        - Serbian with Ekavian pronunciation
+      serbian with ijekavian pronunciation: 
+        - ijekavsk
+        - Serbian with Ijekavian pronunciation
       slovene in bohoric alphabet: 
         - bohoric
         - Slovene in Bohoric alphabet
@@ -39244,6 +39318,9 @@ langvar:
       sutsilvan idiom of romansh: 
         - sutsilv
         - Sutsilvan idiom of Romansh
+      the barlavento dialect group of kabuverdianu: 
+        - barla
+        - The Barlavento dialect group of Kabuverdianu
       the gniva dialect of resian: 
         - njiva
         - The Gniva dialect of Resian
@@ -39256,6 +39333,9 @@ langvar:
       the san giorgio dialect of resian: 
         - biske
         - The San Giorgio dialect of Resian
+      the sotavento dialect group of kabuverdianu: 
+        - sotav
+        - The Sotavento dialect group of Kabuverdianu
       the stolvizza dialect of resian: 
         - solba
         - The Stolvizza dialect of Resian
@@ -39309,7 +39389,7 @@ script:
     code: 
       Afak: Afaka
       Aghb: Caucasian Albanian
-      Ahom: Ahom, Tai Ahom
+      Ahom: Ahom
       Arab: Arabic
       Armi: Imperial Aramaic
       Armn: Armenian
@@ -39394,16 +39474,16 @@ script:
       Mand: Mandaic
       Mani: Manichaean
       Maya: Mayan hieroglyphs
-      Mend: Mende
+      Mend: Mende Kikakui
       Merc: Meroitic Cursive
       Mero: Meroitic Hieroglyphs
       Mlym: Malayalam
-      Modi: Modi, Modi
+      Modi: Modi
       Mong: Mongolian
       Moon: Moon
       Mroo: Mro
       Mtei: Meitei Mayek
-      Mult: " Multani"
+      Mult: Multani
       Mymr: Myanmar
       Narb: Old North Arabian
       Nbat: Nabataean
@@ -39437,7 +39517,7 @@ script:
       Sgnw: SignWriting
       Shaw: Shavian
       Shrd: Sharada
-      Sidd: Siddham, Siddham, Siddhamatrka
+      Sidd: Siddham
       Sind: Khudawadi
       Sinh: Sinhala
       Sora: Sora Sompeng
@@ -39474,15 +39554,12 @@ script:
       Zmth: Mathematical notation
       Zsym: Symbols
     name: 
-      " multani": 
-        - Mult
-        - " Multani"
       afaka: 
         - Afak
         - Afaka
-      ahom, tai ahom: 
+      ahom: 
         - Ahom
-        - Ahom, Tai Ahom
+        - Ahom
       anatolian hieroglyphs: 
         - Hluw
         - Anatolian Hieroglyphs
@@ -39747,9 +39824,9 @@ script:
       meitei mayek: 
         - Mtei
         - Meitei Mayek
-      mende: 
+      mende kikakui: 
         - Mend
-        - Mende
+        - Mende Kikakui
       meroitic cursive: 
         - Merc
         - Meroitic Cursive
@@ -39759,9 +39836,9 @@ script:
       miao: 
         - Plrd
         - Miao
-      modi, modi: 
+      modi: 
         - Mult
-        - Modi, Modi
+        - Modi
       mongolian: 
         - Mong
         - Mongolian
@@ -39771,6 +39848,9 @@ script:
       mro: 
         - Mroo
         - Mro
+      multani: 
+        - Mult
+        - Multani
       myanmar: 
         - Mymr
         - Myanmar
@@ -39870,9 +39950,9 @@ script:
       shavian: 
         - Shaw
         - Shavian
-      siddham, siddham, siddhamatrka: 
+      siddham: 
         - Sidd
-        - Siddham, Siddham, Siddhamatrka
+        - Siddham
       signwriting: 
         - Sgnw
         - SignWriting

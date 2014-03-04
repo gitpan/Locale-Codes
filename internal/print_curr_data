@@ -17,9 +17,6 @@ use lib "./lib";
 # Takes a single argument:  Locale::Codes::Country_Codes
 our $mod = shift;
 
-our $VERSION;
-$VERSION='3.29';
-
 ############################################################################
 # MAIN PROGRAM
 ############################################################################

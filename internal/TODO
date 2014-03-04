@@ -1,9 +1,11 @@
-Remove alias_code Dec 2013 .
+Remove alias_code Dec 2014 .
 
 Add GENC country codes (replacement for FIPS-10):
    https://nsgreg.nga.mil/genc/discovery
 
 Add Storable as a build prereq. (in t/*.pl)
+
+??? Make the name list and alias lists case sensitive.  RT 92680
 
 =========
 

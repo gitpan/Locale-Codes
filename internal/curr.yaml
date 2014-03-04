@@ -2000,7 +2000,6 @@ country:
         - Zimbabwe
   dom: 
     code: 
-      ac: Ascension Island
       ad: Andorra
       ae: United Arab Emirates
       af: Afghanistan
@@ -2071,7 +2070,6 @@ country:
       er: Eritrea
       es: Spain
       et: Ethiopia
-      eu: European Union
       fi: Finland
       fj: Fiji
       fk: Falkland Islands (The) [Malvinas]
@@ -2236,7 +2234,6 @@ country:
       tz: Tanzania, United Republic of
       ua: Ukraine
       ug: Uganda
-      uk: United Kingdom
       um: United States Minor Outlying Islands
       us: United States
       uy: Uruguay
@@ -2295,9 +2292,6 @@ country:
       aruba: 
         - aw
         - Aruba
-      ascension island: 
-        - ac
-        - Ascension Island
       australia: 
         - au
         - Australia
@@ -2475,9 +2469,6 @@ country:
       ethiopia: 
         - et
         - Ethiopia
-      european union: 
-        - eu
-        - European Union
       falkland islands (the) [malvinas]: 
         - fk
         - Falkland Islands (The) [Malvinas]
@@ -2971,7 +2962,7 @@ country:
         - ae
         - United Arab Emirates
       united kingdom: 
-        - uk
+        - gb
         - United Kingdom
       united states: 
         - us
@@ -6388,7 +6379,7 @@ language:
       cy: Welsh
       da: Danish
       de: German
-      dv: Divehi
+      dv: Dhivehi
       dz: Dzongkha
       ee: Ewe
       el: Modern Greek (1453-)
@@ -6405,7 +6396,7 @@ language:
       fr: French
       fy: Western Frisian
       ga: Irish
-      gd: Gaelic
+      gd: Scottish Gaelic
       gl: Galician
       gn: Guarani
       gu: Gujarati
@@ -6466,16 +6457,16 @@ language:
       mt: Maltese
       my: Burmese
       na: Nauru
-      nb: Bokmal, Norwegian
-      nd: Ndebele, North
+      nb: Norwegian Bokmal
+      nd: North Ndebele
       ne: Nepali (macrolanguage)
       ng: Ndonga
       nl: Dutch
       nn: Norwegian Nynorsk
       "no": Norwegian
-      nr: Ndebele, South
+      nr: South Ndebele
       nv: Navajo
-      ny: Chichewa
+      ny: Nyanja
       oc: Occitan (post 1500)
       oj: Ojibwa
       om: Oromo
@@ -6604,9 +6595,6 @@ language:
       bislama: 
         - bi
         - Bislama
-      bokmal, norwegian: 
-        - nb
-        - Bokmal, Norwegian
       bosnian: 
         - bs
         - Bosnian
@@ -6631,9 +6619,6 @@ language:
       chechen: 
         - ce
         - Chechen
-      chichewa: 
-        - ny
-        - Chichewa
       chinese: 
         - zh
         - Chinese
@@ -6661,9 +6646,9 @@ language:
       danish: 
         - da
         - Danish
-      divehi: 
+      dhivehi: 
         - dv
-        - Divehi
+        - Dhivehi
       dutch: 
         - nl
         - Dutch
@@ -6697,9 +6682,6 @@ language:
       fulah: 
         - ff
         - Fulah
-      gaelic: 
-        - gd
-        - Gaelic
       galician: 
         - gl
         - Galician
@@ -6877,27 +6859,30 @@ language:
       navajo: 
         - nv
         - Navajo
-      ndebele, north: 
-        - nd
-        - Ndebele, North
-      ndebele, south: 
-        - nr
-        - Ndebele, South
       ndonga: 
         - ng
         - Ndonga
       nepali (macrolanguage): 
         - ne
         - Nepali (macrolanguage)
+      north ndebele: 
+        - nd
+        - North Ndebele
       northern sami: 
         - se
         - Northern Sami
       norwegian: 
         - 'no'
         - Norwegian
+      norwegian bokmal: 
+        - nb
+        - Norwegian Bokmal
       norwegian nynorsk: 
         - nn
         - Norwegian Nynorsk
+      nyanja: 
+        - ny
+        - Nyanja
       occitan (post 1500): 
         - oc
         - Occitan (post 1500)
@@ -6958,6 +6943,9 @@ language:
       sardinian: 
         - sc
         - Sardinian
+      scottish gaelic: 
+        - gd
+        - Scottish Gaelic
       serbian: 
         - sr
         - Serbian
@@ -6985,6 +6973,9 @@ language:
       somali: 
         - so
         - Somali
+      south ndebele: 
+        - nr
+        - South Ndebele
       southern sotho: 
         - st
         - Southern Sotho
@@ -8240,7 +8231,7 @@ language:
       byk: Biao
       byl: Bayono
       bym: Bidyara
-      byn: Blin
+      byn: Bilin
       byo: Biyo
       byp: Bumaji
       byq: Basay
@@ -11734,7 +11725,7 @@ language:
       net: Nete
       neu: Neo
       nev: Nyaheun
-      new: Nepal Bhasa
+      new: Newari
       nex: Neme
       ney: Neyo
       nez: Nez Perce
@@ -12838,7 +12829,7 @@ language:
       rum: Romanian
       run: Rundi
       ruo: Istro Romanian
-      rup: Aromanian
+      rup: Macedo-Romanian
       ruq: Megleno Romanian
       rus: Russian
       rut: Rutul
@@ -16255,9 +16246,6 @@ language:
       armenian sign language: 
         - aen
         - Armenian Sign Language
-      aromanian: 
-        - rup
-        - Aromanian
       arop-lokep: 
         - apr
         - Arop-Lokep
@@ -17692,6 +17680,9 @@ language:
       bile: 
         - bil
         - Bile
+      bilin: 
+        - byn
+        - Bilin
       bilma kanuri: 
         - bms
         - Bilma Kanuri
@@ -17839,9 +17830,6 @@ language:
       blang: 
         - blr
         - Blang
-      blin: 
-        - byn
-        - Blin
       blissymbols: 
         - zbl
         - Blissymbols
@@ -26968,6 +26956,9 @@ language:
       macanese: 
         - mzs
         - Macanese
+      macedo-romanian: 
+        - rup
+        - Macedo-Romanian
       macedonian: 
         - mac
         - Macedonian
@@ -29713,9 +29704,6 @@ language:
       neo-hittite: 
         - nei
         - Neo-Hittite
-      nepal bhasa: 
-        - new
-        - Nepal Bhasa
       nepalese sign language: 
         - nsp
         - Nepalese Sign Language
@@ -29737,6 +29725,9 @@ language:
       new zealand sign language: 
         - nzs
         - New Zealand Sign Language
+      newari: 
+        - new
+        - Newari
       neyo: 
         - ney
         - Neyo
@@ -39134,6 +39125,7 @@ langvar:
       arevela: Eastern Armenian
       arevmda: Western Armenian
       baku1926: Unified Turkic Latin Alphabet (Historical)
+      balanka: The Balanka dialect of Anii
       barla: The Barlavento dialect group of Kabuverdianu
       bauddha: Buddhist Hybrid Sanskrit
       biscayan: Biscayan dialect of Basque
@@ -39318,6 +39310,9 @@ langvar:
       sutsilvan idiom of romansh: 
         - sutsilv
         - Sutsilvan idiom of Romansh
+      the balanka dialect of anii: 
+        - balanka
+        - The Balanka dialect of Anii
       the barlavento dialect group of kabuverdianu: 
         - barla
         - The Barlavento dialect group of Kabuverdianu

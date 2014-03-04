@@ -54,8 +54,8 @@ Set the release version
    for i in \
        Makefile.PL \
        Build.PL \
-       internal/get_codes \
        internal/deprecate_codes \
+       internal/harvest_data \
        `find lib -name \*.pm` \
    ;do
       sed -e "s,VERSION *=.*;,VERSION='$v';," $i > z
@@ -106,42 +106,49 @@ Update Porting/Maintainers.pl
 
 Copy in the modified files.
 
-*** FIGURE OUT IF SCRIPT.POD IS PATCHED
+   # Watch for problem in lib/Local/Script.pod
 
    cd cpan/Locale-Codes
-   dir=`find ~/perl-modules -type d -name Locale-Codes\*`
+   lcdir=`find ~/perl-modules -type d -name Locale-Codes\*`
 
    for i in `find . -type f` ;do
-      if [ ! -e $dir/$i ]; then
-         echo "Remove: $i"
+      if [ ! -e $lcdir/$i ]; then
+         echo "## Remove: $i"
+         echo "## git rm $i"
          git rm $i
       else
-         cp -p ~/perl-modules/Locale-Codes-*/$i $i
+         cp -p $lcdir/$i $i
       fi
    done
 
-   for i in `cd $dir; find . -type f` ;do
-      tmp=`echo $i | sed -e 's,\(examples\|internal\)/,,'`
-      if [ "$tmp" != "$i" -o \
-           "$tmp"  = "./README" -o \
-           "$tmp"  = "./INSTALL" -o \
+   for file in `cd $lcdir; find . -type f` ;do
+      tmp=`echo $file | sed -e 's,\(examples\|internal\)/,,'`
+      if [ "$tmp" != "$file" -o \
            "$tmp"  = "./Build.PL" -o \
-           "$tmp"  = "./Makefile.PL" -o \
+           "$tmp"  = "./Changes" -o \
+           "$tmp"  = "./INSTALL" -o \
+           "$tmp"  = "./LICENSE" -o \
            "$tmp"  = "./MANIFEST" -o \
-           "$tmp"  = "./META.yml" -o \
            "$tmp"  = "./META.json" -o \
+           "$tmp"  = "./META.yml" -o \
+           "$tmp"  = "./Makefile.PL" -o \
+           "$tmp"  = "./README" -o \
+           "$tmp"  = "./README.first" -o \
            "$tmp"  = "./t/runtests.bat" -o \
            "$tmp"  = "./t/runtests" -o \
            "$tmp"  = "./t/pod.t" -o \
-           "$tmp"  = "./t/pod_coverage.t" \
+           "$tmp"  = "./t/pod_coverage.t" -o \
+           "$tmp"  = "./t/pod_coverage.ign" \
          ]; then
          continue
       fi
 
-      if [ ! -e $i ]; then
-         echo "Added: $i"
-         cp -p ~/perl-modules/Locale-Codes-*/$i $i
-         git add $i
+      if [ ! -e $file ]; then
+         echo "## Added: $file"
+         echo "## cp -p $lcdir/$file $file"
+         #cp -p $lcdir/$file $file
+         echo "## git add $file"
+         #git add $file
       fi
    done
 

@@ -31,7 +31,7 @@ if ($ExtUtils::MakeMaker::VERSION < 6.64) {
 
 WriteMakefile(
    NAME             => "Locale::Codes",
-   VERSION          => "3.29",
+   VERSION          => "3.30",
    ABSTRACT         => "a distribution of modules to handle locale codes",
    LICENSE          => "perl",
    ($ExtUtils::MakeMaker::VERSION >= 6.48
