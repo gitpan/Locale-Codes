@@ -14,6 +14,7 @@ $Data{'langext'}{'iana'}{'orig'}{'name'} = {
    "Lengua de Señas del Paraguay"    => "Lengua de Senas del Paraguay",
    "Türk İşaret Dili"                => "Turk Isaret Dili",
    "Urubú-Kaapor Sign Language"      => "Urubu-Kaapor Sign Language",
+   "Yolŋu Sign Language"             => "Yolnu Sign Language",
 };
 
 $Data{'langext'}{'iana'}{'ignore'} = {

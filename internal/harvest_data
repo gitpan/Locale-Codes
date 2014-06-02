@@ -22,7 +22,7 @@ use Text::Iconv;
 use lib "./internal";
 
 our $VERSION;
-$VERSION='3.30';
+$VERSION='3.31';
 
 # Some required executables
 my @exe     = qw( wget xls2csv );
@@ -442,24 +442,31 @@ sub _country_name {
       #   $codes{CODE} = NAME
       #
 
-      my $inst = qq
-(Please download the data manually for ISO 3166 country codes.
-Go to the following URL:
-   $country_iso_url
-Click on:
-   'Online Browsing Platform'
-   300 results per page
-Select the entire chart (not including the header).  If not all of the
-countries fit on a single page, do it in multiple steps.
-);
+      foreach my $code (keys %{ $Code2ID{'alpha-2'} }) {
+         my($id,$idx) = @{ $Code2ID{'alpha-2'}{$code} };
+         my $name     = $ID2Names{$id}[$idx];
+         $codes{$code} = $name;
+      }
 
-      $in = _read_file('local'     => '_init_country_extiso',
-                       'type'      => 'manual',
-                       'inst'      => $inst,
-                       'as_list'   => 1,
-                      );
 
-      _read_country_iana_extiso();
+#       my $inst = qq
+# (Please download the data manually for ISO 3166 country codes.
+# Go to the following URL:
+#    $country_iso_url
+# Click on:
+#    'Online Browsing Platform'
+#    300 results per page
+# Select the entire chart (not including the header).  If not all of the
+# countries fit on a single page, do it in multiple steps.
+# );
+
+#       $in = _read_file('local'     => '_init_country_iso',
+#                        'type'      => 'manual',
+#                        'inst'      => $inst,
+#                        'as_list'   => 1,
+#                       );
+
+#       _read_country_iana_extiso();
 
       #
       # The actual IANA list
@@ -480,20 +487,25 @@ countries fit on a single page, do it in multiple steps.
       }
    }
 
-   sub _read_country_iana_extiso {
-      while (@$in) {
-         my($country,$dom);
-         if ($$in[0] =~ /^[A-Z][A-Z]$/) {
-            $country = '';
-         } else {
-            $country = shift(@$in);
-         }
-         $dom     = shift(@$in);
-         shift(@$in);
-         next  if (! $country);
-         $codes{lc($dom)} = $country;
-      }
-   }
+#    sub _read_country_iana_extiso {
+#       while (@$in) {
+#          my($country,$dom);
+#          if ($$in[0] =~ /^[A-Z][A-Z]$/) {
+#             $country = '';
+#          } else {
+#             $country = shift(@$in);
+#          }
+# print "Country: $country\n";
+#          $dom     = shift(@$in);
+#          shift(@$in);
+#          next  if (! $country);
+#          if (! $dom) {
+#             print "WARNING: no domain: $country\n";
+#             next;
+#          }
+#          $codes{lc($dom)} = $country;
+#       }
+#    }
 
    sub _read_country_iana {
       while (1) {
@@ -752,7 +764,7 @@ sub do_currency {
                        'head'      => 'ENTITY,Currency',
                        'as_list'   => 1,
                        'type'      => 'xls',
-                       'join'      => [ 'MACEDONIA' ],
+                       'join'      => 1,
                        'encoding'  => 'UTF-8',
                       );
 
@@ -1456,7 +1468,7 @@ use warnings;
 use utf8;
 
 our(\$VERSION);
-\$VERSION='3.30';
+\$VERSION='3.31';
 
 \$Locale::Codes::Data{'$type'}{'id'} = '$ID';
 
@@ -1567,13 +1579,15 @@ sub _read_file {
 
    # Get the file
    if ($type eq 'manual') {
-      my $inst = $opts{'inst'};
-      print $inst,"\n";
-      print "Put the data into the file:\n";
-      print "   $file\n";
-      print "Strip out any leading/trailing blank lines.\n\n";
-      print "Press any key to continue...\n";
-      my $c = getone();
+      while (! -f $file) {
+         my $inst = $opts{'inst'};
+         print $inst,"\n";
+         print "Put the data into the file:\n";
+         print "   $file\n";
+         print "Strip out any leading/trailing blank lines.\n\n";
+         print "Press any key to continue...\n";
+         my $c = getone();
+      }
    } else {
       my $url  = $opts{'url'};
       system("wget -N -q -O $file '$url'");
@@ -1596,34 +1610,47 @@ sub _read_file {
 
       system($cmd);
       @in = `cat $csv`;
+      chomp(@in);
       if ($opts{'head'}) {
          my $head = $opts{'head'};
          while ($in[0] !~ /$head/) {
             shift(@in);
          }
-      } else {
-         shift(@in);
       }
+
+      # The first line (headers) must have the correct number of fields.
+      my $n = _csv_count_columns($in[0]);
 
       if ($opts{'join'}) {
          # Some CSV files have newlines in the value.  This looks
-         # for a string and when found, joins it and the next
-         # line (with the newline removed).
-         foreach my $string (@{ $opts{'join'} }) {
-            my @tmp;
-            while (@in) {
-               my $in = shift(@in);
-               if ($in =~ /$string/) {
-                  chomp($in);
-                  $in .= shift(@in);
+         # for lines without the correct number of fields.  When found,
+         # the following line is joined to it.
+
+         my @tmp;
+
+         LINE:
+         while (@in) {
+            my $line = shift(@in);
+
+            while (1) {
+               my $nn = _csv_count_columns($line);
+               if ($nn == $n) {
+                  push(@tmp,$line);
+                  next LINE;
+               } elsif ($nn > $n) {
+                  print "ERROR: Invalid line skipped:\n$line\n";
+                  next LINE;
+               } else {
+                  $line .= " " . shift(@in);
+                  next;
                }
-               push(@tmp,$in);
             }
-            @in = @tmp;
          }
+
+         @in = @tmp;
       }
 
-      my $in = Text::CSV::Slurp->load(string => join("",@in));
+      my $in = Text::CSV::Slurp->load(string => join("\n",@in));
       @in = @$in;
       $opts{'as_list'} = 1;   # required
 
@@ -1724,6 +1751,25 @@ sub _read_file {
    } else {
       return join(" ",@in);
    }
+}
+
+sub _csv_count_columns {
+   my($line) = @_;
+
+   my $c     = 0;    # Number of commas found
+   while ($line) {
+
+      # "Value"
+      # "Value\n continued"
+      if ($line =~ /^"/) {
+         $line =~ s/^".*?($|")//;
+      } else {
+         $line =~ s/^[^,]*//;
+      }
+
+      $c++  if ($line =~ s/^,//);
+   }
+   return $c+1;
 }
 
 {
