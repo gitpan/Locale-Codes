@@ -22,7 +22,6 @@ internal/NOTES
 internal/prev.yaml
 internal/print_curr_data
 internal/TODO
-internal/VERSION
 lib/Locale/Codes.pm
 lib/Locale/Codes.pod
 lib/Locale/Codes/API.pod

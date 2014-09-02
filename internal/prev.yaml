@@ -53,7 +53,7 @@ country:
       co: Colombia
       cr: Costa Rica
       cu: Cuba
-      cv: Cape Verde
+      cv: Cabo Verde
       cw: Curacao
       cx: Christmas Island
       cy: Cyprus
@@ -363,6 +363,9 @@ country:
       burundi: 
         - bi
         - Burundi
+      cabo verde: 
+        - cv
+        - Cabo Verde
       cambodia: 
         - kh
         - Cambodia
@@ -372,9 +375,6 @@ country:
       canada: 
         - ca
         - Canada
-      cape verde: 
-        - cv
-        - Cape Verde
       cayman islands: 
         - ky
         - Cayman Islands
@@ -1052,7 +1052,7 @@ country:
       cok: Cook Islands
       col: Colombia
       com: Comoros
-      cpv: Cape Verde
+      cpv: Cabo Verde
       cri: Costa Rica
       cub: Cuba
       cuw: Curacao
@@ -1362,6 +1362,9 @@ country:
       burundi: 
         - bdi
         - Burundi
+      cabo verde: 
+        - cpv
+        - Cabo Verde
       cambodia: 
         - khm
         - Cambodia
@@ -1371,9 +1374,6 @@ country:
       canada: 
         - can
         - Canada
-      cape verde: 
-        - cpv
-        - Cape Verde
       cayman islands: 
         - cym
         - Cayman Islands
@@ -2007,7 +2007,6 @@ country:
       ai: Anguilla
       al: Albania
       am: Armenia
-      an: Netherlands Antilles
       ao: Angola
       aq: Antarctica
       ar: Argentina
@@ -2052,7 +2051,7 @@ country:
       co: Colombia
       cr: Costa Rica
       cu: Cuba
-      cv: Cape Verde
+      cv: Cabo Verde
       cw: Curacao
       cx: Christmas Island
       cy: Cyprus
@@ -2210,7 +2209,6 @@ country:
       sr: Suriname
       ss: South Sudan
       st: Sao Tome and Principe
-      su: USSR
       sv: El Salvador
       sx: Sint Maarten (Dutch part)
       sy: Syrian Arab Republic
@@ -2226,7 +2224,6 @@ country:
       tm: Turkmenistan
       tn: Tunisia
       to: Tonga
-      tp: East Timor
       tr: Turkey
       tt: Trinidad and Tobago
       tv: Tuvalu
@@ -2364,6 +2361,9 @@ country:
       burundi: 
         - bi
         - Burundi
+      cabo verde: 
+        - cv
+        - Cabo Verde
       cambodia: 
         - kh
         - Cambodia
@@ -2373,9 +2373,6 @@ country:
       canada: 
         - ca
         - Canada
-      cape verde: 
-        - cv
-        - Cape Verde
       cayman islands: 
         - ky
         - Cayman Islands
@@ -2445,9 +2442,6 @@ country:
       dominican republic: 
         - do
         - Dominican Republic
-      east timor: 
-        - tp
-        - East Timor
       ecuador: 
         - ec
         - Ecuador
@@ -2727,9 +2721,6 @@ country:
       netherlands: 
         - nl
         - Netherlands
-      netherlands antilles: 
-        - an
-        - Netherlands Antilles
       new caledonia: 
         - nc
         - New Caledonia
@@ -2923,7 +2914,7 @@ country:
         - th
         - Thailand
       timor-leste: 
-        - tp
+        - tl
         - Timor-Leste
       togo: 
         - tg
@@ -2973,9 +2964,6 @@ country:
       uruguay: 
         - uy
         - Uruguay
-      ussr: 
-        - su
-        - USSR
       uzbekistan: 
         - uz
         - Uzbekistan
@@ -3048,7 +3036,7 @@ country:
       116: Cambodia
       120: Cameroon
       124: Canada
-      132: Cape Verde
+      132: Cabo Verde
       136: Cayman Islands
       140: Central African Republic
       144: Sri Lanka
@@ -3372,6 +3360,9 @@ country:
       burundi: 
         - 108
         - Burundi
+      cabo verde: 
+        - 132
+        - Cabo Verde
       cambodia: 
         - 116
         - Cambodia
@@ -3381,9 +3372,6 @@ country:
       canada: 
         - 124
         - Canada
-      cape verde: 
-        - 132
-        - Cape Verde
       cayman islands: 
         - 136
         - Cayman Islands
@@ -4140,6 +4128,7 @@ currency:
       SDG: Sudanese Pound
       SEK: Swedish Krona
       SGD: Singapore Dollar
+      SHP: Saint Helena Pound
       SLL: Leone
       SOS: Somali Shilling
       SRD: Surinam Dollar
@@ -4161,7 +4150,6 @@ currency:
       UGX: Uganda Shilling
       USD: US Dollar
       USN: US Dollar (Next day)
-      USS: US Dollar (Same day)
       UYI: Uruguay Peso en Unidades Indexadas (URUIURUI)
       UYU: Peso Uruguayo
       UZS: Uzbekistan Sum
@@ -4582,6 +4570,9 @@ currency:
       rwanda franc: 
         - RWF
         - Rwanda Franc
+      saint helena pound: 
+        - SHP
+        - Saint Helena Pound
       saudi riyal: 
         - SAR
         - Saudi Riyal
@@ -4684,9 +4675,6 @@ currency:
       us dollar (next day): 
         - USN
         - US Dollar (Next day)
-      us dollar (same day): 
-        - USS
-        - US Dollar (Same day)
       uzbekistan sum: 
         - UZS
         - Uzbekistan Sum
@@ -4820,6 +4808,7 @@ currency:
       634: Qatari Rial
       643: Russian Ruble
       646: Rwanda Franc
+      654: Saint Helena Pound
       678: Dobra
       682: Saudi Riyal
       690: Seychelles Rupee
@@ -4898,7 +4887,6 @@ currency:
       990: Unidad de Fomento
       994: Sucre
       997: US Dollar (Next day)
-      998: US Dollar (Same day)
     name: 
       adb unit of account: 
         - 965
@@ -5293,6 +5281,9 @@ currency:
       rwanda franc: 
         - 646
         - Rwanda Franc
+      saint helena pound: 
+        - 654
+        - Saint Helena Pound
       saudi riyal: 
         - 682
         - Saudi Riyal
@@ -5395,9 +5386,6 @@ currency:
       us dollar (next day): 
         - 997
         - US Dollar (Next day)
-      us dollar (same day): 
-        - 998
-        - US Dollar (Same day)
       uzbekistan sum: 
         - 860
         - Uzbekistan Sum
@@ -5526,7 +5514,7 @@ langext:
       hji: Haji
       hks: Hong Kong Sign Language
       hos: Ho Chi Minh City Sign Language
-      hps: Hawai'i Pidgin Sign Language
+      hps: Hawai'i Sign Language (HSL)
       hsh: Hungarian Sign Language
       hsl: Hausa Sign Language
       hsn: Xiang Chinese
@@ -5654,6 +5642,7 @@ langext:
       xmm: Manado Malay
       xms: Moroccan Sign Language
       yds: Yiddish Sign Language
+      ygs: Yolnu Sign Language
       ysl: Yugoslavian Sign Language
       yue: Yue Chinese
       zib: Zimbabwe Sign Language
@@ -5881,9 +5870,9 @@ langext:
       hausa sign language: 
         - hsl
         - Hausa Sign Language
-      hawai'i pidgin sign language: 
+      hawai'i sign language (hsl): 
         - hps
-        - Hawai'i Pidgin Sign Language
+        - Hawai'i Sign Language (HSL)
       hijazi arabic: 
         - acw
         - Hijazi Arabic
@@ -6328,6 +6317,9 @@ langext:
       yiddish sign language: 
         - yds
         - Yiddish Sign Language
+      yolnu sign language: 
+        - ygs
+        - Yolnu Sign Language
       yucatec maya sign language: 
         - msd
         - Yucatec Maya Sign Language
@@ -7443,6 +7435,7 @@ language:
       aqn: Northern Alta
       aqp: Atakapa
       aqr: Arha
+      aqt: Angaite
       aqz: Akuntsu
       ara: Arabic
       arb: Standard Arabic
@@ -7749,7 +7742,7 @@ language:
       bez: Bena (Tanzania)
       bfa: Bari
       bfb: Pauri Bareli
-      bfc: Northern Bai
+      bfc: Panyi Bai
       bfd: Bafut
       bfe: Betaf
       bff: Bofi
@@ -8699,7 +8692,7 @@ language:
       dgx: Doghoro
       dgz: Daga
       dhd: Dhundari
-      dhg: Djangu
+      dhg: Dhangu
       dhi: Dhimal
       dhl: Dhalandji
       dhm: Zemba
@@ -8951,7 +8944,6 @@ language:
       emk: Eastern Maninkakan
       emm: Mamulique
       emn: Eman
-      emo: Emok
       emp: Northern Embera
       ems: Pacific Gulf Yupik
       emu: Eastern Muria
@@ -8965,6 +8957,7 @@ language:
       enf: Forest Enets
       eng: English
       enh: Tundra Enets
+      enl: Enlhet
       enm: Middle English (1100-1500)
       enn: Engenni
       eno: Enggano
@@ -8973,6 +8966,7 @@ language:
       enu: Enu
       env: Enwan (Edu State)
       enw: Enwan (Akwa Ibom State)
+      enx: Enxet
       eot: Beti (Cote d'Ivoire)
       epi: Epie
       epo: Esperanto
@@ -8999,6 +8993,7 @@ language:
       est: Estonian
       esu: Central Yupik
       esx: Eskimo-Aleut languages
+      esy: Eskayan
       etb: Etebi
       etc: Etchemin
       eth: Ethiopian Sign Language
@@ -9065,7 +9060,7 @@ language:
       fll: North Fali
       fln: Flinders Island
       flr: Fuliiru
-      fly: Tsotsitaal
+      fly: Flaaitaal
       fmp: Fe'fe'
       fmu: Far Western Muria
       fng: Fanagalo
@@ -9207,6 +9202,7 @@ language:
       geq: Geme
       ger: German
       ges: Geser-Gorom
+      gev: Eviya
       gew: Gera
       gex: Garre
       gey: Enya
@@ -9286,6 +9282,7 @@ language:
       gmb: Gula'alaa
       gmd: Maghdi
       gme: East Germanic languages
+      gmg: Magyi
       gmh: Middle High German (ca. 1050-1500)
       gml: Middle Low German
       gmm: Gbaya-Mbodomo
@@ -9588,7 +9585,7 @@ language:
       hoy: Holiya
       hoz: Hozo
       hpo: Hpon
-      hps: Hawai'i Pidgin Sign Language
+      hps: Hawai'i Sign Language (HSL)
       hra: Hrangkhol
       hrc: Niwer Mil
       hre: Hre
@@ -10643,7 +10640,7 @@ language:
       lav: Latvian
       law: Lauje
       lax: Tiwa
-      lay: Lama (Myanmar)
+      lay: Lama Bai
       laz: Aribwatsa
       lba: Lui
       lbb: Label
@@ -10698,7 +10695,6 @@ language:
       led: Lendu
       lee: Lyele
       lef: Lelemi
-      leg: Lengua
       leh: Lenje
       lei: Lemio
       lej: Lengola
@@ -10826,7 +10822,6 @@ language:
       lmj: West Lembata
       lmk: Lamkang
       lml: Hano
-      lmm: Lamam
       lmn: Lambadi
       lmo: Lombard
       lmp: Limbum
@@ -11148,7 +11143,6 @@ language:
       mhe: Besisi
       mhf: Mamaa
       mhg: Margu
-      mhh: Maskoy Pidgin
       mhi: Ma'di
       mhj: Mogholi
       mhk: Mungaka
@@ -12168,6 +12162,7 @@ language:
       olm: Oloma
       olo: Livvi
       olr: Olrat
+      olt: Old Lithuanian
       oma: Omaha-Ponca
       omb: East Ambae
       omc: Mochica
@@ -12581,6 +12576,7 @@ language:
       ptn: Patani
       pto: Zo'e
       ptp: Patep
+      ptq: Pattapu
       ptr: Piamatsina
       ptt: Enrekang
       ptu: Bambam
@@ -12608,7 +12604,6 @@ language:
       puw: Puluwatese
       pux: Puare
       puy: Purisimeno
-      puz: Purum Naga
       pwa: Pawaia
       pwb: Panawa
       pwg: Gapapaiwa
@@ -12861,7 +12856,6 @@ language:
       sam: Samaritan Aramaic
       san: Sanskrit
       sao: Sause
-      sap: Sanapana
       saq: Samburu
       sar: Saraveca
       sas: Sasak
@@ -13189,6 +13183,7 @@ language:
       spk: Sengo
       spl: Selepet
       spm: Akukem
+      spn: Sanapana
       spo: Spokane
       spp: Supyire Senoufo
       spq: Loreto-Ucayali Spanish
@@ -13596,6 +13591,7 @@ language:
       tks: Takestani
       tkt: Kathoriya Tharu
       tku: Upper Necaxa Totonac
+      tkv: Mur Pano
       tkw: Teanu
       tkx: Tangko
       tkz: Takua
@@ -14356,6 +14352,7 @@ language:
       xae: Aequian
       xag: Aghwan
       xai: Kaimbe
+      xaj: Ararandewara
       xal: Kalmyk
       xam: /Xam
       xan: Xamtanga
@@ -14423,7 +14420,7 @@ language:
       xgg: Goreng
       xgi: Garingbal
       xgl: Galindan
-      xgm: Guwinmal
+      xgm: Dharumbal
       xgn: Mongolian languages
       xgr: Garza
       xgu: Unggumi
@@ -14443,6 +14440,7 @@ language:
       xin: Xinca
       xip: Xipinawa
       xir: Xiriana
+      xis: Kisan
       xiv: Indus Valley Language
       xiy: Xipaya
       xjb: Minjungbal
@@ -14722,6 +14720,7 @@ language:
       ygm: Yagomi
       ygp: Gepo
       ygr: Yagaria
+      ygs: Yolnu Sign Language
       ygu: Yugul
       ygw: Yagwoia
       yha: Baha Buyang
@@ -14866,7 +14865,6 @@ language:
       yuq: Yuqui
       yur: Yurok
       yut: Yopno
-      yuu: Yugh
       yuw: Yau (Morobe Province)
       yux: Southern Yukaghir
       yuy: East Yugur
@@ -15940,6 +15938,9 @@ language:
       angaataha: 
         - agm
         - Angaataha
+      angaite: 
+        - aqt
+        - Angaite
       angal: 
         - age
         - Angal
@@ -16144,6 +16145,9 @@ language:
       arapaso: 
         - arj
         - Arapaso
+      ararandewara: 
+        - xaj
+        - Ararandewara
       arauan languages: 
         - auf
         - Arauan languages
@@ -19855,6 +19859,9 @@ language:
       dhalandji: 
         - dhl
         - Dhalandji
+      dhangu: 
+        - dhg
+        - Dhangu
       dhanki: 
         - dhn
         - Dhanki
@@ -19870,6 +19877,9 @@ language:
       dharuk: 
         - xdk
         - Dharuk
+      dharumbal: 
+        - xgm
+        - Dharumbal
       dhatki: 
         - mki
         - Dhatki
@@ -20011,9 +20021,6 @@ language:
       djamindjung: 
         - djd
         - Djamindjung
-      djangu: 
-        - dhg
-        - Djangu
       djangun: 
         - djf
         - Djangun
@@ -20716,9 +20723,6 @@ language:
       emilian: 
         - egl
         - Emilian
-      emok: 
-        - emo
-        - Emok
       emplawas: 
         - emw
         - Emplawas
@@ -20752,6 +20756,9 @@ language:
       english-based creoles and pidgins: 
         - cpe
         - English-based creoles and pidgins
+      enlhet: 
+        - enl
+        - Enlhet
       enrekang: 
         - ptt
         - Enrekang
@@ -20764,6 +20771,9 @@ language:
       enwan (edu state): 
         - env
         - Enwan (Edu State)
+      enxet: 
+        - enx
+        - Enxet
       enya: 
         - gey
         - Enya
@@ -20824,6 +20834,9 @@ language:
       esimbi: 
         - ags
         - Esimbi
+      eskayan: 
+        - esy
+        - Eskayan
       eskimo-aleut languages: 
         - esx
         - Eskimo-Aleut languages
@@ -20887,6 +20900,9 @@ language:
       evenki: 
         - evn
         - Evenki
+      eviya: 
+        - gev
+        - Eviya
       ewage-notu: 
         - nou
         - Ewage-Notu
@@ -21025,6 +21041,9 @@ language:
       fiwaga: 
         - fiw
         - Fiwaga
+      flaaitaal: 
+        - fly
+        - Flaaitaal
       flinders island: 
         - fln
         - Flinders Island
@@ -21973,9 +21992,6 @@ language:
       guwamu: 
         - gwu
         - Guwamu
-      guwinmal: 
-        - xgm
-        - Guwinmal
       guya: 
         - gka
         - Guya
@@ -22195,9 +22211,9 @@ language:
       hawai'i creole english: 
         - hwc
         - Hawai'i Creole English
-      hawai'i pidgin sign language: 
+      hawai'i sign language (hsl): 
         - hps
-        - Hawai'i Pidgin Sign Language
+        - Hawai'i Sign Language (HSL)
       hawaiian: 
         - haw
         - Hawaiian
@@ -24742,6 +24758,9 @@ language:
       kisa: 
         - lks
         - Kisa
+      kisan: 
+        - xis
+        - Kisan
       kisankasa: 
         - kqh
         - Kisankasa
@@ -25942,21 +25961,18 @@ language:
       lalia: 
         - lal
         - Lalia
-      lama (myanmar): 
-        - lay
-        - Lama (Myanmar)
       lama (togo): 
         - las
         - Lama (Togo)
+      lama bai: 
+        - lay
+        - Lama Bai
       lamaholot: 
         - slp
         - Lamaholot
       lamalera: 
         - lmr
         - Lamalera
-      lamam: 
-        - lmm
-        - Lamam
       lamang: 
         - hia
         - Lamang
@@ -26287,9 +26303,6 @@ language:
       lengola: 
         - lej
         - Lengola
-      lengua: 
-        - leg
-        - Lengua
       leningitij: 
         - lnj
         - Leningitij
@@ -27052,6 +27065,9 @@ language:
       maguindanaon: 
         - mdh
         - Maguindanaon
+      magyi: 
+        - gmg
+        - Magyi
       mahali: 
         - mjx
         - Mahali
@@ -27850,9 +27866,6 @@ language:
       maskelynes: 
         - klv
         - Maskelynes
-      maskoy pidgin: 
-        - mhh
-        - Maskoy Pidgin
       maslam: 
         - msv
         - Maslam
@@ -29095,6 +29108,9 @@ language:
       muong: 
         - mtq
         - Muong
+      mur pano: 
+        - tkv
+        - Mur Pano
       muratayak: 
         - asx
         - Muratayak
@@ -30337,9 +30353,6 @@ language:
       northern amami-oshima: 
         - ryn
         - Northern Amami-Oshima
-      northern bai: 
-        - bfc
-        - Northern Bai
       northern betsimisaraka malagasy: 
         - bmm
         - Northern Betsimisaraka Malagasy
@@ -31015,6 +31028,9 @@ language:
       old korean (3rd-9th cent.): 
         - oko
         - Old Korean (3rd-9th cent.)
+      old lithuanian: 
+        - olt
+        - Old Lithuanian
       old manipuri: 
         - omp
         - Old Manipuri
@@ -31579,6 +31595,9 @@ language:
       panobo: 
         - pno
         - Panobo
+      panyi bai: 
+        - bfc
+        - Panyi Bai
       panytyima: 
         - pnw
         - Panytyima
@@ -31723,6 +31742,9 @@ language:
       pattani malay: 
         - mfa
         - Pattani Malay
+      pattapu: 
+        - ptq
+        - Pattapu
       patwin: 
         - pwi
         - Patwin
@@ -32341,9 +32363,6 @@ language:
       purum: 
         - pub
         - Purum
-      purum naga: 
-        - puz
-        - Purum Naga
       pushto: 
         - pus
         - Pushto
@@ -33182,7 +33201,7 @@ language:
         - ayn
         - Sanaani Arabic
       sanapana: 
-        - sap
+        - spn
         - Sanapana
       sandawe: 
         - sad
@@ -36349,9 +36368,6 @@ language:
       tsonga: 
         - tso
         - Tsonga
-      tsotsitaal: 
-        - fly
-        - Tsotsitaal
       tsotso: 
         - lto
         - Tsotso
@@ -38698,6 +38714,9 @@ language:
       yola: 
         - yol
         - Yola
+      yolnu sign language: 
+        - ygs
+        - Yolnu Sign Language
       yoloxochitl mixtec: 
         - xty
         - Yoloxochitl Mixtec
@@ -38785,9 +38804,6 @@ language:
       yugambal: 
         - yub
         - Yugambal
-      yugh: 
-        - yuu
-        - Yugh
       yugoslavian sign language: 
         - ysl
         - Yugoslavian Sign Language

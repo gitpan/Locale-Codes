@@ -50,7 +50,7 @@ Update the copyright
 #########################################################################
 Set the release version
 
-   v=`cat internal/VERSION`
+   v=`pwd | sed -e 's,^.*-,,'`
    for i in \
        Makefile.PL \
        Build.PL \
