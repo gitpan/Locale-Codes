@@ -22,7 +22,7 @@ use Text::Iconv;
 use lib "./internal";
 
 our $VERSION;
-$VERSION='3.32';
+$VERSION='3.33';
 
 # Some required executables
 my @exe     = qw( wget xls2csv );
@@ -596,6 +596,7 @@ sub do_language {
          }
 
          my @language = split(/\s*;\s*/,$language);
+         $term = $alpha3  if (! $term);
 
          return ($alpha3,$term,$alpha2,@language);
       }
@@ -761,7 +762,7 @@ sub do_currency {
 
    sub _init_currency_iso {
       $in = _read_file('url'       => $currency_iso_url,
-                       'head'      => 'ENTITY,Currency',
+                       'head'      => 'ENTITY',
                        'as_list'   => 1,
                        'type'      => 'xls',
                        'join'      => 1,
@@ -1469,7 +1470,7 @@ use warnings;
 use utf8;
 
 our(\$VERSION);
-\$VERSION='3.32';
+\$VERSION='3.33';
 
 \$Locale::Codes::Data{'$type'}{'id'} = '$ID';
 
@@ -1607,7 +1608,7 @@ sub _read_file {
       $csv    =~ s/.xls/.csv/;
 
       # New command
-      my $cmd = "xls2csv -o $csv $file; dos2unix $csv";
+      my $cmd = "xls2csv.py $file > $csv; dos2unix $csv";
 
       system($cmd);
       @in = `cat $csv`;
